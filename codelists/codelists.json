@@ -1,0 +1,10 @@
+{
+  "files": {
+    "opensafely-cancer-excluding-lung-and-haematological.csv": {
+      "id": "opensafely/cancer-excluding-lung-and-haematological/2020-04-15",
+      "url": "https://codelists.opensafely.org/codelist/opensafely/cancer-excluding-lung-and-haematological/2020-04-15/",
+      "downloaded_at": "2022-02-01 16:10:41.408495Z",
+      "sha": "8fa1164b587028c4bd5903289e0948642d399e56"
+    }
+  }
+}
