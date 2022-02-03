@@ -10,13 +10,13 @@ from cohortextractor import (codelist_from_csv, combine_codelists)
 codelist_cancer = codelist_from_csv(
     "codelists/opensafely-cancer-excluding-lung-and-haematological.csv",
     system="ctv3",
-    column="CTV3ID",
+    column="code",
 )
 
 codelist_cancer_surgery = codelist_from_csv(
     "codelists/opensafely-amputation-opcs-4-procedure-codes.csv",
     system="opcs-4",
-    column="Code",
+    column="code",
 )
 # ////////////////////////////
 

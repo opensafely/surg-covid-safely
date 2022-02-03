@@ -5,6 +5,12 @@
       "url": "https://codelists.opensafely.org/codelist/opensafely/cancer-excluding-lung-and-haematological/2020-04-15/",
       "downloaded_at": "2022-02-01 16:10:41.408495Z",
       "sha": "8fa1164b587028c4bd5903289e0948642d399e56"
+    },
+    "opensafely-amputation-opcs-4-procedure-codes.csv": {
+      "id": "opensafely/amputation-opcs-4-procedure-codes/1ccb510c",
+      "url": "https://codelists.opensafely.org/codelist/opensafely/amputation-opcs-4-procedure-codes/1ccb510c/",
+      "downloaded_at": "2022-02-03 16:24:52.185437Z",
+      "sha": "d221383c414d7fd097f310cd602d978ad6890185"
     }
   }
 }

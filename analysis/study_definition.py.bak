@@ -29,16 +29,16 @@ study = StudyDefinition(
 
 	population = patients.satisfying(
 		"""
-        has_cancer
+        has_cancer AND has_surgery
         """,
         has_cancer = patients.with_these_clinical_events(
 			codelist_cancer,
 			on_or_after = start_date
 		),
-        # has_surgery = patients.admitted_to_hospital(
-			# with_these_procedures = codelist_cancer_surgery,
-			# on_or_after = start_date
-		# ),
+        has_surgery = patients.admitted_to_hospital(
+			with_these_procedures = codelist_cancer_surgery,
+			on_or_after = start_date
+		),
 	),
 
 	#############################################
@@ -48,17 +48,17 @@ study = StudyDefinition(
 	## Date of testing.
 	# ...
 
-	### Date of surgery.
-	# date_surgery = patients.admitted_to_hospital(
-		# with_these_procedures = codelist_cancer_surgery,
-        # on_or_after = start_date,
-		# returning = "date_admitted",
-		# date_format = "YYYY-MM-DD",
-		# return_expectations={
-			# "date": {"earliest": start_date, "latest": "today"},
-			# "rate": "uniform",
-			# "incidence": 0.5}
-	# ),
+	## Date of surgery.
+	date_surgery = patients.admitted_to_hospital(
+		with_these_procedures = codelist_cancer_surgery,
+        on_or_after = start_date,
+		returning = "date_admitted",
+		date_format = "YYYY-MM-DD",
+		return_expectations={
+			"date": {"earliest": start_date, "latest": "today"},
+			"rate": "uniform",
+			"incidence": 0.5}
+	),
 
 
 	#############################################
