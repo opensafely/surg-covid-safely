@@ -14,9 +14,15 @@ codelist_cancer = codelist_from_csv(
 )
 
 codelist_cancer_surgery = codelist_from_csv(
-    "codelists/opensafely-amputation-opcs-4-procedure-codes.csv",
-    system="opcs-4",
-    column="Code",
+    "codelists/alwynkotze-surgery-covidsurg-replication-24ed8552.csv",
+    system="snomed",
+    column="code",
+)
+
+codelist_COVID_first_vaccination = codelist_from_csv(
+    "codelists/primis-covid19-vacc-uptake-covadm1-v1.csv",
+    system="snomed",
+    column="code",
 )
 # ////////////////////////////
 

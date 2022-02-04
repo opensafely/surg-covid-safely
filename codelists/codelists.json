@@ -11,6 +11,12 @@
       "url": "https://codelists.opensafely.org/codelist/opensafely/amputation-opcs-4-procedure-codes/1ccb510c/",
       "downloaded_at": "2022-02-03 16:24:52.185437Z",
       "sha": "d221383c414d7fd097f310cd602d978ad6890185"
+    },
+    "primis-covid19-vacc-uptake-covadm1.csv": {
+      "id": "primis-covid19-vacc-uptake/covadm1/v1",
+      "url": "https://codelists.opensafely.org/codelist/primis-covid19-vacc-uptake/covadm1/v1/",
+      "downloaded_at": "2022-02-04 21:53:33.133624Z",
+      "sha": "5e6a8bef2da93467d11c25affbd33755205e4204"
     }
   }
 }

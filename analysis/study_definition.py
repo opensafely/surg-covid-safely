@@ -35,30 +35,76 @@ study = StudyDefinition(
 			codelist_cancer,
 			on_or_after = start_date
 		),
-        # has_surgery = patients.admitted_to_hospital(
-			# with_these_procedures = codelist_cancer_surgery,
-			# on_or_after = start_date
-		# ),
+        has_surgery = patients.with_these_clinical_events(
+			codelist_cancer_surgery,
+			on_or_after = start_date
+		),
 	),
 
 	#############################################
 	## Variables for calculating exposure.
 	#############################################
 	
-	## Date of testing.
-	# ...
-
 	### Date of surgery.
-	# date_surgery = patients.admitted_to_hospital(
-		# with_these_procedures = codelist_cancer_surgery,
-        # on_or_after = start_date,
-		# returning = "date_admitted",
-		# date_format = "YYYY-MM-DD",
-		# return_expectations={
-			# "date": {"earliest": start_date, "latest": "today"},
-			# "rate": "uniform",
-			# "incidence": 0.5}
-	# ),
+	date_surgery = patients.with_these_clinical_events(
+		codelist_cancer_surgery,
+        on_or_after = start_date,
+		returning = "date",
+		date_format = "YYYY-MM-DD",
+		return_expectations={
+			"date": {"earliest": start_date, "latest": "today"},
+			"rate": "uniform",
+			"incidence": 0.5}
+	),
+    
+	
+    ## Type of SARS-CoV-2 test: {LFT, PCR, both}.
+    SARS_CoV_2_test_type = patients.with_test_result_in_sgss(
+        pathogen = "SARS-CoV-2",
+        returning = "case_category",
+        test_result = "positive",
+        
+        on_or_before = "date_surgery",
+        return_expectations = {
+            "incidence" : 1,
+            "category": {"ratios": {"LFT_Only": 0.5, "PCR_Only": 0.3, "LFT_WithPCR": 0.2}},
+             }
+    ),
+    
+    ## COVID symptomatic: {"", "Y", "N"}.
+    SARS_CoV_2_symptomatic = patients.with_test_result_in_sgss(
+        pathogen = "SARS-CoV-2",
+        returning = "symptomatic",
+        restrict_to_earliest_specimen_date = False,
+        on_or_before = "date_surgery",
+        return_expectations = {
+            "incidence" : 1,
+            "category": {"ratios": {"": 0.5, "Y": 0.3, "N": 0.2}},
+             }
+    ),
+    
+    ## Date of testing.
+    # Any result.
+    date_test_SARS_CoV_2_outcome_any = patients.with_test_result_in_sgss(
+        pathogen = "SARS-CoV-2",
+        returning = "date",
+        date_format = "YYYY-MM-DD",
+        test_result = "any"  
+    ),
+    # Positive result.
+    date_test_SARS_CoV_2_outcome_positive = patients.with_test_result_in_sgss(
+        pathogen = "SARS-CoV-2",
+        returning = "date",
+        date_format = "YYYY-MM-DD",
+        test_result = "positive"  
+    ),
+    # Negative result.
+    date_test_SARS_CoV_2_outcome_negative = patients.with_test_result_in_sgss(
+        pathogen = "SARS-CoV-2",
+        returning = "date",
+        date_format = "YYYY-MM-DD",
+        test_result = "negative"  
+    ),
 
 
 	#############################################
@@ -244,6 +290,19 @@ study = StudyDefinition(
 			}
 	),
 
+
+    ## Date of COVID vaccination.
+    date_COVID_first_vaccination = patients.with_these_clinical_events(
+		codelist_COVID_first_vaccination,
+        between = [start_date, date_surgery],
+		returning = "date",
+		date_format = "YYYY-MM-DD",
+		return_expectations={
+			"date": {"earliest": start_date, "latest": "today"},
+			"rate": "uniform",
+			"incidence": 0.5}
+	),
+    
 	### Variables needed for Revised Cardiac Risk Index.
 	## Intraperitoneal or intrathroacic surgery.
 	#intraperitoneal_or_intrathroacic_surgery_gpData = patients.with_these_clinical_events(

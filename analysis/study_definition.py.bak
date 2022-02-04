@@ -29,14 +29,14 @@ study = StudyDefinition(
 
 	population = patients.satisfying(
 		"""
-        has_cancer AND has_surgery
+        has_cancer
         """,
         has_cancer = patients.with_these_clinical_events(
 			codelist_cancer,
 			on_or_after = start_date
 		),
-        has_surgery = patients.admitted_to_hospital(
-			with_these_procedures = codelist_cancer_surgery,
+        has_surgery = patients.with_these_clinical_events(
+			codelist_cancer_surgery,
 			on_or_after = start_date
 		),
 	),
@@ -45,20 +45,66 @@ study = StudyDefinition(
 	## Variables for calculating exposure.
 	#############################################
 	
-	## Date of testing.
-	# ...
-
-	## Date of surgery.
-	date_surgery = patients.admitted_to_hospital(
-		with_these_procedures = codelist_cancer_surgery,
+	### Date of surgery.
+	date_surgery = patients.with_these_clinical_events(
+		codelist_cancer_surgery,
         on_or_after = start_date,
-		returning = "date_admitted",
+		returning = "date",
 		date_format = "YYYY-MM-DD",
 		return_expectations={
 			"date": {"earliest": start_date, "latest": "today"},
 			"rate": "uniform",
 			"incidence": 0.5}
 	),
+    
+	
+    ## Type of SARS-CoV-2 test: {LFT, PCR, both}.
+    SARS_CoV_2_test_type = patients.with_test_result_in_sgss(
+        pathogen = "SARS-CoV-2",
+        returning = "case_category",
+        test_result = "positive",
+        
+        on_or_before = "date_surgery",
+        return_expectations = {
+            "incidence" : 1,
+            "category": {"ratios": {"LFT_Only": 0.5, "PCR_Only": 0.3, "LFT_WithPCR": 0.2}},
+             }
+    ),
+    
+    ## COVID symptomatic: {"", "Y", "N"}.
+    SARS_CoV_2_symptomatic = patients.with_test_result_in_sgss(
+        pathogen = "SARS-CoV-2",
+        returning = "symptomatic",
+        restrict_to_earliest_specimen_date = False,
+        on_or_before = "date_surgery",
+        return_expectations = {
+            "incidence" : 1,
+            "category": {"ratios": {"": 0.5, "Y": 0.3, "N": 0.2}},
+             }
+    ),
+    
+    ## Date of testing.
+    # Any result.
+    date_test_SARS_CoV_2_outcome_any = patients.with_test_result_in_sgss(
+        pathogen = "SARS-CoV-2",
+        returning = "date",
+        date_format = "YYYY-MM-DD",
+        test_result = "any"  
+    ),
+    # Positive result.
+    date_test_SARS_CoV_2_outcome_positive = patients.with_test_result_in_sgss(
+        pathogen = "SARS-CoV-2",
+        returning = "date",
+        date_format = "YYYY-MM-DD",
+        test_result = "positive"  
+    ),
+    # Negative result.
+    date_test_SARS_CoV_2_outcome_negative = patients.with_test_result_in_sgss(
+        pathogen = "SARS-CoV-2",
+        returning = "date",
+        date_format = "YYYY-MM-DD",
+        test_result = "negative"  
+    ),
 
 
 	#############################################
