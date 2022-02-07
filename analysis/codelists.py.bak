@@ -20,7 +20,7 @@ codelist_cancer_surgery = codelist_from_csv(
 )
 
 codelist_COVID_first_vaccination = codelist_from_csv(
-    "codelists/primis-covid19-vacc-uptake-covadm1-v1.csv"
+    "codelists/primis-covid19-vacc-uptake-covadm1-v1.csv",
     system="snomed",
     column="code",
 )

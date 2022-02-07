@@ -294,7 +294,7 @@ study = StudyDefinition(
     ## Date of COVID vaccination.
     date_COVID_first_vaccination = patients.with_these_clinical_events(
 		codelist_COVID_first_vaccination,
-        between = [start_date, date_surgery],
+        between = [start_date, "date_surgery"],
 		returning = "date",
 		date_format = "YYYY-MM-DD",
 		return_expectations={
