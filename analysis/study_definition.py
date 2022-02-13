@@ -6,14 +6,15 @@
 from cohortextractor import (
 	StudyDefinition,
 	patients, codelist,
-	codelist_from_csv
+	codelist_from_csv,
+    codelist
 )
 # Import codelists.py script.
 from codelists import *
 # Import study_parameters.
 #/////import study_parameters
 # # Define variables explicitly from study_parameters
-start_date = "2018-01-01" #study_parameters["start_date"]
+start_date = "2018-03-17" #study_parameters["start_date"]
 end_date = "2022-01-01" #study_parameters["end_date"]
 
 
@@ -67,7 +68,7 @@ study = StudyDefinition(
         on_or_before = "date_surgery",
         return_expectations = {
             "incidence" : 1,
-            "category": {"ratios": {"LFT_Only": 0.5, "PCR_Only": 0.3, "LFT_WithPCR": 0.2}},
+            "category": {"ratios": {"": 0.3, "LFT_Only": 0.4, "PCR_Only": 0.2, "LFT_WithPCR": 0.1}},
              }
     ),
     
@@ -112,15 +113,16 @@ study = StudyDefinition(
 	#############################################
 	
 	## Date of death.
-	# Date of death from GP data.
-	date_death_gp = patients.with_death_recorded_in_primary_care(
-		on_or_after = start_date,
-		returning = "date_of_death",
-		return_expectations = {
-			"date": {"earliest" : start_date},
-			"rate": "exponential_increase"
-		},
-	),
+	## Date of death from GP data.
+    ## Only gives year. Don't bother.
+	# date_death_gp = patients.with_death_recorded_in_primary_care(
+		# on_or_after = start_date,
+		# returning = "date_of_death",
+		# return_expectations = {
+			# "date": {"earliest" : start_date},
+			# "rate": "exponential_increase"
+		# },
+	# ),
 	# Date of death from ONS data.
 	date_death_ons = patients.died_from_any_cause(
 		on_or_after = start_date,
@@ -283,7 +285,7 @@ study = StudyDefinition(
 	# ),
 
 	## Sex
-	sex = patients.sex(
+	Sex = patients.sex(
 		return_expectations = {
 			"rate": "universal",
 			"category": {"ratios": {"Female": 0.5, "Male": 0.50}}
