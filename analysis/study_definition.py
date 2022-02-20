@@ -86,22 +86,28 @@ study = StudyDefinition(
     
     ## Date of testing.
     # Any result.
-    date_test_SARS_CoV_2_outcome_any = patients.with_test_result_in_sgss(
+    date_latest_test_preOp_SARS_CoV_2_outcome_any = patients.with_test_result_in_sgss(
         pathogen = "SARS-CoV-2",
+        on_or_before = "date_surgery",
+        find_last_match_in_period = True,
         returning = "date",
         date_format = "YYYY-MM-DD",
         test_result = "any"  
     ),
     # Positive result.
-    date_test_SARS_CoV_2_outcome_positive = patients.with_test_result_in_sgss(
+    date_latest_test_preOp_SARS_CoV_2_outcome_positive = patients.with_test_result_in_sgss(
         pathogen = "SARS-CoV-2",
+        on_or_before = "date_surgery",
+        find_last_match_in_period = True,
         returning = "date",
         date_format = "YYYY-MM-DD",
         test_result = "positive"  
     ),
     # Negative result.
-    date_test_SARS_CoV_2_outcome_negative = patients.with_test_result_in_sgss(
+    date_latest_test_preOp_SARS_CoV_2_outcome_negative = patients.with_test_result_in_sgss(
         pathogen = "SARS-CoV-2",
+        on_or_before = "date_surgery",
+        find_last_match_in_period = True,
         returning = "date",
         date_format = "YYYY-MM-DD",
         test_result = "negative"  
@@ -251,38 +257,39 @@ study = StudyDefinition(
 	#############################################
 	## Variables for calculating confounders
 	#############################################
-	### Age
-	## Age, in years.
-	# age_at_surgery = patients.age_as_of(
-		# date_surgery,
-	        # return_expectations = {
-        	        # "rate": "universal",
-                	# "int": {"distribution": "population_ages"}
-		        # }
-	# ),
-	## Age group, in accordance with the original COVIDSurg study.
-	# age_group_surgery = patients.categorised_as(
-        	# {
-		# "0-29" : "age_at_surgery <= 29",
-	        # "30-49": "age_at_surgery > 29 AND age <= 49",
-	        # "50-69": "age_at_surgery > 49 AND age <= 69",
-	        # "70-79": "age_at_surgery > 69 AND age <= 79",
-	        # "80+"  : "age_at_surgery >= 80",
-	        # "Missing": "isintance(age_at_surgery, int)",
-	        # },
-		# return_expectations={
-			# "rate": "universal",
-			# "category": {
-			# "ratios": {
-				# "0-29": 0.229,
-				# "30-49": 0.275,
-				# "50-69": 0.304,
-				# "70-79": 0.128,
-				# "80+": 0.064 ,
-				# }
-			# },
-		# },
-	# ),
+	## Age
+	# Age, in years.
+	age_at_surgery = patients.age_as_of(
+		"date_surgery",
+	        return_expectations = {
+        	        "rate": "universal",
+                	"int": {"distribution": "population_ages"}
+		        }
+	),
+	# Age group, in accordance with the original COVIDSurg study.
+	age_group_surgery = patients.categorised_as(
+        	{
+            "0-29" : "age_at_surgery <= 29",
+	        "30-49": "age_at_surgery > 29 AND age_at_surgery <= 49",
+	        "50-69": "age_at_surgery > 49 AND age_at_surgery <= 69",
+	        "70-79": "age_at_surgery > 69 AND age_at_surgery <= 79",
+	        "80+"  : "age_at_surgery >= 80",
+	        "Missing": "DEFAULT"
+	        },
+		return_expectations = {
+                            "rate": "universal",
+                            "category": {
+                                        "ratios": {
+                                                    "0-29": 0.229,
+                                                    "30-49": 0.275,
+                                                    "50-69": 0.304,
+                                                    "70-79": 0.127,
+                                                    "80+": 0.064 ,
+                                                    "Missing": 0.001,
+                                                    }
+                                        },
+                              },
+	),
 
 	## Sex
 	Sex = patients.sex(
