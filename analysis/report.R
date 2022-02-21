@@ -91,15 +91,20 @@ myData <- myData %>%
 
 
 # Collect plot data.
-myPlotData <- myData %>%
+myPlotData_plot1 <- myData %>%
     group_by(Year_surgery, Month_surgery) %>%
       summarise(n_tdpo = n(),
                 count_tdpo = sum(ifelse(postOp_mortality_30day=="Dead within 30-day post-operation",1,0)),
                 prop_tdpo = (count_tdpo / n_tdpo))
-
+# Save plot data.
+write.csv(
+  x = myPlotData_plot1,
+  file = paste0(here::here("output"),"/tables/","myPlotData_plot1")
+)
 # Make basic plot.
 plot_postOp_mortality_30day <- ggplot(myPlotData[1:12,], aes(x=Month_surgery, y=n_tdpo, group=Year_surgery)) + geom_line()
-# Save plot
+
+# Save plot.
 ggsave(
   plot = plot_postOp_mortality_30day,
   filename="plot_postOp_mortality_30day.png",
