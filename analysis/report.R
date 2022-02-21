@@ -99,7 +99,7 @@ myPlotData_plot1 <- myData %>%
 # Save plot data.
 write.csv(
   x = myPlotData_plot1,
-  file = paste0(here::here("output"),"/tables/","myPlotData_plot1")
+  file = paste0(here::here("output"),"/myPlotData_plot1")
 )
 # Make basic plot.
 plot_postOp_mortality_30day <- ggplot(myPlotData[1:12,], aes(x=Month_surgery, y=n_tdpo, group=Year_surgery)) + geom_line()
