@@ -32,8 +32,8 @@ myData <- myData %>%
             ## Distinction pre and post COVID.
             mutate(
               surgery_pre_or_post_COVID_UK = case_when(
-                .$date_surgery <= "2020-03-17" ~ "preCOVID",
-                .$date_surgery > "2020-03-17" ~ "postCOVID",
+                .$date_surgery <= "2020-03-17" ~ "preCOVID surgery",
+                .$date_surgery > "2020-03-17" ~ "postCOVID surgery",
                 is.na(.$date_surgery) ~ NA_character_
                                               )
                   ) %>%
@@ -168,3 +168,17 @@ table1_postOp_mortality_30day <-
             prop_infection_5to6wk = n_infection_5to6wk/ n_all,
             prop_infection_7wk = n_infection_7wk/ n_all,
   )
+
+# Save tables.
+write.csv(
+  x = table1_ageGroup,
+  file = paste0(here::here("output"),"/table1_ageGroup.csv")
+)
+write.csv(
+  x = table1_Sex,
+  file = paste0(here::here("output"),"/table1_Sex.csv")
+)
+write.csv(
+  x = table1_postOp_mortality_30day,
+  file = paste0(here::here("output"),"/table1_postOp_mortality_30day.csv")
+)
