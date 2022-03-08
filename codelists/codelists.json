@@ -1,21 +1,21 @@
 {
   "files": {
-    "opensafely-cancer-excluding-lung-and-haematological.csv": {
-      "id": "opensafely/cancer-excluding-lung-and-haematological/2020-04-15",
-      "url": "https://codelists.opensafely.org/codelist/opensafely/cancer-excluding-lung-and-haematological/2020-04-15/",
-      "downloaded_at": "2022-02-01 16:10:41.408495Z",
-      "sha": "8fa1164b587028c4bd5903289e0948642d399e56"
+    "user-jkua-cancer.csv": {
+      "id": "user/jkua/cancer/1d9bf8ff",
+      "url": "https://codelists.opensafely.org/codelist/user/jkua/cancer/1d9bf8ff/",
+      "downloaded_at": "2022-02-25 09:25:18.849246Z",
+      "sha": "64047621a402d971cc1d1f442453f27f475ef9b8"
     },
-    "opensafely-amputation-opcs-4-procedure-codes.csv": {
-      "id": "opensafely/amputation-opcs-4-procedure-codes/1ccb510c",
-      "url": "https://codelists.opensafely.org/codelist/opensafely/amputation-opcs-4-procedure-codes/1ccb510c/",
-      "downloaded_at": "2022-02-03 16:24:52.185437Z",
-      "sha": "d221383c414d7fd097f310cd602d978ad6890185"
+    "user-ciaranmci-surgery-covidsurg-replication-excluding-exclusions.csv": {
+      "id": "user/ciaranmci/surgery-covidsurg-replication-excluding-exclusions/5c09dd62",
+      "url": "https://codelists.opensafely.org/codelist/user/ciaranmci/surgery-covidsurg-replication-excluding-exclusions/5c09dd62/",
+      "downloaded_at": "2022-02-25 09:25:19.743458Z",
+      "sha": "d9bb1d5799028392d6a8953ed6d7835484e04c79"
     },
     "primis-covid19-vacc-uptake-covadm1.csv": {
       "id": "primis-covid19-vacc-uptake/covadm1/v1",
       "url": "https://codelists.opensafely.org/codelist/primis-covid19-vacc-uptake/covadm1/v1/",
-      "downloaded_at": "2022-02-04 21:53:33.133624Z",
+      "downloaded_at": "2022-02-25 09:28:32.237120Z",
       "sha": "5e6a8bef2da93467d11c25affbd33755205e4204"
     }
   }
