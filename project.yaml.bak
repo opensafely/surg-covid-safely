@@ -11,9 +11,14 @@ actions:
       highly_sensitive:
         cohort: output/input.csv
 
-  # describe:
-    # run: r:latest analysis/report.R
-    # needs: [generate_study_population]
-    # outputs:
-      # moderately_sensitive:
-        # cohort: output/plot_postOp_mortality_30day.png
+  describe:
+    run: r:latest analysis/report.R
+    needs: [generate_study_population]
+    outputs:
+      moderately_sensitive:
+       #cohort1: output/plot_postOp_mortality_30day.png
+       #subtable_table1_ageGroup: output/table1_ageGroup.csv
+       #subtable_table1_Sex: output/table1_Sex.csv
+       #subtable_table1_30dayMortality: output/table1_postOp_mortality_30day.csv
+       #table1_df: output/table1.csv
+       table1_kable: output/Table1.png
