@@ -770,7 +770,6 @@ code,term
 1052277001,Fixation of left breast
 1052278006,Reconstruction of left breast with pedicle transverse rectus abdominis myocutaneous flap
 1052279003,Reconstruction of right breast with pedicle transverse rectus abdominis myocutaneous flap
-1052281000000107,Endovenous mechanochemical ablation of varicose vein of lower limb
 1052301000000108,Reconstruction of anterior abdominal wall using flap
 1052316004,Excision of left vas deferens
 1052317008,Excision of right vas deferens
@@ -1581,7 +1580,6 @@ code,term
 1109861000000109,Radial emitting laser destruction of anal fistula using ultrasonographic guidance
 1109871000000102,Creation of Barnett Continent Intestinal Reservoir
 1109881000000100,High intensity focused ultrasound ablation of lesion of thyroid
-11101003,Percutaneous transluminal coronary angioplasty
 11116000,Incision of ingrown nail
 11127003,"Esophagogastrostomy, antesternal or antethoracic"
 11150009,Partial parotidectomy
@@ -1607,8 +1605,6 @@ code,term
 1119422006,Modified radical dissection of right half of neck
 1119424007,Lengthening of left side of nasal columella
 1119425008,Lengthening of right side of nasal columella
-1119427000,Open transposition of left subclavian artery to carotid artery with endovascular repair of descending thoracic aorta by neck incision
-1119428005,Open transposition of right subclavian artery to carotid artery with endovascular repair of descending thoracic aorta by neck incision
 1119432004,Partial glossectomy with radical dissection of left half of neck
 1119433009,Partial glossectomy with radical dissection of right half of neck
 11227005,Excision of ganglion of tendon sheath of hand
@@ -1643,7 +1639,6 @@ code,term
 112721006,Internal fixation of bone of vertebra
 112722004,Correction of spinal pseudoarthrosis
 112725002,Destruction of intervertebral disc
-112726001,Injection of spinal intervertebral space with chymopapain
 112727005,Revision of hip replacement
 112728000,Total revision of hip replacement with use of methyl methacrylate
 112729008,Suture of wound of coxofemoral joint capsule
@@ -1725,7 +1720,6 @@ code,term
 112892003,Radical excision of iliac lymph nodes
 112893008,Superficial inguinofemoral lymphadenectomy in continuity with pelvic lymphadenectomy
 112896000,Replacement of mechanical kidney
-112898004,Closure of renal pyelostomy
 112902005,Partial urinary cystectomy
 112903000,Excision of perivesical tissue
 112905007,Repair of urethrovaginal fistula
@@ -1789,7 +1783,6 @@ code,term
 11347004,Modified radical neck dissection
 11349001,Incision of abscess of lip
 11369006,Vestibuloplasty
-11377005,Direct laryngoscopy with excision of tumor
 1137821000000104,Cementoplasty of glenoid of left shoulder using fluoroscopic guidance
 1137831000000102,Cementoplasty of glenoid of right shoulder using fluoroscopic guidance
 1137841000000106,Cementoplasty of glenoid of bilateral shoulders using fluoroscopic guidance
@@ -1832,7 +1825,6 @@ code,term
 11598009,Excision of synovial cyst
 115981007,Fusion by stapling
 11601004,Complicated seminal vesiculotomy
-116014002,Excisional biopsy of bone
 116026007,Total jejunectomy
 116027003,Partial jejunectomy
 116028008,Salpingo-oophorectomy
@@ -1886,7 +1878,6 @@ code,term
 116244007,Enucleation of prostate
 116245008,Incisional biopsy of vagina
 116246009,Excisional biopsy of lesion of vagina
-116247000,Incisional biopsy of uterine cervix
 116248005,Excisional biopsy of lesion of fallopian tube
 116249002,Gastrointestinal tract incision
 11626008,"Miles operation, complete proctectomy"
@@ -2152,7 +2143,6 @@ code,term
 119796008,Neck artery destructive procedure
 119797004,Head artery transplantation
 119798009,Neck artery transplantation
-1198000,Excisional biopsy of bone of scapula
 119807004,Thoracic artery closure
 119808009,Abdominal artery closure
 119809001,Thoracic artery repair
@@ -2426,7 +2416,6 @@ code,term
 12054004,Extensive destruction of lesion of vulva
 120609008,Destruction of lesion
 12072005,Maxillectomy with orbital exenteration
-12074006,Ligation of gastric varices
 12077004,Reduction of fracture of fibula with internal fixation
 12084007,Repair of fascia of hand by suture
 1209007,Arthroscopy of knee with lateral meniscus repair
@@ -2492,9 +2481,6 @@ code,term
 12385003,Repair of mouth laceration
 1239111000000106,Therapeutic endoscopic operation on enteric pouch
 1239121000000100,Fibreoptic endoscopic balloon dilation of ileoanal J shaped pouch
-1239141000000107,Endoscopic balloon dilation of ampulla of Vater
-1239151000000105,Endoscopic balloon dilation of ampulla of Vater and removal of calculus from bile duct
-1239161000000108,Endoscopic balloon dilation of ampulla of Vater and insertion of stent into bile duct
 12392008,Facial-accessory nerve anastomosis
 1239351000000107,Continent catheterisable transverse retubularised ileovesicostomy with construction of intestinal pouch
 1239361000000105,Continent catheterisable appendicovesicostomy with construction of intestinal pouch
@@ -2560,7 +2546,6 @@ code,term
 127601009,Hammer toe operation
 12762001,Suture of eyelid
 12771005,Partial excision of patella
-12780005,Indirect laryngoscopy with removal of lesion
 1278003,Open reduction of closed shoulder dislocation with fracture of greater tuberosity
 1279006,Repair of cardiac pacemaker pocket in skin AND/OR subcutaneous tissue
 12796008,Transection of fallopian tube by abdominal approach
@@ -2573,8 +2558,6 @@ code,term
 128314003,Open reduction of congenital dislocation of hip
 128323000,Revision of implant
 128324006,Arthroscopy with surgical procedure
-128325007,Direct laryngoscopy with surgical procedure
-128326008,Bronchoscopy with surgical procedure
 12838003,Incision and exploration of neck
 128392000,Ear excision
 128396002,Removal of foreign body from central nervous system
@@ -2642,6 +2625,7 @@ code,term
 13211006,Removal of prosthesis of joint structures of hand
 13246003,Closure of enterovesical fistula with bladder resection
 13254001,"Abdominal hysterectomy with colpo-urethrocystopexy, Marshall-Marchetti-Krantz type"
+1325511000000105,Hand surgery
 1326551000000102,Total excision of os trigonum
 13275009,Excision of lesion of thoracic aorta with end-to-end anastomosis
 1328002,Ilioiliac shunt
@@ -2671,17 +2655,14 @@ code,term
 133870002,Repair of ileorectal fistula
 133871003,Cecosigmoidostomy
 133881004,Intubation and aspiration of small intestine
-13391000087100,Left nephrostomy using ultrasonographic guidance
 13391005,Excision of lesion of rectovaginal septum
 13392003,Transplantation of larynx
-13401000087102,Right nephrostomy using ultrasonographic guidance
 13403003,Pharyngoesophageal repair
 13417007,Wedge osteotomy of radius and ulna
 134245004,Roller ball diathermy of endometrium
 13431007,Prefrontal lobotomy
 13433005,Excision of lesion of brain by transtemporal approach
 13490005,Conchotomy
-135007,Arthrotomy of wrist joint with exploration and biopsy
 1352009,Anterior spinal rhizotomy
 13529000,Nasal septoplasty
 13532002,Excision of lesion of thoracic aorta with interposition graft replacement
@@ -2775,7 +2756,6 @@ code,term
 14354006,Operation on upper respiratory tract
 14356008,Grafting of inner ear
 14362003,Change of length of muscle
-14372000,Extracorporeal shockwave lithotripsy of the gallbladder and bile duct
 14375003,Operation on mandible
 14377006,Transplantation of prostatic tissue
 14378001,Arthrotomy with removal of foreign body of tarsometatarsal joint
@@ -2889,7 +2869,6 @@ code,term
 15372008,Revision of skin graft
 15395004,Destruction of lesion of cul-de-sac
 15410007,Autogenous graft of rib cartilage to chin
-15413009,High forceps delivery with episiotomy
 15438004,"Suture of facial nerve, extracranial"
 15440009,Disarticulation
 15449005,Glenoplasty for recurrent dislocation of shoulder
@@ -2969,6 +2948,7 @@ code,term
 16444861000119109,Transcervical recanalization of fallopian tube with catheter using fluoroscopic guidance
 1645004,Transduodenal sphincterotomy
 16453004,Operation on stomach
+16456981000119100,Intraoperative fluoroscopic cholangiogram
 16481005,"Free soft dentoalveolar tissue graft procedure, including donor site"
 16496009,Spinal fusion of atlas-axis
 16508004,Division of congenital web of pharynx
@@ -3005,7 +2985,6 @@ code,term
 16798006,Incision and drainage of infected bursa of ankle
 1683003,Direct closure of laceration of conjunctiva
 16835002,Manchester-Donald operation on uterus
-16841009,"Removal of impacted tooth, completely bony"
 16853008,Phlebectomy with anastomosis of head and neck vein
 16866008,Larrey shoulder disarticulation
 16877002,Attachment of pedicle graft to lip
@@ -3269,7 +3248,6 @@ code,term
 172080000,Right augmentation mammoplasty
 17208009,Open reduction of alveolar fracture of mandible
 172081001,Left augmentation mammoplasty
-172086006,Breast cavity shavings
 172090008,Transposition of nipple
 172091007,Extirpation of lesion of nipple
 172105006,Operation on breast duct
@@ -3574,7 +3552,6 @@ code,term
 173012006,Open biopsy of lesion of larynx
 173013001,Chondroplasty of larynx
 173018005,Microtherapeutic endoscopic operations on larynx
-173019002,Microtherapeutic endoscopic extirpation of lesion of larynx using laser
 173027006,Endoscopic resection of lesion of larynx
 173028001,Endoscopic destruction of lesion of larynx
 173029009,Endoscopic removal of prosthesis from larynx
@@ -3649,7 +3626,6 @@ code,term
 173269002,Division of adhesions of lip
 173278008,Allotransplantation of tooth
 173279000,Autotransplantation of tooth
-173285007,Surgical removal of impacted third molar tooth
 173297008,Preprosthetic oral surgery
 173298003,Augmentation of alveolar ridge using auto bone graft
 173317005,Surgical exposure of tooth
@@ -3675,6 +3651,7 @@ code,term
 173379003,Removal of lesion of palate
 173380000,Excision of lesion of palate
 173381001,Destruction of lesion of palate
+173382008,Cryotherapy to lesion of palate
 173383003,Cauterization of lesion of palate
 173388007,Revision of repair of cleft palate
 17339009,Arteriectomy with anastomosis of abdominal artery
@@ -3897,16 +3874,6 @@ code,term
 174173004,Fiberoptic endoscopic laser destruction of lesion of colon
 174179000,Fiberoptic endoscopic dilation of colon
 174180002,Fiberoptic endoscopic coagulation of blood vessel of colon
-174190005,Endoscopic snare resection of lesion of lower bowel using fiberoptic sigmoidoscope
-174191009,Endoscopic cauterization of lesion of lower bowel using fiberoptic sigmoidoscope
-174192002,Endoscopic laser destruction of lesion of lower bowel using fiberoptic sigmoidoscope
-174197008,Endoscopic dilation of lower bowel using fiberoptic sigmoidoscope
-174198003,Endoscopic coagulation of blood vessel of lower bowel using fiberoptic sigmoidoscope
-174207007,Endoscopic snare resection of lesion of sigmoid colon using rigid sigmoidoscope
-174208002,Endoscopic cauterization of lesion of sigmoid colon using rigid sigmoidoscope
-174209005,Endoscopic laser destruction of lesion of sigmoid colon using rigid sigmoidoscope
-174210000,Endoscopic cryotherapy to lesion of sigmoid colon using rigid sigmoidoscope
-174215005,Endoscopic dilation of sigmoid colon using rigid sigmoidoscope
 17423001,Epiphysiodesis
 174240003,Proctectomy and anastomosis of colon to anus
 174241004,Anterior resection of rectum and anastomosis of colon to rectum using staples
@@ -3924,10 +3891,7 @@ code,term
 174288000,Perianal plication of levator ani muscles and anal sphincters
 174289008,Insertion of supralevator sling
 174310002,Closure of proctostomy
-174320007,Proctoscopic extirpation of lesion of rectum
 17432004,Dilation of urethrovesical junction
-174321006,Proctoscopic excision of lesion of rectum
-174322004,Proctoscopic destruction of lesion of rectum
 174328000,Excision of sphincter of anus
 174332006,Excision of anal skin tag
 174333001,Excision of perianal wart
@@ -4005,11 +3969,10 @@ code,term
 1746005,Scleral buckling with implant
 174602009,Transduodenal excision of ampulla of Vater
 174607003,Open biopsy of lesion of bile duct
-174613007,Endoscopic incision of sphincter of Oddi
-174615000,Endoscopic sphincterotomy of sphincter of Oddi and insertion of tubal prosthesis into bile duct
+174608008,Operative cholangiography through cystic duct
+174609000,Direct puncture operative cholangiography
 174619006,Endoscopic sphincterotomy of accessory ampulla of Vater
 174634000,Therapeutic endoscopic retrograde operations on pancreatic duct
-174639005,Endoscopic retrograde dilation of pancreatic duct
 174676008,Therapeutic operation on bile duct along T tube track
 174678009,Percutaneous removal of calculus from bile duct along T tube track
 174691005,Transplantation of pancreas and duodenum
@@ -4124,7 +4087,6 @@ code,term
 175048006,Single anastomosis of mammary artery to left anterior descending coronary artery
 175050003,Single implantation of mammary artery into coronary artery
 175061006,Transection of coronary artery muscle bridge
-175066001,Percutaneous transluminal balloon angioplasty of bypass graft of coronary artery
 17507003,Partial excision of tibia
 175071008,Percutaneous transluminal coronary thrombolysis using streptokinase
 175076003,Diagnostic transluminal operations on coronary artery
@@ -4354,16 +4316,12 @@ code,term
 175942005,Simple nephrolithotomy
 175943000,Anatrophic nephrolithotomy
 175947004,Open renal denervation
-175951002,Endoscopic ultrasound fragmentation of renal calculus
 175952009,Nephroscopy and electrohydraulic lithotripsy of renal calculus
 175953004,Endoscopic laser fragmentation of renal calculus
 175954005,Percutaneous nephrolithotomy without disintegration
 175958008,Endoscopic extirpation of lesion of kidney
 17596000,Incision and drainage of supramylohyoid space by intraoral approach
 175974003,Incision of periurethral tissue
-175977005,Extracorporeal shockwave lithotripsy for renal calculus less than 2 cm in diameter
-175978000,Extracorporeal shockwave treatment for renal calculus of 2 cm or more in diameter
-175987009,Operations along nephrostomy track
 175993001,Secondary ureterectomy
 176003,Anastomosis of rectum
 176004009,Construction of continent ileal conduit
@@ -4395,9 +4353,6 @@ code,term
 176068005,Cystoscopic dilatation of ureter for calculus
 176072009,Endoscopic extirpation of lesion of ureter
 176075006,Ureteroscopic dilatation of ureter
-176091009,Extracorporeal shockwave lithotripsy for stone in upper ureter
-176092002,Extracorporeal shockwave lithotripsy for stone in mid-ureter
-176093007,Extracorporeal shockwave lithotripsy for stone in lower ureter
 176097008,Transurethral removal of lesion of ureteric orifice
 176098003,Transurethral endoscopic incision of ureteric orifice
 176100003,Transurethral incision of ureterocele
@@ -4416,9 +4371,7 @@ code,term
 176144000,Creation of vesicovaginal fistula
 176145004,Open transection of bladder
 176146003,Open biopsy of bladder
-176155000,Rigid cystoscopy and transurethral resection of bladder lesion
 176158003,Flexible cystoscopic excision of bladder lesion
-176162009,Cystoscopy and laser destruction of bladder lesion
 176165006,Transurethral operation to increase bladder capacity
 176166007,Transurethral transection of the bladder
 176167003,Balloon distension of the bladder
@@ -4578,13 +4531,10 @@ code,term
 176771009,Colposcopic laser destruction of lesion of cervix
 176772002,Cold coagulation of lesion of cervix
 176773007,Loop diathermy of cervix
-176776004,Laser cone biopsy of cervix uteri
-176779006,Loop diathermy cone biopsy of cervix uteri
 176785004,Non-obstetric encircling suture of cervical os
 176795006,Subtotal abdominal hysterectomy
 176813007,Open biopsy of lesion of uterus
 176820000,Curettage of uterus
-176827002,Dilation of cervix uteri and vacuum aspiration of products of conception from uterus
 176832001,Dilation of cervix uteri and curettage of uterus for removal of mole
 176833006,Dilation of cervix uteri and curettage of uterus for removal of missed abortion
 176846001,Excision of periurethral tissue
@@ -4674,9 +4624,6 @@ code,term
 177329000,Chemical peeling of lesion of skin of head or neck
 177330005,Electrolysis to lesion of skin of head or neck
 177331009,Painting of warts of head or neck
-177342000,Punch biopsy of lesion of skin of head or neck
-177346002,Shave biopsy of skin
-177347006,Shave biopsy of lesion of skin of head or neck
 177361001,"Distant subcutaneous pedicle flap, myocutaneous, to head or neck"
 177364009,"Distant cutaneous pedicle flap, myocutaneous"
 177365005,"Distant cutaneous pedicle flap, osseomyocutaneous"
@@ -5044,7 +4991,6 @@ code,term
 178568006,Revision anterior excision thoracic disc and fusion
 178570002,Revisional costotransversectomy of thoracic intervertebral disc
 178571003,Revisional posterior decompression of thoracic disc
-178572005,Revisional anterolateral biopsy of thoracic intervertebral disc
 178573000,Revisional posterior fusion of joint of thoracic spine
 178575007,Revision decompression and fusion thoracic spine
 178576008,Revision decompression of thoracic spine
@@ -5057,7 +5003,6 @@ code,term
 178593008,Revision posterior decompression cervical cord
 178594002,Revision posterior decompression cervical cord and fusion
 178600005,Primary decompression of lumbar spine
-17860005,Low forceps delivery with episiotomy
 178601009,Primary extended posterior decompression lumbar spine and fusion
 178603007,Primary posterior decompression lumbar spine and fusion
 178606004,Primary foraminotomy of lumbar spine
@@ -5146,7 +5091,6 @@ code,term
 178814008,Spinal facet joint denervation
 178815009,Radiofrequency denervation of spinal facet joint of cervical vertebra
 178817001,Radiofrequency denervation of spinal facet joint of thoracic vertebra
-17882003,Direct laryngoscopy with arytenoidectomy
 178831001,Spinal instrumentation with posterior rod(s)
 178832008,Removal spinal instrumentation
 178833003,Spinal instrumentation with posterior rods and segmental wiring
@@ -5304,12 +5248,10 @@ code,term
 179244009,Cancellous chip autograft of bone
 179245005,Application of corticocancellous autograft of bone
 179251000,Application of bone xenograft
-179255009,Open biopsy of lesion of bone
 179259003,Filling of bone defect with bone cement
 179261007,Release of periosteum
 179262000,Reefing of bone
 179273007,Removal of implanted substance from bone
-179282001,Diagnostic drilling of bone
 179294005,Conversion to cemented total hip replacement
 179295006,Revision cemented total hip replacement
 179304004,Primary uncemented total hip replacement
@@ -5690,7 +5632,6 @@ code,term
 180285003,Donation of skin
 18036005,Revision of implanted intra-arterial infusion pump
 18047003,Closure of small intestine fistula
-18049000,Bronchoscopy with destruction of tumor by laser surgery
 1805005,Surgical closure of stoma
 180660000,Harvest of nerve
 180661001,Harvest of sural nerve
@@ -5917,7 +5858,6 @@ code,term
 19714008,Embolectomy with catheter of axillary artery by arm incision
 19724000,"Arthroplasty of wrist, pseudoarthrosis type with internal fixation"
 19725004,Correction of esophageal atresia
-19733003,Excisional biopsy of tarsal and metatarsal
 197357002,Kutler amputation
 19740002,Extracapsular extraction of lens by inferior temporal route
 19744006,Operation on gallbladder
@@ -5956,10 +5896,8 @@ code,term
 200017006,Fowler operation release for mallet finger repair
 2002009,Construction of subcutaneous tunnel without esophageal anastomosis
 20041002,Peripheral neuroanastomosis
-20042009,Extracorporeal shockwave lithotripsy of ureter
 20055005,Internal fixation of bone of humerus
 200604007,Mammoplasty with muscle flap
-200702002,Excisional biopsy of eye muscle
 20074002,Galeaplasty
 200849007,Piercing of external ear
 200925005,Revision of repair of mallet finger
@@ -6108,7 +6046,6 @@ code,term
 21384003,Excision of urethral caruncle
 21400005,Transection of vagus nerve by abdominal approach
 214046003,Hindfoot amputation
-214084009,Excisional biopsy of skull
 214173000,Excision of lesion of uterine ligament
 21431003,Regional chemexfoliation
 21442007,Revision of enucleation of socket
@@ -6149,7 +6086,6 @@ code,term
 217484008,Duvries operation
 21756005,Closure of rectal fistula
 21789005,Gas endarterectomy of coronary artery
-21796007,Direct laryngoscopy with dilation
 21805006,Removal of salpingothecal shunt
 21810005,Excision of lesion of scrotum
 2181002,Operation for bone injury of tarsals and metatarsals
@@ -6162,7 +6098,6 @@ code,term
 21849008,Triple valve replacement
 218501003,Lindholm operation
 2188008,Suture of tendon to skeletal attachment
-21904006,Nephrostomy with tube drainage
 219133008,Arthrostomy
 21915001,Suture of fascia of hand
 21922009,Synchondrotomy of the symphysis pubis
@@ -6243,7 +6178,6 @@ code,term
 2250001,Resection of ascending aorta with anastomosis
 22505000,Sequestrectomy of fibula
 225051000000105,High-flow interposition extracranial to intracranial bypass from external carotid artery to middle cerebral artery
-225092005,Permanent percutaneous nephrostomy
 22510001,Osteotomy of femoral neck
 225148005,Surgical debridement of wound
 225153000,Application of adhesive skin closure
@@ -6264,7 +6198,6 @@ code,term
 225581000000108,Stapled haemorrhoidectomy
 225703004,Secondary lens implant
 225705006,Dilatation of lacrimal punctum
-225785008,Temporary percutaneous nephrostomy
 225791000000104,Attention to fixtures for bone anchored hearing prosthesis
 225871000000108,Reduction of soft tissue for bone anchored hearing prosthesis
 22588001,Craniocervical spinal fusion for pseudoarthrosis
@@ -6311,7 +6244,6 @@ code,term
 22793001,Anterior spinal instrumentation
 227981000000105,Paravaginal repair
 227991000000107,Vaginoplasty in presence of uterus for absent vagina
-228054008,Excisional biopsy of joint structure
 228081000000108,Percutaneous tunnelled kidney to bladder bypass using prosthesis
 22822005,Secondary closure of amputation stump
 228251000000107,Relocation and derotation osteotomy
@@ -6434,9 +6366,6 @@ code,term
 230912001,Stereotactic radiosurgery of intracranial arteriovenous malformation
 230913006,Stereotactic radiosurgery of intracranial venous malformation
 230914000,Stereotactic radiosurgery of intracranial cavernous angioma
-230915004,Endovascular obliteration of lesion of intracranial vasculature
-230916003,Endovascular obliteration of intracranial aneurysm
-230917007,Endovascular obliteration of intracranial arteriovenous malformation
 230918002,Obliteration of intracranial arteriovenous fistula
 230919005,Anastomosis of intracranial artery
 230920004,Intracranial to intracranial arterial anastomosis
@@ -6777,7 +6706,6 @@ code,term
 231981000000103,Radioactive seed implantation NOC
 23199002,"Root amputation, per root"
 231991000000101,Balloon dilation of organ NOC
-232001000000103,Endoscopic ultrasound examination of organ NOC
 232011000000101,Temporary occlusion of organ NOC
 232021000000107,Third or greater revisional operation NOC
 232031000000109,Placement of stent in organ NOC
@@ -7341,7 +7269,6 @@ code,term
 233196001,Repair of common arterial trunk with right ventricle to pulmonary trunk direct anastomosis
 233198000,Excision of ductus arteriosus
 233199008,Closure of ductus arteriosus with clip
-233201005,Transpulmonary endovascular oversewing of ductus arteriosus
 233202003,Balloon dilatation of ductus arteriosus
 233205001,Excision of vegetations from ductus arteriosus
 233206000,Resection of aneurysm of ductus arteriosus
@@ -7508,7 +7435,6 @@ code,term
 233455007,Division of vein
 233456008,Stripping of vein
 233457004,Stripping of varicose vein tributary
-233458009,Avulsion of varicose vein
 233459001,Multiple avulsions of varicose veins
 233460006,Excision of perforating vein
 233462003,Harvesting of vein
@@ -7609,6 +7535,7 @@ code,term
 2344008,Complicated cystorrhaphy
 23445002,Sequestrectomy of carpals and/or metacarpals
 234545002,Removal of foreign body from palate by incision
+234611000000100,Laser suture lysis following glaucoma surgery
 234647001,Repair of cleft lip
 234648006,Adjustment to vermilion border of lip
 234650003,Repair of bilateral cleft lip
@@ -7624,11 +7551,6 @@ code,term
 234667005,Expose jaw implant
 234668000,Remove jaw implant
 234669008,Tooth and periodontium operation
-234670009,Surgical removal of non-impacted tooth
-234671008,Surgical removal of non-impacted third molar tooth
-234672001,Surgical removal of non-impacted permanent canine tooth
-234673006,Surgical removal of impacted tooth
-234674000,Surgical removal of impacted permanent canine tooth
 234675004,Periapical curettage of tooth root
 234676003,Surgical repair of perforation of tooth root
 234677007,Periodontal operation
@@ -7656,8 +7578,6 @@ code,term
 23476008,Destruction of lesion of chest wall
 23478009,Intra-abdominal manipulation of small intestine
 234833003,Repair of existing restoration of tooth
-234877005,Repair fixed orthodontic appliance component
-234878000,Repair fixed functional appliance
 234889007,Radical glossectomy
 234890003,Repair of cleft palate
 234891004,Repair of cleft of hard palate
@@ -7812,8 +7732,6 @@ code,term
 235338009,Balloon dilatation of stricture - large intestine
 235340004,Excision of polyp of large intestine
 235341000,Open operation on rectal polyp
-235342007,Endoscopic extirpation of lesion of rectum using fiberoptic sigmoidoscope
-235343002,Colonoscopy and extirpation of lesion of colon
 235344008,Fiberoptic endoscopic extirpation of lesion of colon
 235345009,Cauterization of lesion - large intestine
 235346005,Laser treatment of lesion - large intestine
@@ -7922,7 +7840,6 @@ code,term
 235580007,Operations on duodenal papilla
 235581006,Sphincteroplasty of duodenal papilla
 235582004,Sphincterotomy of duodenal papilla
-235583009,Endoscopic retrograde cholangiopancreatography sphincterotomy sphincter of Oddi and calculus removal
 235584003,Sphincterotomy of accessory papilla
 235585002,Dilatation of duodenal papilla
 235586001,Pancreatic duct septotomy
@@ -7946,7 +7863,6 @@ code,term
 236142005,Open repair of kidney or renal pelvis
 236144006,Open stone operation on kidney or renal pelvis
 236145007,Open incision or drainage of kidney or renal pelvis
-236147004,Open nephrostomy
 236148009,Open pyelostomy
 236149001,Incision of renal capsule
 236152009,Pushpull operation for ureteric calculus
@@ -7970,7 +7886,6 @@ code,term
 236183008,Ureteroscopic pyelolysis
 236189007,Cystoscopic operation on the ureter
 236190003,Cystoscopic lithotripsy of ureteric calculus
-236192006,Push-bang operation for ureteric calculus
 236198005,Transurethral operation on ureteric orifice
 236200004,Transurethral resection of ureteric orifice
 236202007,Construction of jejunal conduit
@@ -7988,13 +7903,7 @@ code,term
 236217006,Revision of bladder exstrophy repair
 236218001,Open operation on content or wall of bladder
 236219009,Surgical closure of bladder neck
-236229002,Cystoscopy and destruction of bladder lesion
-236230007,Rigid cystoscopy and cauterization of lesion of bladder
-236231006,Flexible cystoscopy and cauterization of bladder lesion
-236233009,Rigid check cystoscopy and cauterization of bladder lesion
-236234003,Flexible check cystoscopy and cauterization of bladder lesion
 236236001,Transurethral operation on bladder contents
-236237005,Cystoscopy and blind litholapaxy
 236241009,Bladder neck operation for female stress incontinence
 236242002,Fixed suspension procedure of bladder neck
 236243007,Operation for female sphincter incompetence
@@ -8063,7 +7972,6 @@ code,term
 236371000000109,Renewal of stent in organ NOC
 236381000000106,Maintenance of stent in organ NOC
 2364003,Radical resection of tumor of soft tissue of wrist area
-236401000000106,Endoscopic ultrasound staging examination of organ NOC
 236411000000108,Insertion of metal stent into organ NOC
 236501004,Pelvic floor repair
 23656006,Incision of mouth
@@ -8098,7 +8006,6 @@ code,term
 236857000,Colpoperineorrhaphy
 236859002,Sacrospinous fixation of vaginal vault
 236875004,Laser excision of lesion of cervix
-236876003,Wedge biopsy of cervix
 236877007,Lash repair of internal os of cervix
 236879005,Morcellation of cervix
 236880008,Curettage of uterus and endometrial sampling
@@ -8107,6 +8014,7 @@ code,term
 236887006,Laparoscopic hysterectomy
 236888001,Laparoscopic total hysterectomy
 236889009,Laparoscopic supracervical hysterectomy
+236891000000101,Needling of bleb following glaucoma surgery
 236891001,Laparoscopic radical hysterectomy
 236897002,Endometrial resection
 236898007,Endometrial laser ablation
@@ -8147,7 +8055,6 @@ code,term
 236990004,Postmortem cesarean section
 236991000,Operation to facilitate delivery
 236992007,Right mediolateral episiotomy
-236993002,Vacuum dilatation of cervix
 237014000,Postpartum obstetric operation
 237015004,Surgical control of postpartum hemorrhage
 237021000,Hydrostatic replacement of inverted uterus
@@ -8520,6 +8427,8 @@ code,term
 239432002,Reconstruction of posterior cruciate ligament of knee joint
 239433007,Reconstruction of medial collateral ligament of knee joint
 239434001,Reconstruction of lateral collateral ligament of knee joint
+239437008,Stabilization of shoulder joint
+239438003,Posterior stabilization of shoulder joint
 239447006,Release of volar plate
 239448001,Soft tissue release of metatarsophalangeal joint of lesser toe
 239449009,Surgical manipulation of temporomandibular joint
@@ -8696,6 +8605,7 @@ code,term
 240329007,Removal of bone from donor
 240330002,Removal of eyes from cadaver
 240528003,"Repair of eyelid laceration, full-thickness"
+24061000087104,Breast surgical oncology specialty
 24068006,Hysterectomy for removal of hydatidiform mole
 240690005,Anastomosis of intrahepatic duct to jejunum
 2407009,Excision of mediastinal tumor
@@ -8718,8 +8628,6 @@ code,term
 240934002,Percutaneous thrombolysis of renal artery
 240935001,Percutaneous thrombolysis of hepatic artery
 240936000,Percutaneous thrombolysis of internal iliac artery
-240942001,Percutaneous endovascular obliteration
-240943006,Percutaneous non-embolic vascular occlusion
 240962009,Biliary dilatation procedure
 240970004,Subperiosteal facelift
 240971000,Mini-facelift
@@ -8727,7 +8635,6 @@ code,term
 240973002,Fleur de Lys abdominoplasty
 240974008,Mini-abdominoplasty
 240975009,Upper abdominoplasty
-240978006,Incisional biopsy of skin lesion
 240981001,Reconstruction with fascial graft
 240983003,Reconstruction with local flap
 240984009,Reconstruction with distant flap
@@ -8788,13 +8695,11 @@ code,term
 243636003,Surgical repair of vertebral column
 243741000000106,Anchoring endotracheal tube manually
 243751000000109,Anchoring endotracheal tube using holder
-24376003,Extracorporeal shockwave lithotripsy of calculus of kidney
 243775002,Construction of cutaneous ureteroileostomy
 24394009,Percutaneous balloon valvuloplasty of heart
 24396006,"Excision of tumor from forearm area, deep, intramuscular"
 24401005,Radical resection of tumor of soft tissue of finger
 2442008,Incision of lacrimal canaliculus
-24429008,Revision of nephrostomy
 24431004,Esophagoduodenostomy with complete gastrectomy
 24437000,Excision of palmar fascia
 24442008,Fulguration of lesion of esophagus
@@ -8868,7 +8773,6 @@ code,term
 25041004,"Orchiopexy, any type, with hernia repair"
 25048005,Cingulotomy of brain by percutaneous radiofrequency
 250776009,Grafting of palate for cleft palate repair
-251000087100,Left nephrostomy using fluoroscopic guidance
 251016004,Excision of intranasal lesion by internal approach
 251096000,Unroofing of cyst of kidney
 25119001,"Repair of blood vessel with synthetic, polyethylene terephthalate or polytetrafluoroethylene patch graft"
@@ -8908,7 +8812,6 @@ code,term
 2535006,Pulpectomy
 25353009,Craniotomy
 25355002,Lengthening of bone with bone graft
-253694007,Excisional biopsy of bone of humerus
 253766005,Renal capsulectomy
 25381003,Ligation of artery
 25387004,Wedge resection of skin
@@ -8955,6 +8858,7 @@ code,term
 25679005,Cardiolysis
 257041001,Spatulated ureteroureterostomy
 25736000,Excision of coarctation of aorta with end-to-end anastomosis
+257556004,Surgery
 25757008,Excision of skin of head and neck
 257627006,Repair of auditory canal or meatus of ear
 25769000,Removal of internal fixation device from patella
@@ -9005,7 +8909,6 @@ code,term
 25811000,Bilateral complete salpingectomy
 25814008,Grafting of radius AND ulna
 25827007,Repair of macrodactyly
-25828002,Mid forceps delivery with episiotomy
 25830000,"Open reduction of closed acromioclavicular dislocation, acute"
 258359008,Shaving of corneal epithelium
 25846008,Cystourethroscopy with internal male urethrotomy
@@ -9024,10 +8927,10 @@ code,term
 259771008,Obliteration of cerebrospinal fistula
 2598006,Open heart surgery
 25983007,Closure of fistula of vagina
+26004008,Induction of systemic hypothermia in open heart surgery
 2601001,Removal of bone flap of skull
 260216002,Intra-capsular cataract extraction
 260397005,Closure of fistula of cerebrospinal fluid
-26040005,Excisional biopsy of bursa
 26050006,Suture of old obstetrical laceration of vagina
 26054002,Incision and drainage of deep abscess of soft tissues of thorax
 260569000,Cardiac access incision
@@ -9057,7 +8960,6 @@ code,term
 26096003,Stripping of cerebral subdural membrane
 26097007,Remobilization of stapes
 26100002,Incision of hematoma of subcutaneous tissue
-261000087102,Right nephrostomy using fluoroscopic guidance
 261047008,Anterior mediastinotomy
 26108009,Thermocauterization for destruction of lesion of palate
 26113008,Grafting of breast
@@ -9095,6 +8997,8 @@ code,term
 261529009,Excision of lash follicles
 261531000,Excision of rib
 261532007,Fenestrectomy
+261534008,Functional endoscopic sinus surgery
+261535009,Functional surgery
 261538006,Open intracoronary repair of coronary artery fistula
 261540001,Laminotomy
 261543004,Ligation of descending vein
@@ -9135,7 +9039,6 @@ code,term
 26294005,Radical prostatectomy
 26302000,Osteorrhaphy
 26305003,Division of cartilage of knee
-26313002,Delivery by vacuum extraction with episiotomy
 263147003,Crushing of nerve
 2632000,Incision and drainage of infected bursa of upper arm
 263334000,Simple clitoridectomy
@@ -9333,10 +9236,7 @@ code,term
 265381002,Bypass of jejunum by anastomosis of jejunum to colon
 265384005,Creation of defunctioning ileostomy
 265386007,Therapeutic endoscopic operations on ileum
-265392001,Colon operations and sigmoidoscopy of rectum
 265402006,Endoscopic extirpation of lesion of colon
-265404007,Endoscopic extirpation of lesion of lower bowel using fiberoptic sigmoidoscope
-265407000,Endoscopic extirpation of lesion of sigmoid colon using rigid sigmoidoscope
 26541002,Repair of tendon by graft or implant of fascia
 265411006,Partial excision of rectum and sigmoid colon for prolapse
 265412004,Rectosigmoidectomy and rectopexy
@@ -9355,7 +9255,6 @@ code,term
 265447007,Bile duct operation
 265448002,Anastomosis of hepatic duct to transposed jejunum and insertion of tubal prosthesis
 265451009,Roux-en-Y procedure for biliary atresia
-265455000,Endoscopic sphincterotomy of sphincter of Oddi and removal of calculus
 265458003,Pancreaticoduodenectomy and excision of surrounding tissue
 265459006,Pancreaticoduodenectomy with distal gastrectomy
 265461002,95% distal pancreatectomy
@@ -9395,10 +9294,8 @@ code,term
 265541005,Subfascial ligation of perforating vein of leg
 265542003,Ligation of long saphenous vein
 265543008,Ligation of perforating varicose vein of leg
-265545001,Avulsion of varicose vein of leg
 265550007,Transplant nephrectomy
 265551006,Open repair of kidney
-265553009,Open nephrostomy or pyelostomy
 265554003,Percutaneous pyelolysis
 265556001,Percutaneous needle puncture operation on kidney or renal pelvis
 265558000,Revision of urostomy stoma
@@ -9541,7 +9438,6 @@ code,term
 270481000,Epispadias repair
 270482007,Fixation of mandible
 270546004,Incision of boil of skin
-270588008,Excisional biopsy of femur
 27062004,Lysis of adhesions of fascia
 27063009,Excision of lesion of gallbladder
 270677005,Reimplantation of testis in scrotum
@@ -9561,7 +9457,6 @@ code,term
 271414005,Fallopian tube prosthesis operation
 271416007,Reconstruction of cranial defect
 271417003,Open operation on knee meniscus
-27147003,Filipuncture of cerebral aneurysm
 271487006,Incision of skin lesion
 271489009,Open endoscopic operations on jejunum
 271490000,Open endoscopic operation on colon
@@ -9646,7 +9541,6 @@ code,term
 274074006,Ionization operation
 274075007,Optional surgery
 274076008,Ritual surgery
-274099007,Excisional biopsy of patella
 27411008,Cauterization
 274130007,Emergency cesarean section
 27413006,Suture of thoracic duct by abdominal approach
@@ -9657,8 +9551,6 @@ code,term
 274330002,Surgical biopsy
 274331003,Surgical biopsy of breast
 274332005,Surgical biopsy of muscle
-274333000,Surgical biopsy of bone
-274334006,Surgical biopsy of joint
 274335007,Surgical biopsy of nervous system
 274336008,Surgical biopsy of eye
 274337004,Surgical biopsy of cornea
@@ -9690,7 +9582,6 @@ code,term
 274363009,Surgical biopsy of testis
 274364003,Surgical biopsy of penis
 274365002,Surgical biopsy of ovary
-274366001,Surgical biopsy of cervix
 274367005,Surgical biopsy of vagina
 274368000,Surgical biopsy of vulva
 274369008,Endocrine surgical biopsy
@@ -9738,7 +9629,6 @@ code,term
 274969000,Anterior tracheostomy
 274970004,Lateral tracheostomy
 274972007,Dilatation of cervix and curettage of retained products of conception
-274973002,Dilation of cervix uteri and curettage for termination of pregnancy
 274974008,Endoscopic endometrial polypectomy
 274975009,Open bilateral ringing of fallopian tubes
 274979003,Open ringing of right fallopian tube
@@ -9795,6 +9685,7 @@ code,term
 275098006,Primary correction of clubfoot
 275145005,Reconstruction of superficial femoral artery
 275146006,Refashioning of ingrowing toenail
+275156005,Putti Platt anterior stabilization of shoulder joint
 275157001,Bankart anterior stabilization of shoulder joint
 27516000,Division of tendon of hand
 275161007,Hordeolum removal
@@ -9953,13 +9844,6 @@ code,term
 277862003,Scrotal transposition urethroplasty
 277863008,Perineal flap two stage urethroplasty
 277870008,Cremasteric myotomy
-277988004,Percutaneous removal of foreign body from artery
-277989007,Percutaneous removal of foreign body from vein
-277992006,Percutaneous removal of foreign body from intracranial artery
-277994007,Percutaneous removal of foreign body from coronary artery
-277995008,Percutaneous removal of foreign body from arterial graft
-277997000,Percutaneous removal of foreign body from pulmonary artery
-277998005,Percutaneous removal of foreign body from intracranial vein
 2780005,Osteoplasty of facial bones
 27801008,"Urethroplasty, first stage"
 27815005,Excision of lesion of tendon sheath of wrist
@@ -10022,7 +9906,6 @@ code,term
 278824004,Plantar incision
 27892007,Closure of fecal fistula
 27906002,Reconstruction of ossicles by graft or prosthesis
-27918006,"Removal of impacted tooth, soft tissue"
 27926003,Construction of artificial larynx
 27929005,Arteriovenous fistulization
 2794006,Cauterization of navel
@@ -10104,7 +9987,6 @@ code,term
 281951001,Removal of external fixation
 281952008,Fixation of fracture using dynamic compression system
 28197002,Axillary-femoral artery bypass graft with vein
-282014007,Incision biopsy of skin
 282045006,Surgical investigation of tooth root
 282049000,Fit dental crown to implant
 282071005,Division of Dupuytren's contracture of foot
@@ -10122,7 +10004,6 @@ code,term
 282400002,Excision of lesion of hepatic ducts
 28242004,Repair of filtering bleb by corneal graft
 282435000,Maxillectomy
-282441000000104,Shaved deep ellipse biopsy of lesion of skin of head or neck
 282445003,Removal of lesion of conjunctiva
 28247005,Incision of phalanges of hand
 282568009,Ring annuloplasty
@@ -10194,7 +10075,6 @@ code,term
 2857007,Complete excision of pineal gland
 285786003,Excision of multiple anal papillae
 28579000,Radical retropubic prostatectomy with lymph node biopsy
-28594001,Arthrotomy of ankle with joint exploration and biopsy
 286079005,Choledochostomy
 28609005,Closure of vesicouterine fistula
 28614009,Operation on periurethral tissue
@@ -10319,13 +10199,10 @@ code,term
 287525003,Surgical biopsy of male perineum
 287527006,Surgical biopsy of pericardium
 287534008,Endoscopy with puncture/incision
-287539003,Excision of skin lesion for histology
 287540001,Surgical biopsy of male genital structure
 287557002,Surgical biopsy of external auditory canal
-287558007,Surgical biopsy of diaphragm
 287559004,Surgical biopsy of small intestine
 287560009,Surgical biopsy of gastrointestinal tract
-287563006,Surgical biopsy of subcutaneous tissue
 287564000,Surgical biopsy of external ear
 287568002,Peripheral nerve surgical biopsy
 287569005,Intraspinal surgical biopsy
@@ -10544,7 +10421,6 @@ code,term
 29243002,Excision of hymeno-urethral fusion
 29245009,Simple cryosurgical destruction of lesion of penis
 29255008,Iliofemoral bypass graft with vein
-292674001,Excisional biopsy of bone of clavicle
 29311004,Open tenotomy of flexor tendon of forearm
 29347003,Repair of tunica vaginalis
 29355005,Incision and drainage of deep abscess of thigh region
@@ -10552,7 +10428,6 @@ code,term
 29374002,Closure of tracheal fistula
 293820001,Keratoplasty
 29397004,Repair of old obstetric urethral laceration
-294002,Excisional biopsy of joint structure of spine
 29401007,"Anal fistulectomy, complex"
 294034007,Incision of common bile duct
 29404004,"Labyrinthectomy, transtympanic"
@@ -10601,7 +10476,6 @@ code,term
 297709009,Open acromioplasty for decompression of rotator cuff
 297840009,Excision of vitreous opacity by anterior approach
 297932004,Ureteroscopic operation for ureteric calculus
-297941000000109,Anchoring of chest drain
 29795009,Open reduction of orbital floor blowout fracture by periorbital approach
 29799003,Condylotomy
 298049006,Upper thigh amputation
@@ -10611,7 +10485,6 @@ code,term
 29828005,Excision of lesion of lip
 29830007,Lysis of cortical adhesions of brain
 29835002,Destruction of intranasal lesion
-29843007,Coronary atherectomy by laser
 29858004,Excision of artery
 29865007,Excisional biopsy of testis
 29867004,Ligation of vein of upper limb
@@ -10657,8 +10530,6 @@ code,term
 30081003,Hallux valgus correction with sesamoidectomy and tendon transplants
 300822006,Simple browlift
 300897007,Total salpingectomy
-300962006,Rigid cystoscopy and laser destruction of bladder lesion
-300963001,Flexible cystoscopy and laser destruction of bladder lesion
 300976007,Radiotherapy to lesion of canthus
 300977003,Open medial meniscectomy
 300978008,Open lateral meniscectomy
@@ -10679,7 +10550,6 @@ code,term
 301053001,Primary open reduction of fracture dislocation
 301055008,Revision to open reduction of traumatic dislocation
 301063009,Hair bearing graft of skin to skin
-301067005,Surgical removal of third molar tooth
 301079005,Embolectomy of renal artery
 301080008,Embolectomy of subclavian artery
 301081007,Embolectomy of vertebral artery
@@ -10775,8 +10645,6 @@ code,term
 302395004,Cauterization of skin lesion
 302397007,Electrolysis to skin lesion
 302398002,Painting of warts
-302399005,Punch biopsy of skin lesion
-302400003,Shave biopsy of skin lesion
 302401004,W-plasty of skin
 302403001,Delay of skin flap
 302404007,Transfer of skin flap
@@ -10975,7 +10843,6 @@ code,term
 306966000,Excision of myoma of cervix
 306982004,Closure of fistula of major salivary gland
 30700006,Excision of transplanted tissue or organ
-307007002,Percutaneous tracheostomy
 307009004,Wedge resection of rectum
 307010009,Extended right hemihepatectomy
 307011008,Caudate lobectomy of liver
@@ -11008,7 +10875,6 @@ code,term
 307246007,Excision of portal vein
 307247003,Partial excision of portal vein
 307248008,Incision and drainage of buttock abscess
-307250000,Bone drilling with exploration
 307251001,Meningocele repair
 307253003,Nerve graft
 307257002,Marsupialization of sublingual cyst
@@ -11134,7 +11000,6 @@ code,term
 307828007,Excision of nasal dermoid
 307829004,Excision of nasal glioma
 307830009,Endoscopic stapling of pharyngeal pouch
-30783006,Closure of nephrostomy
 307831008,Repair of cleft larynx
 307857006,Excision of cyst of vulva
 307922009,Laser assisted uvulopalatopharyngoplasty
@@ -11147,7 +11012,6 @@ code,term
 307995002,Excision of lesion of mastectomy scar
 307996001,Excisional biopsy of lymph node
 307998000,Excision of pigmented skin lesion
-308000002,Surgical biopsy of skin
 308020001,Excision of cholesteatoma of external auditory canal
 308022009,Excision of cholesteatoma of mastoid
 308024005,Excision of cholesteatoma of middle ear
@@ -11299,7 +11163,6 @@ code,term
 310638008,Wire guided excision of breast lump under radiological control
 310657004,Open silastic insert to vocal cord
 310662003,Laser destruction of lesion of retina
-310665001,Loop diathermy biopsy of cervix uteri
 310667009,Insertion of Medicarb rods
 31068002,"Thompson operation on thumb, apposition with bone graft"
 31072003,Arthrotomy of wrist joint with joint exploration
@@ -11351,7 +11214,6 @@ code,term
 312341002,Permanent percutaneous endoscopic gastrostomy
 312389006,Repair of oroantral fistula - immediate
 312390002,Repair of oroantral fistula - established
-312398009,Excisional biopsy of joint structure of shoulder
 312406002,Anterior resection of rectum with stapled anastomosis of sigmoid colon to anus with creation of J pouch
 312407006,Anastomosis of sigmoid colon to anal canal
 312492006,Excision of scalenus anterior
@@ -11389,8 +11251,6 @@ code,term
 312773005,Re-ligation of saphenofemoral junction
 312965008,Laser assisted in situ keratomileusis
 312966009,Excision of granulation tissue of vagina
-312967000,Excision biopsy of lesion of skin of head or neck
-312968005,Excision biopsy of skin lesion
 312973004,Viscocanalostomy
 313018005,Endoscopic reconstruction of breast with expander
 313030004,Donor renal transplantation
@@ -11404,7 +11264,6 @@ code,term
 313174004,Injection of polytetrafluoroethylene into vocal cord
 313187005,Endometrial balloon ablation
 31319008,Endoscopic destruction of lesion of anus
-313270001,Percutaneous insertion of nephrostomy tube
 313275006,Astigmatic keratotomy
 313295000,Fixation of fracture using Herbert screw
 313301004,Bilateral antral washout
@@ -11553,7 +11412,6 @@ code,term
 31952006,Interruption of vena cava
 31977007,Aneurysmectomy of lower limb artery
 31994009,Incision and drainage of retropharyngeal abscess by intraoral approach
-32002002,Arthrotomy with biopsy of hip joint
 32010001,"Secondary rhinoplasty, intermediate revision with osteotomies"
 32026000,Removal of prosthesis of joint structures of ankle
 3204007,Destructive procedure of nerve
@@ -11639,7 +11497,6 @@ code,term
 32963007,Incision and drainage of nonobstetrical perineal abscess
 32972004,"Acetabuloplasty, Whitman type procedure"
 329884007,Incision and exploration of common bile duct for relief of obstruction
-32997000,Excisional biopsy of joint structure of foot and toe
 32998005,Latzko operation on vagina
 33015000,Laparoscopy with fulguration of fallopian tube
 33030009,Seminal vesiculectomy
@@ -11724,8 +11581,6 @@ code,term
 337877003,Thoracotomy for excision of emphysematous bleb of lung
 33798009,Open biopsy of endometrium
 33808009,Closure of hepatopleural fistula
-33834001,Acne surgery
-33842000,"Excisional biopsy of bone, deep"
 33850009,Transplantation of carotid body
 33857007,Resection of humeral head
 33859005,Local destruction of lesion of knee joint
@@ -12164,7 +12019,6 @@ code,term
 361256009,Autoaugmentation of bladder
 361257000,Clam cystoplasty
 361258005,Cystodiathermy and destruction of bladder lesion
-361260007,Cystoscopy and cauterization of bladder
 361261006,Denis-Browne hypospadias repair
 361262004,Hypospadias and chordee repair
 36143002,Myectomy
@@ -12417,7 +12271,6 @@ code,term
 3740005,Removal of foreign body of canthus by incision
 374009,Costosternoplasty for pectus excavatum repair
 37402004,Incision and drainage of abscess of appendix
-37403009,Sphincterotomy of sphincter of Oddi by endoscopic retrograde cholangiopancreatography
 37412006,Excision of large intestine for interposition
 37422000,Arthroscopically aided anterior cruciate ligament reconstruction
 37423005,"Gross operation repair of omphalocele, first stage"
@@ -12448,7 +12301,6 @@ code,term
 378411000000100,Introduction of transobturator male sling
 378421000000106,Introduction of female transobturator tape
 37848002,Suture of tendon sheath
-378491000000109,Repair of thoracic aortic aneurysm with insertion of endovascular stent
 37851009,Radical perineal prostatectomy with bilateral pelvic lymphadenectomy
 37853007,Stripping of abdominal varicose vein
 378551000000102,Plastic repair of multiple tears of rotator cuff of shoulder
@@ -12493,7 +12345,6 @@ code,term
 38072008,Perirenal lysis of adhesions
 38075005,"Clipping of inferior vena cava, complete"
 38083004,Repair of nasopharyngeal atresia
-38097007,Excisional biopsy of fibula
 381000087102,Angioplasty of artery of right upper limb using fluoroscopic guidance with contrast
 38102005,Cholecystectomy
 38147006,Transposition of mesenteric tissue
@@ -12507,7 +12358,6 @@ code,term
 38255009,Local destruction of lesion of elbow joint
 38260008,Thromboendarterectomy of abdominal artery
 3826004,Blepharotomy with drainage of abscess of eyelid
-3828003,Open biopsy of vertebral body of thoracic region
 38294005,Primary sialodochoplasty
 38303005,Incision of skin of breast
 38308001,Enlargement of palpebral fissure
@@ -12566,7 +12416,6 @@ code,term
 386196007,Excision of diverticulum from large intestine
 386197003,Excision of diverticula of colon
 386198008,Nephroscopic lithotripsy of renal calculus
-386200002,Removal of calculus of renal pelvis through percutaneous nephrostomy
 386219007,Bleeding reduction: postpartum uterus
 38629001,Operative procedure on the arteries of the thorax and abdomen
 3864002,Excisional biopsy of scrotum
@@ -12620,9 +12469,6 @@ code,term
 386786006,Balloon dilatation of esophageal stricture
 38679003,Destructive procedure of eyelid
 386792000,Transurethral resection of bladder neoplasm
-386793005,Cystoscopy and transurethral resection of bladder lesion
-386795003,Check cystoscopy and cauterization of bladder
-386797006,Check cystoscopy and destruction of bladder lesion
 386799009,Hydrodistension of bladder
 386800008,Cystoscopic hydrostatic distension of bladder
 386801007,Endometrial scraping
@@ -12759,11 +12605,8 @@ code,term
 3915009,Excision of artery of thorax and abdomen
 39153002,Reconstruction of conjunctival cul-de-sac
 39166002,Closure of duodenal fistula
-3917001,Excisional biopsy of phalanges of foot
 39174001,Electrocoagulation with curettage
 3918006,Plastic repair with lengthening
-391896006,Therapeutic abortion by aspiration curettage
-391897002,Aspiration curettage of uterus for termination of pregnancy
 391906003,Closure of skin by suture
 391907007,Suture of skin without graft
 391929006,Suture of trachea
@@ -12781,7 +12624,6 @@ code,term
 392000009,Hysterotomy for retained placenta
 39201003,"Tympanic membrane repair with perforation, closure with patch"
 392011001,Operation on skin
-392018007,Cold knife cone biopsy of cervix
 392019004,Excision of cervix by cryoconization
 39202005,"Coronary artery bypass with autogenous graft, four grafts"
 392021009,Lumpectomy of breast
@@ -12841,6 +12683,12 @@ code,term
 39434003,Endoscopic dilation of pylorus
 39447008,Transfer of paraspinal muscle to hip
 39448003,Radical resection of tumor of soft tissue of foot
+394539006,Pediatric surgery
+394603008,Cardiothoracic surgery
+394604002,"Ear, nose and throat surgery"
+394605001,Oral surgery
+394609007,General surgery
+394610002,Neurosurgery
 39466008,Acetabular augmentation
 394902000,High dose brachytherapy
 394911000,Wire guided wide local excision of breast lump under radiological control
@@ -12931,7 +12779,6 @@ code,term
 397183004,Excision of varicose vein of upper limb
 397184005,Stripping of varicose veins of upper limb
 397186007,Extirpation of varicose vein of upper limb
-397193006,Percutaneous transluminal coronary angioplasty by rotoablation
 397194000,Percutaneous rotational coronary endarterectomy
 397202000,Cauterization of hemorrhoids
 397203005,Clamp and cautery of hemorrhoids
@@ -12948,7 +12795,6 @@ code,term
 397244006,Repair of renal laceration
 397313004,Limbal relaxing incision
 39738004,Incision of bile duct with T or Y tube insertion
-397431004,"Percutaneous transluminal coronary angioplasty with rotoablation, single vessel"
 39749005,Ankle reattachment
 397516006,Photorefractive keratectomy
 397517002,Conductive keratoplasty
@@ -12974,7 +12820,6 @@ code,term
 397891006,Reconstruction of ossicular chain
 397896001,Exenteration of orbit
 397926008,Myringotomy and drainage of middle ear
-397930006,Percutaneous dilational tracheostomy
 397956004,Prosthetic arthroplasty of the hip
 397973002,"Chemosurgery by Mohs' technique, first stage, including the removal of all gross tumor and delineation of margins"
 397989004,Conjunctivodacryocystostomy
@@ -13007,7 +12852,6 @@ code,term
 398291001,Replacement of pyelostomy tube
 398306001,Stallard operation
 398328001,Orbitectomy
-39834009,Nephrostomy
 39842005,Creation of syndactyly
 39845007,Anterior colporrhaphy
 39852009,Suture of periosteum of tarsal or metatarsal
@@ -13061,7 +12905,6 @@ code,term
 40151007,Aponeurectomy
 40163002,Extraction of secondary membrane with capsulectomy
 40173000,Incision of bladder
-40219000,Delivery by Malstrom's extraction with episiotomy
 40234006,Hemigastrectomy
 40250003,Interatrial transposition of venous return
 40289009,"Excision of neurofibroma, extensive"
@@ -13098,7 +12941,6 @@ code,term
 404812006,Endoscopic bile duct lithotripsy
 40485001,Operation on pterygium with corneal graft
 404913000,Tangential shave of burn injury
-404915007,Vacuum assisted skin closure
 405238006,Excision of lesion of labia
 405239003,Local excision of lesion of vulva
 405245006,Fibular head transposition
@@ -13336,6 +13178,18 @@ code,term
 40834003,Complex surgical repair of wounds of trunk
 40836001,Suture of great vessel
 4084006,Repair of tendon of hand by graft or implant of muscle
+408449004,Surgical dentistry
+408456005,Thoracic surgery
+408457001,Maxillofacial surgery
+408463005,Vascular surgery
+408464004,Colorectal surgery
+408465003,Oral and maxillofacial surgery
+408466002,Cardiac surgery
+408469009,Breast surgery
+408471009,Cardiothoracic transplantation
+408474001,Hepatobiliary and pancreatic surgery
+408477008,Transplantation surgery
+408479006,Upper gastrointestinal surgery
 408484000,Level 1 axillary clearance of lymph nodes
 408486003,Level 2 axillary clearance of lymph nodes
 408499000,Level 3 axillary clearance of lymph nodes
@@ -13423,10 +13277,7 @@ code,term
 413181005,Laparoscopic repair of hiatus hernia
 413199002,Destruction of tissue
 413200004,Tumor destruction
-413222006,Pancreatic and biliary sphincterotomy by endoscopic retrograde cholangiopancreatography
-413257009,Pancreatic sphincterotomy by endoscopic retrograde cholangiopancreatography
 41330009,Laparoscopic-assisted left colectomy
-41339005,Coronary angioplasty
 41344003,Arthroplasty of distal ulna with prosthetic replacement
 413452000,Adjustable refractive surgery
 413528009,Anastomosis of blood vessel
@@ -13522,6 +13373,7 @@ code,term
 417884003,Angioplasty of external carotid artery using fluoroscopic guidance with contrast
 417970007,Angioplasty of lower limb artery using fluoroscopic guidance with contrast
 417972004,Angioplasty of hepatic artery using fluoroscopic guidance with contrast
+418018006,Dermatologic surgery
 418024000,Mohs surgery
 418066004,Angioplasty of superior mesenteric artery using fluoroscopic guidance with contrast
 418076001,Angioplasty of artery using fluoroscopic guidance with contrast
@@ -13544,8 +13396,6 @@ code,term
 418411006,Medial spindle procedure
 418430006,Bimanual phacoemulsification of cataract with intraocular lens implantation
 418454001,Fluoroscopic angiography with contrast and thrombolysis of lower limb artery
-418461002,Angioplasty of coronary artery using fluoroscopic guidance with contrast
-41848005,Direct laryngoscopy with stripping of epiglottis
 418486006,Angioplasty of mesenteric artery using fluoroscopic guidance with contrast
 418491007,Fluoroscopic angiography with contrast and thrombolysis of intracranial artery
 41853000,Operation on pyriform sinus
@@ -13597,10 +13447,13 @@ code,term
 42023006,Incision and drainage of thyroid
 420260004,Bimanual phacoemulsification
 42041003,Percutaneous extraction of kidney stone with fragmentation procedure
+420419008,Strabismus surgery specialty
 42050001,Cricoidectomy
 420526005,Coaxial phacoemulsfication
 420529003,Radiotherapy using radioactive plaque on eye
+420708009,Refractive surgery specialty
 420807005,Calculation of corneal tissue ablation depth for refractive change
+420985004,Vitreoretinal surgery specialty
 42101009,Penetrating keratoplasty
 42115006,Open reduction of closed traumatic hip dislocation
 42123008,"Type III, moderate periodontitis, moderate to deep pocket therapy"
@@ -13609,13 +13462,18 @@ code,term
 421422004,Intravitreal fluid air exchange
 42150003,Suture repair of great vessels with cardiopulmonary bypass
 42156009,Incision of abscess of sclera
+421582004,Corneal surgery specialty
 42181007,Excision of tumor of soft tissue of back
+421885009,Glaucoma surgery specialty
 42191001,Excisional biopsy of brain
 422103004,Can opener anterior capsulotomy
 422130009,Transplantation of hand muscle
 42213007,Nasal chondrotomy
+422171003,Ophthalmic plastic surgery
+422191005,Ophthalmic surgery
 422246005,Resection of conjunctiva
 42227002,Closure of rectovaginal fistula by transanal approach
+422349000,Cataract surgery specialty
 42241006,Exploration of cranium
 42246001,Hepatojejunostomy
 42253005,Incision of uterus
@@ -13703,7 +13561,6 @@ code,term
 426056001,Deep sclerectomy without spacer
 426059008,Percutaneous transluminal thrombolysis of blood vessel of liver
 42606003,Reposition of eyelash base
-426066009,Endoscopic submucosal resection of lesion of lower bowel using fiberoptic sigmoidoscope
 426067000,Open removal of cardiac thrombus
 426080002,Repair of left ventricular aneurysm
 426094001,Imaging guided colorectal therapeutic operation
@@ -13769,7 +13626,6 @@ code,term
 426676006,Amniotic membrane graft to cornea
 426677002,Reconstruction of breast using transverse rectus abdominis myocutaneous flap
 426697007,Percutaneous radiofrequency ablation of lesion of kidney
-426699005,Endoscopic submucosal resection of lesion of sigmoid colon using rigid sigmoidoscope
 426708004,Reduction of labia major
 426713000,Percutaneous chemical ablation of lesion of liver
 426717004,Prosthetic hybrid total replacement of shoulder joint using cement
@@ -13949,11 +13805,8 @@ code,term
 428686002,Recession of vertical extraocular muscle
 428737009,Enucleation of lesion of skin
 428759006,Closure of multiple ventricular septal defects
-428796002,Excisional biopsy of basal cell carcinoma
 42880005,Division of thoracic vein
-428802000,Endovascular repair of carotid artery
 428806002,Primary hybrid total replacement of shoulder joint using cemented glenoid component
-428809009,Repair of aorto-uniiliac aneurysm with insertion of endovascular stent graft
 428811000,Transjugular intrahepatic angioplasty of portal vein
 428818006,Closure of defect of interventricular septum using intraoperative transluminal prosthesis
 428836006,Primary repair of umbilical hernia using suture
@@ -13985,7 +13838,6 @@ code,term
 429141007,Percutaneous transluminal thrombolysis of vein with reconstruction
 429156003,Primary hybrid total prosthetic replacement of hip joint using cemented acetabular component
 429166006,Transjugular intrahepatic thrombolysis of portal vein
-429167002,Repair of infrarenal abdominal aortic aneurysm with insertion of endovascular stent graft
 429169004,Interstitial laser destruction of lesion of breast
 429182007,Revision of percutaneous intradiscal thermocoagulation of cervical intervertebral disc using radiofrequency probe
 429183002,Revision of percutaneous intradiscal thermocoagulation of lumbar intervertebral disc using radiofrequency probe
@@ -14038,14 +13890,11 @@ code,term
 429617005,Primary percutaneous intradiscal thermocoagulation of lumbar intervertebral disc using radiofrequency probe
 429620002,Construction of left ventricle to aorta tunnel with right ventricle to pulmonary artery valved conduit
 429623000,Endoscopic transilluminated excision of varicose vein of leg
-429639007,Percutaneous transluminal balloon angioplasty with insertion of stent into coronary artery
 429652002,Grafting of bone using synthetic graft
 429653007,Repair of reducible inguinal hernia
-429679003,Repair of thoracic aortic aneurysm with insertion of endovascular stent graft
 429687002,Resurfacing hemiarthroplasty of head of humerus using cement
 42969009,Cauterization of skin
 429703007,Paracervical uterine neurectomy
-429706004,Repair of suprarenal aortic aneurysm with insertion of endovascular stent graft
 429727009,Primary percutaneous endoscopic excision of thoracic intervertebral disc
 429737004,Percutaneous laser ablation of lesion of fetus
 429741000,Revision of laser foraminoplasty of cervical spine
@@ -14056,7 +13905,6 @@ code,term
 429786002,Repair of cicatricial ectropion
 429794009,Fluoroscopic angiography with contrast and thrombolysis of aorta and femoral artery
 42980009,Excision of perianal tissue
-429809004,Percutaneous transluminal angioplasty of coronary artery using fluoroscopic guidance with contrast
 429813006,Fluoroscopic angiography and atherectomy with contrast
 429814000,Fluoroscopic angiography with contrast and atherectomy by cutting balloon
 429815004,Fluoroscopic angiography with contrast and atherectomy by laser
@@ -14128,7 +13976,6 @@ code,term
 431399005,Brachytherapy using iodine (131-I) ethiodized oil
 431400003,Jejunostomy using fluoroscopic guidance
 431401004,Lithotripsy using fluoroscopic guidance
-431410007,Nephrostomy using fluoroscopic guidance
 431419008,Incision and drainage of abscess of back
 431421003,Percutaneous transluminal angioplasty of brachial artery using fluoroscopic guidance with contrast
 431422005,Percutaneous transluminal angioplasty of axillary artery using fluoroscopic guidance with contrast
@@ -14139,12 +13986,10 @@ code,term
 431435001,Percutaneous thrombolysis of portal vein using fluoroscopic guidance
 431451000124107,Repair of lipomeningocele
 431470004,Cecostomy using fluoroscopic guidance
-431471000,Destruction of intervertebral disc by injection using fluoroscopic guidance
 431475009,Radiofrequency ablation of lesion of liver using computed tomography guidance
 431483003,Percutaneous transluminal cutting balloon angioplasty of hepatic artery using fluoroscopic guidance with contrast
 431484009,Percutaneous transluminal angioplasty of renal artery using fluoroscopic guidance with contrast
 431485005,Percutaneous transluminal angioplasty of subclavian artery using fluoroscopic guidance with contrast
-431494004,Extracorporeal shock wave lithotripsy of tendon using ultrasound guidance
 431496002,Vertebroplasty of lumbar spine using computed tomography guidance
 43151008,Splenorenal bypass graft with vein
 431514000,Cardiac septostomy using ultrasound guidance
@@ -14178,7 +14023,6 @@ code,term
 431667009,Intracoronary brachytherapy using fluoroscopic guidance with contrast
 431668004,Kyphoplasty of fracture of cervical spine using computed tomography guidance
 431705007,Sialodochoplasty using fluoroscopic guidance
-431731009,Extracorporeal shockwave lithotripsy of calculus of kidney using fluoroscopic guidance
 431741007,Kyphoplasty of fracture of thoracic spine using fluoroscopic guidance
 431742000,Percutaneous nephrolithotomy using fluoroscopic guidance
 431743005,Yttrium 90 somatostatin analog therapy
@@ -14253,7 +14097,6 @@ code,term
 432867005,Percutaneous transluminal angioplasty of common femoral vein using fluoroscopic guidance with contrast
 432868000,Percutaneous transluminal angioplasty of common iliac artery using fluoroscopic guidance with contrast
 432869008,Percutaneous thrombolysis of vein of lower limb using fluoroscopic guidance
-432876003,Endoscopic retrograde cholangiopancreatography with dilatation of bile duct using fluoroscopic guidance
 432880008,Lithotripsy of salivary gland using fluoroscopic guidance
 43288002,Excision of lesion of pineal gland
 432903006,Kyphoplasty of fracture of thoracic spine using computed tomography guidance
@@ -14264,7 +14107,6 @@ code,term
 433016000,Excision of ligament
 433023004,Fluoroscopic dacryocystoplasty
 433024005,Gastrojejunostomy using fluoroscopic guidance
-433029000,Nephrostomy using computed tomography guidance
 433034001,Vertebroplasty of thoracic spine using computed tomography guidance
 433040008,Percutaneous transluminal angioplasty of hepatic artery using fluoroscopic guidance with contrast
 43304004,Fistulectomy of skin and subcutaneous tissue
@@ -14347,7 +14189,6 @@ code,term
 43582002,Mechanical vitrectomy by anterior approach
 43642001,Incision and exploration of retroperitoneum
 43643006,Ossiculectomy of middle ear
-43648002,Excisional biopsy of joint structure of hip
 4365001,Surgical repair
 43654001,Correction of coarctation of aorta with anastomosis
 43660001,Replacement of femoral head by prosthesis with use of methyl methacrylate
@@ -14357,7 +14198,6 @@ code,term
 43750003,Endoscopic excision of lesion of duodenum
 43762004,Repair of ruptured aneurysm with graft of hepatic artery
 437746009,Percutaneous transluminal septal myocardial ablation
-43785003,Repair of aneurysm by endovascular coil embolization
 43791001,Vaginal hysterectomy with total colpectomy
 43795005,Tympanic membrane repair with site preparation
 4380007,Transposition of vulvar tissue
@@ -14369,7 +14209,6 @@ code,term
 438337003,Repair of arteriovenous graft
 438338008,Total gastrectomy with extended lymphadenectomy
 438349002,Lumbar sympathectomy using computed tomography guidance
-438361005,Endovascular repair of abdominal aortic aneurysm with insertion of visceral extension prosthesis
 438362003,Excision of lamina of vertebra with transection of spinal accessory nerve
 438363008,Removal of cervical total intervertebral disc prosthesis using anterior approach
 438366000,Excision of bone of cranium and excision of midline neoplasm at base of skull
@@ -14468,7 +14307,6 @@ code,term
 439098007,Percutaneous thrombolysis of spinal artery using fluoroscopic guidance
 439110003,Cystoscopic anastomosis of ureter to bladder
 43911009,Reattachment of peripheral vessels
-439111004,Cystourethroscopy with transurethral excision of ejaculatory duct
 439113001,Excision of trochanteric pressure ulcer
 439118005,Closed division of angle of mandible
 439171005,Laparoscopic selective transection of vagus nerve
@@ -14520,7 +14358,6 @@ code,term
 439490005,Insertion of subconjunctival retinal prosthesis receiver and pulse generator with vitrectomy
 439493007,Incision of bone of cranium with elevation of bone flap and excision of epileptogenic focus
 439494001,Suture of digital nerve of foot
-439497008,Cystourethroscopy and excision of internal sphincter
 439499006,Excision of bone of cranium and excision of infratentorial neoplasm of brain
 43952000,Radical resection of tumor of soft tissue of thorax
 439520001,Destruction of pudendal nerve using neurolytic agent
@@ -14530,10 +14367,8 @@ code,term
 439525006,Grafting of nerve to arm
 439526007,Incision and drainage of hip joint
 439528008,Partial excision of body of thoracic vertebra with decompression of spinal cord and nerve roots by transthoracic approach
-439529000,Endovascular repair of aneurysm of iliac artery
 439530005,Percutaneous intradiscal annuloplasty using fluoroscopic guidance
 439533007,Endoscopic balloon dilatation of ostium of paranasal sinus
-439534001,Shaving of peritoneal dialysis catheter cuff
 439544004,Sympathectomy using fluoroscopic guidance
 439571004,Reconstruction of forehead using allograft
 439572006,Bypass of axillary artery to brachial artery using vein graft
@@ -14561,7 +14396,6 @@ code,term
 439765007,Percutaneous skeletal fixation of fracture of metacarpal
 439769001,Excision of lamina of cervical vertebra and excision of intradural spinal lesion
 439770000,"Partial excision of body of thoracic vertebra with decompression of spinal cord, nerve roots and cauda equina by extracavitary approach"
-439773003,Endovascular repair of aneurysm with transcatheter placement of wireless physiologic sensor
 439775005,Repair of persistant cloaca with lengthening of vagina
 439780001,"Total excision of body of sacral vertebra with decompression of spinal cord, nerve roots and cauda equina by retroperitoneal approach"
 439781002,Insertion of peripancreatic drain with cholecystostomy
@@ -14601,7 +14435,6 @@ code,term
 439944006,Insertion of proximal extension prosthesis for repair of descending thoracic aorta
 439946008,Laparoscopic repair of urinary stress incontinence using sling
 439951002,Arthroscopy of hip with synovectomy
-439957003,Cystourethroscopy and dilation of bladder
 439964001,Laparoscopic excision of kidney and total excision of ureter
 439967008,Incision and drainage of bursa of foot
 439969006,Grafting to great vessel of thorax with shunt bypass
@@ -14681,7 +14514,6 @@ code,term
 440446009,Laparoscopic excision of kidney and partial excision of ureter
 440470008,Creation of lesion of gasserian ganglion with neurolytic agent using stereotactic method
 440499003,Radiofrequency ablation of lesion of kidney using ultrasound guidance
-44050002,Arthrotomy for synovial biopsy of glenohumeral joint
 440504003,Arthroscopy of hip with removal of loose body
 440520008,Refashioning of arteriovenous fistula
 440522000,Resection of pharyngeal wall with closure using myocutaneous flap
@@ -14748,7 +14580,6 @@ code,term
 441600007,Arthrolysis after total prosthetic replacement of knee joint
 441603009,Reconstruction of extra-articular ligament for stabilization of joint
 441606001,Repair of capsule and posterior labrum for stabilization of glenohumeral joint
-441612006,Repair of infrarenal abdominal aortic aneurysm with insertion of endovascular stent
 441619002,Repair of obstetric laceration of perineum and anal sphincter and mucosa of rectum
 44162000,Excision of bronchial lymph nodes
 441631000,Percutaneous transluminal angioplasty of inferior vena cava using fluoroscopic guidance with contrast
@@ -14796,7 +14627,6 @@ code,term
 442117004,Repair of temporomandibular joint
 442118009,Primary hemilaminectomy for decompression of lumbar spine
 442123009,Sano procedure
-442125002,Repair of aneurysm of suprarenal abdominal aorta with insertion of endovascular stent
 442131004,Primary reverse polarity total prosthetic replacement of shoulder joint not using cement
 442139002,Primary posterior lumbar medial facetectomy
 442188002,Percutaneous transluminal valvotomy and valvuloplasty of pulmonary valve structure
@@ -14833,7 +14663,6 @@ code,term
 442434003,Arthroscopic repair of superior labrum anterior to posterior tear
 442442002,Division of mitral valve chordae tendineae
 442456000,Closure of atrial septal defect using septal occluder device
-442457009,Repair of aneurysm of thoracic aorta with insertion of endovascular stent
 442458004,Arthroscopic excision of infrapatellar fat pad
 442493006,Revision of reverse polarity total prosthetic replacement of shoulder joint using cement
 442527002,Division of fascia of finger for Dupuytren contracture
@@ -14854,14 +14683,11 @@ code,term
 442732003,Circumferential lipectomy
 442737009,Appendicovesicostomy
 442792000,Excision of internal and external hemorrhoid and fissure of anus
-442793005,Incisional biopsy of interphalangeal joint of toe
-442797006,Esophagogastroduodenoscopy with insertion of guide wire and dilation of esophagus
 442798001,Open fixation of fracture of shaft of tibia using intramedullary implant
 442805003,Incision of stomach and suture of bleeding gastric ulcer
 442806002,Excision of rectum with anastomosis of colon to anus and creation of colonic reservoir
 442822001,Advancement of posterior tibial tendon with excision of accessory navicular bone
 442829005,Incision and drainage of intramural perirectal abscess by transanal approach
-442830000,Endoscopic excision of polyp of large intestine using sigmoidoscope
 442833003,Percutaneous cholecystostomy and drainage using ultrasound guidance
 442836006,Excision of benign neoplasm of phalanx of finger with autograft
 442840002,Transplantation of free osteocutaneous flap from iliac crest using microvascular anastomosis
@@ -14945,7 +14771,6 @@ code,term
 443330001,Repair of total anomalous pulmonary venous connection by coronary sinus cutback to oval fossa with insertion of interatrial baffle
 443331002,Le Fort I osteotomy of maxilla into three segments with grafting of bone
 443332009,Le Fort I osteotomy of maxilla into two segments with grafting of bone
-443355007,Insertion of dual chamber pulse generator and repositioning of cardioverter defibrillation pulse generator lead
 443356008,Excision of subcutaneous neoplasm of foot
 443358009,Surgical removal of transvenous electrode of dual chamber pacing cardioverter defibrillator pulse generator by transthoracic approach
 443361005,Reconstruction of toenail bed with nail bed graft
@@ -14971,7 +14796,6 @@ code,term
 443497002,Excision of sentinel lymph node
 443509009,Sliding osteotomy of chin with single piece implant
 443513002,Angioplasty of brachiocephalic artery using radiologic guidance
-443521008,Direct laryngoscopy with stripping of epiglottis using operating microscope
 443522001,Excision of entire head of metatarsal
 443538007,Incision and drainage of fluid collection of skin
 443540002,Dermabrasion of tattoo of external genitalia
@@ -14993,7 +14817,6 @@ code,term
 443681002,Total replacement of left knee joint
 443682009,Total replacement of right knee joint
 443683004,Open revision of arteriovenous fistula using graft with removal of thrombus
-443691008,Direct laryngoscopy with stripping of vocal cords using operating microscope
 443706000,Repair of partial anomalous pulmonary venous connection by direct anomalous vein anastomosis to left atrial appendage
 443711003,Decompression fasciotomy of extensor compartment of knee with debridement of muscle
 443723009,Repair of partial anomalous pulmonary venous connection by baffle redirection to left atrium with reimplantation of systemic vein in right atrium
@@ -15013,7 +14836,6 @@ code,term
 443829004,Percutaneous transluminal balloon angioplasty of coarctation of aorta with insertion of stent
 443869003,Total excision of right kidney
 443882006,Excision of infected vascular graft of limb
-443886009,Endovascular repair of aneurysm of iliac artery with graft using radiologic guidance
 443887000,Grafting of aortic valve prosthesis by transapical approach
 443901003,Removal of foreign body from subcutaneous tissue by incision of skin and dissection of subcutaneous tissue
 443902005,Repair of partial anomalous pulmonary venous connection by anastomosis of pulmonary venous confluence to left atrium via connecting vein
@@ -15029,7 +14851,6 @@ code,term
 443954000,Banding of descending vertical vein
 443955004,Ligation of connecting pulmonary vein
 443958002,Surgical removal of transvenous electrode of single chamber pacing cardioverter defibrillator pulse generator by transvenous approach
-443959005,Direct laryngoscopy with excision of neoplasm using operating microscope
 443965005,Excision of foreign body of subcutaneous tissue
 44397008,Suture of fallopian tube
 443989003,Bidirectional Glenn shunt procedure of left superior vena cava
@@ -15071,7 +14892,6 @@ code,term
 444463001,Bilateral replacement of knee joints
 444564009,Recession of muscle
 444565005,Advancement of muscle
-444588006,Endovascular repair of abdominal aortic aneurysm
 444593009,Marsupialization of cyst of pancreas
 444624003,Laparoscopic wedge resection of ovary
 444665003,Resection and anastomosis of trachea
@@ -15124,7 +14944,6 @@ code,term
 445843006,Suturing of nerve plexus
 445884009,Wedge resection of colon
 445891007,Suturing of laceration of small intestine
-445892000,Sigmoidoscopic excision of lesion of large intestine
 445894004,Excision of neoplasm of intradural intramedullary spinal cord
 445912000,Excision of fallopian tube and surgical removal of ectopic pregnancy
 445914004,Incision of abscess of head
@@ -15234,13 +15053,11 @@ code,term
 446507001,Excision of secondary membrane of anterior segment of eye
 446508006,Insertion of capsular tension ring and artificial iris
 446510008,Excision of dentigerous cyst of maxilla
-446521004,Colonoscopy and excision of mucosa of colon
 446526009,Debulking of neoplasm of ovary
 446528005,Incision and drainage of cyst of ovary
 446542002,Endoscopic destruction of celiac plexus using ultrasound guidance
 446544001,Laparoscopic closure of fistula of ureter
 446545000,Ureteroscopic dilation of stricture of ureter using balloon catheter
-446546004,Cystoscopy and lithotripsy of calculus of bladder using laser
 446547008,Endoscopic ablation of stricture of ureter using laser
 446548003,Extraction of cataract and trabeculectomy
 446555001,Destruction of eyelash follicle using laser
@@ -15251,7 +15068,6 @@ code,term
 446584005,Ablation of neoplasm of urinary bladder using laser
 446585006,Laparoscopic excision of diverticulum of urinary bladder
 446586007,Laparoscopic partial excision of urinary bladder
-446587003,Ureteroscopy and electrohydraulic lithotripsy of calculus of ureter
 446588008,Endoscopic ablation of neoplasm of ureter using laser
 446589000,Urethroscopic excision of lesion of urethra
 446590009,One stage intracapsular extraction of lens by inferior temporal route and insertion of prosthetic intraocular lens
@@ -15266,7 +15082,6 @@ code,term
 446678000,Laparoscopic high ligation of testicular vein
 446679008,Total laparoscopic excision of uterus by abdominal approach
 446683008,Craniotomy and decompression of brain
-446685001,Cystoscopy and electrohydraulic lithotripsy of calculus of bladder
 446693001,Excision of cyst of vallecula
 4467005,"Excision of tumor of ankle area, deep, intramuscular"
 446705006,Trephination of cranium and drainage of chronic hematoma from subdural space
@@ -15275,7 +15090,6 @@ code,term
 446715000,Laparoscopic total excision of ureter
 446716004,Cystoscopic laser photocoagulation of hemorrhage of urinary bladder
 446717008,Laser photocoagulation of hemorrhage
-446723003,Endoscopy of upper gastrointestinal tract and dilation of gastric stoma
 446726006,Ligation of varix of duodenum
 446728007,Endoscopy of upper gastrointestinal tract and excision of mucosa of esophagus
 446729004,Photoablation of esophagus using laser
@@ -15293,7 +15107,6 @@ code,term
 446743009,Endoscopy of upper gastrointestinal tract and banding of varix of stomach
 446744003,Endoscopy of upper gastrointestinal tract and ligation of varix of duodenum
 446746001,Excision of mucosa of duodenum
-446747005,Sigmoidoscopy and excision of mucosa of sigmoid colon
 446773000,Suturing of laceration of ureter
 446776008,Excision of inguinal lymph node and pelvic lymph node
 446795001,Transection of dorsal spinal nerve root at entry zone
@@ -15304,7 +15117,6 @@ code,term
 446808004,Total excision of maxilla and excision of nasal turbinate
 446814006,Radiofrequency thermal ablation of mandibular division of trigeminal nerve
 446816008,Craniotomy and evacuation of traumatic hematoma
-446820007,Cystoscopy and bougienage of bladder neck using panendoscope
 446823009,Excision of lesion of internal urethral orifice
 446830003,Laparoscopic wedge resection of lesion of stomach
 44683005,Repair of malunion of metatarsal with bone graft
@@ -15399,7 +15211,6 @@ code,term
 447373006,Excision of nasal sinus and nasal turbinate
 447376003,Debulking of neoplasm of spinal cord
 447380008,Dissection of retroperitoneum
-447381007,Cystoscopy and destruction of valve of urethra
 447382000,Urethroscopy and destruction of valve of urethra
 447383005,Ablation of stricture of urethra using laser
 447384004,Retropubic urethral suspension
@@ -15609,7 +15420,6 @@ code,term
 448228004,Harvesting of random pattern flap of skin
 448234006,Excision of lamina of vertebra and intervertebral disc
 448237004,Ligation of arteriovenous fistula of extremity
-448239001,Endoscopic destruction of lesion of lower bowel using fiberoptic sigmoidoscope
 448240004,Fusion of joint of lumbar spine with internal fixation by posterior approach
 448241000,Fusion of sacroiliac joint with internal fixation by posterior approach
 448243002,External fixation of femur
@@ -15636,11 +15446,9 @@ code,term
 448339003,Division of palmar fascia of hand using needle
 448340001,Reopening of chest and reexploration of intraabdominal operation site
 448341002,Endarterectomy and patch repair of suprarenal artery
-448342009,Endovascular fenestration of dissection of aorta
 448346007,Endoscopic dilation of esophagus using rigid esophagoscope
 448350000,High intensity focused ultrasound ablation of lesion of uterus
 448352008,Sphincteroplasty of pancreatic duct using duodenal approach
-448360009,Sigmoidoscopic argon plasma coagulation of lesion of rectum
 448361008,Harvesting of mandible
 448362001,Removal of vascular graft
 448363006,Excision of sequestrum of phalanx
@@ -15694,11 +15502,9 @@ code,term
 448566002,External fixation of clavicle
 448570005,Trapezoidal osteotomy
 448572002,Secondary open reduction of fracture of bone and intramedullary fixation
-448592009,Sigmoidoscopic excision of mucosa of rectum
 448594005,Transposition of muscle of shoulder
 448596007,Excision of rectal stump
 448605007,Arthroscopic removal of loose body from hand joint
-448606008,Endovenous radiofrequency obliteration of varicose vein of lower limb
 448608009,Intracavitary brachytherapy of female genital tract
 448613008,Radiofrequency ablation of nerve root of thoracic spine using fluoroscopic guidance
 448639006,Ligation and stripping of varicose vein of head and/or neck
@@ -15732,7 +15538,6 @@ code,term
 448796005,Primary interposition arthroplasty of metatarsophalangeal joint
 448797001,Bidirectional superior cavopulmonary anastomosis
 448798006,Percutaneous transluminal angioplasty of adrenal artery
-448799003,Endoscopic dilation of ampulla of Vater
 448806005,Suturing of laceration of anus
 448807001,Fusion of cervicothoracic region of spine by posterior approach
 448808006,Fusion of cervicothoracic region of spine by anterior approach
@@ -15757,7 +15562,6 @@ code,term
 448873003,Primary open reduction of fracture of ankle and extramedullary fixation
 448874009,Primary open reduction of fracture of long bone and complex extramedullary fixation
 448877002,Fusion of lumbosacral region of spine with internal fixation by anterior approach
-448881002,Endovenous laser ablation of varicose vein
 448889000,Excision of vascular graft of abdomen
 448892001,Division of femur
 448893006,Lengthening of humerus
@@ -15826,7 +15630,6 @@ code,term
 449179005,Suturing of capsule of interphalangeal joint of hand
 449180008,Excision of vascular graft of extremity
 449183005,Conversion to total replacement of joint not using cement
-449194009,Sigmoidoscopic excision of polyp of rectum
 449210005,Bronchoscopic cryotherapy of neoplasm of bronchus
 449227002,Balloon dilation of systemic to pulmonary artery shunt
 449242004,Clipping of carotid artery by cervical approach
@@ -15859,7 +15662,6 @@ code,term
 449378007,Fusion of cervicothoracic region of spine with internal fixation by posterior approach
 449389000,Placement of stent in cardiac conduit
 449392001,Insertion of seton into high anal fistula and partial laying open of track
-449395004,Endoscopic retrograde cholangiopancreatography and incision of duodenal papilla
 449396003,Dilation of mature T tube tract
 449403001,Balloon dilation of recoarctation of aorta
 449404007,Cryosurgery of lesion of liver
@@ -15952,7 +15754,6 @@ code,term
 450434000,Excision of squamous cell carcinoma
 450437007,Revision of anterior excision of lumbar disc
 45045002,Repair of tongue
-450460004,Nephrostomy using ultrasound guidance
 450461000,Subtotal excision of colon and creation of colonic pouch
 450462007,Subtotal excision of colon and rectum and creation of colonic pouch
 450464008,Angulation osteotomy of diaphysis
@@ -16020,7 +15821,6 @@ code,term
 450593005,Operation on pulmonary vein great vessel
 450608000,Destruction of lesion of lung
 450627006,Punch biopsy of vulva
-450628001,Shave biopsy and cauterization of skin
 450635009,Open biopsy of lesion of peritoneal cavity
 450636005,Open ligation of fallopian tube
 450637001,Open clipping of fallopian tube
@@ -16471,7 +16271,6 @@ code,term
 48527009,Suture of pharynx
 48537004,Bypass graft
 48588001,Reattachment of nerve
-48616004,Endoscopy with excision of lesion from bronchus
 4862007,Revision of anastomosis of large intestine
 48630009,Incision and exploration of rectum
 48640007,Plication of fascia
@@ -16630,7 +16429,6 @@ code,term
 50538003,"Discission of membranous cataract, primary"
 50558002,Division of intracranial artery
 5057003,Radical orbitomaxillectomy
-50585009,"Tooth extraction, multiple"
 50586005,Excision of extraocular muscle
 50590007,Trephine biopsy
 50594003,Suture of subcutaneous tissue without skin graft
@@ -16725,7 +16523,6 @@ code,term
 51640008,Chemexfoliation of skin of extremities
 51650009,Closure of fistula of round window of ear
 5165002,Division of thoracic artery
-51675008,Punch biopsy of cervix
 51683002,Radial keratotomy
 51684008,Radical subtotal resection of pancreas
 51686005,Banding
@@ -16789,11 +16586,11 @@ code,term
 52318007,Corneoscleral trephination
 5233006,Lateral fasciotomy
 52346009,Incision and exploration of spermatic cord
-52355007,Surgical exposure of impacted or unerupted tooth for orthodontic reason
 52369007,Grafting of tibia
 52381006,Operation on epididymis
 52384003,Urethromeatoplasty with mucosal advancement
 52395009,Ligation of splenic artery
+52406004,Excision and reimplantation of organ for extracorporeal surgery
 52426000,Cystostomy with insertion of ureteral catheter
 52428004,Creation of subarachnoid/subdural-pleural shunt
 5243009,Suture of adenoid fossa
@@ -16836,7 +16633,6 @@ code,term
 52855003,Excision of lesion of skin of extremity
 52858001,Osteoclasis of vertebrae
 52880003,"Osteotomy, intertrochanteric, with external fixation and cast"
-52889002,Endocervical curettage
 5290006,Incision and drainage of Ludwig's angina
 52907004,Repair of vein with patch graft of tissue
 52915001,Curettement of benign lesion with chemical cauterization
@@ -16897,11 +16693,9 @@ code,term
 53423001,Lobectomy of brain
 53437005,Repair of vertebral arch defect in spina bifida
 53442002,Excision of stomach structure
-53449006,Arthrotomy with biopsy of sacroiliac joint
 5348003,Repair of endocardial cushion defect
 53486007,Filleting of finger flap including preparation of recipient site
 535003,Closure of ureterovesicovaginal fistula
-53514001,Ultrasonic fragmentation of urinary stone through percutaneous nephrostomy
 53528007,Curettage of conjunctiva for trachoma follicles
 53533006,Partial lobectomy of thyroid
 53580003,Marsupialization of cyst of larynx
@@ -16986,12 +16780,10 @@ code,term
 54408002,Incision of antecubital fossa
 54419004,Arthroscopically aided anterior cruciate ligament augmentation
 54433004,Release of extensor tendon of hand by central slip for repair of mallet finger
-54460006,Chemonucleolysis
 5446003,Excision of cervical rib for outlet compression syndrome with sympathectomy
 54490004,Vaginal hysterectomy with repair of enterocele
 54496005,Construction of intermarginal adhesions
 545001,Operative procedure on lower leg
-54535009,Cone biopsy of cervix
 5456004,Transplantation of lymphatic structure
 5460001,Removal of prosthesis from fallopian tube
 54621003,Plastic repair with reduction
@@ -17047,7 +16839,6 @@ code,term
 55322005,Vital pulpotomy
 55349005,Reconstruction of cleft foot
 5536002,"Arthrodesis of carpometacarpal joint of digits, other than thumb"
-55361002,Open biopsy of vertebral body of lumbar region
 55369000,Lysis of adhesions of spleen
 55377001,Embolectomy with catheter of innominate artery by arm incision
 55378006,Anterior vestibuloplasty
@@ -17057,10 +16848,8 @@ code,term
 55415001,"Culp-Deweerd operation, spiral flap pyeloplasty"
 55416000,"Reduction of palatal fractures, open treatment, Lefort I type"
 5545001,Repair of carotid body
-55455004,Revision of pacemaker electrode leads
 55502007,Osteotomy of iliac bone
 55506005,Single valve replacement with valvuloplasty of two valves
-5551006,Direct laryngoscopy with arytenoidectomy with operating microscope
 55517006,Esophagogastric fundoplasty with fundic patch
 55531006,Urethrostomy
 55545000,Partial claviculectomy
@@ -17072,7 +16861,6 @@ code,term
 55615009,Revision of extraocular muscle surgery
 55622001,"Tracheostomy, emergency procedure by transtracheal approach"
 55645007,Closure of reno-intestinal fistula
-55648009,Endoscopic dilation of pancreatic duct
 55669006,Repair of obstetrical laceration of perineum
 55693001,Lacrimal apparatus intubation for dilation
 55698005,Valvulotomy of pulmonary valve in total repair of tetralogy of Fallot
@@ -17195,7 +16983,6 @@ code,term
 57071006,Sympathectomy
 57103007,Reattachment of retina by diathermy
 57128004,Incision and drainage of pelvis for deep abscess
-57144008,Skin snip removal and examination for onchocerca
 57151004,Cheilostomatoplasty
 57152006,Repair of hallux valgus
 57157000,"Excision of tumor of soft tissue of thorax, deep, subfascial, intramuscular"
@@ -17246,7 +17033,6 @@ code,term
 57668004,Excision of hamartoma of breast
 57677006,Removal of calculus of lacrimal punctum by incision
 57696005,Local excision of lesion or tissue of radius AND ulna
-57703000,Extraction of permanent tooth
 57721002,Valvulotomy of tricuspid valve
 57746002,Suture of periosteum of femur
 57751008,Repair of joint capsule
@@ -17259,7 +17045,6 @@ code,term
 5787001,Elevation of bone fragments of orbit of skull with debridement
 57872003,Repair of muscle by graft or implant of fascia
 57874002,Abdominal phlebectomy
-57876000,Injection of spinal intervertebral space with chymotrypsin
 57878004,Internal fixation of patella
 57881009,Ventricular shunt to cisterna magna
 5789003,Lysis of adhesions of intestines
@@ -17314,7 +17099,6 @@ code,term
 58380004,Pericardiostomy
 58385009,Grafting of fallopian tube
 58388006,Repair of laceration of conjunctiva
-58401002,Surgical removal of residual tooth roots
 58420000,Excision of excessive skin and subcutaneous tissue of abdomen
 584221000000105,Introduction of removable radioactive material into organ NOC
 58425005,Surgical closure of tracheostomy with plastic repair
@@ -17368,7 +17152,6 @@ code,term
 59109003,Ligation of external carotid artery
 59117006,Implantation of aortic valve with tissue graft
 59124007,Removal of calcareous deposit from bursa of hand
-59133009,Excisional biopsy of joint structure of knee
 59164006,Repair of gastroschisis with prosthesis or graft
 59175005,"Ligamentous reconstruction of knee, intra-articular"
 59184005,Revision of Holter valve
@@ -17380,7 +17163,6 @@ code,term
 59230000,Removal of valve of vas deferens
 59234009,"Iridectomy with corneoscleral section, optical"
 5925002,Incision and drainage of hematoma of wrist
-59295008,Excisional biopsy of phalanges of hand
 59300005,Operation on spleen
 59304001,Open biopsy of pancreas
 59323008,Spinal fusion with graft
@@ -17465,7 +17247,6 @@ code,term
 60096009,Enucleation of cyst of salivary gland
 60104001,Incision and drainage of forefoot
 60128004,Complicated scrotoplasty
-60139001,Operative esophagogastroduodenoscopy
 60158005,Bilateral bisection of ovary
 60159002,Implantation of Swanson prosthesis of knee
 60172001,Partial excision of vertebra of lumbar region
@@ -17492,7 +17273,6 @@ code,term
 60510009,Creation of subarachnoid/subdural-jugular shunt
 60523002,Closure of cecostomy
 60538001,Removal of internal fixation device of tibia
-60562006,"Tooth extraction, root removal of exposed roots"
 60568005,Repair of uterine ligaments by interposition
 60572009,Vascular subclavian-subclavian bypass
 60581003,Intrathoracic esophageal anastomosis with interposition of small bowel
@@ -17718,7 +17498,6 @@ code,term
 609319000,Revision of dacryocystorhinostomy
 609324002,Revision of appendicovesicostomy
 60941001,Excision of vein
-60948007,Excisional biopsy of joint structure of hand and finger
 60953002,Lateral canthopexy
 60954008,Cervical esophagostomy
 609588000,Total knee replacement
@@ -17778,9 +17557,7 @@ code,term
 61600000,Take-down of jejunoileal bypass
 61601001,Submaxillary incision
 6161000,Excision of lesion of capsule of toes
-61611008,Excisional biopsy of carpals or metacarpals
 6164008,Osteoclasis of clavicle
-6166005,Nephropyeloureterostomy
 61661004,Operative procedure on foot
 61667000,Highly selective vagotomy
 616771000000101,Obliteration of cavity of organ NOC
@@ -17850,7 +17627,6 @@ code,term
 6221005,Suture of colon
 62212009,Excision of leg pressure ulcer with primary suture
 62220006,Fulguration of urinary bladder by suprapubic approach
-62225001,Arthrotomy of elbow with joint exploration and with biopsy
 62236008,Delimiting keratotomy
 62258005,Resection of diverticulum
 62271008,Incision of skin abscess
@@ -17946,6 +17722,7 @@ code,term
 63205005,Regional excision of iliac lymph nodes
 63221000,Excision of lesion of bone of ulna
 63228006,Resection of sclera with scleral buckling
+63243008,Intraoperative cholangiogram
 63295000,Dewebbing of congenital syndactyly of fingers
 63296004,Excision of aorta
 63308005,Excision of lesion of pelvic bone
@@ -18083,7 +17860,6 @@ code,term
 64544008,"Gingivectomy or gingivoplasty, per tooth"
 64550003,Removal of foreign body from stomach by incision
 64562004,Hysterotrachelorrhaphy
-64584004,"Removal of impacted tooth, completely bony, with unusual surgical complications"
 64597002,Destructive procedure
 64603004,Osteotomy of acetabular bone with open reduction of hip
 64608008,Excision of ascending aorta
@@ -18222,12 +17998,10 @@ code,term
 65841004,Suture of ocular tendon
 65852005,Lysis of adhesions of fallopian tube
 65854006,Reexcision
-65858009,Excisional biopsy of joint structure of ankle
 65861005,Excision of aneurysm of coronary artery
 65886001,Excision of petrous apex cells
 65935005,Repair of stress incontinence by suprapubic sling
 65936006,Repositioning of cardioverter/defibrillator pulse generator
-65942005,Removal of impacted tooth from maxillary sinus
 65954005,Hepaticocystoduodenostomy
 65960005,Closure of gastrojejunocolic fistula
 65961009,Fistulization of endolymphatic sac for decompression
@@ -18293,7 +18067,6 @@ code,term
 6661001,King-Steelquist hindquarter operation
 66626009,"Forequarter amputation, left"
 66633009,Nephrocystanastomosis
-66648003,"Removal of impacted tooth, partially bony"
 66655001,"Conjunctival flap, bridge"
 66670000,Fistulectomy of acquired fistula of joint
 66671001,Incision and drainage of parapharyngeal abscess by intraoral approach
@@ -18350,7 +18123,6 @@ code,term
 67134009,Repair of punctum of lacrimal system for eversion
 67160005,Empyemectomy with lobectomy
 67166004,Aortocoronary artery bypass graft
-67179008,Bronchoscopy for relief of stenosis with laser surgery
 6719004,Incision of bone of femur
 67191004,Change in bone length
 67199002,Exploration of adrenal gland with biopsy by transabdominal approach
@@ -18358,7 +18130,6 @@ code,term
 67208006,Suture of ligament of foot and toes
 67212000,Ileocystoplasty
 6722002,Nephrolithotomy for removal of calculus
-67228005,Excisional biopsy of tendon
 67230007,Removal of prosthesis of joint structures of foot and toe
 67244001,Incision and exploration of lung
 6726004,Incision and drainage of appendiceal abscess by transabdominal approach
@@ -18375,7 +18146,6 @@ code,term
 67402009,Partial lobectomy of brain
 67418003,Excision of lymphangioma
 67424009,"Excision of aural glomus tumor, transmastoid"
-6745008,Indirect laryngoscopy with removal of foreign body
 67460004,Hypophyseal infundibulectomy
 67476008,Repair of inguinal hernia with orchiectomy
 67484007,Osteotomy of facial bone
@@ -18430,7 +18200,6 @@ code,term
 68111003,Cardioschisis
 6812000,"Mohs' chemosurgery, fixed tissue technique"
 68141001,Plication of mesentery
-68143003,"Cone biopsy of cervix with dilation, curettage and with repair"
 6818001,Excision of buccal mucosa
 68182001,Incision of popliteal space
 68188002,Incision of large intestine
@@ -18454,10 +18223,8 @@ code,term
 68348004,Operation on rectum and perirectal tissue
 68366009,Release of encircling material of posterior segment of eye
 68371002,Repair of symblepharon with free graft
-68381003,Surgical removal of erupted tooth requiring elevation of mucoperiosteal flap and removal of bone and/or section of tooth
 68385007,Osteotomy of phalanges of foot
 68408006,Arthroplasty with prosthetic replacement of scaphoid
-68411007,"Excisional biopsy of bone of thorax, ribs or sternum"
 68413005,Saphenopopliteal vein anastomosis
 684151000000100,Introduction of therapeutic implant into organ NOC
 68431006,Grafting of trachea
@@ -18518,7 +18285,6 @@ code,term
 6909004,Excisional biopsy of peripheral nerve ganglion
 69119007,Arthrodesis of symphysis pubis
 69130005,Stapedectomy
-69141007,Excisional biopsy of pelvic bone
 6915004,"Brunschwig operation, temporary gastrostomy"
 69162008,Cleidotomy
 69171004,Excision of radial head
@@ -18548,7 +18314,6 @@ code,term
 6951006,Aponeurorrhaphy of hand
 69534008,Tympanostomy with general anesthesia
 69538006,Excision of diverticulum of ampulla of Vater
-69539003,Direct laryngoscopy with stripping of vocal cords
 69556006,Otonecrectomy of inner ear
 69572003,Glossopharyngeal neurotomy
 69579007,Closed transventricular pulmonary valve commissurotomy
@@ -18595,9 +18360,11 @@ code,term
 698643003,Balloon dilation of coarctation of aorta
 698644009,Closure of systemic to pulmonary artery shunt by division
 698645005,Closure of systemic to pulmonary artery shunt by ligation
+698647002,Control of hemorrhage of blood vessel of neck following vascular surgery
+698648007,Control of hemorrhage of intrathoracic blood vessel following vascular surgery
+698649004,Control of hemorrhage in blood vessel of limb following vascular surgery
 698735002,Endoscopic electrohydraulic lithotripsy of bezoar in stomach
 698740005,Percutaneous transluminal atherectomy of coronary artery by rotary cutter using fluoroscopic guidance with contrast
-69876007,Arthrotomy of wrist joint for biopsy
 69881003,Removal of calculus of lacrimal sac
 698815005,Augmentation of mandible
 69882005,Thrombectomy with catheter of femoropopliteal vein by abdominal and leg incision
@@ -18649,10 +18416,7 @@ code,term
 699084006,Repair of blood vessel of extremity with tissue patch graft
 699088009,Repair blood vessel of neck with tissue patch graft
 699091009,Microsurgical repair of blood vessel
-699102006,Repair of aneurysm of abdominal aorta with insertion of endovascular stent
 699112004,Grafting of tendon of wrist
-699114003,Endovascular repair of abdominal aortic aneurysm using fluoroscopic guidance with contrast
-699115002,Endovascular repair of thoracic aortic aneurysm using fluoroscopic guidance with contrast
 699119008,Repair of medial ligament of talocrural joint
 699120002,Arthroscopic repair of rotator cuff
 699131005,Incision of bone of cranium and repair of intracranial aneurysm using intracranial approach
@@ -18724,7 +18488,6 @@ code,term
 699576001,Full thickness graft of skin to skin of hand
 699577005,Full thickness graft of skin to skin of thumb
 69962007,Closure of fistula of mouth
-699667004,Repair of abdominal aortic aneurysm with insertion of endovascular stent graft
 699721006,Laparoscopic construction of cutaneous ureteroileostomy
 699723009,Tubularized incised plate urethroplasty
 699724003,Laparoscopic uretero-ureterostomy
@@ -18776,7 +18539,6 @@ code,term
 700503001,Extracorporeal shockwave lithotripsy for calcific tendinitis of shoulder
 70061005,Grafting of skin pedicle attachment to thumb
 70093002,Lysis of adhesions of mediastinum
-701000087108,Bilateral nephrostomy using fluoroscopic guidance
 70107009,Repair of ocular lens
 70110002,Plication of small intestine
 7012008,Coagulation or electrocoagulation of spinal cord lesion
@@ -18825,7 +18587,6 @@ code,term
 704077003,Allograft of amniotic membrane
 704085007,Laparoscopic repair of strangulated ventral hernia with prosthesis
 704086008,Laparoscopic repair of strangulated ventral hernia
-704115002,Revision of cardiac pacemaker electrode using fluoroscopic guidance
 704131005,Allograft of skin to skin of head
 704140009,Reimplantation of celiac artery
 704142001,Reimplantation of inferior mesenteric artery
@@ -18843,7 +18604,6 @@ code,term
 704964009,Percutaneous removal of calculus from renal pelvis by incision using fluoroscopic guidance
 704991006,Anchoring of endotracheal tube
 705014008,Conversion from total prosthetic replacement of shoulder joint
-705015009,Repair of aneurysm of bifurcation of aorta with insertion of endovascular stent graft
 70502009,Reconstruction of thumb from existing digit
 705041003,Revision of percutaneous intradiscal radiofrequency thermocoagulation of intervertebral disc
 705042005,Revision of percutaneous endoscopic excision of thoracic intervertebral disc
@@ -18865,6 +18625,7 @@ code,term
 70625001,Excision of verruca of eyelid
 70627009,Myocardial resection
 70656009,Orbitotomy with bone flap
+70659002,Control of hemorrhage following vascular surgery
 70676003,Esophagogastrostomy
 70696006,Open reduction of closed humeral fracture with internal skeletal fixation
 707081006,"Reconstruction using distant subcutaneous pedicle flap, fasciocutaneous"
@@ -18893,7 +18654,6 @@ code,term
 70782008,"Ligation of salivary duct, intraoral"
 707821008,Percutaneous transluminal balloon dilation of anastomosis between pulmonary artery and subclavian artery
 707822001,Percutaneous transluminal balloon angioplasty for major systemic to pulmonary collateral artery
-707828002,Percutaneous transluminal cutting balloon angioplasty of coronary artery
 707831001,Percutaneous transluminal ablation of pulmonary vein to left atrium conducting system
 707832008,Percutaneous transluminal ablation of atrial wall for atrial flutter
 707835005,Hemicraniotomy
@@ -19058,6 +18818,7 @@ code,term
 709093009,Endoscopic ligation of sphenopalatine artery
 709094003,Repair of congenital femoral arteriovenous fistula
 709095002,Repair of blood vessel of neck using synthetic patch graft
+709096001,Control of hemorrhage of blood vessel of abdomen following vascular surgery
 709097005,Repair of ruptured aneurysm of carotid artery with graft
 709099008,Lysis of vitreous in anterior chamber of eye using laser
 709100000,Marsupialization of cyst of salivary gland
@@ -19065,7 +18826,6 @@ code,term
 709106006,Harvesting of cartilage from nose
 709107002,Harvesting of mucous membrane of nose
 709112001,Creation of pleuroperitoneal shunt
-709113006,Opening of chest and insertion of pleural tube drain
 709116003,Excision of giant cell tumor of tendon sheath of finger
 709117007,Fetoscopic laser photocoagulation of placental vessel for twin to twin transfusion syndrome
 709189001,Revision of internal fixation of talus bone
@@ -19083,7 +18843,6 @@ code,term
 709408000,Fusion of joint of cervical spine by anterior approach for deformity of cervical spine
 709409008,Incision and drainage of infection of hand
 70942009,Excision of scar of epicardium
-709421007,Colonoscopy and dilatation of stricture of colon
 709422000,Wedge osteotomy of first metatarsal
 709425003,Thoracoscopic truncal vagotomy
 709453003,Reconstruction of breast using free fasciocutaneous flap with microvascular anastomosis
@@ -19126,6 +18885,7 @@ code,term
 7108004,Osteoclasis
 71081000,Grafting of muscle
 71091006,Cryotherapy of ciliary body
+71093009,Pancreatography during surgery
 71095002,Fothergill-Donald operation on uterus
 711019003,Microvascular anastomosis of lymphatic vessel to venous structure
 71102008,Revision of gastric anastomosis with jejunal interposition
@@ -19191,7 +18951,6 @@ code,term
 712997001,Esophagogastroduodenoscopy and closure of fistula of stomach
 712998006,Laparoscopic radical nephrectomy using robotic assistance
 712999003,Palliative debulking of neoplasm for symptom relief
-713000002,Endoscopic submucosal dissection of rectum using sigmoidoscope
 713037008,Replacement of larynx
 713039006,Repair of finger
 713046002,Open reduction of intussusception of intestine
@@ -19204,7 +18963,6 @@ code,term
 713155002,Percutaneous transluminal balloon angioplasty with insertion of stent into carotid artery
 713156001,Percutaneous transluminal balloon angioplasty with insertion of stent into popliteal artery
 713157005,Laparoscopic resection of uterine cornua
-713158000,Endovenous laser ablation of varicose vein of lower limb
 713159008,Craniofacial resection of nasal cavity
 713160003,Excision of exostosis of skull bone
 713161004,Lysis of suture of scleral flap using laser
@@ -19251,7 +19009,6 @@ code,term
 713687000,Total replacement of joint of knee with constrained condylar prosthesis
 713688005,Repair of spondylolysis using hook screw
 713689002,Repair of coronary artery
-713699007,Vacuum assisted excision of breast using ultrasonographic guidance
 71372002,"Replacement of automatic cardioverter/defibrillator, total system"
 71376004,Excision of lesion of soft tissue of hand
 713774003,Minimally invasive repair of pectus excavatum using pectus bar
@@ -19357,11 +19114,11 @@ code,term
 719351007,Uniportal video assisted thoracoscopic surgery
 719441005,One stage orchidopexy using Fowler-Stephens technique
 719444002,Two stage orchidopexy using Fowler-Stephens technique
+719461000000103,Plastic surgery
 71947008,Homotransplant of pancreas
 719499006,Ethanol ablation using fluoroscopic guidance
 71956000,Suture of old anal obstetric laceration
 719562008,Weil osteotomy
-719573001,Vacuum assisted excision of lesion of breast using stereotactic X-ray guidance
 71965007,Incision of skin of trunk
 719670005,Gender confirmation surgery
 719726009,Repair of ventral hernia using surgical sutures
@@ -19423,7 +19180,6 @@ code,term
 723312009,Amputation of right foot
 723314005,Amputation of left upper extremity
 723315006,Amputation of right upper extremity
-72342005,Shave biopsy
 72356007,Dilation and curettage of cervical stump
 72362002,Excision of trochanteric pressure ulcer with primary suture
 723683000,Angioplasty of pelvic artery using fluoroscopic guidance with contrast
@@ -19456,11 +19212,9 @@ code,term
 725351001,Transcatheter aortic valve replacement
 725368002,Repair of dissection of abdominal aorta
 725370006,Fenestration of dissection of thoracic aorta
-725371005,Repair of dissection of aorta with insertion of endovascular stent
 72540001,Destructive procedure of abdominal artery
 725465000,Cryoablation of lesion using cone beam computed tomography guidance
 725466004,Irreversible electroporation ablation of neoplasm of pancreas
-725505001,Vacuum assisted excision of lesion of breast using ultrasonographic guidance
 72557002,Open reduction of open hyoid fracture
 72558007,Closure of stoma of thorax
 725595006,Percutaneous endoscopic transforaminal excision of lumbar intervertebral disc
@@ -19474,7 +19228,6 @@ code,term
 725932000,Percutaneous transluminal balloon cryoablation of pulmonary vein to left atrium conducting system
 725933005,Percutaneous endoscopic interlaminar excision of lumbar intervertebral disc
 725935003,Insertion of biodegradable spacer into subacromial region of shoulder
-725937006,Endovenous mechanochemical ablation of varicose vein of lower limb using ultrasonography guidance
 725959008,Insertion of prostatic urethral lift by transurethral cystoscopic approach using prostatic retraction implant
 72599001,Sequestrectomy of bone of radius
 7260000,Open biopsy of gallbladder
@@ -19796,6 +19549,7 @@ code,term
 73994005,Emergency operation
 73996007,Proctopexy combined with sigmoid resection by abdominal approach
 74011006,Open reduction of fracture of tibia and fibula with internal fixation
+74017005,Intraoperative transhepatic cholangiogram
 74037009,"Excision of tumor from forearm area, deep, subfascial"
 74038004,Excision of lesion of abdominal wall
 74041008,Repair of tricuspid atresia
@@ -19948,7 +19702,6 @@ code,term
 75743008,"Partial resection of vertebral component, spinous process of lumbar region"
 75745001,Dacryocystotomy
 75747009,Revision of orbital implant outside muscle cone
-75761004,Infusion of intra-arterial thrombolytic agent with percutaneous transluminal coronary angioplasty
 75762006,Equalization of leg by tibia
 75775006,"Open reduction of closed acromioclavicular dislocation, chronic, with fascial graft"
 75787004,Operative procedure on anterior segment of eye
@@ -20049,7 +19802,6 @@ code,term
 763329006,Repair of right cleft lip with triangular flap
 763330001,Repair of left cleft lip with rotation advancement flap
 763331002,Repair of right cleft lip with rotation advancement flap
-763343001,Intraoperative insertion of cardiac pacemaker
 763362003,Laterally extended endopelvic resection
 76340004,Plication of tendon of hand
 7634006,Arthrectomy of spine
@@ -20059,7 +19811,6 @@ code,term
 7635007,Incision of vertebral column
 76359002,Incision of hematoma of broad ligament
 76372001,Embolectomy of abdominal artery
-763725002,Percutaneous transluminal angioplasty of coronary artery using drug eluting balloon catheter
 763751000000108,Percutaneous operation on heart
 763761000000106,Insertion of male retropubic continence device
 763781000000102,Plastic operation on uterus
@@ -20186,12 +19937,6 @@ code,term
 77071005,Revision of stoma of stomach
 77076000,Repair of recurrent femoral hernia
 770824007,Harvesting of sheet of fascia from fascia lata by stripper
-770851005,Extracorporeal shockwave lithotripsy of calculus of right kidney using fluoroscopic guidance
-770853008,Extracorporeal shockwave lithotripsy of calculus of left kidney using fluoroscopic guidance
-770892001,Extracorporeal shockwave lithotripsy of calculus of bilateral kidneys using fluoroscopic guidance
-770893006,Extracorporeal shockwave lithotripsy of calculus of right ureter using fluoroscopic guidance
-770894000,Extracorporeal shockwave lithotripsy of calculus of left ureter using fluoroscopic guidance
-770895004,Extracorporeal shockwave lithotripsy of calculus of bilateral ureters using fluoroscopic guidance
 7709002,Transfer of finger to opposite hand with amputation
 770918002,Laser destruction of verruca
 77095007,Repair of arteriovenous fistula
@@ -20211,7 +19956,6 @@ code,term
 771567002,Fiberoptic endoscopic excision of lesion of mucous membrane of esophagus
 771568007,Fiberoptic endoscopic excision of lesion of colonic mucous membrane
 771569004,Fiberoptic endoscopic excision of lesion of mucous membrane of upper gastrointestinal tract
-771580004,Excision of lesion of mucous membrane of lower bowel using fiberoptic sigmoidoscope
 771583002,Incision and drainage of deep abscess of head
 771623009,Fiberoptic endoscopic coagulation of hemorrhage of esophagus
 771624003,Fiberoptic endoscopic coagulation of hemorrhage of upper gastrointestinal tract
@@ -20321,7 +20065,6 @@ code,term
 773127003,Laparoscopic augmentation of lower esophageal sphincter using magnetic titanium ring
 773128008,Endoscopic snare resection of lesion of colon using full thickness resection device
 773129000,Combined endoscopic and laparoscopic excision of polyp of colon
-773136004,Endoscopic mucosal resection of lesion of sigmoid colon using rigid sigmoidoscope
 773145003,Laparoscopic repair of umbilical hernia using biological mesh with fascial closure
 773146002,Laparoscopic repair of umbilical hernia using sutures with fascial closure
 773147006,Laparoscopic repair of recurrent umbilical hernia using biological mesh with fascial closure
@@ -20390,7 +20133,6 @@ code,term
 77419007,Reduction osteoplasty of facial bones
 77426007,Diagnostic culdoscopy with biopsy and lysis of adhesions
 77445003,Thromboendarterectomy with graft of common femoral artery
-77453006,Revision of permanent cardiac pacemaker device
 77458002,Bilateral vasotomy
 77464009,Submucous resection of vocal cord
 77474007,Repair of acromion
@@ -20663,6 +20405,7 @@ code,term
 792691000000103,Operation on mitral subvalvar apparatus
 79272003,Division of cerebral tracts
 792721000000107,Operation on dural arteriovenous fistula
+792741000000100,Operation following glaucoma surgery
 792751000000102,Operation on fixture for nasal prosthesis
 792771000000106,Therapeutic operation on ileoanal pouch
 79278004,Incision of lacrimal punctum
@@ -20681,7 +20424,6 @@ code,term
 79424002,Deep incision with opening of bone cortex of thorax
 79433000,Closure of colon fistula
 79443002,Substernal thyroidectomy by sternal split approach
-79457000,Excisional biopsy of tibia
 79464003,Transposition of uterine tissue
 794661000000100,Revisional excision of intervertebral disc
 794681000000109,Revisional intertransverse fusion of lumbar spine
@@ -20694,7 +20436,6 @@ code,term
 79507006,Carotid-vertebral artery bypass graft with vein
 79518006,Ossiculectomy with tympanoplasty revision
 795181000000104,Cystoscopic removal of ureteric calculus
-79526003,Excisional biopsy of bone of radius
 79537002,Operation on endocrine system
 79538007,Decompression of thoracic outlet by tenotomy
 79544006,Complete axillary lymphadenectomy
@@ -20841,7 +20582,6 @@ code,term
 80740004,Simple tenolysis of flexor tendon of palm
 80742007,Fixation of hip
 80755008,Tenectomy of tendon sheath of hand
-80762004,"Infusion of intra-arterial thrombolytic agent with percutaneous transluminal coronary angioplasty, multiple vessels"
 80772001,Hepatogastrostomy
 80779005,Repair of brain
 80803003,Resection of palate
@@ -20905,7 +20645,6 @@ code,term
 81315001,Division of ligament of foot and toe
 81333007,Suture of pelvic periosteum
 81338003,Partial excision of pineal gland
-813431000000108,Cystoscopy and cauterisation of prostate
 813571000000106,Division of tension free vaginal tape
 813581000000108,Division of transobturator tape
 8136007,Revision of scar of skin
@@ -20966,7 +20705,6 @@ code,term
 81788009,Repair of aneurysm with graft of renal artery
 817881000000104,Release of collateral ligament of distal interphalangeal joint
 817911000000104,Open excision of intra-articular osteophyte of elbow
-817947005,Repair of aneurysm with insertion of fenestrated branched endovascular stent graft
 817963002,Vascularized bone graft to spine with microsurgery
 817964008,Vascularized bone graft to pelvis with microsurgery
 81803007,Laparoscopic bilateral repair of inguinal hernia with prosthesis or graft
@@ -21043,7 +20781,6 @@ code,term
 822661000000103,Percutaneous transluminal balloon angioplasty with insertion of stent into pulmonary vein using fluoroscopic guidance with contrast
 82269004,Cauterization of fallopian tube
 822691000000109,Laser photocoagulation of subcutaneous congenital vascular malformation
-82287001,Excisional biopsy of bone of vertebra
 82291006,Excision of urethral prolapse
 822911000000108,Endoscopic submucosal dissection of lesion of stomach
 82292004,Facial-phrenic anastomosis
@@ -21160,8 +20897,15 @@ code,term
 82762009,Ventricular shunt to circulatory system
 82764005,Operation on duodenum
 82780000,Incision and exploration of esophagus
+828061000000109,Paediatric gastrointestinal surgery
+828071000000102,Paediatric maxillofacial surgery
+828081000000100,Paediatric cardiac surgery
+828121000000102,Paediatric neurosurgery
 82819003,Manipulation of eyeball
+828211000000100,Paediatric thoracic surgery
+828221000000106,Paediatric transplantation surgery
 82824000,Total ostectomy of tibia and fibula
+828241000000104,Paediatric trauma and orthopaedics
 82839004,Panniculectomy
 82847004,Dilation of ileostomy stoma
 82862002,Primary rhinoplasty with elevation of nasal tip
@@ -21171,7 +20915,6 @@ code,term
 82904003,Surgical closure of window
 82907005,"Excision of retroperitoneal endometriomas, simple"
 82917000,Reopening of craniotomy site
-82920008,Extracorporeal shockwave lithotripsy of the gallbladder
 82944005,Direct thrombectomy of vena cava by abdominal and leg incision
 82948008,Destruction of chorioretinal lesion by diathermy
 829611000000109,Percutaneous atherectomy of femoropopliteal artery using fluoroscopic guidance
@@ -21200,7 +20943,6 @@ code,term
 8322005,Closure of stomach ulcer
 83231000,Partial excision of bone of olecranon process
 8324006,Incision and drainage of rectal abscess
-83308002,Punch biopsy of subcutaneous tissue
 8332003,Excision of deep jugular nodes
 833322005,Pedicle vascularized bone graft to carpal bone
 833324006,Yttrium aluminum garnet laser vitreolysis
@@ -21236,7 +20978,6 @@ code,term
 83574003,Sorondo-Ferré hindquarter operation
 83588004,Ureteroneocystostomy with bladder flap
 83599002,Incision of duodenum
-83611007,Radiologic guidance for dilation of nephrostomy
 83613005,Cardiopericardiopexy
 836272003,Gender confirmation top surgery
 836273008,Gender confirmation bottom surgery
@@ -21293,7 +21034,6 @@ code,term
 840280000,Osteocutaneous fibular free flap reconstruction
 8403000,Closure of nasopharyngeal fistula
 840356002,Reconstruction of bilateral breasts using free transverse rectus abdominis myocutaneous flap
-84041000,Bronchoscopy with bronchial dilation
 84042007,Cystourethroscopy with resection of external sphincter of bladder
 84051004,Phalangization of fifth metacarpal
 840561001,Division of synchondrosis
@@ -21404,13 +21144,10 @@ code,term
 84994007,Excision of excessive skin and subcutaneous tissue of hip
 8500004,"Tenotomy of adductor of hip, subcutaneous, closed"
 85008009,Division of ligament of ankle
-850161000000107,Endoscopic retrograde cholangiopancreatography with balloon dilatation of sphincter of Oddi using fluoroscopic guidance
 85028008,"Application of clamp to cerebral aneurysm, Crutchfield or Silverstone"
-850301000000105,Endoscopic retrograde cholangiopancreatography with incision of pancreatic sphincter using fluoroscopic guidance
 85041007,Formation of conduit of right ventricle and pulmonary artery in repair of pulmonary artery atresia in truncus arteriosus
 850431000000106,Endoscopic balloon dilatation of duodenum using fluoroscopic guidance
 8505009,Neurolysis of peripheral nerve
-85053006,"Percutaneous transluminal coronary angioplasty, multiple vessels"
 850571000000109,Endoscopic balloon dilatation of colon and rectum using fluoroscopic guidance
 85067002,"Excision of neurolemmoma, extensive"
 85069004,Davis operation for ureterotomy
@@ -21424,7 +21161,6 @@ code,term
 850971000000103,Reduction mastopexy by horizontal pedicle technique
 85099008,Incision of artery
 85104009,Partial ostectomy
-851061000000101,Endoscopic retrograde cholangiopancreatography with balloon dilatation of sphincter of Oddi and basket extraction of calculus using fluoroscopic guidance
 851101000000104,Reduction mastopexy by central pedicle technique
 85111008,Incision of scrotum
 851111000000102,Reduction mastopexy by lateralising technique
@@ -21437,7 +21173,6 @@ code,term
 85133005,Urinary cystotomy with lysis of intraluminal adhesions
 85154003,Total laryngectomy with radical neck dissection
 85162006,Embolectomy with catheter of innominate artery by thoracic incision
-851651000000106,Endoscopic retrograde cholangiopancreatography with balloon dilatation of sphincter of pancreatic duct using fluoroscopic guidance
 85175006,"Partial cystectomy, complicated"
 85195000,Removal of foreign body of renal pelvis by incision
 85201008,Suture of tendon sheath of hand
@@ -21591,6 +21326,7 @@ code,term
 860651005,Repair of hypospadias using onlay patch
 860652003,Repair of hypospadias using double faced onlay patch
 860653008,Repair of epispadias using onlay patch
+860731000000109,Stabilisation of acromioclavicular joint
 86077009,Operation for glaucoma
 860930005,Surgery of cataract of left eye
 860934001,Surgery of cataract of right eye
@@ -21656,7 +21392,6 @@ code,term
 865681000000109,Revision rhinoseptoplasty
 865691000000106,Unicompartmental interposition arthroplasty of knee with custom-made implant
 86620009,Inversion of diverticulum of stomach
-866230009,Extracorporeal shockwave lithotripsy of calculus of ureter using fluoroscopic guidance
 86642005,Creation of shunt of descending aorta to pulmonary artery
 86654005,Fenestration of stapes footplate with incus replacement
 86658008,Excision of lesion of external ear
@@ -21670,7 +21405,6 @@ code,term
 86749008,Stripping and ligation
 86753005,Excision of fistula of lacrimal sac
 867531000000104,Percutaneous endoscopic laser pyelotomy and insertion of stent using fluoroscopic guidance
-86755003,"Excisional biopsy of bone, superficial"
 86769003,Dilation of nasopharynx
 86770002,Repair of pectus excavatum deformity with implant
 86782006,Removal of internal fixation device of vertebra
@@ -21718,7 +21452,6 @@ code,term
 870389007,Cooled radiofrequency ablation of nerve using ultrasonographic guidance
 870390003,Dissection of fissure of Sylvius
 870423007,Endoscopic full thickness resection
-870424001,Esophagogastroduodenoscopy gastric outlet reduction
 870426004,Angioplasty using paclitaxel coated balloon catheter
 87050008,Arteriectomy with graft replacement of head and neck artery
 87053005,Plication of broad ligament
@@ -21771,7 +21504,6 @@ code,term
 87428000,Invasive repair of fracture of facial bone with insertion of bone growth stimulator
 87431004,Dilation of cervical canal
 87471009,"Operation on temporal bone, middle fossa approach"
-87479006,Bronchoscopy with tracheal dilation
 874904004,Excision of lesion of glans penis with resurfacing using partial thickness skin graft
 874905003,Excision of lesion of glans penis with resurfacing using full thickness skin graft
 87498008,Plastic repair of vaginal introitus
@@ -21792,7 +21524,6 @@ code,term
 87677003,Resection of rectum
 8768006,Division of aponeurosis
 876852007,Phonosurgery
-87697008,Punch biopsy of skin
 8773000,Transplantation of large intestine
 87732007,Revision of ocular implant
 87742009,Gas endarterectomy of abdominal artery
@@ -21813,7 +21544,6 @@ code,term
 879916008,Radiofrequency ablation
 880069007,Diamond burr superficial keratectomy
 880070008,Repair of double inlet ventricle
-88009002,Excisional biopsy of facial bone
 88019008,Subclavian-subclavian artery bypass graft with vein
 8803008,Iridosclerotomy
 88039007,Transplant of lung
@@ -21869,7 +21599,6 @@ code,term
 88592009,Gill operation for arthrodesis of shoulder
 88623004,Excision of lesion of larynx
 88626007,Suture of bursa
-8863005,Open biopsy of vertebral body of cervical region
 88632002,Splenopexy
 88642000,"Anal cryptectomy, multiple"
 88652001,Suture of major peripheral nerve of arm including transposition
@@ -21913,14 +21642,12 @@ code,term
 88930008,Total nephrectomy in recipient
 8896007,Osteotomy of acetabular bone
 88961004,Excision of lesion of nasopharynx
-88966009,Destruction of intervertebral disc by injection
 88974005,Repair of cisterna chyli
 8898008,Osteoplasty of tarsal or metatarsal
 89005003,Excision of Morton's neuroma of peripheral nerve
 890177005,Repair of biventricular atrioventricular connection
 890193001,Gender confirmation phalloplasty
 890194007,Gender confirmation metoidioplasty
-8902002,Simple pyeloplasty
 8903007,Excision of omphalomesenteric duct
 890305007,Reverse prosthetic total arthroplasty of bilateral shoulders
 89038007,Operative procedure on iris
@@ -22142,7 +21869,6 @@ code,term
 90521005,Disarticulation of thumb
 90524002,Closure of esophagopleurocutaneous fistula
 90527009,Laparoscopic-assisted anterior resection of rectum
-90551004,Excisional biopsy of bone of ulna
 90552006,Subtrochanteric osteotomy with internal fixation and cast
 905631000000100,Reconstruction of skull
 90565002,"Bilateral repair of inguinal hernia, indirect"
@@ -22158,7 +21884,6 @@ code,term
 90648000,Partial cystectomy with reimplantation of ureter into bladder
 90650008,Lengthening of tendon of hand
 90681004,Suture of spinal dura mater
-90705003,Extracorporeal shockwave lithotripsy of the bile duct
 90713002,Wiring of sternum
 90722001,Removal of supernumerary finger
 90730000,Repair of vas deferens
@@ -22223,7 +21948,6 @@ code,term
 913261000000107,Insertion of transobturator midurethral sling
 913271000000100,Abdominal sacrohysteropexy
 913291000000101,Laparoscopic sacrohysteropexy
-91338001,"Infusion of intra-arterial thrombolytic agent with percutaneous transluminal coronary angioplasty, single vessel"
 9137006,"Discission of membranous cataract, secondary"
 91392002,Incision of thrombosed hemorrhoid
 91400004,Bisection
@@ -22242,7 +21966,6 @@ code,term
 91579001,Repair of mandibular ridge
 91592003,Closure of fistula of sinus of Valsalva
 91596000,Complete excision of lung with mediastinal dissection
-91597009,Excisional biopsy of joint structure of wrist
 91600005,Open reduction of closed coccygeal fracture
 9161004,Excision of olecranon bursa
 91617003,Incision and exploration of spleen
@@ -22285,7 +22008,6 @@ code,term
 935008,Excision of bulbourethral gland
 9353002,Muscle flap of trunk
 935441000168106,Excision of retroperitoneal lymph node group
-936451000000108,Percutaneous transluminal balloon angioplasty and insertion of drug eluting stent into coronary artery
 9365003,Stripping of lower limb varicose veins
 9372002,Drainage of cranial sinus by trephination
 9373007,Stripping of vocal cords
@@ -22309,7 +22031,6 @@ code,term
 9578002,Incision and removal by magnet
 9579005,Subtalar arthrodesis
 9580008,Chemothalamectomy
-9599004,Biopsy of lesion or structure of cervix with fulguration
 9604005,Division of aberrant vessel with reanastomosis
 9624009,Extraocular muscle tenectomy
 966201000000104,Open cholecystectomy

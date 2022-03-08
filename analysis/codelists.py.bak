@@ -4,68 +4,41 @@ from cohortextractor import (codelist_from_csv, combine_codelists)
 ## Cohort definition
 ## #####################
 
-# ////////////////////////////
-# 4-wk trial code.
-
+# Patients with a cancer diagnosis (https://www.opencodelists.org/codelist/user/jkua/cancer/1d9bf8ff/).
 codelist_cancer = codelist_from_csv(
-    "codelists/opensafely-cancer-excluding-lung-and-haematological.csv",
-    system="ctv3",
-    column="CTV3ID",
+   "codelists/user-jkua-cancer.csv",
+   system="snomed",
+   column="code",
 )
 
+#Patients undergoing surgery (https://www.opencodelists.org/codelist/user/ciaranmci/surgery-covidsurg-replication-excluding-exclusions/5c09dd62/).
 codelist_cancer_surgery = codelist_from_csv(
-    "codelists/alwynkotze-surgery-covidsurg-replication-24ed8552.csv",
-    system="snomed",
+    "codelists/user-ciaranmci-surgery-covidsurg-replication-excluding-exclusions.csv",
+    system="opcs-4",
     column="code",
 )
 
+# First COVID vaccination (https://www.opencodelists.org/codelist/primis-covid19-vacc-uptake/covadm1/v1/)
 codelist_COVID_first_vaccination = codelist_from_csv(
-    "codelists/primis-covid19-vacc-uptake-covadm1-v1.csv",
+    "codelists/primis-covid19-vacc-uptake-covadm1.csv",
     system="snomed",
     column="code",
 )
-# ////////////////////////////
 
-## Patients with a cancer diagnosis.
-#codelist_cancer = codelist_from_csv(
-#    "codelists/codelist-cancer.csv",
-#    system="snomed",
-#    column="code",
-#)
-#
-##Patients undergoing surgery.
-# codelist_cancer_surgery = codelist_from_csv(
-    # "codelists/codelist-cancer-surgery.csv",
-    # system="opcs-4",
-    # column="code",
-# )
-#
-## Define function that creates the intersection of codelists.
-## def intersect_codelist(codelist1, codelist2):
-##   ...
-##   ...
-#
-## Patients undergoing cancer-related surgery.
-#codelist_cancer_related_surgery = intersect_codelists(
-#    codelist_cancer,
-#    codelist_cancer_surgery
-#)
-#
-#
-## #####################
-## Exposure
-## #####################
-## No codelits needed.
-#
-#
-## #####################
-## Outcomes
-## #####################
-## ## Outcomes used in the original COVIDSurg study.
-#
-### Post-operative mortality.
-## No codelists needed.
-#
+# #####################
+# Exposure
+# #####################
+# No codelits needed.
+
+
+# #####################
+# Outcomes
+# #####################
+# ## Outcomes used in the original COVIDSurg study.
+
+## Post-operative mortality.
+# No codelists needed.
+
 ### 30-day post-operative pulmonary complications.
 ## Defined by the presence of any codes for pneumonia,
 ## acute respiratory distress syndrome, or unexpected

@@ -17,7 +17,6 @@ from codelists import *
 start_date = "2018-03-17" #study_parameters["start_date"]
 end_date = "2022-01-01" #study_parameters["end_date"]
 
-
 #########################
 ## Study definition.
 #########################
@@ -30,7 +29,7 @@ study = StudyDefinition(
 
 	population = patients.satisfying(
 		"""
-        has_cancer
+        has_cancer AND has_surgery        
         """,
         has_cancer = patients.with_these_clinical_events(
 			codelist_cancer,
