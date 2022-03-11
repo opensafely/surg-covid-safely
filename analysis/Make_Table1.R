@@ -184,15 +184,15 @@ table1_postOp_mortality_30day <-
 # ----
 write.csv(
   x = table1_ageGroup,
-  file = paste0(here::here("output"),"/table1_ageGroup.csv")
+  file = paste0(here::here("output/Tables_raw output"),"/table1_ageGroup.csv")
 )
 write.csv(
   x = table1_Sex,
-  file = paste0(here::here("output"),"/table1_Sex.csv")
+  file = paste0(here::here("output/Tables_raw output"),"/table1_Sex.csv")
 )
 write.csv(
   x = table1_postOp_mortality_30day,
-  file = paste0(here::here("output"),"/table1_postOp_mortality_30day.csv")
+  file = paste0(here::here("output/Tables_raw output"),"/table1_postOp_mortality_30day.csv")
 )
 # ----
 
@@ -513,7 +513,7 @@ rownames(df) <- c(
 # Save data frame.
 write.csv(
   x = df,
-  file = paste0(here::here("output"),"/table1.csv")
+  file = paste0(here::here("output/Tables_raw output"),"/table1.csv")
 )
 # Make kable table.
 df %>%
@@ -536,4 +536,4 @@ df %>%
   add_header_above(c(" " = 5, "Post-March 2020" = 10)) %>%
   column_spec(c(1:15), width = "5em") %>%
   row_spec(0, align = "c") %>%
-  save_kable(file = paste0(here::here("output"),"/Table1.png"))
+  save_kable(file = paste0(here::here("output/Tables_pretty"),"/Table1.png"))
