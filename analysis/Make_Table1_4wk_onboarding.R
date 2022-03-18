@@ -545,6 +545,6 @@ df_4wk %>%
                      "\nIndication of infection" = 8)) %>%
   add_header_above(c(" " = 5, "Post-March 2020" = 10)) %>%
   column_spec(c(1:15), width = "5em") %>%
-  row_spec(0, align = "c") %>%
-  save_kable(file = paste0(here::here("output"),"/Table1_4wk_onboarding.png"))
+  row_spec(0, align = "c") #%>%
+  #save_kable(file = paste0(here::here("output"),"/Table1_4wk_onboarding.png"))
 # ----
