@@ -4,6 +4,7 @@ library('tidyverse')
 library('lubridate')
 library("kableExtra")
 library("here")
+library("magick")
 ## If ever running locally.
 # list_of_packages <- c("tidyverse", "lubridate", kableExtra","here")
 # new_packages <- list_of_packages[!(list_of_packages %in% installed.packages()[,"Package"])]
@@ -125,5 +126,9 @@ myData <- myData %>%
 #   path=here::here("output"),
 # )
 
-# Make Table 1.
-source(paste0(here::here("analysis"),"/Make_Table1.R"))
+# Make Table 1, for the data relating to the 4 week on-boarding.
+source(paste0(here::here("analysis"),"/Make_Table1_4wk_onboarding.R"))
+# Make Table 1, complete with all relevant variables.
+#source(paste0(here::here("analysis"),"/Make_Table1_complete.R"))
+
+
