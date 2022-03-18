@@ -19,8 +19,8 @@
 #######################################################
 # Check if Make_Table1_42k_onboarding.R has been run. #
 #######################################################
-if (!file.exists(here::here("output/Tables_raw output/table1_4wk_onboarding.csv")))
-  {source(paste0(here::here("analysis"),"/Make_Table1_4wk_onboarding.R"))}
+if (!file.exists(here::here("output/table1_4wk_onboarding.csv")))
+  {source(here::here("analysis","Make_Table1_4wk_onboarding.R"))}
 
 ##########################################
 # Make tibbles that will inform Table 1. #
@@ -281,15 +281,15 @@ table1_postOp_mortality_30day <-
 # ----
 write.csv(
   x = table1_ageGroup,
-  file = paste0(here::here("output"),"/table1_ageGroup.csv")
+  file = here::here("output","table1_ageGroup.csv")
 )
 write.csv(
   x = table1_Sex,
-  file = paste0(here::here("output"),"/table1_Sex.csv")
+  file = here::here("output","table1_Sex.csv")
 )
 write.csv(
   x = table1_postOp_mortality_30day,
-  file = paste0(here::here("output"),"/table1_postOp_mortality_30day.csv")
+  file = here::here("output","table1_postOp_mortality_30day.csv")
 )
 # ----
 
@@ -636,5 +636,5 @@ df %>%
   add_header_above(c(" " = 5, "Post-March 2020" = 10)) %>%
   column_spec(c(1:15), width = "5em") %>%
   row_spec(0, align = "c") %>%
-  save_kable(file = paste0(here::here("output/Figures"),"/Table1.png"))
+  save_kable(file = here::here("output","Table1.png"))
 # ----

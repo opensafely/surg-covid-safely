@@ -115,7 +115,9 @@ myData <- myData %>%
 # ggplot(myPlotData_plot1, aes(x=Month_surgery, y=n_tdpo, group=Year_surgery, colour=Year_surgery)) +
 # geom_line() +
 # ylim(0, 25) +
-# labs(x = "Month of surgery", y = "Count of patients")
+# labs(x = "Month of surgery", y = "Count of patients"))
+#
+#
 #   
 # 
 # # Save plot.
