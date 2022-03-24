@@ -11,7 +11,7 @@ actions:
       highly_sensitive:
         cohort: output/input.csv
 
-  describe:
+  4wk_onboarding:
     run: r:latest analysis/report.R
     needs: [generate_study_population]
     outputs:
