@@ -17,12 +17,24 @@ library("magick")
 # Read data.
 df_input <- read_csv(
   here::here("output", "input.csv"),
-  col_types = cols(SARS_CoV_2_test_type = col_factor(),
+  col_types = cols(date_surgery = col_date(),
+                   date_latest_test_preOp_SARS_CoV_2_outcome_any = col_date(),
+                   date_latest_test_preOp_SARS_CoV_2_outcome_positive = col_date(),
+                   date_latest_test_preOp_SARS_CoV_2_outcome_negative = col_date(),
+                   date_death_ons = col_date(),
+                   date_death_cpns = col_date(),
+                   date_COVID_first_vaccination = col_date(),
+                   SARS_CoV_2_test_type = col_factor(),
                    SARS_CoV_2_symptomatic = col_factor(),
+                   age_at_surgery = col_integer(),
+                   age_group_surgery = col_factor(),
                    Sex = col_factor(),
                    patient_id = col_integer())
 )
 myData <- df_input
+
+
+
 
 # Define required variables.
 myData <- myData %>%
@@ -45,58 +57,61 @@ myData <- myData %>%
     )
   )
 myData <- myData %>%
-  ## Indicator for 30-day post-operative mortality.
-  ## # NB: if the list of possible categories changes, the list will
-  ## #     need to be updated in Make_Table1.R, too.
-  mutate(
-    postOp_mortality_30day = case_when(
-      (.$date_death < .$date_surgery) ~ "Error: Surgery after death",
-      (.$date_death - .$date_surgery) <= 30 ~ "Dead within 30-day post-operation",
-      (.$date_death - .$date_surgery) > 30 ~ "Alive within 30-day post-operation",
-      is.na(.$date_death) ~ "No death recorded",
-      is.na(.$date_surgery) ~ "No surgery recorded"
-    )
-  ) %>%
-  ## Month of surgery.
-  mutate(Month_surgery = lubridate::month(lubridate::ymd(myData$date_surgery), label = T)) %>%
-  ## Year of surgery.
-  mutate(Year_surgery = lubridate::year(myData$date_surgery)) %>%
-  ## Indicator for pre-surgery COVID vaccination. 
-  ## # NB: if the list of possible categories changes, the list will
-  ## #     need to be updated in Make_Table1.R, too.
-  mutate(
-    preSurgery_vaccinated = case_when(
-      (.$date_COVID_first_vaccination < .$date_surgery) ~ "PreSurgery vaccination",
-      (.$date_COVID_first_vaccination > .$date_surgery) ~ "PostSurgery vaccination",
-      is.na(.$date_COVID_first_vaccination) ~ "No vaccination recorded"
-    )
-  ) %>%
-  ## No record of indication of pre-operative SARS-CoV-2 infection.
-  ## # NB: if the list of possible categories changes, the list will
-  ## #     need to be updated in Make_Table1.R, too.
-  mutate(
-    preOperative_infection_status = case_when(
-      (.$date_surgery - .$date_latest_test_preOp_SARS_CoV_2_outcome_positive) <0 ~
-        "Error: Test result after surgery. Check study_definition.",
-      !is.na(.$date_latest_test_preOp_SARS_CoV_2_outcome_positive) & 
-        abs(.$date_surgery - .$date_latest_test_preOp_SARS_CoV_2_outcome_positive) < 14 ~ 
-        "0-2 weeks record of pre-operative SARS-CoV-2 infection",
-      !is.na(.$date_latest_test_preOp_SARS_CoV_2_outcome_positive) & 
-        #dplyr::between(abs(.$date_surgery - .$date_latest_test_preOp_SARS_CoV_2_outcome_positive), 15, 28) ~ 
-        abs(.$date_surgery - .$date_latest_test_preOp_SARS_CoV_2_outcome_positive) > 15 &
-        abs(.$date_surgery - .$date_latest_test_preOp_SARS_CoV_2_outcome_positive) < 28 ~
-        "3-4 weeks record of pre-operative SARS-CoV-2 infection",
-      !is.na(.$date_latest_test_preOp_SARS_CoV_2_outcome_positive) & 
-        #dplyr::between(abs(.$date_surgery - .$date_latest_test_preOp_SARS_CoV_2_outcome_positive), 29, 42) ~ 
-        abs(.$date_surgery - .$date_latest_test_preOp_SARS_CoV_2_outcome_positive) > 29 &
-        abs(.$date_surgery - .$date_latest_test_preOp_SARS_CoV_2_outcome_positive) < 42 ~
-        "5-6 weeks record of pre-operative SARS-CoV-2 infection",
-      !is.na(.$date_latest_test_preOp_SARS_CoV_2_outcome_positive) & 
-        abs(.$date_surgery - .$date_latest_test_preOp_SARS_CoV_2_outcome_positive) >= 49 ~ 
-        ">=7 weeks record of pre-operative SARS-CoV-2 infection",
-      TRUE ~ "No record of pre-operative SARS-CoV-2 infection"
-    )
-  )
+            ## Indicator for 30-day post-operative mortality.
+            ## # NB: if the list of possible categories changes, the list will
+            ## #     need to be updated in Make_Table1.R, too.
+            mutate(
+             postOp_mortality_30day = case_when(
+              (.$date_death < .$date_surgery) ~ "Error: Surgery after death",
+                (.$date_death - .$date_surgery) <= 30 ~ "Dead within 30-day post-operation",
+                (.$date_death - .$date_surgery) > 30 ~ "Alive within 30-day post-operation",
+              is.na(.$date_death) ~ "No death recorded",
+              is.na(.$date_surgery) ~ "No surgery recorded"
+              )
+            ) %>%
+            ## Month of surgery.
+            mutate(Month_surgery = lubridate::month(lubridate::ymd(myData$date_surgery), label = T)) %>%
+            ## Year of surgery.
+            mutate(Year_surgery = lubridate::year(myData$date_surgery)) %>%
+            ## Indicator for pre-surgery COVID vaccination. 
+            ## # NB: if the list of possible categories changes, the list will
+            ## #     need to be updated in Make_Table1.R, too.
+            mutate(
+              preSurgery_vaccinated = case_when(
+                (.$date_COVID_first_vaccination < .$date_surgery) ~ "PreSurgery vaccination",
+                (.$date_COVID_first_vaccination > .$date_surgery) ~ "PostSurgery vaccination",
+                is.na(.$date_COVID_first_vaccination) ~ "No vaccination recorded"
+               )
+            ) %>%
+            ## No record of indication of pre-operative SARS-CoV-2 infection.
+            ## # NB: if the list of possible categories changes, the list will
+            ## #     need to be updated in Make_Table1.R, too.
+            mutate(
+              preOperative_infection_status = case_when(
+                (.$date_surgery - .$date_latest_test_preOp_SARS_CoV_2_outcome_positive) <0 ~
+                    "Error: Test result after surgery. Check study_definition.",
+                (.$date_surgery - .$date_latest_test_preOp_SARS_CoV_2_outcome_positive) == 0 ~
+                    "Positive test and surgery on the same day. Surgery event excluded",
+                !is.na(.$date_latest_test_preOp_SARS_CoV_2_outcome_positive) & 
+                  abs(.$date_surgery - .$date_latest_test_preOp_SARS_CoV_2_outcome_positive) > 0 & 
+                  abs(.$date_surgery - .$date_latest_test_preOp_SARS_CoV_2_outcome_positive) < 14 ~ 
+                    "0-2 weeks record of pre-operative SARS-CoV-2 infection",
+                !is.na(.$date_latest_test_preOp_SARS_CoV_2_outcome_positive) & 
+                  #dplyr::between(abs(.$date_surgery - .$date_latest_test_preOp_SARS_CoV_2_outcome_positive), 15, 28) ~ 
+                  abs(.$date_surgery - .$date_latest_test_preOp_SARS_CoV_2_outcome_positive) > 15 &
+                  abs(.$date_surgery - .$date_latest_test_preOp_SARS_CoV_2_outcome_positive) < 28 ~
+                    "3-4 weeks record of pre-operative SARS-CoV-2 infection",
+                !is.na(.$date_latest_test_preOp_SARS_CoV_2_outcome_positive) & 
+                  #dplyr::between(abs(.$date_surgery - .$date_latest_test_preOp_SARS_CoV_2_outcome_positive), 29, 42) ~ 
+                  abs(.$date_surgery - .$date_latest_test_preOp_SARS_CoV_2_outcome_positive) > 29 &
+                  abs(.$date_surgery - .$date_latest_test_preOp_SARS_CoV_2_outcome_positive) < 42 ~
+                    "5-6 weeks record of pre-operative SARS-CoV-2 infection",
+                !is.na(.$date_latest_test_preOp_SARS_CoV_2_outcome_positive) & 
+                  abs(.$date_surgery - .$date_latest_test_preOp_SARS_CoV_2_outcome_positive) >= 49 ~ 
+                    ">=7 weeks record of pre-operative SARS-CoV-2 infection",
+                TRUE ~ "No record of pre-operative SARS-CoV-2 infection"
+              )
+            )
 
 # 
 # # Collect plot data.
@@ -131,3 +146,4 @@ myData <- myData %>%
 source(here::here("analysis","Make_Table1_4wk_onboarding.R"))
 # Make Table 1, complete with all relevant variables.
 #source(here::here("analysis","Make_Table1_complete.R"))
+
