@@ -17,8 +17,8 @@ actions:
     outputs:
       moderately_sensitive:
        #cohort1: output/plot_postOp_mortality_30day.png
-       #subtable_table1_ageGroup: output/table1_ageGroup.csv
-       #subtable_table1_Sex: output/table1_Sex.csv
-       #subtable_table1_30dayMortality: output/table1_postOp_mortality_30day.csv
-       #table1_df: output/table1.csv
-       table1_kable: output/Table1.png
+       subtable_table1_ageGroup: output/table1_ageGroup.csv
+       subtable_table1_Sex: output/table1_Sex.csv
+       subtable_table1_30dayMortality: output/table1_postOp_mortality_30day.csv
+       table1_df_4wk: output/table1_4wk_onboarding.csv
+       table1_kable_4wk: output/Table1_4wk_onboarding.png
