@@ -91,7 +91,10 @@ myData <- myData %>%
               preOperative_infection_status = case_when(
                 (.$date_surgery - .$date_latest_test_preOp_SARS_CoV_2_outcome_positive) <0 ~
                     "Error: Test result after surgery. Check study_definition.",
+                (.$date_surgery - .$date_latest_test_preOp_SARS_CoV_2_outcome_positive) == 0 ~
+                    "Positive test and surgery on the same day. Surgery event excluded",
                 !is.na(.$date_latest_test_preOp_SARS_CoV_2_outcome_positive) & 
+                  abs(.$date_surgery - .$date_latest_test_preOp_SARS_CoV_2_outcome_positive) > 0 & 
                   abs(.$date_surgery - .$date_latest_test_preOp_SARS_CoV_2_outcome_positive) < 14 ~ 
                     "0-2 weeks record of pre-operative SARS-CoV-2 infection",
                 !is.na(.$date_latest_test_preOp_SARS_CoV_2_outcome_positive) & 
