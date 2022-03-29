@@ -57,8 +57,19 @@ study = StudyDefinition(
 			"incidence": 0.5}
 	),
     
-	
-    ## Type of SARS-CoV-2 test: {LFT, PCR, both}.
+    ### Date of cancer.
+	date_cancer = patients.with_these_clinical_events(
+		codelist_cancer,
+        on_or_after = start_date,
+		returning = "date",
+		date_format = "YYYY-MM-DD",
+		return_expectations={
+			"date": {"earliest": start_date, "latest": "today"},
+			"rate": "uniform",
+			"incidence": 0.5}
+	),
+    
+	## Type of SARS-CoV-2 test: {LFT, PCR, both}.
     SARS_CoV_2_test_type = patients.with_test_result_in_sgss(
         pathogen = "SARS-CoV-2",
         returning = "case_category",
