@@ -18,12 +18,24 @@ library("magick")
 # Read data.
 df_input <- read_csv(
   here::here("output", "input.csv"),
-  col_types = cols(SARS_CoV_2_test_type = col_factor(),
+  col_types = cols(date_surgery = col_date(),
+                   date_latest_test_preOp_SARS_CoV_2_outcome_any = col_date(),
+                   date_latest_test_preOp_SARS_CoV_2_outcome_positive = col_date(),
+                   date_latest_test_preOp_SARS_CoV_2_outcome_negative = col_date(),
+                   date_death_ons = col_date(),
+                   date_death_cpns = col_date(),
+                   date_COVID_first_vaccination = col_date(),
+                   SARS_CoV_2_test_type = col_factor(),
                    SARS_CoV_2_symptomatic = col_factor(),
+                   age_at_surgery = col_integer(),
+                   age_group_surgery = col_factor(),
                    Sex = col_factor(),
                    patient_id = col_integer())
   )
 myData <- df_input
+
+
+
 
 # Define required variables.
 myData <- myData %>%
