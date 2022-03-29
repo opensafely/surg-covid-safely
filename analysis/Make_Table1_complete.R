@@ -26,33 +26,41 @@ if (!file.exists(here::here("output/Tables_raw output/table1_4wk_onboarding.csv"
 # Make tibbles that will inform Table 1. #
 ##########################################
 # ----
-# ## Count  of patients in each of the categories for 
-# ## Revised Cardiac Risk Index.:
+# ## Count of patients in each of the categories for pre-operative infection
+# ## status stratified by surgery era and by Revised Cardiac Risk Index:
 # ##    1. 0
 # ##    2. 1
 # ##    3. 2
 # ##    4. >= 3
-# ##    5. Missing
 # ##
 # ## The counts are also stratified by surgery era:
 # ##    1. "preCOVID sugery"
 # ##    2. "postCOVID surgery" (although labelled "post", this means during, too)
 # ##    3. "No surgery"
-
-# ...code for RCRI???
 table1_totals_RCRI <- 
   myData %>% group_by(surgery_pre_or_post_COVID_UK,
-                      RCRI) %>% summarise(n = n())
+                      category_revised_cardiac_risk_index) %>%
+  summarise(n_per_group = sum(ifelse(preOperative_infection_status!=
+                                       "Error: Test result after surgery. Check study_definition.",1,0)),
+            n_infection_none = sum(ifelse(preOperative_infection_status==
+                                            "No record of pre-operative SARS-CoV-2 infection",1,0)),
+            n_infection_0to2wk = sum(ifelse(preOperative_infection_status==
+                                              "0-2 weeks record of pre-operative SARS-CoV-2 infection",1,0)),
+            n_infection_3to4wk = sum(ifelse(preOperative_infection_status==
+                                              "3-4 weeks record of pre-operative SARS-CoV-2 infection",1,0)),
+            n_infection_5to6wk = sum(ifelse(preOperative_infection_status==
+                                              "5-6 weeks record of pre-operative SARS-CoV-2 infection",1,0)),
+            n_infection_7wk = sum(ifelse(preOperative_infection_status==
+                                           ">=7 weeks record of pre-operative SARS-CoV-2 infection",1,0))
+            )
 # ## Count of patients in each of the categories for pre-operative infection
 # ## status (stratified by surgery era; see above) also stratified by the
 # ## presence of respiratory comorbidities (specifically, Asthma and COPD):
 # ##    1. Yes
 # ##    2. No
-# ##    3. Missing
-
-# ...code for respiratory_comorbidities???
 table1_respiratory_comorbidities <- 
-  myData %>% group_by(surgery_pre_or_post_COVID_UK,respiratory_comorbidities) %>%
+  myData %>% group_by(surgery_pre_or_post_COVID_UK,
+                      category_presence_of_respiratory_comorbidities) %>%
   summarise(n_per_group = sum(ifelse(preOperative_infection_status!=
                                        "Error: Test result after surgery. Check study_definition.",1,0)),
             n_infection_none = sum(ifelse(preOperative_infection_status==
@@ -65,17 +73,15 @@ table1_respiratory_comorbidities <-
                                               "5-6 weeks record of pre-operative SARS-CoV-2 infection",1,0)),
             n_infection_7wk = sum(ifelse(preOperative_infection_status==
                                            ">=7 weeks record of pre-operative SARS-CoV-2 infection",1,0))
-  )
+            )
 # ## Count of patients in each of the categories for pre-operative infection
 # ## status (stratified by surgery era; see above) also stratified by 
-# ## grade of surgery::
+# ## grade of surgery:
 # ##    1. Minor
 # ##    2. Major
 # ##    3. Missing
-
-# ...code for surgery_grade???
 table1_surgGrade <- 
-  myData %>% group_by(surgery_pre_or_post_COVID_UK, surgery_grade) %>%
+  myData %>% group_by(surgery_pre_or_post_COVID_UK, category_grade_of_surgery) %>%
   summarise(n_per_group = sum(ifelse(preOperative_infection_status!=
                                        "Error: Test result after surgery. Check study_definition.",1,0)),
             n_infection_none = sum(ifelse(preOperative_infection_status==
@@ -88,7 +94,7 @@ table1_surgGrade <-
                                               "5-6 weeks record of pre-operative SARS-CoV-2 infection",1,0)),
             n_infection_7wk = sum(ifelse(preOperative_infection_status==
                                            ">=7 weeks record of pre-operative SARS-CoV-2 infection",1,0))
-  )
+            )
 # ## Count of patients in each of the categories for pre-operative infection
 # ## status (stratified by surgery era; see above) also stratified by 
 # ## urgency of surgery::
