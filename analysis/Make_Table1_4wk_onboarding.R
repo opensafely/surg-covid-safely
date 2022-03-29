@@ -190,15 +190,15 @@ table1_postOp_mortality_30day <-
 # ----
 write.csv(
   x = table1_ageGroup,
-  file = paste0(here::here("output"),"/table1_ageGroup.csv")
+  file = here::here("output","table1_ageGroup.csv")
 )
 write.csv(
   x = table1_Sex,
-  file = paste0(here::here("output"),"/table1_Sex.csv")
+  file = here::here("output","table1_Sex.csv")
 )
 write.csv(
   x = table1_postOp_mortality_30day,
-  file = paste0(here::here("output"),"/table1_postOp_mortality_30day.csv")
+  file = here::here("output","table1_postOp_mortality_30day.csv")
 )
 # ----
 
@@ -523,7 +523,7 @@ rownames(df_4wk) <- c(
 # Save data frame.
 write.csv(
   x = df_4wk,
-  file = paste0(here::here("output"),"/table1_4wk_onboarding.csv")
+  file = here::here("output","table1_4wk_onboarding.csv")
 )
 # Make kable table.
 df_4wk %>%

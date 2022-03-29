@@ -1,4 +1,3 @@
-
 ## If running on OpenSAFELY.
 library('tidyverse')
 library('lubridate')
@@ -31,7 +30,7 @@ df_input <- read_csv(
                    age_group_surgery = col_factor(),
                    Sex = col_factor(),
                    patient_id = col_integer())
-  )
+)
 myData <- df_input
 
 
@@ -39,24 +38,24 @@ myData <- df_input
 
 # Define required variables.
 myData <- myData %>%
-            ## Distinction pre and post COVID.
-            ## # NB: if the list of possible categories changes, the list will
-            ## #     need to be updated in Make_Table1.R, too.
-            mutate(
-              surgery_pre_or_post_COVID_UK = case_when(
-                .$date_surgery <= "2020-03-17" ~ "preCOVID surgery",
-                .$date_surgery > "2020-03-17" ~ "postCOVID surgery",
-                is.na(.$date_surgery) ~ "No surgery"
-                                              )
-                  ) %>%
-            ## Date of death.
-            mutate(
-              date_death = case_when(
-                is.na(.$date_death_ons) & !is.na(.$date_death_cpns) ~ .$date_death_cpns,
-                is.na(.$date_death_cpns) & !is.na(.$date_death_ons) ~ .$date_death_ons,
-                is.na(.$date_death_ons) & is.na(.$date_death_cpns) ~ NA_Date_
-              )
-            )
+  ## Distinction pre and post COVID.
+  ## # NB: if the list of possible categories changes, the list will
+  ## #     need to be updated in Make_Table1.R, too.
+  mutate(
+    surgery_pre_or_post_COVID_UK = case_when(
+      .$date_surgery <= "2020-03-17" ~ "preCOVID surgery",
+      .$date_surgery > "2020-03-17" ~ "postCOVID surgery",
+      is.na(.$date_surgery) ~ "No surgery"
+    )
+  ) %>%
+  ## Date of death.
+  mutate(
+    date_death = case_when(
+      is.na(.$date_death_ons) & !is.na(.$date_death_cpns) ~ .$date_death_cpns,
+      is.na(.$date_death_cpns) & !is.na(.$date_death_ons) ~ .$date_death_ons,
+      is.na(.$date_death_ons) & is.na(.$date_death_cpns) ~ NA_Date_
+    )
+  )
 myData <- myData %>%
             ## Indicator for 30-day post-operative mortality.
             ## # NB: if the list of possible categories changes, the list will
@@ -131,7 +130,9 @@ myData <- myData %>%
 # ggplot(myPlotData_plot1, aes(x=Month_surgery, y=n_tdpo, group=Year_surgery, colour=Year_surgery)) +
 # geom_line() +
 # ylim(0, 25) +
-# labs(x = "Month of surgery", y = "Count of patients")
+# labs(x = "Month of surgery", y = "Count of patients"))
+#
+#
 #   
 # 
 # # Save plot.
@@ -142,8 +143,7 @@ myData <- myData %>%
 # )
 
 # Make Table 1, for the data relating to the 4 week on-boarding.
-source(paste0(here::here("analysis"),"/Make_Table1_4wk_onboarding.R"))
+source(here::here("analysis","Make_Table1_4wk_onboarding.R"))
 # Make Table 1, complete with all relevant variables.
-#source(paste0(here::here("analysis"),"/Make_Table1_complete.R"))
-
+#source(here::here("analysis","Make_Table1_complete.R"))
 
