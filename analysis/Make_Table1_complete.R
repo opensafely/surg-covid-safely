@@ -19,15 +19,15 @@
 #######################################################
 # Check if Make_Table1_42k_onboarding.R has been run. #
 #######################################################
-if (!file.exists(here::here("output/Tables_raw output/table1_4wk_onboarding.csv")))
-  {source(paste0(here::here("analysis"),"/Make_Table1_4wk_onboarding.R"))}
+if (!file.exists(here::here("output/table1_4wk_onboarding.csv")))
+  {source(here::here("analysis","Make_Table1_4wk_onboarding.R"))}
 
 ##########################################
 # Make tibbles that will inform Table 1. #
 ##########################################
 # ----
-# ## Count of patients in each of the categories for pre-operative infection
-# ## status stratified by surgery era and by Revised Cardiac Risk Index:
+# ## Count  of patients in each of the categories for 
+# ## Revised Cardiac Risk Index.:
 # ##    1. 0
 # ##    2. 1
 # ##    3. 2
@@ -53,11 +53,13 @@ table1_totals_RCRI <-
             n_infection_7wk = sum(ifelse(preOperative_infection_status==
                                            ">=7 weeks record of pre-operative SARS-CoV-2 infection",1,0))
             )
+
 # ## Count of patients in each of the categories for pre-operative infection
 # ## status (stratified by surgery era; see above) also stratified by the
 # ## presence of respiratory comorbidities (specifically, Asthma and COPD):
 # ##    1. Yes
 # ##    2. No
+
 table1_respiratory_comorbidities <- 
   myData %>% group_by(surgery_pre_or_post_COVID_UK,
                       category_presence_of_respiratory_comorbidities) %>%
@@ -94,7 +96,7 @@ table1_surgGrade <-
                                               "5-6 weeks record of pre-operative SARS-CoV-2 infection",1,0)),
             n_infection_7wk = sum(ifelse(preOperative_infection_status==
                                            ">=7 weeks record of pre-operative SARS-CoV-2 infection",1,0))
-            )
+          )
 # ## Count of patients in each of the categories for pre-operative infection
 # ## status (stratified by surgery era; see above) also stratified by 
 # ## urgency of surgery::
@@ -287,15 +289,15 @@ table1_postOp_mortality_30day <-
 # ----
 write.csv(
   x = table1_ageGroup,
-  file = paste0(here::here("output"),"/table1_ageGroup.csv")
+  file = here::here("output","table1_ageGroup.csv")
 )
 write.csv(
   x = table1_Sex,
-  file = paste0(here::here("output"),"/table1_Sex.csv")
+  file = here::here("output","table1_Sex.csv")
 )
 write.csv(
   x = table1_postOp_mortality_30day,
-  file = paste0(here::here("output"),"/table1_postOp_mortality_30day.csv")
+  file = here::here("output","table1_postOp_mortality_30day.csv")
 )
 # ----
 
@@ -642,5 +644,5 @@ df %>%
   add_header_above(c(" " = 5, "Post-March 2020" = 10)) %>%
   column_spec(c(1:15), width = "5em") %>%
   row_spec(0, align = "c") %>%
-  save_kable(file = paste0(here::here("output/Figures"),"/Table1.png"))
+  save_kable(file = here::here("output","Table1.png"))
 # ----
