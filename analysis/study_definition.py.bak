@@ -29,7 +29,7 @@ study = StudyDefinition(
 
 	population = patients.satisfying(
 		"""
-        has_cancer
+        has_cancer AND has_surgery        
         """,
         has_cancer = patients.with_these_clinical_events(
 			codelist_cancer,
@@ -57,8 +57,19 @@ study = StudyDefinition(
 			"incidence": 0.5}
 	),
     
-	
-    ## Type of SARS-CoV-2 test: {LFT, PCR, both}.
+    ### Date of cancer.
+	date_cancer = patients.with_these_clinical_events(
+		codelist_cancer,
+        on_or_after = start_date,
+		returning = "date",
+		date_format = "YYYY-MM-DD",
+		return_expectations={
+			"date": {"earliest": start_date, "latest": "today"},
+			"rate": "uniform",
+			"incidence": 0.5}
+	),
+    
+	## Type of SARS-CoV-2 test: {LFT, PCR, both}.
     SARS_CoV_2_test_type = patients.with_test_result_in_sgss(
         pathogen = "SARS-CoV-2",
         returning = "case_category",
@@ -152,7 +163,7 @@ study = StudyDefinition(
 	### Date of post-operative pulmonary complications.
 	#date_postOp_pulmonary_complications = patients.with_these_clinical_events(
 	#   codelist_pulmonary_complications,
-	#	on_or_after = date_surgery,
+	#	on_or_after = "date_surgery",
 	#	returning = "date",
 	#	return_number_of_matches_in_period = True,
 	#	include_date_of_match = True,
@@ -166,7 +177,7 @@ study = StudyDefinition(
 	### Date of post-operative cardiac complications.
 	#date_postOp_cardiac_complications = patients.with_these_clinical_events(
 	#   codelist_cardiac_complications,
-	#	on_or_after = date_surgery,
+	#	on_or_after = "date_surgery",
 	#	returning = "date",
 	#	return_number_of_matches_in_period = True,
 	#	include_date_of_match = True,
@@ -180,7 +191,7 @@ study = StudyDefinition(
 	### Date of post-operative cerebrovascular complications.
 	#date_postOp_cerebrovascular_complications = patients.with_these_clinical_events(
 	#	codelist_cerebrovascular_complications,
-	#	on_or_after = date_surgery,
+	#	on_or_after = "date_surgery",
 	#	returning = 'date',
 	#	return_number_of_matches_in_period = True,
 	#	include_date_of_match = True,
@@ -195,7 +206,7 @@ study = StudyDefinition(
 	# Date of admission.
 	# date_hospital_admission = patients.admitted_to_hospital(
 		# returning = "date_admitted",
-		# on_or_before = date_surgery,
+		# on_or_before = "date_surgery",
 		# find_first_match_in_period = True,
 		# with_these_procedures = codelist_cancer_surgery,
 		# date_format = "YYYY-MM-DD",
@@ -206,7 +217,7 @@ study = StudyDefinition(
 	##Date of post-operative discharge.
 	# date_postOp_discharge = patients.admitted_to_hospital(
 		# returning = "date_discharged",
-		# on_or_after = date_surgery,
+		# on_or_after = "date_surgery",
 		# find_first_match_in_period = True,
 		# with_these_procedures = codelist_cancer_surgery,
  		# date_format = "YYYY-MM-DD",
@@ -232,7 +243,7 @@ study = StudyDefinition(
 	## Discharge destination.
 	# discharge_destination = patients.admitted_to_hospital(
 		# returning = "discharge_destination",
-		# on_or_after = date_surgery,
+		# on_or_after = "date_surgery",
 		# find_first_match_in_period = True,
 		# with_these_procedures = codelist_cancer_surgery,
 		# return_expectations = {
@@ -244,7 +255,7 @@ study = StudyDefinition(
 
 	### Post-operative emergency attendance.
 	# date_postOp_emergency_dept_attendance = patients.attended_emergency_care(
-		# on_or_after = date_surgery,
+		# on_or_after = "date_surgery",
 		# returning = "date_arrived",
 		# date_format = "YYYY-MM-DD",
 		# return_expectations = {
@@ -315,7 +326,7 @@ study = StudyDefinition(
 	## Intraperitoneal or intrathroacic surgery.
 	#intraperitoneal_or_intrathroacic_surgery_gpData = patients.with_these_clinical_events(
 	#	codelist_intraperitoneal_or_intrathroacic_surgery,
-	#	on_or_before = date_surgery,
+	#	on_or_before = "date_surgery",
 	#	returning = "binary_flag",
 	#	return_expectations={
 	#		"incidence": 0.3
@@ -323,7 +334,7 @@ study = StudyDefinition(
 	#),
 	#intraperitoneal_or_intrathroacic_surgery_hospitalData = patients.with_these_clinical_events(
 	#	codelist_intraperitoneal_or_intrathroacic_surgery,
-	#	on_or_before = date_surgery,
+	#	on_or_before = "date_surgery",
 	#	returning = "binary_flag",
 	#	return_expectations={
 	#		"incidence": 0.3
@@ -332,7 +343,7 @@ study = StudyDefinition(
 	## History of ischemic heart disease.
 	#history_of_ischemic_heart_disease_gpData = patients.with_these_clinical_events(
 	#	codelist_ischemic_heart_disease,
-	#	on_or_before = date_surgery,
+	#	on_or_before = "date_surgery",
 	#	returning = "binary_flag",
 	#	return_expectations={
 	#		"incidence": 0.3
@@ -340,7 +351,7 @@ study = StudyDefinition(
 	#), 
 	#history_of_ischemic_heart_disease_hospitalData = patients.with_these_clinical_events(
 	#	codelist_ischemic_heart_disease,
-	#	on_or_before = date_surgery,
+	#	on_or_before = "date_surgery",
 	#	returning = "binary_flag",
 	#	return_expectations={
 	#		"incidence": 0.3
@@ -349,7 +360,7 @@ study = StudyDefinition(
 	## History of congestive heart failure.
 	#history_of_congestive_heart_failure_gpData = patients.with_these_clinical_events(
 	#	codelist_congestive_heart_failure,
-	#	on_or_before = date_surgery,
+	#	on_or_before = "date_surgery",
 	#	returning = "binary_flag",
 	#	return_expectations={
 	#		"incidence": 0.3
@@ -357,7 +368,7 @@ study = StudyDefinition(
 	#), 
 	#history_of_congestive_heart_failure_hospitalData = patients.with_these_clinical_events(
 	#	codelist_congestive_heart_failure,
-	#	on_or_before = date_surgery,
+	#	on_or_before = "date_surgery",
 	#	returning = "binary_flag",
 	#	return_expectations={
 	#		"incidence": 0.3
@@ -366,7 +377,7 @@ study = StudyDefinition(
 	## History of cerebrovascular disease.
 	#history_of_cerebrovascular_disease_hgpData = patients.with_these_clinical_events(
 	#	codelist_cerebrovascular_disease,
-	#	on_or_before = date_surgery,
+	#	on_or_before = "date_surgery",
 	#	returning = "binary_flag",
 	#	return_expectations={
 	#		"incidence": 0.3
@@ -374,7 +385,7 @@ study = StudyDefinition(
 	#), 
 	#history_of_cerebrovascular_disease_hospitalData = patients.with_these_clinical_events(
 	#	codelist_cerebrovascular_disease,
-	#	on_or_before = date_surgery,
+	#	on_or_before = "date_surgery",
 	#	returning = "binary_flag",
 	#	return_expectations={
  	#		"incidence": 0.3
@@ -383,7 +394,7 @@ study = StudyDefinition(
 	## History of diabetes mellitus treated with insulin.
 	#history_of_diabetes_mellitus_treated_with_insulin_gpData = patients.with_these_clinical_events(
 	#	codelist_diabetes_mellitus_treated_with_insulin,
-	#	on_or_before = date_surgery,
+	#	on_or_before = "date_surgery",
 	#	returning = "binary_flag",
 	#	return_expectations={
 	#		"incidence": 0.3
@@ -391,7 +402,7 @@ study = StudyDefinition(
 	#),
 	#history_of_diabetes_treated_with_insulin_hospitalData = patients.with_these_clinical_events(
 	#	codelist_diabetes_treated_with_insulin,
-	#	on_or_before = date_surgery,
+	#	on_or_before = "date_surgery",
 	#	returning = "binary_flag",
 	#	return_expectations={
 	#		"incidence": 0.3
@@ -400,7 +411,7 @@ study = StudyDefinition(
 	## History of chronic kidney disease.
 	#history_of_chronic_kidney_disease_gpData = patients.with_these_clinical_events(
 	#	codelist_chronic_kidney_disease,
-	#	on_or_before = date_surgery,
+	#	on_or_before = "date_surgery",
 	#	returning = "binary_flag",
 	#	return_expectations={
 	#		"incidence": 0.3
@@ -408,13 +419,15 @@ study = StudyDefinition(
 	#),
 	#history_of_chronic_kidney_disease_hospitalData = patients.with_these_clinical_events(
 	#	codelist_chronic_kidney_disease,
-	#	on_or_before = date_surgery,
+	#	on_or_before = "date_surgery",
 	#	returning = "binary_flag",
 	#	return_expectations={
 	#		"incidence": 0.3
 	#	}
 	#),
 	## Calculate the Revised Cardiac Risk Index.
+    ## The "Missing" category will not be recorded because there is no way to distinguish
+    ## missing data on the components of RCRI and the true absence of diagnoses.
 	#revised_cardiac_risk_index = (intraperitoneal_or_intrathroacic_surgery_gpData or
 	#				intraperitoneal_or_intrathroacic_surgery_hospitalData) +
 	#				(history_of_ischemic_heart_disease_gpData or
@@ -433,7 +446,7 @@ study = StudyDefinition(
 	#	"0": "revised_cardiac_risk_index == 0"
 	#	"1": "revised_cardiac_risk_index == 1"
 	#	"2": "revised_cardiac_risk_index == 2"
-	#	">=3": "revised_cardiac_risk_index > 2"
+	#	">=3": "revised_cardiac_risk_index >= 3"
 	#	},
 	#	return_expectations = {
 	#		"rate": "universal",
@@ -452,7 +465,7 @@ study = StudyDefinition(
 	## Asthma.
 	#diagnosis_of_asthma_gpData = patients.with_these_clinical_events(
 	#	codelist_asthma,
-	#	on_or_before = date_surgery,
+	#	on_or_before = "date_surgery",
 	#	returning = "binary_flag",
 	#	return_expectations = {
 	#		"incidence": 0.3
@@ -460,7 +473,7 @@ study = StudyDefinition(
 	#),
 	#diagnosis_of_asthma_hospitalData = patients.with_these_clinical_events(
 	#	codelist_asthma,
-	#	on_or_before = date_surgery,
+	#	on_or_before = "date_surgery",
 	#	returning = "binary_flag",
 	#	return_expectations={
 	#		"incidence": 0.3
@@ -469,7 +482,7 @@ study = StudyDefinition(
 	## COPD.
 	#diagnosis_of_COPD_gpData = patients.with_these_clinical_events(
 	#	codelist_COPD,
-	#	on_or_before = date_surgery,
+	#	on_or_before = "date_surgery",
 	#	returning = "binary_flag",
 	#	return_expectations={
 	#		"incidence": 0.3
@@ -477,7 +490,7 @@ study = StudyDefinition(
 	#),
 	#diagnosis_of_COPD_hospitalData = patients.with_these_clinical_events(
 	#	codelist_COPD,
-	#	on_or_before = date_surgery,
+	#	on_or_before = "date_surgery",
 	#	returning = "binary_flag",
 	#	return_expectations={
 	#		"incidence": 0.3
@@ -485,6 +498,8 @@ study = StudyDefinition(
 	#),
 	## Compute the indicator for the presence of pre-operative
 	## respiratory comorbidities.
+    ## The "Missing" category will not be recorded because there is no way to distinguish
+    ## missing data on the components of this indicator and the true absence of diagnoses.
 	#category_presence_of_respiratory_comorbidities = patients.categorised_as(
 	#	{
 	#	"Yes": "diagnosis_of_asthma_gpData == 1 or diagnosis_of_asthma_hospitalData == 1 or
@@ -507,7 +522,7 @@ study = StudyDefinition(
 	## Grade of surgery, minor.
 	#BUPA_grade_of_surgery_minor = patients.with_these_clinical_events(
 	#	codelist_BUPA_grade_of_surgery_minor,
-	#	on_or_before = date_surgery,
+	#	on_or_before = "date_surgery",
 	#	returning = "binary_flag",
 	#	return_expectations={
 	#		"rate": "universal"
@@ -516,25 +531,62 @@ study = StudyDefinition(
 	## Grade of surgery, major.
 	#BUPA_grade_of_surgery_major = patients.with_these_clinical_events(
 	#	codelist_BUPA_grade_of_surgery_major,
-	#	on_or_before = date_surgery,
+	#	on_or_before = "date_surgery",
 	#	returning = "binary_flag",
 	#	return_expectations={
 	#		"rate": "universal"
 	#		}
 	#),
-
+    ## Compute the indicator for the Grade of Surgery.
+	#category_grade_of_surgery = patients.categorised_as(
+	#	{
+	#	"Major": "BUPA_grade_of_surgery_major == 1"
+	#	"Minor": "BUPA_grade_of_surgery_minor == 1"
+    #   "Missing": "BUPA_grade_of_surgery_major == 0 and BUPA_grade_of_surgery_minor == 0 "
+	#	},
+	#	return_expectations = {
+	#		"rate": "universal",
+	#		"category": {
+	#			"ratios": {
+	#				"Yes": 0.4,
+	#				"No": 0.4,
+    #               "Missing": 0.2
+	#				}
+	#			}
+	#		}
+	#),
+	#
 	## 'Urgency of surgery'.
-	# admission_urgency = patients.admitted_to_hospital(
+	# surgery_urgency = patients.admitted_to_hospital(
 		# with_these_procedures = codelist_cancer_surgery,
 		# returning = "admission_method",
 		# on_or_after = start_date,
 		# find_first_match_in_period = True,
 		# return_expectations = {
- 		#	#I don't know the admission codes so I've said 11, 12, 13.
-			# "category": {"ratios": {"11": 0.3, "12": 0.3, "13": 0.4}}, 
+			# "category": {"ratios": {"11": 0.2, "12": 0.2, "13": 0.3, "21": 0.2, "2B": 0.1}}, 
 			# "incidence": 1
 		# }
 	# ),
+    ## Categorised based on HES codes https://digital.nhs.uk/data-and-information/data-tools-and-services/data-services/hospital-episode-statistics/hospital-episode-statistics-data-dictionary
+    #category_surgery_urgency = patients.categorised_as(
+	#	{
+	#	"Elective": "surgery_urgency == 11 or surgery_urgency == 12 or surgery_urgency == 13 or"
+	#	"Emergency": "surgery_urgency == 21 or surgery_urgency == 22 or surgery_urgency == 23 or
+    #                 surgery_urgency == 24 or surgery_urgency == 25 or surgery_urgency == 2A or
+    #                 surgery_urgency == 2B or surgery_urgency == 2C or surgery_urgency == 2D or
+    #                 surgery_urgency == 28"
+	#	},
+	#	return_expectations = {
+	#		"rate": "universal",
+	#		"category": {
+	#			"ratios": {
+	#				"Elective": 0.4,
+	#				"Emergency": 0.4,
+    #               "Missing": 0.2
+	#				}
+	#			}
+	#		}
+	#),
 
 	### Local COVID-specific index of multiple deprivation.
 	# address_deprivation_index = patients.address_as_of(
@@ -546,6 +598,7 @@ study = StudyDefinition(
 			# "category": {"ratios": {"100": 0.1, "200": 0.2, "300": 0.7}}
 			# }
 	# ),
+    #
 
 	## Perioperative practices.
 	# ...
