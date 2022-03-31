@@ -20,6 +20,7 @@ actions:
        subtable_table1_ageGroup: output/table1_ageGroup.csv
        subtable_table1_Sex: output/table1_Sex.csv
        subtable_table1_30dayMortality: output/table1_postOp_mortality_30day.csv
+       table1_df_4wk__Interim: output/table1_4wk_onboarding__Interim.csv
        table1_df_4wk: output/table1_4wk_onboarding.csv
        #table1_kable_4wk: output/Table1_4wk_onboarding.png
        subtable_table1_ageGroup_3mths: output/table1_ageGroup_3mths.csv

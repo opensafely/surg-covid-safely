@@ -11,7 +11,7 @@ actions:
       highly_sensitive:
         cohort: output/input.csv
 
-  describe:
+  4wk_onboarding:
     run: r:latest analysis/report.R
     needs: [generate_study_population]
     outputs:
@@ -21,4 +21,14 @@ actions:
        subtable_table1_Sex: output/table1_Sex.csv
        subtable_table1_30dayMortality: output/table1_postOp_mortality_30day.csv
        table1_df_4wk: output/table1_4wk_onboarding.csv
-       table1_kable_4wk: output/Table1_4wk_onboarding.png
+       #table1_kable_4wk: output/Table1_4wk_onboarding.png
+       subtable_table1_ageGroup_3mths: output/table1_ageGroup_3mths.csv
+       subtable_table1_Sex_3mths: output/table1_Sex_3mths.csv
+       subtable_table1_30dayMortality_3mths: output/table1_postOp_mortality_30day_3mths.csv
+       table1_df_4wk_3mths: output/table1_4wk_onboarding_3mths.csv
+       #table1_kable_4wk_3mths: output/Table1_4wk_onboarding_3mths.png
+       subtable_table1_ageGroup_6mths: output/table1_ageGroup_6mths.csv
+       subtable_table1_Sex_6mths: output/table1_Sex_6mths.csv
+       subtable_table1_30dayMortality_6mths: output/table1_postOp_mortality_30day_6mths.csv
+       table1_df_4wk_6mths: output/table1_4wk_onboarding_6mths.csv
+       #table1_kable_4wk_6mths: output/Table1_4wk_onboarding_6mths.png
