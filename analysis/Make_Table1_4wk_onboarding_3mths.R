@@ -1,4 +1,4 @@
-# Make_Table1_4wk_onboarding.R
+# Make_Table1_4wk_onboarding_3mths.R
 #
 # This script processes data from the myData dataframe to create a table
 # in the style of Table 1 from the primary publication that this project is
@@ -8,6 +8,11 @@
 # proper use of the OpenSAFELY platform.
 # See Make_Table1_complete.R for similarly-structured R syntax to make a table
 # that displays all relevant variables.
+#
+# What differentiates this script from Make_Table1_4wk_onboarding.R is that the
+# cohort of patients is restricted to those who have a record of a cancer
+# diagnosis within 3 months before or after their surgery.
+#
 #
 # 
 # # If ever running locally.
@@ -20,6 +25,16 @@
 #   library(list_of_packages[i],character.only = T)
 # }
 # webshot::install_phantomjs(force = T)
+
+#############################################################
+# Filter the dataset for patients with a record of a cancer #
+# diagnosis within 3 months before or after their surgery.  #
+#############################################################
+myData <- myData %>% 
+            dplyr::filter("category_cancer_within_3mths_surgery" == 
+                            "Cancer diagnosis within 3mths before surgery" |
+                          "category_cancer_within_3mths_surgery" == 
+                            "Cancer diagnosis within 3mths after surgery")
 
 ################################################
 # Make tibbles that will inform Table 1, for   #
@@ -188,17 +203,20 @@ table1_postOp_mortality_30day <-
 # Save tibbles that will inform vectors for the kable table #
 #############################################################
 # ----
+table1_ageGroup_3mths <- table1_ageGroup
 write.csv(
   x = table1_ageGroup,
-  file = here::here("output","table1_ageGroup.csv")
+  file = here::here("output","table1_ageGroup_3mths.csv")
 )
+table1_Sex_3mths <- table1_Sex
 write.csv(
   x = table1_Sex,
-  file = here::here("output","table1_Sex.csv")
+  file = here::here("output","table1_Sex_3mths.csv")
 )
+table1_postOp_mortality_30day_3mths <- table1_postOp_mortality_30day
 write.csv(
   x = table1_postOp_mortality_30day,
-  file = here::here("output","table1_postOp_mortality_30day.csv")
+  file = here::here("output","table1_postOp_mortality_30day_3mths.csv")
 )
 # ----
 
@@ -521,16 +539,20 @@ rownames(df_4wk) <- c(
           # ## 30-day post-operative mortality.
           "Yes", "  Missing")
 # Save data frame.
+df_4wk_3mths <- df_4wk
 write.csv(
-  x = df_4wk,
-  file = here::here("output","table1_4wk_onboarding.csv")
+  x = df_4wk_3mths,
+  file = here::here("output","table1_4wk_onboarding_3mths.csv")
 )
 # Make kable table.
-df_4wk %>%
+df_4wk_3mths %>%
   kableExtra::kbl(caption = paste0("<b>Table 1</b> Baseline characteristics and outcomes for ",
                        "patients undergoing surgery stratified by time from ",
                        "indication of SARS-CoV-2 infection. Values are ",
-                       "counts and percentages.", collapse = ""),
+                       "counts and percentages. Cohort are patients who have a",
+                       "record of a cancer diagnosis within 3 months before or",
+                       "after their surgery.",
+                       collapse = ""),
       format = 'html') %>%
   kableExtra::kable_classic(full_width = F,
                 fixed_thead = T,
@@ -546,5 +568,5 @@ df_4wk %>%
   kableExtra::add_header_above(c(" " = 5, "Post-March 2020" = 10)) %>%
   kableExtra::column_spec(c(1:15), width = "5em") %>%
   kableExtra::row_spec(0, align = "c") #%>%
-  #kableExtra::save_kable(file = here::here("output","Table1_4wk_onboarding.png"))
+  #kableExtra::save_kable(file = here::here("output","Table1_4wk_onboarding_3mths.png"))
 # ----

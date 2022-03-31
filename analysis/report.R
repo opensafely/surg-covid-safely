@@ -55,6 +55,28 @@ myData <- myData %>%
       is.na(.$date_death_cpns) & !is.na(.$date_death_ons) ~ .$date_death_ons,
       is.na(.$date_death_ons) & is.na(.$date_death_cpns) ~ NA_Date_
     )
+  ) %>%
+  ## Identifying patients with a cancer diagnosis within 3 months
+  ## before or after surgery.
+  mutate (
+    category_cancer_within_3mths_surgery = case_when(
+      (.$date_surgery - .$date_cancer > 0) & (.$date_surgery - .$date_cancer < 90) ~ "Cancer diagnosis within 3mths before surgery",
+      (.$date_cancer - .$date_surgery > 0) & (.$date_cancer - .$date_surgery < 90) ~ "Cancer diagnosis within 3mths after surgery",
+      abs(.$date_cancer - .$date_surgery) > 90 ~ "No cancer diagnosis within 3mths before or after surgery",
+      is.na(.$date_cancer) ~ "No cancer diagnosis recorded",
+      is.na(.$date_surgery) ~ "No surgery recorded"
+    )
+  ) %>%
+  ## Identifying patients with a cancer diagnosis within 6 months
+  ## before or after surgery.
+  mutate (
+    category_cancer_within_6mths_surgery = case_when(
+      (.$date_surgery - .$date_cancer > 0) & (.$date_surgery - .$date_cancer < 180) ~ "Cancer diagnosis within 6mths before surgery",
+      (.$date_cancer - .$date_surgery > 0) & (.$date_cancer - .$date_surgery < 180) ~ "Cancer diagnosis within 6mths after surgery",
+      abs(.$date_cancer - .$date_surgery) > 180 ~ "No cancer diagnosis within 6mths before or after surgery",
+      is.na(.$date_cancer) ~ "No cancer diagnosis recorded",
+      is.na(.$date_surgery) ~ "No surgery recorded"
+    )
   )
 myData <- myData %>%
             ## Indicator for 30-day post-operative mortality.
@@ -70,9 +92,9 @@ myData <- myData %>%
               )
             ) %>%
             ## Month of surgery.
-            mutate(Month_surgery = lubridate::month(lubridate::ymd(myData$date_surgery), label = T)) %>%
+            mutate(Month_surgery = lubridate::month(lubridate::ymd(.$date_surgery), label = T)) %>%
             ## Year of surgery.
-            mutate(Year_surgery = lubridate::year(myData$date_surgery)) %>%
+            mutate(Year_surgery = lubridate::year(.$date_surgery)) %>%
             ## Indicator for pre-surgery COVID vaccination. 
             ## # NB: if the list of possible categories changes, the list will
             ## #     need to be updated in Make_Table1.R, too.
@@ -144,6 +166,8 @@ myData <- myData %>%
 
 # Make Table 1, for the data relating to the 4 week on-boarding.
 source(here::here("analysis","Make_Table1_4wk_onboarding.R"))
+source(here::here("analysis","Make_Table1_4wk_onboarding_3mths.R"))
+source(here::here("analysis","Make_Table1_4wk_onboarding_6mths.R"))
 # Make Table 1, complete with all relevant variables.
 #source(here::here("analysis","Make_Table1_complete.R"))
 
