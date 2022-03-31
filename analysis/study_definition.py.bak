@@ -58,7 +58,7 @@ study = StudyDefinition(
 	),
     
     ### Date of cancer.
-	date_surgery = patients.with_these_clinical_events(
+	date_cancer = patients.with_these_clinical_events(
 		codelist_cancer,
         on_or_after = start_date,
 		returning = "date",

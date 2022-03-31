@@ -31,6 +31,7 @@ df_input <- read_csv(
                    Sex = col_factor(),
                    patient_id = col_integer())
 )
+df_input$Sex <- plyr::mapvalues(df_input$Sex, from = c("F", "M"), to = c("Female", "Male"))
 myData <- df_input
 
 
