@@ -133,7 +133,7 @@ myData <- myData %>%
                     ">=7 weeks record of pre-operative SARS-CoV-2 infection",
                 TRUE ~ "No record of pre-operative SARS-CoV-2 infection"
               )
-            )
+            ) %>% mutate_if(is.character,as.factor)
 
 # 
 # # Collect plot data.
