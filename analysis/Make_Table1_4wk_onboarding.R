@@ -511,6 +511,11 @@ df_4wk <- data.frame(
           # Pre-operative infection (>=7 weeks), %.
           round(prop_subtotals_infection_7wk * 100, 0)
         )
+# Interim save of data frame to check error from run ID:h7pmrsda55versm7.
+write.csv(
+  x = df_4wk,
+  file = here::here("output","table1_4wk_onboarding__Interim.csv")
+)
 # Label data frame.
 colnames(df_4wk) <- rep(c("n", "%"),7)
 rownames(df_4wk) <- c(
