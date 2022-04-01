@@ -34,7 +34,12 @@ df_input <- read_csv(
 df_input$Sex <- plyr::mapvalues(df_input$Sex, from = c("F", "M"), to = c("Female", "Male"))
 myData <- df_input
 
-
+#####
+write.csv(
+  x = nrow(myData),
+  file = here::here("output","count_patients.csv")
+)
+#####
 
 
 # Define required variables.
