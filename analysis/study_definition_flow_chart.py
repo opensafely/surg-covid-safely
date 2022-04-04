@@ -30,7 +30,7 @@ study = StudyDefinition(
     # Get count of patients in entire database.
 	population = patients.all(),
     
-    # Get indication of patients who satisfy the cancer criterion.
+    # Get indication of patients who satisfy the cancer criterion (CTV3).
     has_cancer = patients.with_these_clinical_events(
 			codelist_cancer,
 			on_or_after = start_date
@@ -46,5 +46,24 @@ study = StudyDefinition(
         find_last_match_in_period = True,
         returning = "binary_flag",
         test_result = "positive"  
+        ),
+        
+    # Get indication of patients who satisfy the lung cancer criterion (SNOMED).
+    has_cancer_lung = patients.with_these_clinical_events(
+			codelist_cancer_lung,
+			on_or_after = start_date
+        ),
+        
+    # Get indication of patients who satisfy the haematological cancer criterion (SNOMED).
+    has_cancer_haematological = patients.with_these_clinical_events(
+			codelist_cancer_haematological,
+			on_or_after = start_date
+        ),
+        
+    # Get indication of patients who satisfy the cancer criterion,
+    # excluding lung and haematological cancers (SNOMED).
+    has_cancer_excluding_lung_and_haematological = patients.with_these_clinical_events(
+			codelist_cancer_excluding_lung_and_haematological,
+			on_or_after = start_date
         ),
 ) # End of StudyDefinition().

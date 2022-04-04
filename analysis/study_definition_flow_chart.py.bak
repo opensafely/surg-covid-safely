@@ -47,6 +47,4 @@ study = StudyDefinition(
         returning = "binary_flag",
         test_result = "positive"  
         ),
-	),
-
 ) # End of StudyDefinition().
