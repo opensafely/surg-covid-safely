@@ -1,10 +1,10 @@
 {
   "files": {
-    "user-jkua-cancer.csv": {
-      "id": "user/jkua/cancer/1d9bf8ff",
-      "url": "https://codelists.opensafely.org/codelist/user/jkua/cancer/1d9bf8ff/",
-      "downloaded_at": "2022-02-25 09:25:18.849246Z",
-      "sha": "64047621a402d971cc1d1f442453f27f475ef9b8"
+    "user-ciaranmci-cancer-snomed-ct.csv": {
+      "id": "user/ciaranmci/cancer-snomed-ct/4602666f",
+      "url": "https://codelists.opensafely.org/codelist/user/ciaranmci/cancer-snomed-ct/4602666f/",
+      "downloaded_at": "2022-04-04 12:36:38.248906Z",
+      "sha": "152a4e265eab3215287618b652202baf2bb8e553"
     },
     "user-ciaranmci-surgery-covidsurg-replication-excluding-exclusions.csv": {
       "id": "user/ciaranmci/surgery-covidsurg-replication-excluding-exclusions/5c09dd62",
