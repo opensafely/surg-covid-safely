@@ -7,7 +7,7 @@ from cohortextractor import (codelist_from_csv, combine_codelists)
 # Patients with a cancer diagnosis (CTV3)
 # (https://www.opencodelists.org/codelist/user/jkua/cancer/1d9bf8ff/).
 codelist_cancer = codelist_from_csv(
-   "codelists/user-jkua-cancer.csv",
+   "codelists/user-ciaranmci-cancer-snomed-ct.csv",
    system="snomed",
    column="code",
 )
