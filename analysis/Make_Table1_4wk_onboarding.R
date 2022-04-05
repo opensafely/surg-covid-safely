@@ -26,6 +26,8 @@
 # the data relating to the 4 week on-boarding. #
 ################################################
 # ----
+myData_noConstraints <- myData
+
 # ## Count  of patients in each of the categories for 
 # ## pre-operative infection status:
 # ##    1. "No record of pre-operative SARS-CoV-2 infection"
@@ -39,7 +41,7 @@
 # ##    2. "postCOVID surgery" (although labelled "post", this means during, too)
 # ##    3. "No surgery"
 table1_totals_preOp_infection_status <- 
-  myData %>% dplyr::group_by(surgery_pre_or_post_COVID_UK,
+  myData_noConstraints %>% dplyr::group_by(surgery_pre_or_post_COVID_UK,
                       preOperative_infection_status) %>% dplyr::summarise(n = n())
 # ## Count of patients in each of the categories for pre-operative infection
 # ## status (stratified by surgery era; see above) also stratified by age band:
@@ -49,7 +51,7 @@ table1_totals_preOp_infection_status <-
 # ##    4. 70-79
 # ##    5. 80+
 table1_ageGroup <- 
-  myData %>% dplyr::group_by(surgery_pre_or_post_COVID_UK, age_group_surgery) %>%
+  myData_noConstraints %>% dplyr::group_by(surgery_pre_or_post_COVID_UK, age_group_surgery) %>%
   dplyr::summarise(n_per_group = sum(ifelse(preOperative_infection_status!=
                                        "Error: Test result after surgery. Check study_definition.",1,0)),
             n_infection_none = sum(ifelse(preOperative_infection_status==
@@ -68,7 +70,7 @@ table1_ageGroup <-
 # ##    1. Female
 # ##    2. Male
 table1_Sex <- 
-  myData %>% dplyr::group_by(surgery_pre_or_post_COVID_UK,Sex) %>%
+  myData_noConstraints %>% dplyr::group_by(surgery_pre_or_post_COVID_UK,Sex) %>%
   dplyr::summarise(n_per_group = sum(ifelse(preOperative_infection_status!=
                                        "Error: Test result after surgery. Check study_definition.",1,0)),
             n_infection_none = sum(ifelse(preOperative_infection_status==
@@ -91,7 +93,7 @@ table1_Sex <-
 # ##    4. "No surgery recorded"
 # ##    5. "No death recorded"
 table1_postOp_mortality_30day <- 
-  myData %>% dplyr::group_by(surgery_pre_or_post_COVID_UK, postOp_mortality_30day) %>%
+  myData_noConstraints %>% dplyr::group_by(surgery_pre_or_post_COVID_UK, postOp_mortality_30day) %>%
   dplyr::summarise(n_per_group = sum(ifelse(preOperative_infection_status!=
                                        "Error: Test result after surgery. Check study_definition.",1,0)),
             n_infection_none = sum(ifelse(preOperative_infection_status==
