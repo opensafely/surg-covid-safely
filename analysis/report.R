@@ -31,15 +31,18 @@ df_input <- read_csv(
                    Sex = col_factor(),
                    patient_id = col_integer())
 )
+# Some fudges to handle unusual exceptions for the Sex variable.
 df_input$Sex <- plyr::mapvalues(df_input$Sex, from = c("F", "M"), to = c("Female", "Male"))
+df_input <- df_input[!(df_input$Sex == "I" | df_input$Sex == "U"),]
+
 myData <- df_input
 
-#####
+# Save the count of patients returned, for reference.
 write.csv(
   x = nrow(myData),
   file = here::here("output","count_patients.csv")
 )
-#####
+
 
 
 # Define required variables.
