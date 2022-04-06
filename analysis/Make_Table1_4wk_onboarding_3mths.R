@@ -33,9 +33,9 @@
 myData_3mths <- myData
 
 myData_3mths <- myData_3mths %>% 
-            dplyr::filter("category_cancer_within_3mths_surgery" == 
+            dplyr::filter(category_cancer_within_3mths_surgery == 
                             "Cancer diagnosis within 3mths before surgery" |
-                          "category_cancer_within_3mths_surgery" == 
+                          category_cancer_within_3mths_surgery == 
                             "Cancer diagnosis within 3mths after surgery")
 
 ################################################

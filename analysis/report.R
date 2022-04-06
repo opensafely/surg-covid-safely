@@ -15,7 +15,7 @@ library("magick")
 #webshot::install_phantomjs()
 
 # Read data.
-df_input <- read_csv(
+df_input <- readr::read_csv(
   here::here("output", "input.csv"),
   col_types = cols(date_surgery = col_date(),
                    date_latest_test_preOp_SARS_CoV_2_outcome_any = col_date(),
