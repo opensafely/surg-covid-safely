@@ -15,7 +15,7 @@ actions:
         run: cohortextractor:latest generate_cohort --study-definition study_definition_flow_chart
         outputs:
             highly_sensitive:
-                cohort: output/input.csv
+                cohort: output/input_*.csv
             
     check_cohort:
         run: r:latest analysis/check_cohort.R
