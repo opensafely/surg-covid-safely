@@ -36,14 +36,14 @@ codelist_COVID_second_vaccination = codelist_from_csv(
 
 # First COVID vaccination declined (https://www.opencodelists.org/codelist/primis-covid19-vacc-uptake/cov1decl/v1.1/)
 codelist_COVID_first_vaccination_declined = codelist_from_csv(
-    "codelists/primis-covid19-vacc-uptake/cov1decl.csv",
+    "codelists/primis-covid19-vacc-uptake-cov1decl.csv",
     system="snomed",
     column="code",
 )
 
 # Second COVID vaccination declined (https://www.opencodelists.org/codelist/primis-covid19-vacc-uptake/cov2decl/v1.1/)
 codelist_COVID_second_vaccination_declined = codelist_from_csv(
-    "codelists/primis-covid19-vacc-uptake/cov2decl.csv",
+    "codelists/primis-covid19-vacc-uptake-cov2decl.csv",
     system="snomed",
     column="code",
 )

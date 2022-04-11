@@ -23,7 +23,6 @@ df_input <- readr::read_csv(
                    date_latest_test_preOp_SARS_CoV_2_outcome_negative = col_date(),
                    date_death_ons = col_date(),
                    date_death_cpns = col_date(),
-                   date_COVID_first_vaccination = col_date(),
                    SARS_CoV_2_test_type = col_factor(),
                    SARS_CoV_2_symptomatic = col_factor(),
                    age_at_surgery = col_integer(),
@@ -104,16 +103,6 @@ myData <- myData %>%
             mutate(Month_surgery = lubridate::month(lubridate::ymd(.$date_surgery), label = T)) %>%
             ## Year of surgery.
             mutate(Year_surgery = lubridate::year(.$date_surgery)) %>%
-            ## Indicator for pre-surgery COVID vaccination. 
-            ## # NB: if the list of possible categories changes, the list will
-            ## #     need to be updated in Make_Table1.R, too.
-            mutate(
-              preSurgery_vaccinated = case_when(
-                (.$date_COVID_first_vaccination < .$date_surgery) ~ "PreSurgery vaccination",
-                (.$date_COVID_first_vaccination > .$date_surgery) ~ "PostSurgery vaccination",
-                is.na(.$date_COVID_first_vaccination) ~ "No vaccination recorded"
-               )
-            ) %>%
             ## No record of indication of pre-operative SARS-CoV-2 infection.
             ## # NB: if the list of possible categories changes, the list will
             ## #     need to be updated in Make_Table1.R, too.
