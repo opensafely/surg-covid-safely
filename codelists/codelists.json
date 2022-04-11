@@ -18,6 +18,24 @@
       "downloaded_at": "2022-02-25 09:28:32.237120Z",
       "sha": "5e6a8bef2da93467d11c25affbd33755205e4204"
     },
+    "primis-covid19-vacc-uptake-covadm2.csv": {
+      "id": "primis-covid19-vacc-uptake/covadm2/v1",
+      "url": "https://codelists.opensafely.org/codelist/primis-covid19-vacc-uptake/covadm2/v1/",
+      "downloaded_at": "2022-04-11 15:50:46.395579Z",
+      "sha": "1faed2cda35ad12c432e67a6630cf4f2093aed52"
+    },
+    "primis-covid19-vacc-uptake-cov1decl.csv": {
+      "id": "primis-covid19-vacc-uptake/cov1decl/v1.1",
+      "url": "https://codelists.opensafely.org/codelist/primis-covid19-vacc-uptake/cov1decl/v1.1/",
+      "downloaded_at": "2022-04-11 15:50:46.680354Z",
+      "sha": "c8f6ef075bb2f267ee8524453967ba927703fe9d"
+    },
+    "primis-covid19-vacc-uptake-cov2decl.csv": {
+      "id": "primis-covid19-vacc-uptake/cov2decl/v1.1",
+      "url": "https://codelists.opensafely.org/codelist/primis-covid19-vacc-uptake/cov2decl/v1.1/",
+      "downloaded_at": "2022-04-11 15:50:47.003682Z",
+      "sha": "3d358a04ad7d502378d29fdc5a9f062cb04b83e3"
+    },
     "opensafely-cancer-excluding-lung-and-haematological-snomed.csv": {
       "id": "opensafely/cancer-excluding-lung-and-haematological-snomed/7ce531c3",
       "url": "https://codelists.opensafely.org/codelist/opensafely/cancer-excluding-lung-and-haematological-snomed/7ce531c3/",

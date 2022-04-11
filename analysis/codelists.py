@@ -20,9 +20,30 @@ codelist_cancer_surgery = codelist_from_csv(
     column="code",
 )
 
-# First COVID vaccination (https://www.opencodelists.org/codelist/primis-covid19-vacc-uptake/covadm1/v1/)
+# First COVID vaccination administerd (https://www.opencodelists.org/codelist/primis-covid19-vacc-uptake/covadm1/v1/)
 codelist_COVID_first_vaccination = codelist_from_csv(
     "codelists/primis-covid19-vacc-uptake-covadm1.csv",
+    system="snomed",
+    column="code",
+)
+
+# Second COVID vaccination administerd (https://www.opencodelists.org/codelist/primis-covid19-vacc-uptake/covadm2/v1/)
+codelist_COVID_second_vaccination = codelist_from_csv(
+    "codelists/primis-covid19-vacc-uptake-covadm2.csv",
+    system="snomed",
+    column="code",
+)
+
+# First COVID vaccination declined (https://www.opencodelists.org/codelist/primis-covid19-vacc-uptake/cov1decl/v1.1/)
+codelist_COVID_first_vaccination_declined = codelist_from_csv(
+    "codelists/primis-covid19-vacc-uptake/cov1decl.csv",
+    system="snomed",
+    column="code",
+)
+
+# Second COVID vaccination declined (https://www.opencodelists.org/codelist/primis-covid19-vacc-uptake/cov2decl/v1.1/)
+codelist_COVID_second_vaccination_declined = codelist_from_csv(
+    "codelists/primis-covid19-vacc-uptake/cov2decl.csv",
     system="snomed",
     column="code",
 )
