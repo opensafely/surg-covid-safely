@@ -309,17 +309,30 @@ study = StudyDefinition(
 			}
 	),
 
-
-    ## Date of COVID vaccination.
-    date_COVID_first_vaccination = patients.with_these_clinical_events(
+    ### Indicator of COVID vaccination.
+    ## Indicator of first COVID vaccination.
+    COVID_first_vaccination = patients.with_these_clinical_events(
 		codelist_COVID_first_vaccination,
-        between = [start_date, "date_surgery"],
-		returning = "date",
-		date_format = "YYYY-MM-DD",
-		return_expectations={
-			"date": {"earliest": start_date, "latest": "today"},
-			"rate": "uniform",
-			"incidence": 0.5}
+        on_or_before = "date_latest_test_preOp_SARS_CoV_2_outcome_positive",
+        returning = "binary_flag"
+	),
+    ## Indicator of second COVID vaccination.
+    COVID_second_vaccination = patients.with_these_clinical_events(
+		codelist_COVID_second_vaccination,
+        on_or_before = "date_latest_test_preOp_SARS_CoV_2_outcome_positive",
+        returning = "binary_flag"
+	),
+    ## Indicator of declining first COVID vaccination.
+    COVID_first_vaccination_declined = patients.with_these_clinical_events(
+		codelist_COVID_first_vaccination_declined,
+        on_or_before = "date_latest_test_preOp_SARS_CoV_2_outcome_positive",
+		returning = "binary_flag"
+	),
+    ## Indicator of declining second COVID vaccination.
+    COVID_second_vaccination_declined = patients.with_these_clinical_events(
+		codelist_COVID_second_vaccination_declined,
+        on_or_before = "date_latest_test_preOp_SARS_CoV_2_outcome_positive",
+		returning = "binary_flag"
 	),
     
 	### Variables needed for Revised Cardiac Risk Index.

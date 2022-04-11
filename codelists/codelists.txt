@@ -1,6 +1,9 @@
 user/ciaranmci/cancer-snomed-ct/4602666f
 user/ciaranmci/surgery-covidsurg-replication-excluding-exclusions/5c09dd62
 primis-covid19-vacc-uptake/covadm1/v1
+primis-covid19-vacc-uptake/covadm2/v1
+primis-covid19-vacc-uptake/cov1decl/v1.1
+primis-covid19-vacc-uptake/cov2decl/v1.1
 opensafely/cancer-excluding-lung-and-haematological-snomed/7ce531c3
 opensafely/haematological-cancer-snomed/3469981a
 opensafely/lung-cancer-snomed/502bcb45
