@@ -34,7 +34,6 @@ actions:
                 subtable_table1_ageGroup: output/table1_ageGroup.csv
                 subtable_table1_Sex: output/table1_Sex.csv
                 subtable_table1_30dayMortality: output/table1_postOp_mortality_30day.csv
-                table1_df_4wk__Interim: output/table1_4wk_onboarding__Interim.csv
                 table1_df_4wk: output/table1_4wk_onboarding.csv
                 #table1_kable_4wk: output/Table1_4wk_onboarding.png
                 subtable_table1_ageGroup_3mths: output/table1_ageGroup_3mths.csv
@@ -47,3 +46,10 @@ actions:
                 subtable_table1_30dayMortality_6mths: output/table1_postOp_mortality_30day_6mths.csv
                 table1_df_4wk_6mths: output/table1_4wk_onboarding_6mths.csv
                 #table1_kable_4wk_6mths: output/Table1_4wk_onboarding_6mths.png
+                tableVacc_30dayMortality: output/tableVacc_postOp_mortality_30day.csv
+                tableVacc_df: output/table_Vaccination_status.csv
+                tableVacc_30dayMortality_3mths: output/tableVacc_postOp_mortality_30day_3mths.csv
+                tableVacc_df_3mths: output/table_Vaccination_status_3mths.csv
+                tableVacc_30dayMortality_6mths: output/tableVacc_postOp_mortality_30day_6mths.csv
+                tableVacc_df_6mths: output/table_Vaccination_status_6mths.csv
+                

@@ -46,3 +46,13 @@ actions:
                 subtable_table1_30dayMortality_6mths: output/table1_postOp_mortality_30day_6mths.csv
                 table1_df_4wk_6mths: output/table1_4wk_onboarding_6mths.csv
                 #table1_kable_4wk_6mths: output/Table1_4wk_onboarding_6mths.png
+                tableVacc_30dayMortality: output/tableVacc_postOp_mortality_30day.csv
+                tableVacc_df: output/table_Vaccination_status.csv
+                #tableVacc_kable: output/TableVacc.png
+                tableVacc_30dayMortality_3mths: output/tableVacc_postOp_mortality_30day_3mths.csv
+                tableVacc_df_3mths: output/table_Vaccination_status_3mths.csv
+                #tableVacc_kable_3mths: output/TableVacc_3mths.png
+                tableVacc_30dayMortality_6mths: output/tableVacc_postOp_mortality_30day_6mths.csv
+                tableVacc_df_6mths: output/table_Vaccination_status_6mths.csv
+                #tableVacc_kable_6mths: output/TableVacc_6mths.png
+                
