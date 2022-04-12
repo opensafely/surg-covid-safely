@@ -28,6 +28,10 @@ df_input <- readr::read_csv(
                    age_at_surgery = col_integer(),
                    age_group_surgery = col_factor(),
                    Sex = col_factor(),
+                   COVID_first_vaccination = col_logical(),
+                   COVID_second_vaccination = col_logical(),
+                   COVID_first_vaccination_declined = col_logical(),
+                   COVID_second_vaccination_declined = col_logical(),
                    patient_id = col_integer())
 )
 # Some fudges to handle unusual exceptions for the Sex variable.
@@ -66,7 +70,7 @@ myData <- myData %>%
   ) %>%
   ## Identifying patients with a cancer diagnosis within 3 months
   ## before or after surgery.
-  mutate (
+  mutate(
     category_cancer_within_3mths_surgery = case_when(
       (.$date_surgery - .$date_cancer > 0) & (.$date_surgery - .$date_cancer < 90) ~ "Cancer diagnosis within 3mths before surgery",
       (.$date_cancer - .$date_surgery > 0) & (.$date_cancer - .$date_surgery < 90) ~ "Cancer diagnosis within 3mths after surgery",
@@ -77,13 +81,46 @@ myData <- myData %>%
   ) %>%
   ## Identifying patients with a cancer diagnosis within 6 months
   ## before or after surgery.
-  mutate (
+  mutate(
     category_cancer_within_6mths_surgery = case_when(
       (.$date_surgery - .$date_cancer > 0) & (.$date_surgery - .$date_cancer < 180) ~ "Cancer diagnosis within 6mths before surgery",
       (.$date_cancer - .$date_surgery > 0) & (.$date_cancer - .$date_surgery < 180) ~ "Cancer diagnosis within 6mths after surgery",
       abs(.$date_cancer - .$date_surgery) > 180 ~ "No cancer diagnosis within 6mths before or after surgery",
       is.na(.$date_cancer) ~ "No cancer diagnosis recorded",
       is.na(.$date_surgery) ~ "No surgery recorded"
+    )
+  ) %>%
+  ## Distinction pre and post vaccines in the UK
+  ## # NB: if the list of possible categories changes, the list will
+  ## #     need to be updated in Make_Table1.R, too.
+  mutate(
+    surgery_pre_or_post_vaccine_UK = case_when(
+      .$date_surgery <= "2020-12-08" ~ "preVaccine surgery",
+      .$date_surgery > "2020-12-08" ~ "postVaccine surgery",
+      is.na(.$date_surgery) ~ "No surgery"
+    )
+  ) %>%
+  ## Categorising patients based on their vaccination status prior to the 
+  ## test for an indication of SARS-CoV-2.
+  mutate(
+    category_vaccination_status_before_test = case_when(
+      (is.na(.$COVID_first_vaccination) & is.na(.$COVID_second_vaccination)) ~
+        "Unknown vaccination status before test", # Irrespective of the *_declined variables.
+      (.$COVID_first_vaccination & .$COVID_second_vaccination) ~
+        "Confirmed fully vaccinated before test", # Irrespective of the *_declined variables.
+      ((is.na(.$COVID_first_vaccination) | .$COVID_first_vaccination != TRUE) & .$COVID_second_vaccination) ~
+        "Confirmed fully vaccinated before test", # We assume the missing confirmation or FALSE value of the first dose is an error.
+      (.$COVID_first_vaccination & is.na(.$COVID_second_vaccination)) ~
+        "At least partially vaccinated before test", # Even if *_declined variables are TRUE, we can't be sure if they changed their mind.
+      .$COVID_first_vaccination ~
+        "Confirmed partially vaccinated before test", # Previous criteria imply the 2nd dose is F or NA.
+      (.$COVID_first_vaccination_declined & .$COVID_second_vaccination_declined) ~
+        "Confirmed not vaccinated before test", # Previous criteria imply 1st and 2nd dose data are present and FALSE.
+      is.na(.$COVID_first_vaccination) ~
+        "Unknown vaccination status before test", # Previous criteria imply the 2nd dose is F or NA.
+      (.$COVID_first_vaccination != TRUE & .$COVID_first_vaccination_declined) ~
+        "Confirmed not vaccinated before test", #  Previous criteria imply the 2nd dose is F or NA.
+      TRUE ~ "Unknown vaccination status before test"
     )
   )
 myData <- myData %>%
@@ -163,6 +200,9 @@ myData <- myData %>%
 # )
 
 # Make Table 1, for the data relating to the 4 week on-boarding.
+source(here::here("analysis","Make_Table_Vacc.R"))
+source(here::here("analysis","Make_Table_Vacc_3mths.R"))
+source(here::here("analysis","Make_Table_Vacc_6mths.R"))
 source(here::here("analysis","Make_Table1_4wk_onboarding.R"))
 source(here::here("analysis","Make_Table1_4wk_onboarding_3mths.R"))
 source(here::here("analysis","Make_Table1_4wk_onboarding_6mths.R"))
