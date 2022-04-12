@@ -207,17 +207,17 @@ table1_postOp_mortality_30day <-
 # ----
 table1_ageGroup_6mths <- table1_ageGroup
 write.csv(
-  x = table1_ageGroup,
+  x = table1_ageGroup_6mths,
   file = here::here("output","table1_ageGroup_6mths.csv")
 )
 table1_Sex_6mths <- table1_Sex
 write.csv(
-  x = table1_Sex,
+  x = table1_Sex_6mths,
   file = here::here("output","table1_Sex_6mths.csv")
 )
 table1_postOp_mortality_30day_6mths <- table1_postOp_mortality_30day
 write.csv(
-  x = table1_postOp_mortality_30day,
+  x = table1_postOp_mortality_30day_6mths,
   file = here::here("output","table1_postOp_mortality_30day_6mths.csv")
 )
 # ----
@@ -545,7 +545,7 @@ prop_subtotals_infection_7wk <-
 ########################################################################
 # ----
 # Make data frame.
-df_4wk <- data.frame(
+df_onboarding <- data.frame(
           # Pre-March 2020 totals, n.
           n_totals_preMarch2020,
           # Pre-March 2020 totals, %.
@@ -576,8 +576,8 @@ df_4wk <- data.frame(
           round(prop_subtotals_infection_7wk * 100, 0)
         )
 # Label data frame.
-colnames(df_4wk) <- rep(c("n", "%"),7)
-rownames(df_4wk) <- c(
+colnames(df_onboarding) <- rep(c("n", "%"),7)
+rownames(df_onboarding) <- c(
           # ## Age groups.
           "0-29","30-49","50-69","70-79",">=80","Missing",
           # ## Sex.
@@ -585,13 +585,13 @@ rownames(df_4wk) <- c(
           # ## 30-day post-operative mortality.
           "Yes", "  Missing")
 # Save data frame.
-df_4wk_6mths <- df_4wk
+df_onboarding_6mths <- df_onboarding
 write.csv(
-  x = df_4wk_6mths,
+  x = df_onboarding_6mths,
   file = here::here("output","table1_4wk_onboarding_6mths.csv")
 )
 # Make kable table.
-df_4wk_6mths %>%
+df_onboarding_6mths %>%
   kableExtra::kbl(caption = paste0("<b>Table 1</b> Baseline characteristics and outcomes for ",
                        "patients undergoing surgery stratified by time from ",
                        "indication of SARS-CoV-2 infection. Values are ",
