@@ -23,6 +23,19 @@ actions:
         outputs:
             moderately_sensitive:
                 cohort: output/check_cohort.csv
+
+    generate_study_population_codelist_check:
+        run: cohortextractor:latest generate_cohort --study-definition study_definition_codelist_check
+        outputs:
+            highly_sensitive:
+                cohort: output/input__*.csv
+            
+    check_codelist:
+        run: r:latest analysis/check_codelist.R
+        needs: [generate_study_population_codelist_check]
+        outputs:
+            moderately_sensitive:
+                cohort: output/check_codelist.csv
                 
     4wk_onboarding:
         run: r:latest analysis/report.R
@@ -48,8 +61,11 @@ actions:
                 #table1_kable_4wk_6mths: output/Table1_4wk_onboarding_6mths.png
                 tableVacc_30dayMortality: output/tableVacc_postOp_mortality_30day.csv
                 tableVacc_df: output/table_Vaccination_status.csv
+                #tableVacc_kable: output/TableVacc.png
                 tableVacc_30dayMortality_3mths: output/tableVacc_postOp_mortality_30day_3mths.csv
                 tableVacc_df_3mths: output/table_Vaccination_status_3mths.csv
+                #tableVacc_kable_3mths: output/TableVacc_3mths.png
                 tableVacc_30dayMortality_6mths: output/tableVacc_postOp_mortality_30day_6mths.csv
                 tableVacc_df_6mths: output/table_Vaccination_status_6mths.csv
+                #tableVacc_kable_6mths: output/TableVacc_6mths.png
                 
