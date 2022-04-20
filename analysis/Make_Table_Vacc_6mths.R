@@ -25,9 +25,9 @@
 myData_6mths_vacc <- myData
 
 myData_6mths_vacc <- myData_6mths_vacc %>% 
-  dplyr::filter(category_cancer_within_3mths_surgery == 
+  dplyr::filter(category_cancer_within_6mths_surgery == 
                   "Cancer diagnosis within 6mths before surgery" |
-                  category_cancer_within_3mths_surgery == 
+                  category_cancer_within_6mths_surgery == 
                   "Cancer diagnosis within 6mths after surgery")
 
 # ## Count of patients in each of the categories for pre-operative infection
@@ -314,7 +314,7 @@ df_Vacc_6mths <- data.frame(" " =
                                     "Confirmed not vaccinated before test",
                                     "Unknown vaccination status before test"
                               ),
-                              3),
+                              each = 3),
                             df_Vacc)
 write.csv(
   x = df_Vacc_6mths,

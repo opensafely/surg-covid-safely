@@ -277,7 +277,7 @@ tosave <- data.frame(" " =
                     "Confirmed not vaccinated before test",
                     "Unknown vaccination status before test"
               ),
-              3),
+              each = 3),
               df_Vacc)
 write.csv(
   x = tosave,
