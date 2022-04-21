@@ -105,7 +105,7 @@ myData <- myData %>%
   dplyr::mutate(
     category_vaccination_status_before_test = dplyr::case_when(
       (is.na(.$COVID_first_vaccination) & is.na(.$COVID_second_vaccination)) ~
-        "Unknown vaccination status before test",
+        "Error: No data on vaccine administration",
         # Irrespective of the *_declined variables.
       .$COVID_second_vaccination ~
         "Confirmed fully vaccinated before test",
@@ -121,9 +121,9 @@ myData <- myData %>%
       (.$COVID_first_vaccination_declined & .$COVID_second_vaccination_declined) ~
         "Confirmed not vaccinated before test",
         # Previous criteria would have captured a patient with any combination
-        # of first or second dose..
+        # of first or second dose.
       is.na(.$COVID_first_vaccination) ~
-        "Unknown vaccination status before test",
+        "Unknown: No data for 1st dose and 2nd dose is FALSE or also missing",
         # Previous criteria imply the 2nd dose is F or NA.
       (.$COVID_first_vaccination != TRUE & .$COVID_first_vaccination_declined) ~
         "Confirmed not vaccinated before test",
