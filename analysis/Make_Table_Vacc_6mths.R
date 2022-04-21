@@ -292,6 +292,8 @@ df_Vacc %>%
                                   "Confirmed partially vaccinated before test" = 3,
                                   "At least partially vaccinated before test" = 3,
                                   "Confirmed not vaccinated before test" = 3,
+                                  "Unknown: No data for 1st dose and 2nd dose is FALSE or also missing" = 3,
+                                  "Error: No data on vaccine administration" = 3,
                                   "Unknown vaccination status before test" = 3
   )) %>%
   kableExtra::add_header_above(c(" " = 7, "0-2 weeks" = 2, "3-4 weeks" = 2,
@@ -312,6 +314,8 @@ df_Vacc_6mths <- data.frame(" " =
                                     "Confirmed partially vaccinated before test",
                                     "At least partially vaccinated before test",
                                     "Confirmed not vaccinated before test",
+                                    "Unknown: No data for 1st dose and 2nd dose is FALSE or also missing",
+                                    "Error: No data on vaccine administration",
                                     "Unknown vaccination status before test"
                               ),
                               each = 3),
