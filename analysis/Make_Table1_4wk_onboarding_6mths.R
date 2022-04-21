@@ -207,17 +207,17 @@ table1_postOp_mortality_30day <-
 # ----
 table1_ageGroup_6mths <- table1_ageGroup
 write.csv(
-  x = table1_ageGroup_6mths,
+  x = table1_ageGroup,
   file = here::here("output","table1_ageGroup_6mths.csv")
 )
 table1_Sex_6mths <- table1_Sex
 write.csv(
-  x = table1_Sex_6mths,
+  x = table1_Sex,
   file = here::here("output","table1_Sex_6mths.csv")
 )
 table1_postOp_mortality_30day_6mths <- table1_postOp_mortality_30day
 write.csv(
-  x = table1_postOp_mortality_30day_6mths,
+  x = table1_postOp_mortality_30day,
   file = here::here("output","table1_postOp_mortality_30day_6mths.csv")
 )
 # ----
@@ -239,8 +239,8 @@ prop_preMarch2020_ageGroup <- n_preMarch2020_ageGroup /
 # ## Sex.
 n_preMarch2020_Sex <-
   table1_Sex %>%
-  dplyr::filter(surgery_pre_or_post_COVID_UK=="preCOVID surgery",
-                Sex != "Male") %>% dplyr::arrange(Sex) %>% dplyr::ungroup() %>%
+  dplyr::filter(surgery_pre_or_post_COVID_UK=="preCOVID surgery") %>%
+  dplyr::arrange(Sex) %>% dplyr::ungroup() %>%
   dplyr::select(n_per_group)
 prop_preMarch2020_Sex <- n_preMarch2020_Sex / 
   table1_Sex %>%
@@ -250,7 +250,8 @@ prop_preMarch2020_Sex <- n_preMarch2020_Sex /
 n_preMarch2020_postOp_mortality_30day <-
   table1_postOp_mortality_30day %>%
   dplyr::filter(surgery_pre_or_post_COVID_UK=="preCOVID surgery",
-                (postOp_mortality_30day=="Dead within 30-day post-operation"|
+                (postOp_mortality_30day=="Alive within 30-day post-operation"|
+                   postOp_mortality_30day=="Dead within 30-day post-operation"|
                    postOp_mortality_30day=="Missing")) %>%
   dplyr::arrange(postOp_mortality_30day) %>% dplyr::ungroup() %>%
   dplyr::select(n_per_group)
@@ -283,8 +284,8 @@ prop_postMarch2020_ageGroup <-
 # ## Sex.
 n_postMarch2020_Sex <-
   table1_Sex %>%
-  dplyr::filter(surgery_pre_or_post_COVID_UK=="postCOVID surgery",
-                Sex != "Male") %>% dplyr::arrange(Sex) %>% dplyr::ungroup() %>%
+  dplyr::filter(surgery_pre_or_post_COVID_UK=="postCOVID surgery") %>%
+  dplyr::arrange(Sex) %>% dplyr::ungroup() %>%
   dplyr::select(n_per_group)
 prop_postMarch2020_Sex <- n_postMarch2020_Sex / 
   table1_Sex %>%
@@ -294,7 +295,8 @@ prop_postMarch2020_Sex <- n_postMarch2020_Sex /
 n_postMarch2020_postOp_mortality_30day <-
   table1_postOp_mortality_30day %>%
   dplyr::filter(surgery_pre_or_post_COVID_UK=="postCOVID surgery",
-                (postOp_mortality_30day=="Dead within 30-day post-operation"|
+                (postOp_mortality_30day=="Alive within 30-day post-operation"|
+                   postOp_mortality_30day=="Dead within 30-day post-operation"|
                    postOp_mortality_30day=="Missing")) %>%
   dplyr::arrange(postOp_mortality_30day) %>% dplyr::ungroup() %>%
   dplyr::select(n_per_group)
@@ -327,8 +329,8 @@ prop_subtotals_infection_none_ageGroup <-
 # ## Sex.
 n_subtotals_infection_none_Sex <-
   table1_Sex %>%
-  dplyr::filter(surgery_pre_or_post_COVID_UK=="postCOVID surgery",
-                Sex != "Male") %>% dplyr::arrange(Sex) %>% dplyr::ungroup() %>%
+  dplyr::filter(surgery_pre_or_post_COVID_UK=="postCOVID surgery") %>%
+  dplyr::arrange(Sex) %>% dplyr::ungroup() %>%
   dplyr::select(n_infection_none)
 prop_subtotals_infection_none_Sex <-
   n_subtotals_infection_none_Sex /
@@ -339,7 +341,8 @@ prop_subtotals_infection_none_Sex <-
 n_subtotals_infection_none_postOp_mortality_30day <-
   table1_postOp_mortality_30day %>%
   dplyr::filter(surgery_pre_or_post_COVID_UK=="postCOVID surgery",
-                (postOp_mortality_30day=="Dead within 30-day post-operation"|
+                (postOp_mortality_30day=="Alive within 30-day post-operation"|
+                   postOp_mortality_30day=="Dead within 30-day post-operation"|
                    postOp_mortality_30day=="Missing")) %>%
   dplyr::arrange(postOp_mortality_30day) %>% dplyr::ungroup() %>%
   dplyr::select(n_infection_none)
@@ -372,8 +375,8 @@ prop_subtotals_infection_0to2wk_ageGroup <-
 # ## Sex.
 n_subtotals_infection_0to2wk_Sex <-
   table1_Sex %>%
-  dplyr::filter(surgery_pre_or_post_COVID_UK=="postCOVID surgery",
-                Sex != "Male") %>% dplyr::arrange(Sex) %>% dplyr::ungroup() %>%
+  dplyr::filter(surgery_pre_or_post_COVID_UK=="postCOVID surgery") %>%
+  dplyr::arrange(Sex) %>% dplyr::ungroup() %>%
   dplyr::select(n_infection_0to2wk)
 prop_subtotals_infection_0to2wk_Sex <-
   n_subtotals_infection_0to2wk_Sex /
@@ -384,7 +387,8 @@ prop_subtotals_infection_0to2wk_Sex <-
 n_subtotals_infection_0to2wk_postOp_mortality_30day <-
   table1_postOp_mortality_30day %>%
   dplyr::filter(surgery_pre_or_post_COVID_UK=="postCOVID surgery",
-                (postOp_mortality_30day=="Dead within 30-day post-operation"|
+                (postOp_mortality_30day=="Alive within 30-day post-operation"|
+                   postOp_mortality_30day=="Dead within 30-day post-operation"|
                    postOp_mortality_30day=="Missing")) %>%
   dplyr::arrange(postOp_mortality_30day) %>% dplyr::ungroup() %>%
   dplyr::select(n_infection_0to2wk)
@@ -417,8 +421,8 @@ prop_subtotals_infection_3to4wk_ageGroup <-
 # ## Sex.
 n_subtotals_infection_3to4wk_Sex <-
   table1_Sex %>%
-  dplyr::filter(surgery_pre_or_post_COVID_UK=="postCOVID surgery",
-                Sex != "Male") %>% dplyr::arrange(Sex) %>% dplyr::ungroup() %>%
+  dplyr::filter(surgery_pre_or_post_COVID_UK=="postCOVID surgery") %>%
+  dplyr::arrange(Sex) %>% dplyr::ungroup() %>%
   dplyr::select(n_infection_3to4wk)
 prop_subtotals_infection_3to4wk_Sex <-
   n_subtotals_infection_3to4wk_Sex /
@@ -429,7 +433,8 @@ prop_subtotals_infection_3to4wk_Sex <-
 n_subtotals_infection_3to4wk_postOp_mortality_30day <-
   table1_postOp_mortality_30day %>%
   dplyr::filter(surgery_pre_or_post_COVID_UK=="postCOVID surgery",
-                (postOp_mortality_30day=="Dead within 30-day post-operation"|
+                (postOp_mortality_30day=="Alive within 30-day post-operation"|
+                   postOp_mortality_30day=="Dead within 30-day post-operation"|
                    postOp_mortality_30day=="Missing")) %>%
   dplyr::arrange(postOp_mortality_30day) %>% dplyr::ungroup() %>%
   dplyr::select(n_infection_3to4wk)
@@ -462,8 +467,8 @@ prop_subtotals_infection_5to6wk_ageGroup <-
 # ## Sex.
 n_subtotals_infection_5to6wk_Sex <-
   table1_Sex %>%
-  dplyr::filter(surgery_pre_or_post_COVID_UK=="postCOVID surgery",
-                Sex != "Male") %>% dplyr::arrange(Sex) %>% dplyr::ungroup() %>%
+  dplyr::filter(surgery_pre_or_post_COVID_UK=="postCOVID surgery") %>%
+  dplyr::arrange(Sex) %>% dplyr::ungroup() %>%
   dplyr::select(n_infection_5to6wk)
 prop_subtotals_infection_5to6wk_Sex <-
   n_subtotals_infection_5to6wk_Sex /
@@ -474,7 +479,8 @@ prop_subtotals_infection_5to6wk_Sex <-
 n_subtotals_infection_5to6wk_postOp_mortality_30day <-
   table1_postOp_mortality_30day %>%
   dplyr::filter(surgery_pre_or_post_COVID_UK=="postCOVID surgery",
-                (postOp_mortality_30day=="Dead within 30-day post-operation"|
+                (postOp_mortality_30day=="Alive within 30-day post-operation"|
+                   postOp_mortality_30day=="Dead within 30-day post-operation"|
                    postOp_mortality_30day=="Missing")) %>%
   dplyr::arrange(postOp_mortality_30day) %>% dplyr::ungroup() %>%
   dplyr::select(n_infection_5to6wk)
@@ -507,8 +513,8 @@ prop_subtotals_infection_7wk_ageGroup <-
 # ## Sex.
 n_subtotals_infection_7wk_Sex <-
   table1_Sex %>%
-  dplyr::filter(surgery_pre_or_post_COVID_UK=="postCOVID surgery",
-                Sex != "Male") %>% dplyr::arrange(Sex) %>% dplyr::ungroup() %>%
+  dplyr::filter(surgery_pre_or_post_COVID_UK=="postCOVID surgery") %>%
+  dplyr::arrange(Sex) %>% dplyr::ungroup() %>%
   dplyr::select(n_infection_7wk)
 prop_subtotals_infection_7wk_Sex <-
   n_subtotals_infection_7wk_Sex /
@@ -519,7 +525,8 @@ prop_subtotals_infection_7wk_Sex <-
 n_subtotals_infection_7wk_postOp_mortality_30day <-
   table1_postOp_mortality_30day %>%
   dplyr::filter(surgery_pre_or_post_COVID_UK=="postCOVID surgery",
-                (postOp_mortality_30day=="Dead within 30-day post-operation"|
+                (postOp_mortality_30day=="Alive within 30-day post-operation"|
+                   postOp_mortality_30day=="Dead within 30-day post-operation"|
                    postOp_mortality_30day=="Missing")) %>%
   dplyr::arrange(postOp_mortality_30day) %>% dplyr::ungroup() %>%
   dplyr::select(n_infection_7wk)
@@ -545,7 +552,7 @@ prop_subtotals_infection_7wk <-
 ########################################################################
 # ----
 # Make data frame.
-df_onboarding <- data.frame(
+df_4wk <- data.frame(
           # Pre-March 2020 totals, n.
           n_totals_preMarch2020,
           # Pre-March 2020 totals, %.
@@ -576,22 +583,23 @@ df_onboarding <- data.frame(
           round(prop_subtotals_infection_7wk * 100, 0)
         )
 # Label data frame.
-colnames(df_onboarding) <- rep(c("n", "%"),7)
-rownames(df_onboarding) <- c(
-          # ## Age groups.
-          "0-29","30-49","50-69","70-79",">=80","Missing",
-          # ## Sex.
-          "Female", " Missing",
-          # ## 30-day post-operative mortality.
-          "Yes", "  Missing")
+colnames(df_4wk) <- rep(c("n", "%"),7)
+rownames(df_4wk) <- c(
+                      # ## Age groups.
+                      "0-29","30-49","50-69","70-79",">=80","Missing",
+                      # ## Sex.
+                      "Female", "Male", "Missing ",
+                      # ## 30-day post-operative mortality.
+                      "Alive within 30-day post-operation",
+                      "Dead within 30-day post-operation", "Missing  ")
 # Save data frame.
-df_onboarding_6mths <- df_onboarding
+df_4wk_6mths <- df_4wk
 write.csv(
-  x = df_onboarding_6mths,
+  x = df_4wk_6mths,
   file = here::here("output","table1_4wk_onboarding_6mths.csv")
 )
 # Make kable table.
-df_onboarding_6mths %>%
+df_4wk_6mths %>%
   kableExtra::kbl(caption = paste0("<b>Table 1</b> Baseline characteristics and outcomes for ",
                        "patients undergoing surgery stratified by time from ",
                        "indication of SARS-CoV-2 infection. Values are ",
@@ -603,8 +611,8 @@ df_onboarding_6mths %>%
   kableExtra::kable_classic(full_width = F,
                 fixed_thead = T,
                 html_font="Cambria") %>%
-  kableExtra::pack_rows(index = c("Age" = 6, "Sex" = 2,
-                      "30-day post-operative mortality" = 2)) %>%
+  kableExtra::pack_rows(index = c("Age" = 6, "Sex" = 3,
+                                  "30-day post-operative mortality" = 3)) %>%
   kableExtra::add_header_above(c(" " = 7, "0-2 weeks" = 2, "3-4 weeks" = 2,
                      "5-6 weeks" = 2, ">=7 weeks" = 2)) %>%
   kableExtra::add_header_above(c(" " = 1, "Pre-March 2020,\ntotals" = 2,
