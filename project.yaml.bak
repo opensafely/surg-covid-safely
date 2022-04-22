@@ -30,8 +30,14 @@ actions:
             # highly_sensitive:
                 # cohort: output/input_*.csv
                 
-    generate_study_population_vacc_check:
-        run: cohortextractor:latest generate_cohort --study-definition study_definition_vacc_check
+    generate_study_population_vacc_check_anyTest:
+        run: cohortextractor:latest generate_cohort --study-definition study_definition_vacc_check_anyTest
+        outputs:
+            highly_sensitive:
+                cohort: output/input_vacc_check.csv
+    
+    generate_study_population_vacc_check_posTest:
+        run: cohortextractor:latest generate_cohort --study-definition study_definition_vacc_check_posTest
         outputs:
             highly_sensitive:
                 cohort: output/input_vacc_check.csv
@@ -75,9 +81,23 @@ actions:
                 # tableVacc_df_6mths: output/table_Vaccination_status_6mths.csv
                 ##tableVacc_kable_6mths: output/TableVacc_6mths.png
     
-    vacc_definition_check:
+    vacc_definition_check_anyTest:
         run: r:latest analysis/vacc_check.R
-        needs: [generate_study_population_vacc_check]
+        needs: [generate_study_population_vacc_check_anyTest]
+        outputs:
+            moderately_sensitive:
+                tableVacc_30dayMortality_3mths_SNOMED: output/SNOMED_tableVacc_postOp_mortality_30day_3mths.csv
+                tableVacc_30dayMortality_3mths_TPP: output/TPP_tableVacc_postOp_mortality_30day_3mths.csv
+                tableVacc_30dayMortality_3mths_AlwynSNOMED: output/AlwynSNOMED_tableVacc_postOp_mortality_30day_3mths.csv
+                tableVacc_30dayMortality_3mths_AlwynTPP: output/AlwynTPP_tableVacc_postOp_mortality_30day_3mths.csv
+                tableVacc_df_check_3mths_SNOMED: output/SNOMED_table_Vaccination_status_3mths.csv
+                tableVacc_df_check_3mths_TPP: output/TPP_table_Vaccination_status_3mths.csv
+                tableVacc_df_check_3mths_AlwynSNOMED: output/AlwynSNOMED_table_Vaccination_status_3mths.csv
+                tableVacc_df_check_3mths_AlwynTPP: output/AlwynTPP_table_Vaccination_status_3mths.csv
+                
+    vacc_definition_check_posTest:
+        run: r:latest analysis/vacc_check.R
+        needs: [generate_study_population_vacc_check_posTest]
         outputs:
             moderately_sensitive:
                 tableVacc_30dayMortality_3mths_SNOMED: output/SNOMED_tableVacc_postOp_mortality_30day_3mths.csv
