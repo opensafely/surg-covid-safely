@@ -222,7 +222,7 @@ makeVaccTable <- function(inputTable, prefix = c('SNOMED', 'TPP', 'AlwynSNOMED',
                       df_Vacc)
     ) %>%
     write.csv(
-     file = here::here("output","Tables_raw output",paste0(prefix,"_table_Vaccination_status_3mths", ".csv"))
+     file = here::here("output",paste0(prefix,"_table_Vaccination_status_3mths", ".csv"))
     )
     
   } else if (prefix == "TPP")
@@ -272,7 +272,7 @@ makeVaccTable <- function(inputTable, prefix = c('SNOMED', 'TPP', 'AlwynSNOMED',
                         each = 3),
                       df_Vacc)
     ) %>%
-      write.csv(file = here::here("output","Tables_raw output",paste0(prefix,"_table_Vaccination_status_3mths", ".csv"))
+      write.csv(file = here::here("output",paste0(prefix,"_table_Vaccination_status_3mths", ".csv"))
     )
     
   } else if (prefix == "AlwynSNOMED" | prefix == "AlwynTPP")
@@ -329,7 +329,7 @@ makeVaccTable <- function(inputTable, prefix = c('SNOMED', 'TPP', 'AlwynSNOMED',
                         each = 3),
                       df_Vacc)
     ) %>%
-      write.csv(file = here::here("output","Tables_raw output",paste0(prefix, "_table_Vaccination_status_3mths", ".csv"))
+      write.csv(file = here::here("output",paste0(prefix, "_table_Vaccination_status_3mths", ".csv"))
     )
     
   }

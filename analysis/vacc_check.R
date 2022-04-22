@@ -454,22 +454,22 @@ AlwynTPP_tableVacc_postOp_mortality_30day <-
 SNOMED_tableVacc_postOp_mortality_30day_3mths <- SNOMED_tableVacc_postOp_mortality_30day
 write.csv(
   x = SNOMED_tableVacc_postOp_mortality_30day,
-  file = here::here("output","Tables_raw output","SNOMED_tableVacc_postOp_mortality_30day_3mths.csv")
+  file = here::here("output","SNOMED_tableVacc_postOp_mortality_30day_3mths.csv")
 )
 TPP_tableVacc_postOp_mortality_30day_3mths <- TPP_tableVacc_postOp_mortality_30day
 write.csv(
   x = TPP_tableVacc_postOp_mortality_30day,
-  file = here::here("output","Tables_raw output","TPP_tableVacc_postOp_mortality_30day_3mths.csv")
+  file = here::here("output","TPP_tableVacc_postOp_mortality_30day_3mths.csv")
 )
 AlwynSNOMED_tableVacc_postOp_mortality_30day_3mths <- AlwynSNOMED_tableVacc_postOp_mortality_30day
 write.csv(
   x = AlwynSNOMED_tableVacc_postOp_mortality_30day,
-  file = here::here("output","Tables_raw output","AlwynSNOMED_tableVacc_postOp_mortality_30day_3mths.csv")
+  file = here::here("output","AlwynSNOMED_tableVacc_postOp_mortality_30day_3mths.csv")
 )
 AlwynTPP_tableVacc_postOp_mortality_30day_3mths <- AlwynTPP_tableVacc_postOp_mortality_30day
 write.csv(
   x = AlwynTPP_tableVacc_postOp_mortality_30day,
-  file = here::here("output","Tables_raw output","AlwynTPP_tableVacc_postOp_mortality_30day_3mths.csv")
+  file = here::here("output","AlwynTPP_tableVacc_postOp_mortality_30day_3mths.csv")
 )
 # ----
 
