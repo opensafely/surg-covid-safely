@@ -29,6 +29,19 @@ actions:
         outputs:
             moderately_sensitive:
                 cohort: output/check_cohort.csv
+
+    generate_study_population_codelist_check:
+        run: cohortextractor:latest generate_cohort --study-definition study_definition_codelist_check
+        outputs:
+            highly_sensitive:
+                cohort: output/input__*.csv
+            
+    check_codelist:
+        run: r:latest analysis/check_codelist.R
+        needs: [generate_study_population_codelist_check]
+        outputs:
+            moderately_sensitive:
+                cohort: output/check_codelist.csv
                 
     4wk_onboarding:
         run: r:latest analysis/report.R

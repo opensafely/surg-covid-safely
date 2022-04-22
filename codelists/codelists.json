@@ -1,5 +1,11 @@
 {
   "files": {
+    "user-jkua-cancer.csv": {
+      "id": "user/jkua/cancer/1d9bf8ff",
+      "url": "https://codelists.opensafely.org/codelist/user/jkua/cancer/1d9bf8ff/",
+      "downloaded_at": "2022-04-20 14:37:40.903215Z",
+      "sha": "64047621a402d971cc1d1f442453f27f475ef9b8"
+    },
     "user-ciaranmci-cancer-snomed-ct.csv": {
       "id": "user/ciaranmci/cancer-snomed-ct/4602666f",
       "url": "https://codelists.opensafely.org/codelist/user/ciaranmci/cancer-snomed-ct/4602666f/",
@@ -53,6 +59,24 @@
       "url": "https://codelists.opensafely.org/codelist/opensafely/lung-cancer-snomed/502bcb45/",
       "downloaded_at": "2022-04-04 07:41:09.650186Z",
       "sha": "f0debdf1c968242fa8790cd0b773662b8e169f43"
+    },
+    "opensafely-cancer-excluding-lung-and-haematological.csv": {
+      "id": "opensafely/cancer-excluding-lung-and-haematological/2127b317",
+      "url": "https://codelists.opensafely.org/codelist/opensafely/cancer-excluding-lung-and-haematological/2127b317/",
+      "downloaded_at": "2022-04-20 14:52:30.869735Z",
+      "sha": "8fa1164b587028c4bd5903289e0948642d399e56"
+    },
+    "opensafely-haematological-cancer.csv": {
+      "id": "opensafely/haematological-cancer/1e74f321",
+      "url": "https://codelists.opensafely.org/codelist/opensafely/haematological-cancer/1e74f321/",
+      "downloaded_at": "2022-04-20 14:52:31.154930Z",
+      "sha": "59d65c613a7b984ba46eca8a74eedcc6320609fe"
+    },
+    "opensafely-lung-cancer.csv": {
+      "id": "opensafely/lung-cancer/53469981",
+      "url": "https://codelists.opensafely.org/codelist/opensafely/lung-cancer/53469981/",
+      "downloaded_at": "2022-04-20 14:52:31.418971Z",
+      "sha": "645584a20f81c4d76187a2c305c904e8b8c63dbb"
     }
   }
 }
