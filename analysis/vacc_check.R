@@ -20,7 +20,7 @@ library("magick")
 # ----
 # Read data.
 df_input <- readr::read_csv(
-  here::here("output", "input_vacc_check.csv"),
+  here::here("output", "input_vacc_check_posTest.csv"),
   col_types = readr::cols(date_surgery = col_date(),
                           date_cancer = col_date(),
                           date_latest_test_preOp_SARS_CoV_2_outcome_any = col_date(),
