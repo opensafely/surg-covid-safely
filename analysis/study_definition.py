@@ -2,6 +2,7 @@
 #########################
 ## Imports.
 #########################
+import datetime
 # Obligatory OpenSAFELY import.
 from cohortextractor import (
 	StudyDefinition,
@@ -311,29 +312,31 @@ study = StudyDefinition(
 
     ### Indicator of COVID vaccination.
     ## Indicator of first COVID vaccination.
-    COVID_first_vaccination = patients.with_these_clinical_events(
+    COVID_first_vaccination_SNOMED = patients.with_these_clinical_events(
 		codelist_COVID_first_vaccination,
         on_or_before = "date_latest_test_preOp_SARS_CoV_2_outcome_positive",
         returning = "binary_flag"
 	),
     ## Indicator of second COVID vaccination.
-    COVID_second_vaccination = patients.with_these_clinical_events(
+    COVID_second_vaccination_SNOMED = patients.with_these_clinical_events(
 		codelist_COVID_second_vaccination,
         on_or_before = "date_latest_test_preOp_SARS_CoV_2_outcome_positive",
         returning = "binary_flag"
 	),
     ## Indicator of declining first COVID vaccination.
-    COVID_first_vaccination_declined = patients.with_these_clinical_events(
+    COVID_first_vaccination_declined_SNOMED = patients.with_these_clinical_events(
 		codelist_COVID_first_vaccination_declined,
         on_or_before = "date_latest_test_preOp_SARS_CoV_2_outcome_positive",
 		returning = "binary_flag"
 	),
     ## Indicator of declining second COVID vaccination.
-    COVID_second_vaccination_declined = patients.with_these_clinical_events(
+    COVID_second_vaccination_declined_SNOMED = patients.with_these_clinical_events(
 		codelist_COVID_second_vaccination_declined,
         on_or_before = "date_latest_test_preOp_SARS_CoV_2_outcome_positive",
 		returning = "binary_flag"
 	),
+   
+    
     
 	### Variables needed for Revised Cardiac Risk Index.
 	## Intraperitoneal or intrathroacic surgery.

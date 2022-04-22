@@ -16,6 +16,12 @@ actions:
         outputs:
             highly_sensitive:
                 cohort: output/input_*.csv
+                
+    generate_study_population_vacc_check:
+        run: cohortextractor:latest generate_cohort --study-definition study_definition_vacc_check
+        outputs:
+            highly_sensitive:
+                cohort: output/input_vacc_check.csv
             
     check_cohort:
         run: r:latest analysis/check_cohort.R
@@ -55,4 +61,19 @@ actions:
                 tableVacc_30dayMortality_6mths: output/tableVacc_postOp_mortality_30day_6mths.csv
                 tableVacc_df_6mths: output/table_Vaccination_status_6mths.csv
                 #tableVacc_kable_6mths: output/TableVacc_6mths.png
+    
+    vacc_definition_check:
+        run: r:latest analysis/vacc_check.R
+        needs: [generate_study_population_vacc_check]
+        outputs:
+            moderately_sensitive:
+                tableVacc_30dayMortality_3mths_SNOMED: output/Tables_raw output/SNOMED_tableVacc_postOp_mortality_30day_3mths.csv
+                tableVacc_30dayMortality_3mths_TPP: output/Tables_raw output/TPP_tableVacc_postOp_mortality_30day_3mths.csv
+                tableVacc_30dayMortality_3mths_AlwynSNOMED: output/Tables_raw output/AlwynSNOMED_tableVacc_postOp_mortality_30day_3mths.csv
+                tableVacc_30dayMortality_3mths_AlwynTPP: output/Tables_raw output/AlwynTPP_tableVacc_postOp_mortality_30day_3mths.csv
+                tableVacc_df_check_3mths_SNOMED: output/Tables_raw output/SNOMED_table_Vaccination_status_3mths.csv
+                tableVacc_df_check_3mths_TPP: output/Tables_raw output/TPP_table_Vaccination_status_3mths.csv
+                tableVacc_df_check_3mths_AlwynSNOMED: output/Tables_raw output/AlwynSNOMED_table_Vaccination_status_3mths.csv
+                tableVacc_df_check_3mths_AlwynTPP: output/Tables_raw output/AlwynTPP_table_Vaccination_status_3mths.csv
+                
                 
