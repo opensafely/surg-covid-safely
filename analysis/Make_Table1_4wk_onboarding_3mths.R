@@ -48,8 +48,9 @@ myData_3mths <- myData_3mths %>%
 # ##    1. "No record of pre-operative SARS-CoV-2 infection"
 # ##    2. "0-2 weeks record of pre-operative SARS-CoV-2 infection"
 # ##    3. "3-4 weeks record of pre-operative SARS-CoV-2 infection"
-# ##    4. ">=7 weeks record of pre-operative SARS-CoV-2 infection"
-# ##    5. "Error: Test result after surgery. Check study_definition."
+# ##    4. "5-6 weeks record of pre-operative SARS-CoV-2 infection"
+# ##    5. ">=7 weeks record of pre-operative SARS-CoV-2 infection"
+# ##    6. "Error: Test result after surgery. Check study_definition."
 # ##
 # ## The counts are also stratified by surgery era:
 # ##    1. "preCOVID sugery"
@@ -138,6 +139,7 @@ table1_totals_preOp_infection_status <-
                   "No record of pre-operative SARS-CoV-2 infection",
                   "0-2 weeks record of pre-operative SARS-CoV-2 infection",
                   "3-4 weeks record of pre-operative SARS-CoV-2 infection",
+                  "5-6 weeks record of pre-operative SARS-CoV-2 infection",
                   ">=7 weeks record of pre-operative SARS-CoV-2 infection")) %>%
             dplyr::full_join(table1_totals_preOp_infection_status) %>%
             dplyr::arrange(surgery_pre_or_post_COVID_UK) %>%
