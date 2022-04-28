@@ -16,8 +16,9 @@ library("magick")
 
 # Read data.
 df_input <- readr::read_csv(
-  here::here("output", "input.csv"),
-  col_types = cols(date_surgery = col_date(),
+  here::here("output", "input_2.csv"),
+  col_types = cols(has_cancer = col_logical(),
+                   date_surgery = col_date(),
                    date_latest_test_preOp_SARS_CoV_2_outcome_any = col_date(),
                    date_latest_test_preOp_SARS_CoV_2_outcome_positive = col_date(),
                    date_latest_test_preOp_SARS_CoV_2_outcome_negative = col_date(),

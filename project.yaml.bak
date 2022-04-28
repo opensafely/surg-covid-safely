@@ -40,7 +40,7 @@ actions:
         run: cohortextractor:latest generate_cohort --study-definition study_definition_vacc_check_posTest
         outputs:
             highly_sensitive:
-                cohort: output/input_vacc_check.csv
+                cohort: output/input_vacc_check_posTest.csv
             
     # check_codelist:
         # run: r:latest analysis/check_codelist.R
