@@ -10,6 +10,12 @@ actions:
         # outputs:
             # highly_sensitive:
                 # cohort: output/input.csv
+                
+    generate_study_population_2:
+        run: cohortextractor:latest generate_cohort --study-definition study_definition_2
+        outputs:
+            highly_sensitive:
+                cohort: output/input_2.csv
 
     # generate_study_population_cohort_check:
         # run: cohortextractor:latest generate_cohort --study-definition study_definition_flow_chart
@@ -17,13 +23,6 @@ actions:
             # highly_sensitive:
                 # cohort: output/input_*.csv
             
-    # check_cohort:
-        # run: r:latest analysis/check_cohort.R
-        # needs: [generate_study_population_cohort_check]
-        # outputs:
-            # moderately_sensitive:
-                # cohort: output/check_cohort.csv
-
     # generate_study_population_codelist_check:
         # run: cohortextractor:latest generate_cohort --study-definition study_definition_codelist_check
         # outputs:
@@ -36,12 +35,19 @@ actions:
             # highly_sensitive:
                 # cohort: output/input_vacc_check.csv
     
-    generate_study_population_vacc_check_posTest:
-        run: cohortextractor:latest generate_cohort --study-definition study_definition_vacc_check_posTest
-        outputs:
-            highly_sensitive:
-                cohort: output/input_vacc_check_posTest.csv
-            
+    # generate_study_population_vacc_check_posTest:
+        # run: cohortextractor:latest generate_cohort --study-definition study_definition_vacc_check_posTest
+        # outputs:
+            # highly_sensitive:
+                # cohort: output/input_vacc_check_posTest.csv
+    
+    # check_cohort:
+        # run: r:latest analysis/check_cohort.R
+        # needs: [generate_study_population_cohort_check]
+        # outputs:
+            # moderately_sensitive:
+                # cohort: output/check_cohort.csv
+                
     # check_codelist:
         # run: r:latest analysis/check_codelist.R
         # needs: [generate_study_population_codelist_check]
@@ -95,18 +101,29 @@ actions:
                 # tableVacc_df_check_3mths_AlwynSNOMED: output/AlwynSNOMED_table_Vaccination_status_3mths.csv
                 # tableVacc_df_check_3mths_AlwynTPP: output/AlwynTPP_table_Vaccination_status_3mths.csv
                 
-    vacc_definition_check_posTest:
-        run: r:latest analysis/vacc_check.R
-        needs: [generate_study_population_vacc_check_posTest]
+    # vacc_definition_check_posTest:
+        # run: r:latest analysis/vacc_check.R
+        # needs: [generate_study_population_vacc_check_posTest]
+        # outputs:
+            # moderately_sensitive:
+                # tableVacc_30dayMortality_3mths_SNOMED: output/SNOMED_tableVacc_postOp_mortality_30day_3mths.csv
+                # tableVacc_30dayMortality_3mths_TPP: output/TPP_tableVacc_postOp_mortality_30day_3mths.csv
+                # tableVacc_30dayMortality_3mths_AlwynSNOMED: output/AlwynSNOMED_tableVacc_postOp_mortality_30day_3mths.csv
+                # tableVacc_30dayMortality_3mths_AlwynTPP: output/AlwynTPP_tableVacc_postOp_mortality_30day_3mths.csv
+                # tableVacc_df_check_3mths_SNOMED: output/SNOMED_table_Vaccination_status_3mths.csv
+                # tableVacc_df_check_3mths_TPP: output/TPP_table_Vaccination_status_3mths.csv
+                # tableVacc_df_check_3mths_AlwynSNOMED: output/AlwynSNOMED_table_Vaccination_status_3mths.csv
+                # tableVacc_df_check_3mths_AlwynTPP: output/AlwynTPP_table_Vaccination_status_3mths.csv
+                
+    COVIDSurg_compare:
+        run: r:latest analysis/Make_table_COVIDSurg_compare.R
+        needs: [generate_study_population_2]
         outputs:
             moderately_sensitive:
-                tableVacc_30dayMortality_3mths_SNOMED: output/SNOMED_tableVacc_postOp_mortality_30day_3mths.csv
-                tableVacc_30dayMortality_3mths_TPP: output/TPP_tableVacc_postOp_mortality_30day_3mths.csv
-                tableVacc_30dayMortality_3mths_AlwynSNOMED: output/AlwynSNOMED_tableVacc_postOp_mortality_30day_3mths.csv
-                tableVacc_30dayMortality_3mths_AlwynTPP: output/AlwynTPP_tableVacc_postOp_mortality_30day_3mths.csv
-                tableVacc_df_check_3mths_SNOMED: output/SNOMED_table_Vaccination_status_3mths.csv
-                tableVacc_df_check_3mths_TPP: output/TPP_table_Vaccination_status_3mths.csv
-                tableVacc_df_check_3mths_AlwynSNOMED: output/AlwynSNOMED_table_Vaccination_status_3mths.csv
-                tableVacc_df_check_3mths_AlwynTPP: output/AlwynTPP_table_Vaccination_status_3mths.csv
-                
-                
+                table_counts: output/table_Count_of_patients_in_each_cohort_in_each_era_across_all_intervals.csv
+                table_mortality_intervals: output/table_30day_post-op_mortality_in_each_era_across_all_intervals.csv
+                table_mortality_totals: output/table_30day_post-op_mortality_for_each_cohort_in_each_era.csv
+                PNV_OS_NC_counts.csv: PNV_OS_NC_counts.csv
+                PWV_OS_NC_counts.csv: PWV_OS_NC_counts.csv
+                PNV_OS_C_counts.csv: PNV_OS_C_counts.csv
+                PWV_OS_C_counts.csv: PWV_OS_C_counts.csv

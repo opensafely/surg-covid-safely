@@ -201,6 +201,29 @@ PWV_OS_C_counts <- cbind(sum(PWV_OS_C_counts), PWV_OS_C_counts)
 colnames(PWV_OS_C_counts) <- colnames(COVIDSurg_counts)
 # ----
 
+####################################
+write.csv(
+  x = PNV_OS_NC_counts,
+  file = here::here("output",
+                    "PNV_OS_NC_counts.csv")
+)
+write.csv(
+  x = PWV_OS_NC_counts,
+  file = here::here("output",
+                    "PWV_OS_NC_counts.csv")
+)
+write.csv(
+  x = PNV_OS_C_counts,
+  file = here::here("output",
+                    "PNV_OS_C_counts.csv")
+)
+write.csv(
+  x = PWV_OS_C_counts,
+  file = here::here("output",
+                    "PWV_OS_C_counts.csv")
+)
+####################################
+
 ##################################################################
 ## Counts of 30-day post-operative mortality, across intervals. ##
 ## Non-cancer patients.                                         ##
@@ -212,7 +235,7 @@ colnames(PWV_OS_C_counts) <- colnames(COVIDSurg_counts)
 #   1. "Alive within 30-day post-operation"
 #   2. "Dead within 30-day post-operation" 
 #
-## # OpenSAFELY data, nom-cancer patients.
+## # OpenSAFELY data, no-cancer patients.
 OS_NC_mortality <- 
 myData_OS_NC %>% dplyr::group_by(era, postOp_mortality_30day) %>%
   dplyr::summarise(n_per_group = sum(ifelse(preOperative_infection_status!=
