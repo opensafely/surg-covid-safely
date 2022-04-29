@@ -130,26 +130,31 @@ OS_NC_counts <-
   dplyr::arrange(era) %>%
   tidyr::replace_na(list("n" = 0))
 ## ## # Pre-pandemic, OpenSAFELY data, no-cancer patients.
+intervals <- c(
+  "No record of pre-operative SARS-CoV-2 infection",
+  "0-2 weeks record of pre-operative SARS-CoV-2 infection",
+  "3-4 weeks record of pre-operative SARS-CoV-2 infection",
+  "5-6 weeks record of pre-operative SARS-CoV-2 infection",
+  ">=7 weeks record of pre-operative SARS-CoV-2 infection"
+  )
+
 PP_OS_NC_counts <- OS_NC_counts %>%
   dplyr::filter(era == "Pre-pandemic" &
-                  preOperative_infection_status !=
-                  "Error: Test result after surgery. Check study_definition.") %>%
+                  preOperative_infection_status %in% intervals) %>%
   dplyr::arrange(preOperative_infection_status) %>% select(n) %>% t() %>% data.frame()
 PP_OS_NC_counts <- cbind(sum(PP_OS_NC_counts), PP_OS_NC_counts)
 colnames(PP_OS_NC_counts) <- colnames(COVIDSurg_counts)
 ## ## # Pandemic no vaccines, OpenSAFELY data, no-cancer patients.
 PNV_OS_NC_counts <- OS_NC_counts %>%
   dplyr::filter(era == "Pandemic no vaccine" &
-                  preOperative_infection_status !=
-                  "Error: Test result after surgery. Check study_definition.") %>%
+                  preOperative_infection_status %in% intervals) %>%
   dplyr::arrange(preOperative_infection_status) %>% select(n) %>% t() %>% data.frame()
 PNV_OS_NC_counts <- cbind(sum(PNV_OS_NC_counts), PNV_OS_NC_counts)
 colnames(PNV_OS_NC_counts) <- colnames(COVIDSurg_counts)
 ## ## # Pandemic with vaccines, OpenSAFELY data, no-cancer patients.
 PWV_OS_NC_counts <- OS_NC_counts %>%
   dplyr::filter(era == "Pandemic with vaccine" &
-                  preOperative_infection_status !=
-                  "Error: Test result after surgery. Check study_definition.") %>%
+                  preOperative_infection_status %in% intervals) %>%
   dplyr::arrange(preOperative_infection_status) %>% select(n) %>% t() %>% data.frame()
 PWV_OS_NC_counts <- cbind(sum(PWV_OS_NC_counts), PWV_OS_NC_counts)
 colnames(PWV_OS_NC_counts) <- colnames(COVIDSurg_counts)
@@ -178,30 +183,37 @@ OS_C_counts <-
 ## ## # Pre-pandemic, OpenSAFELY data, no-cancer patients.
 PP_OS_C_counts <- OS_C_counts %>%
   dplyr::filter(era == "Pre-pandemic" &
-                  preOperative_infection_status !=
-                  "Error: Test result after surgery. Check study_definition.") %>%
+                  preOperative_infection_status %in% intervals) %>%
   dplyr::arrange(preOperative_infection_status) %>% select(n) %>% t() %>% data.frame()
 PP_OS_C_counts <- cbind(sum(PP_OS_C_counts), PP_OS_C_counts)
 colnames(PP_OS_C_counts) <- colnames(COVIDSurg_counts)
 ## ## # Pandemic no vaccines, OpenSAFELY data, no-cancer patients.
 PNV_OS_C_counts <- OS_C_counts %>%
   dplyr::filter(era == "Pandemic no vaccine" &
-                  preOperative_infection_status !=
-                  "Error: Test result after surgery. Check study_definition.") %>%
+                  preOperative_infection_status %in% intervals) %>%
   dplyr::arrange(preOperative_infection_status) %>% select(n) %>% t() %>% data.frame()
 PNV_OS_C_counts <- cbind(sum(PNV_OS_C_counts), PNV_OS_C_counts)
 colnames(PNV_OS_C_counts) <- colnames(COVIDSurg_counts)
 ## ## # Pandemic with vaccines, OpenSAFELY data, no-cancer patients.
 PWV_OS_C_counts <- OS_C_counts %>%
   dplyr::filter(era == "Pandemic with vaccine" &
-                  preOperative_infection_status !=
-                  "Error: Test result after surgery. Check study_definition.") %>%
+                  preOperative_infection_status %in% intervals) %>%
   dplyr::arrange(preOperative_infection_status) %>% select(n) %>% t() %>% data.frame()
 PWV_OS_C_counts <- cbind(sum(PWV_OS_C_counts), PWV_OS_C_counts)
 colnames(PWV_OS_C_counts) <- colnames(COVIDSurg_counts)
 # ----
 
 ####################################
+write.csv(
+  x = OS_C_counts,
+  file = here::here("output",
+                    "OS_C_counts.csv")
+)
+write.csv(
+  x = OS_NC_counts,
+  file = here::here("output",
+                    "OS_NC_counts.csv")
+)
 write.csv(
   x = PNV_OS_NC_counts,
   file = here::here("output",
