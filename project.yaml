@@ -123,7 +123,3 @@ actions:
                 table_counts: output/table_Count_of_patients_in_each_cohort_in_each_era_across_all_intervals.csv
                 table_mortality_intervals: output/table_30day_post-op_mortality_in_each_era_across_all_intervals.csv
                 table_mortality_totals: output/table_30day_post-op_mortality_for_each_cohort_in_each_era.csv
-                PNV_OS_NC_counts.csv: output/PNV_OS_NC_counts.csv
-                PWV_OS_NC_counts.csv: output/PWV_OS_NC_counts.csv
-                PNV_OS_C_counts.csv: output/PNV_OS_C_counts.csv
-                PWV_OS_C_counts.csv: output/PWV_OS_C_counts.csv
