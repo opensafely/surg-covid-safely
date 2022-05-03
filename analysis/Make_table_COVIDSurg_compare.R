@@ -203,39 +203,6 @@ PWV_OS_C_counts <- cbind(sum(PWV_OS_C_counts), PWV_OS_C_counts)
 colnames(PWV_OS_C_counts) <- colnames(COVIDSurg_counts)
 # ----
 
-####################################
-write.csv(
-  x = OS_C_counts,
-  file = here::here("output",
-                    "OS_C_counts.csv")
-)
-write.csv(
-  x = OS_NC_counts,
-  file = here::here("output",
-                    "OS_NC_counts.csv")
-)
-write.csv(
-  x = PNV_OS_NC_counts,
-  file = here::here("output",
-                    "PNV_OS_NC_counts.csv")
-)
-write.csv(
-  x = PWV_OS_NC_counts,
-  file = here::here("output",
-                    "PWV_OS_NC_counts.csv")
-)
-write.csv(
-  x = PNV_OS_C_counts,
-  file = here::here("output",
-                    "PNV_OS_C_counts.csv")
-)
-write.csv(
-  x = PWV_OS_C_counts,
-  file = here::here("output",
-                    "PWV_OS_C_counts.csv")
-)
-####################################
-
 ##################################################################
 ## Counts of 30-day post-operative mortality, across intervals. ##
 ## Non-cancer patients.                                         ##
@@ -541,6 +508,13 @@ rownames(table_counts) <-
     "PWV_OS_NC",
     "PWV_OS_C"
   )
+# Redact counts known to be <5, and apply cumulative redaction to mitigate
+# disclosure.
+rows_to_redact <- which(rowSums(table_counts[,2:ncol(table_counts)] <5 &
+                                  table_counts[,2:ncol(table_counts)] >0) > 0)
+
+table_counts[rows_to_redact, 2:ncol(table_counts)] <- NA
+# Save table.
 write.csv(
   x = table_counts,
   file = here::here("output",
