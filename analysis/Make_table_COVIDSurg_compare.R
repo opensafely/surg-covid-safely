@@ -144,6 +144,11 @@ PP_OS_NC_counts <- OS_NC_counts %>%
   dplyr::arrange(preOperative_infection_status) %>% select(n) %>% t() %>% data.frame()
 PP_OS_NC_counts <- cbind(sum(PP_OS_NC_counts), PP_OS_NC_counts)
 colnames(PP_OS_NC_counts) <- colnames(COVIDSurg_counts)
+# In pre-pandemic era, there should not be any instances of test results. Therefore,
+# there should not be any instances counted in the intervals. Any counts within
+# intervals are data quality issues and are expected to be low. These erroneous 
+# data will be imputed with the expected NA.
+PP_OS_NC_counts[2:ncol(PP_OS_NC_counts)] <- NA
 ## ## # Pandemic no vaccines, OpenSAFELY data, no-cancer patients.
 PNV_OS_NC_counts <- OS_NC_counts %>%
   dplyr::filter(era == "Pandemic no vaccine" &
@@ -187,6 +192,11 @@ PP_OS_C_counts <- OS_C_counts %>%
   dplyr::arrange(preOperative_infection_status) %>% select(n) %>% t() %>% data.frame()
 PP_OS_C_counts <- cbind(sum(PP_OS_C_counts), PP_OS_C_counts)
 colnames(PP_OS_C_counts) <- colnames(COVIDSurg_counts)
+# In pre-pandemic era, there should not be any instances of test results. Therefore,
+# there should not be any instances counted in the intervals. Any counts within
+# intervals are data quality issues and are expected to be low. These erroneous 
+# data will be imputed with the expected NA.
+PP_OS_C_counts[2:ncol(PP_OS_C_counts)] <- NA
 ## ## # Pandemic no vaccines, OpenSAFELY data, no-cancer patients.
 PNV_OS_C_counts <- OS_C_counts %>%
   dplyr::filter(era == "Pandemic no vaccine" &
@@ -508,13 +518,6 @@ rownames(table_counts) <-
     "PWV_OS_NC",
     "PWV_OS_C"
   )
-# Redact counts known to be <5, and apply cumulative redaction to mitigate
-# disclosure.
-rows_to_redact <- which(rowSums(table_counts[,2:ncol(table_counts)] <5 &
-                                  table_counts[,2:ncol(table_counts)] >0) > 0)
-
-table_counts[rows_to_redact, 2:ncol(table_counts)] <- NA
-# Save table.
 write.csv(
   x = table_counts,
   file = here::here("output",
