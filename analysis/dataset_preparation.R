@@ -146,6 +146,8 @@ myData <- myData %>%
               is.na(.$date_surgery) ~ "No surgery recorded"
               )
             ) %>%
+            ## Week of surgery.
+            dplyr::mutate(Week_surgery = lubridate::week(lubridate::ymd(.$date_surgery))) %>%          
             ## Month of surgery.
             dplyr::mutate(Month_surgery = lubridate::month(lubridate::ymd(.$date_surgery), label = T)) %>%
             ## Year of surgery.
