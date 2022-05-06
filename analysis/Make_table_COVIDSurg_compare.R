@@ -576,3 +576,12 @@ write.csv(
                     "table_30day_post-op_mortality_for_each_cohort_in_each_era.csv")
 )
 # ----
+
+##############################################################################
+## Plot weekly, monthly, 2monthly and 3monthly counts of surgeries within 7 ##
+## weeks of a positive test.                                                ##
+##############################################################################
+# ----
+source(here::here("analysis","preprintFigure.R"))
+# ----
+

@@ -24,6 +24,7 @@
 #      surgery.
 #
 library(ggplot2)
+library(ggh4x)
 library(RcppRoll)
 library(tidyverse)
 library(lubridate)
@@ -37,7 +38,7 @@ library(lubridate)
 myPlotData <- myData %>% select(c(
   date_surgery,
   category_cancer_within_6mths_surgery,
-  postOp_mortality_30day,
+  preOperative_infection_status,
   Week_surgery,
   Month_surgery,
   Year_surgery
@@ -69,66 +70,43 @@ myData_OS_NC6m <- myPlotData %>%
 ## Calculate the data to plot. ##
 #################################
 # ----
-# Make timeline backbone.
+# Define timeline.
 startDate = "01-03-2019"
 endDate = "31-03-2022"
-backbone <- 
-  seq(lubridate::dmy(startDate), lubridate::dmy(endDate), by = 'week') %>%
-  data.frame() %>%
-  mutate(Year_surgery = lubridate::year(.),
-         Month_surgery = lubridate::month(., label = T),
-         Week_surgery = lubridate::week(.))# %>%
-  #select(c(Year_surgery, Month_surgery, Week_surgery))
 
-# Weekly counts of 30-day post-operative mortality.
-weekly_windowed_postOp_mortality <-
-  myData_OS_C6m %>%
-    group_by(Year_surgery, Month_surgery, Week_surgery) %>%
-    summarise(weekly_mortality = sum(postOp_mortality_30day=="Dead within 30-day post-operation"))
+# Load and run the function that does the work.
+source(here::here("analysis","fnc_preprintFigure_dataPrep.R"))
+OS_C6m_windowed_proportion_7wkPreOpInfection <- 
+  fnc_preprintFigure_dataPrep(myData_OS_C6m, startDate, endDate)
+OS_NC6m_windowed_proportion_7wkPreOpInfection <-
+  fnc_preprintFigure_dataPrep(myData_OS_NC6m, startDate, endDate)
 
-# Join to a left backbone of all weeks.
-weekly_windowed_postOp_mortality <-
-  backbone %>% dplyr::left_join(weekly_windowed_postOp_mortality,
-                                by = c("Year_surgery", "Month_surgery", "Week_surgery")) %>%
-  tidyr::replace_na(list("weekly_mortality" = 0))
-
-# Group weekly count by month.
-monthly_windowed_postOp_mortality <-
-  weekly_windowed_postOp_mortality %>%
-  select(-c(".","Week_surgery")) %>%
-  group_by(Year_surgery, Month_surgery) %>%
-  summarise(monthly_mortality = sum(weekly_mortality))
-
-# Monthly, 2-monthly and 3-monthly counts of 30-day post-operative mortality.
-monthly_windowed_postOp_mortality <-
-  monthly_windowed_postOp_mortality %>%
-  add_column(
-            twoMonthly_mortality = RcppRoll::roll_sum(.$monthly_mortality,
-                                                      2, fill=NA, align="right")
-  ) %>%
-  add_column(
-            threeMonthly_mortality = RcppRoll::roll_sum(.$monthly_mortality,
-                                                        3, fill=NA, align="right")
-  )
-
-# Join monthly counts to the weekly dataframe.
-windowed_postOp_mortality <-
-  weekly_windowed_postOp_mortality %>%
-  dplyr::left_join(monthly_windowed_postOp_mortality,
-                   by = c("Year_surgery", "Month_surgery"))
-# NOTE: 
-# LockeData's webpage was very useful for understanding RcppRoll's function
-# defaults - https://itsalocke.com/blog/understanding-rolling-calculations-in-r/
+# Save the plot data.
+write.csv(
+  x = OS_C6m_windowed_proportion_7wkPreOpInfection,
+  file = here::here("output",
+                    "plotData_OS_C6m.csv")
+)
+write.csv(
+  x = OS_NC6m_windowed_proportion_7wkPreOpInfection,
+  file = here::here("output",
+                    "plotData_OS_NC6m.csv")
+)
 # ----
 
 ###################
 ## Plot the data ##
 ###################
 # ----
+# NOTE: Nest horizontal axes require the ggh4x package to be installed.
+#
+# Load and run the function that does the work.
+source(here::here("analysis","fnc_preprintFigure_dataPlot.R"))
+fnc_preprintFigure_dataPlot(data = OS_C6m_windowed_proportion_7wkPreOpInfection,
+                            cohort = "with")
+fnc_preprintFigure_dataPlot(data = OS_NC6m_windowed_proportion_7wkPreOpInfection,
+                            cohort = "without")
 
-
-ggplot(windowed_postOp_mortality,
-       aes(x = ., y = monthly_mortality)) +
-  geom_line()
 # ----
+
 

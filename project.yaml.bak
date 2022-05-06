@@ -123,7 +123,11 @@ actions:
                 table_counts: output/table_Count_of_patients_in_each_cohort_in_each_era_across_all_intervals.csv
                 table_mortality_intervals: output/table_30day_post-op_mortality_in_each_era_across_all_intervals.csv
                 table_mortality_totals: output/table_30day_post-op_mortality_for_each_cohort_in_each_era.csv
-                PNV_OS_NC_counts.csv: output/PNV_OS_NC_counts.csv
-                PWV_OS_NC_counts.csv: output/PWV_OS_NC_counts.csv
-                PNV_OS_C_counts.csv: output/PNV_OS_C_counts.csv
-                PWV_OS_C_counts.csv: output/PWV_OS_C_counts.csv
+                figure_NC_3m: output/noCancer_3monthly_summary_proportion_surgeries_7wks_after_pos_test.png
+                figure_NC_2m: output/noCancer_2monthly_summary_proportion_surgeries_7wks_after_pos_test.png
+                figure_NC_1m: output/noCancer_1monthly_summary_proportion_surgeries_7wks_after_pos_test.png
+                figure_NC_wk: output/noCancer_weekly_summary_proportion_surgeries_7wks_after_pos_test.png
+                figure_C_3m: output/cancer_3monthly_summary_proportion_surgeries_7wks_after_pos_test.png
+                figure_C_2m: output/cancer_2monthly_summary_proportion_surgeries_7wks_after_pos_test.png
+                figure_C_1m: output/cancer_1monthly_summary_proportion_surgeries_7wks_after_pos_test.png
+                figure_C_wk: output/cancer_weekly_summary_proportion_surgeries_7wks_after_pos_test.png
