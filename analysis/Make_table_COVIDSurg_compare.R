@@ -262,7 +262,7 @@ expand.grid(
 ## ## # Pre-pandemic, OpenSAFELY data, no-cancer patients.
 PP_OS_NC_mortality <- OS_NC_mortality %>%
   dplyr::filter(era == "Pre-pandemic" &
-                  postOp_mortality_30day=="Alive within 30-day post-operation") %>%
+                  postOp_mortality_30day=="Dead within 30-day post-operation") %>%
   select(-c(era, postOp_mortality_30day, n_per_group)) %>% dplyr::ungroup()
 ## ## ## # Counts of 30-day post-operative mortality, across intervals.
 PP_OS_NC_mortality_intervals <- data.frame(
@@ -285,7 +285,7 @@ PP_OS_NC_mortality_intervals[seq(2,10,2)] <-
 ## ## # Pandemic no vaccines, OpenSAFELY data, no-cancer patients.
 PNV_OS_NC_mortality <- OS_NC_mortality %>%
   dplyr::filter(era == "Pandemic no vaccine" &
-                  postOp_mortality_30day=="Alive within 30-day post-operation") %>%
+                  postOp_mortality_30day=="Dead within 30-day post-operation") %>%
   select(-c(era, postOp_mortality_30day, n_per_group)) %>% dplyr::ungroup()
 ## ## ## # Counts of 30-day post-operative mortality, across intervals.
 PNV_OS_NC_mortality_intervals <- data.frame(
@@ -308,7 +308,7 @@ PNV_OS_NC_mortality_intervals[seq(2,10,2)] <-
 ## ## # Pandemic with vaccines, OpenSAFELY data, no-cancer patients.
 PWV_OS_NC_mortality <- OS_NC_mortality %>%
   dplyr::filter(era == "Pandemic with vaccine" &
-                  postOp_mortality_30day=="Alive within 30-day post-operation") %>%
+                  postOp_mortality_30day=="Dead within 30-day post-operation") %>%
   select(-c(era, postOp_mortality_30day, n_per_group)) %>% dplyr::ungroup()
 ## ## ## # Counts of 30-day post-operative mortality, across intervals.
 PWV_OS_NC_mortality_intervals <- data.frame(
@@ -382,7 +382,7 @@ OS_C_mortality <-
 ## ## # Pre-pandemic, OpenSAFELY data, no-cancer patients.
 PP_OS_C_mortality <- OS_C_mortality %>%
   dplyr::filter(era == "Pre-pandemic" &
-                  postOp_mortality_30day=="Alive within 30-day post-operation") %>%
+                  postOp_mortality_30day=="Dead within 30-day post-operation") %>%
   select(-c(era, postOp_mortality_30day, n_per_group)) %>% dplyr::ungroup()
 ## ## ## # Counts of 30-day post-operative mortality, across intervals.
 PP_OS_C_mortality_intervals <- data.frame(
@@ -405,7 +405,7 @@ PP_OS_C_mortality_intervals[seq(2,10,2)] <-
 ## ## # Pandemic no vaccines, OpenSAFELY data, no-cancer patients.
 PNV_OS_C_mortality <- OS_C_mortality %>%
   dplyr::filter(era == "Pandemic no vaccine" &
-                  postOp_mortality_30day=="Alive within 30-day post-operation") %>%
+                  postOp_mortality_30day=="Dead within 30-day post-operation") %>%
   select(-c(era, postOp_mortality_30day, n_per_group)) %>% dplyr::ungroup()
 ## ## ## # Counts of 30-day post-operative mortality, across intervals.
 PNV_OS_C_mortality_intervals <- data.frame(
@@ -428,7 +428,7 @@ PNV_OS_C_mortality_intervals[seq(2,10,2)] <-
 ## ## # Pandemic with vaccines, OpenSAFELY data, no-cancer patients.
 PWV_OS_C_mortality <- OS_C_mortality %>%
   dplyr::filter(era == "Pandemic with vaccine" &
-                  postOp_mortality_30day=="Alive within 30-day post-operation") %>%
+                  postOp_mortality_30day=="Dead within 30-day post-operation") %>%
   select(-c(era, postOp_mortality_30day, n_per_group)) %>% dplyr::ungroup()
 ## ## ## # Counts of 30-day post-operative mortality, across intervals.
 PWV_OS_C_mortality_intervals <- data.frame(
