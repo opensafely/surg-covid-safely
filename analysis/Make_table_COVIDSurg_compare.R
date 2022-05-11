@@ -538,6 +538,9 @@ table_mortality_intervals <-
     PWV_OS_NC_mortality_intervals,
     PWV_OS_C_mortality_intervals
     )
+colnames(table_mortality_intervals)[seq(1,ncol(table_mortality_intervals),2)] <-
+  c("d_infection_none", "d_infection_0to2wk", "d_infection_3to4wk",
+    "d_infection_5to6wk", "d_infection_7wk")
 rownames(table_mortality_intervals) <-
   c(
     "PNV_COVIDSurg",
@@ -547,6 +550,13 @@ rownames(table_mortality_intervals) <-
     "PWV_OS_NC",
     "PWV_OS_C"
   )
+# Redact small numbers.
+table_mortality_intervals[c("PNV_OS_C", "PWV_OS_C"),
+                          3:ncol(table_mortality_intervals)] <- NA
+cols2redact <-  c("d_infection_3to4wk", "pct_infection_3to4wk",
+                  "d_infection_5to6wk", "pct_infection_5to6wk")
+table_mortality_intervals["PNV_OS_NC", cols2redact] <- NA
+# Save table.
 write.csv(
   x = table_mortality_intervals,
   file = here::here("output",
@@ -564,6 +574,8 @@ table_mortality_totals <-
     OS_NC_mortality_totals,
     OS_C_mortality_totals
     )
+colnames(table_mortality_totals)[seq(1,ncol(table_mortality_totals),2)] <-
+  c("d_PrePandemic", "d_PandemicNoVacc", "d_PandemicWithVacc")
 rownames(table_mortality_totals) <-
   c(
     "COVIDSurg",

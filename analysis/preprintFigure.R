@@ -71,15 +71,19 @@ myData_OS_NC6m <- myPlotData %>%
 #################################
 # ----
 # Define timeline.
-startDate = "01-03-2019"
+startDate = "01-03-2020"
 endDate = "31-03-2022"
 
 # Load and run the function that does the work.
 source(here::here("analysis","fnc_preprintFigure_dataPrep.R"))
 OS_C6m_windowed_proportion_7wkPreOpInfection <- 
-  fnc_preprintFigure_dataPrep(myData_OS_C6m, startDate, endDate)
+  fnc_preprintFigure_dataPrep(data = myData_OS_C6m,
+                              start = startDate,
+                              end = endDate)
 OS_NC6m_windowed_proportion_7wkPreOpInfection <-
-  fnc_preprintFigure_dataPrep(myData_OS_NC6m, startDate, endDate)
+  fnc_preprintFigure_dataPrep(data = myData_OS_NC6m,
+                              start = startDate,
+                              end = endDate)
 
 # Save the plot data.
 write.csv(

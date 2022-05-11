@@ -95,6 +95,12 @@ fnc_preprintFigure_dataPrep <- function(data, start, end)
              "monthly_7wkPreOpInfection",
              "twoMonthly_7wkPreOpInfection",
              "threeMonthly_7wkPreOpInfection"))
+  
+  # Convert to percentages.
+  windowed_proportion_7wkPreOpInfection[,4:ncol(windowed_proportion_7wkPreOpInfection)] <- 
+    windowed_proportion_7wkPreOpInfection[,4:ncol(windowed_proportion_7wkPreOpInfection)]*100
+  
+  return(windowed_proportion_7wkPreOpInfection)
   # NOTE: 
   # LockeData's webpage was very useful for understanding RcppRoll's function
   # defaults - https://itsalocke.com/blog/understanding-rolling-calculations-in-r/
