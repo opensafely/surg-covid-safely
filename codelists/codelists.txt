@@ -11,3 +11,6 @@ opensafely/lung-cancer-snomed/502bcb45
 opensafely/cancer-excluding-lung-and-haematological/2127b317
 opensafely/haematological-cancer/1e74f321
 opensafely/lung-cancer/53469981
+opensafely/chronic-cardiac-disease-snomed/4ac64b59
+opensafely/diabetes-snomed/7a3271cd
+opensafely/chronic-respiratory-disease/69a34cc0
