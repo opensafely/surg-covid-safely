@@ -35,7 +35,6 @@ fnc_preprintFigure_dataPlot <- function(data, cohort)
     annotate(x = 98, y = 70, label = "Estimated\ndate of vaccine\neffectiveness", hjust = "right", geom = "label", size = 2) +
     geom_vline(xintercept = 106) + # Index for March 2021
     annotate(x = 106, y = 95, label = "2nd COVIDSurg\npublication",  hjust = "right", geom = "label", size = 2) +
-    
     theme(plot.title = element_text(size = 8),
           plot.subtitle = element_text(size = 7),
           axis.title = element_text(size = 10),
