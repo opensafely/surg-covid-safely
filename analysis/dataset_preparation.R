@@ -3,7 +3,6 @@ library('tidyverse')
 library('lubridate')
 library("kableExtra")
 library("here")
-library("magick")
 ## If ever running locally.
 # list_of_packages <- c("tidyverse", "lubridate", kableExtra","here")
 # new_packages <- list_of_packages[!(list_of_packages %in% installed.packages()[,"Package"])]
@@ -12,7 +11,6 @@ library("magick")
 # {
 #   library(list_of_packages[i],character.only = T)
 # }
-#webshot::install_phantomjs()
 
 # Read data.
 df_input <- readr::read_csv(
@@ -33,11 +31,18 @@ df_input <- readr::read_csv(
                    COVID_second_vaccination_SNOMED = col_logical(),
                    COVID_first_vaccination_declined_SNOMED = col_logical(),
                    COVID_second_vaccination_declined_SNOMED = col_logical(),
+                   chronic_cardiac_disease = col_logical(),
+                   diabetes = col_logical(),
+                   chronic_respiratory_disease = col_logical(),
                    patient_id = col_integer())
 )
 # Some fudges to handle unusual exceptions for the Sex variable.
 df_input$Sex <- plyr::mapvalues(df_input$Sex, from = c("F", "M"), to = c("Female", "Male"))
 df_input <- df_input[!(df_input$Sex == "I" | df_input$Sex == "U"),]
+# Change the logical values for the disease conditions into character types of {Yes, No}.
+df_input$chronic_cardiac_disease <- plyr::mapvalues(df_input$chronic_cardiac_disease, from = c(TRUE, FALSE), to = c("Yes", "No"))
+df_input$diabetes <- plyr::mapvalues(df_input$diabetes, from = c(TRUE, FALSE), to = c("Yes", "No"))
+df_input$chronic_respiratory_disease <- plyr::mapvalues(df_input$chronic_respiratory_disease, from = c(TRUE, FALSE), to = c("Yes", "No"))
 
 # Assign input to secondary variable. 
 myData <- df_input
