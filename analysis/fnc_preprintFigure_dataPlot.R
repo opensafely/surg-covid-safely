@@ -7,7 +7,7 @@
 fnc_preprintFigure_dataPlot <- function(data, cohort)
 {
   if (cohort == "with") {cancer <- "cancer"}else{cancer <- "noCancer"}
-  # Plot showing weekly summary of the proportion of surgeries conducted more
+  # Plot showing weekly summary of the proportion of surgeries conducted less
   # than 7 weeks from a positive PCR test for SARS-CoV-2.
   p <-
     data %>%
@@ -25,7 +25,7 @@ fnc_preprintFigure_dataPlot <- function(data, cohort)
                    "PCR test for SARS-CoV-2"),
             subtitle = paste0("(Cohort = Patients ", cohort,
                               " a cancer diagnosis within 6 months of\nsurgery)")) +
-    ylab("Proportion of surgeries conducted more\n than 7 weeks from a positive PCR test (%)") +
+    ylab("Proportion of surgeries conducted less\n than 7 weeks from a positive PCR test (%)") +
     xlab("") +
     geom_vline(xintercept = 54) + # Index for March 2020
     annotate(x = 54, y = 95, label = "1st COVIDSurg\npublication",  hjust = "right", geom = "label", size = 2) +
@@ -49,7 +49,7 @@ fnc_preprintFigure_dataPlot <- function(data, cohort)
          path = here::here("output"),
          width = 3.5, height = 3.25, units = "in")
   
-  # Plot showing monthly summary of the proportion of surgeries conducted more
+  # Plot showing monthly summary of the proportion of surgeries conducted less
   # than 7 weeks from a positive PCR test for SARS-CoV-2.
   p <-
     data %>%
@@ -69,7 +69,7 @@ fnc_preprintFigure_dataPlot <- function(data, cohort)
                    "PCR test for SARS-CoV-2"),
             subtitle = paste0("(Cohort = Patients ", cohort,
                               " a cancer diagnosis within 6 months of\nsurgery)")) +
-    ylab("Proportion of surgeries conducted more\n than 7 weeks from a positive PCR test (%)") +
+    ylab("Proportion of surgeries conducted less\n than 7 weeks from a positive PCR test (%)") +
     xlab("") +
     geom_vline(xintercept = 13) + # Index for March 2020
     annotate(x = 13, y = 95, label = "1st COVIDSurg\npublication",  hjust = "right", geom = "label", size = 2) +
@@ -91,7 +91,7 @@ fnc_preprintFigure_dataPlot <- function(data, cohort)
          path = here::here("output"),
          width = 3.5, height = 3.25, units = "in")
   
-  # Plot showing 2-monthly summary of the proportion of surgeries conducted more
+  # Plot showing 2-monthly summary of the proportion of surgeries conducted less
   # than 7 weeks from a positive PCR test for SARS-CoV-2.
   p <-
     data %>%
@@ -111,7 +111,7 @@ fnc_preprintFigure_dataPlot <- function(data, cohort)
                    "PCR test for SARS-CoV-2"),
             subtitle = paste0("(Cohort = Patients ", cohort,
                               " a cancer diagnosis within 6 months of\nsurgery)")) +
-    ylab("Proportion of surgeries conducted more\n than 7 weeks from a positive PCR test (%)") +
+    ylab("Proportion of surgeries conducted less\n than 7 weeks from a positive PCR test (%)") +
     xlab("") +
     geom_vline(xintercept = 13) + # Index for March 2020
     annotate(x = 13, y = 95, label = "1st COVIDSurg\npublication",  hjust = "right", geom = "label", size = 2) +
@@ -133,7 +133,7 @@ fnc_preprintFigure_dataPlot <- function(data, cohort)
          path = here::here("output"),
          width = 3.5, height = 3.25, units = "in")
   
-  # Plot showing 3-monthly summary of the proportion of surgeries conducted more
+  # Plot showing 3-monthly summary of the proportion of surgeries conducted less
   # than 7 weeks from a positive PCR test for SARS-CoV-2.
   p <-
     data %>%
@@ -153,7 +153,7 @@ fnc_preprintFigure_dataPlot <- function(data, cohort)
                    "PCR test for SARS-CoV-2"),
             subtitle = paste0("(Cohort = Patients ", cohort,
                               " a cancer diagnosis within 6 months of\nsurgery)")) +
-    ylab("Proportion of surgeries conducted more\n than 7 weeks from a positive PCR test (%)") +
+    ylab("Proportion of surgeries conducted less\n than 7 weeks from a positive PCR test (%)") +
     xlab("") +
     geom_vline(xintercept = 13) + # Index for March 2020
     annotate(x = 13, y = 95, label = "1st COVIDSurg\npublication",  hjust = "right", geom = "label", size = 2) +

@@ -15,7 +15,7 @@ fnc_preprintFigure_dataPrep <- function(data, start, end)
            Week_surgery = lubridate::week(.))
   colnames(backbone)[1] <- "Date"
   
-  # Weekly proportion of surgeries conducted more than 7 weeks from a positive
+  # Weekly proportion of surgeries conducted less than 7 weeks from a positive
   # PCR test for SARS-CoV-2.
   relevant_preOperative_infection_status <-
     c("0-2 weeks record of pre-operative SARS-CoV-2 infection",
