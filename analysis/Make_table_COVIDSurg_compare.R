@@ -550,12 +550,12 @@ rownames(table_mortality_intervals) <-
     "PWV_OS_NC",
     "PWV_OS_C"
   )
-# Redact small numbers.
-table_mortality_intervals[c("PNV_OS_C", "PWV_OS_C"),
-                          3:ncol(table_mortality_intervals)] <- NA
-cols2redact <-  c("d_infection_3to4wk", "pct_infection_3to4wk",
-                  "d_infection_5to6wk", "pct_infection_5to6wk")
-table_mortality_intervals["PNV_OS_NC", cols2redact] <- NA
+# # Redact small numbers.
+# table_mortality_intervals[c("PNV_OS_C", "PWV_OS_C"),
+#                           3:ncol(table_mortality_intervals)] <- NA
+# cols2redact <-  c("d_infection_3to4wk", "pct_infection_3to4wk",
+#                   "d_infection_5to6wk", "pct_infection_5to6wk")
+# table_mortality_intervals["PNV_OS_NC", cols2redact] <- NA
 # Save table.
 write.csv(
   x = table_mortality_intervals,
