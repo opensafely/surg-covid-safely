@@ -123,6 +123,8 @@ actions:
                 table_counts: output/table_Count_of_patients_in_each_cohort_in_each_era_across_all_intervals.csv
                 table_mortality_intervals: output/table_30day_post-op_mortality_in_each_era_across_all_intervals.csv
                 table_mortality_totals: output/table_30day_post-op_mortality_for_each_cohort_in_each_era.csv
+                plotData_C: output/plotData_OS_C6m.csv
+                plotData_NC: output/plotData_OS_NC6m.csv
                 figure_NC_3m: output/noCancer_3monthly_summary_proportion_surgeries_7wks_after_pos_test.png
                 figure_NC_2m: output/noCancer_2monthly_summary_proportion_surgeries_7wks_after_pos_test.png
                 figure_NC_1m: output/noCancer_1monthly_summary_proportion_surgeries_7wks_after_pos_test.png

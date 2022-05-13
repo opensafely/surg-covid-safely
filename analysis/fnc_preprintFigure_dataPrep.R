@@ -22,83 +22,81 @@ fnc_preprintFigure_dataPrep <- function(data, start, end)
       "3-4 weeks record of pre-operative SARS-CoV-2 infection",
       "5-6 weeks record of pre-operative SARS-CoV-2 infection")
   
-  weekly_windowed_proportion_7wkPreOpInfection <-
+  weekly_windowed_proportion_within_7wkPreOpInfection <-
     data %>%
     group_by(Year_surgery, Month_surgery, Week_surgery) %>%
     summarise(
-      weekly_7wk = sum(preOperative_infection_status %in%
-                         relevant_preOperative_infection_status),
       weekly_n = n(),
-      weekly_7wkPreOpInfection = weekly_7wk / weekly_n
+      weekly_n_within_7wk = sum(preOperative_infection_status %in%
+                                  relevant_preOperative_infection_status),
+      weekly_prop_within_7wk = weekly_n_within_7wk / weekly_n
     )
   
   # Join to a left backbone of all weeks.
-  weekly_windowed_proportion_7wkPreOpInfection <-
-    backbone %>% dplyr::left_join(weekly_windowed_proportion_7wkPreOpInfection,
+  weekly_windowed_proportion_within_7wkPreOpInfection <-
+    backbone %>% dplyr::left_join(weekly_windowed_proportion_within_7wkPreOpInfection,
                                   by = c("Year_surgery", "Month_surgery",
                                          "Week_surgery")) %>%
-    tidyr::replace_na(list("weekly_7wkPreOpInfection" = 0, "weekly_7wk" = 0,
+    tidyr::replace_na(list("weekly_prop_within_7wk" = 0, "weekly_n_within_7wk" = 0,
                            "weekly_n" = 0))
   
   # Group weekly count by month.
-  monthly_windowed_proportion_7wkPreOpInfection <-
-    weekly_windowed_proportion_7wkPreOpInfection %>%
+  monthly_windowed_proportion_within_7wkPreOpInfection <-
+    weekly_windowed_proportion_within_7wkPreOpInfection %>%
     group_by(Year_surgery, Month_surgery) %>%
     summarise(
-      monthly_7wk = sum(weekly_7wk),
       monthly_n = sum(weekly_n),
-      monthly_7wkPreOpInfection = monthly_7wk / monthly_n
+      monthly_within_7wk = sum(weekly_n_within_7wk),
+      monthly_prop_within_7wk = monthly_within_7wk / monthly_n
     ) %>% 
-    tidyr::replace_na(list("monthly_7wkPreOpInfection" = 0))
+    tidyr::replace_na(list("monthly_prop_within_7wk" = 0))
   
   # Monthly, 2-monthly and 3-monthly counts of 30-day post-operative mortality.
-  monthly_windowed_proportion_7wkPreOpInfection <-
-    monthly_windowed_proportion_7wkPreOpInfection %>%
-    add_column(
-      twoMonthly_7wk =
-        RcppRoll::roll_sum(.$monthly_7wk,
-                           2, fill=NA, align="right")
-    ) %>%
+  monthly_windowed_proportion_within_7wkPreOpInfection <-
+    monthly_windowed_proportion_within_7wkPreOpInfection %>%
     add_column(
       twoMonthly_n =
         RcppRoll::roll_sum(.$monthly_n,
                            2, fill=NA, align="right")
     ) %>%
     add_column(
-      threeMonthly_7wk =
-        RcppRoll::roll_sum(.$monthly_7wk,
-                           3, fill=NA, align="right")
+      twoMonthly_within_7wk =
+        RcppRoll::roll_sum(.$monthly_within_7wk,
+                           2, fill=NA, align="right")
+    ) %>%
+    mutate(
+        twoMonthly_prop_within_7wk = twoMonthly_within_7wk / twoMonthly_n
     ) %>%
     add_column(
       threeMonthly_n =
         RcppRoll::roll_sum(.$monthly_n,
                            3, fill=NA, align="right")
-    ) %>%
-    mutate(
-      twoMonthly_7wkPreOpInfection = twoMonthly_7wk / twoMonthly_n
+    ) %>%    
+    add_column(
+      threeMonthly_within_7wk =
+        RcppRoll::roll_sum(.$monthly_within_7wk,
+                           3, fill=NA, align="right")
     ) %>% 
     mutate(
-      threeMonthly_7wkPreOpInfection = threeMonthly_7wk / threeMonthly_n
+      threeMonthly_prop_within_7wk = threeMonthly_within_7wk / threeMonthly_n
     )
   
   # Join monthly to the weekly dataframe.
   windowed_proportion_7wkPreOpInfection <-
-    monthly_windowed_proportion_7wkPreOpInfection %>%
-    select(c("Year_surgery", "Month_surgery",
-             "monthly_7wkPreOpInfection",
-             "twoMonthly_7wkPreOpInfection",
-             "threeMonthly_7wkPreOpInfection")) %>%
-    dplyr::right_join(weekly_windowed_proportion_7wkPreOpInfection,
-                      by = c("Year_surgery", "Month_surgery")) %>%
-    select(c("Year_surgery", "Month_surgery", "Week_surgery",
-             "weekly_7wkPreOpInfection",
-             "monthly_7wkPreOpInfection",
-             "twoMonthly_7wkPreOpInfection",
-             "threeMonthly_7wkPreOpInfection"))
+    weekly_windowed_proportion_within_7wkPreOpInfection %>%
+    select("Year_surgery", "Month_surgery", "Week_surgery",
+           "weekly_n", "weekly_n_within_7wk", "weekly_prop_within_7wk"
+    ) %>%
+    dplyr::left_join(monthly_windowed_proportion_within_7wkPreOpInfection,
+                      by = c("Year_surgery", "Month_surgery"))
   
   # Convert to percentages.
-  windowed_proportion_7wkPreOpInfection[,4:ncol(windowed_proportion_7wkPreOpInfection)] <- 
-    windowed_proportion_7wkPreOpInfection[,4:ncol(windowed_proportion_7wkPreOpInfection)]*100
+  proportion_columns <- c("weekly_prop_within_7wk",
+                          "monthly_prop_within_7wk",
+                          "twoMonthly_prop_within_7wk",
+                          "threeMonthly_prop_within_7wk")
+  windowed_proportion_7wkPreOpInfection[,proportion_columns] <- 
+    windowed_proportion_7wkPreOpInfection[,proportion_columns] * 100
   
   return(windowed_proportion_7wkPreOpInfection)
   # NOTE: 
