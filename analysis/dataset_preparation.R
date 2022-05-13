@@ -67,11 +67,14 @@ myData <- myData %>%
   ) %>%
   ## Date of death.
   dplyr::mutate(
-    date_death = dplyr::case_when(
-      is.na(.$date_death_ons) & !is.na(.$date_death_cpns) ~ .$date_death_cpns,
-      is.na(.$date_death_cpns) & !is.na(.$date_death_ons) ~ .$date_death_ons,
-      is.na(.$date_death_ons) & is.na(.$date_death_cpns) ~ NA_Date_
-    )
+    date_death = .$date_death_ons
+    ## Simplifying the logic for date_death. Just go with ONS.
+    #
+    # date_death = dplyr::case_when(
+    #   is.na(.$date_death_ons) & !is.na(.$date_death_cpns) ~ .$date_death_cpns,
+    #   is.na(.$date_death_cpns) & !is.na(.$date_death_ons) ~ .$date_death_ons,
+    #   is.na(.$date_death_ons) & is.na(.$date_death_cpns) ~ NA_Date_
+    #)
   ) %>%
   ## Identifying patients with a cancer diagnosis within 3 months
   ## before or after surgery.
