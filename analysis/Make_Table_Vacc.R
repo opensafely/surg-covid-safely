@@ -37,8 +37,8 @@ myData_noConstraints_vacc <- myData
 # ##    2. "postVaccine surgery" (although labelled "post", this means during, too)
 # ##    3. "No surgery"
 # ## - and whether or not the patient died within 30 days of their surgery:
-# ##    1. "Alive within 30-day post-operation"
-# ##    2. "Dead within 30-day post-operation" 
+# ##    1. "Alive within 30 days post-operation"
+# ##    2. "Dead within 30 days post-operation" 
 # ##    3. "Error: Surgery after death"
 # ##    4. "No surgery recorded"
 # ##    5. "No death recorded"
@@ -78,8 +78,8 @@ tableVacc_postOp_mortality_30day <-
         "Error: No data on vaccine administration",
         "Unknown vaccination status before test"),
     postOp_mortality_30day = 
-      c("Alive within 30-day post-operation",
-        "Dead within 30-day post-operation",
+      c("Alive within 30 days post-operation",
+        "Dead within 30 days post-operation",
         "Error: Surgery after death",
         "No death recorded",
         "No surgery recorded",
@@ -112,8 +112,8 @@ write.csv(
 TableRowNames <- 
 tableVacc_postOp_mortality_30day %>%
   dplyr::filter(surgery_pre_or_post_vaccine_UK=="preVaccine surgery",
-                (postOp_mortality_30day=="Dead within 30-day post-operation"|
-                   postOp_mortality_30day=="Alive within 30-day post-operation" |
+                (postOp_mortality_30day=="Dead within 30 days post-operation"|
+                   postOp_mortality_30day=="Alive within 30 days post-operation" |
                    postOp_mortality_30day=="Missing")) %>%
   dplyr::arrange(category_vaccination_status_before_test) %>% dplyr::ungroup() %>%
   dplyr::select(postOp_mortality_30day)
@@ -122,8 +122,8 @@ tableVacc_postOp_mortality_30day %>%
 n_preDec2020_Vacc_postOp_mortality_30day <-
   tableVacc_postOp_mortality_30day %>%
   dplyr::filter(surgery_pre_or_post_vaccine_UK=="preVaccine surgery",
-                (postOp_mortality_30day=="Dead within 30-day post-operation"|
-                   postOp_mortality_30day=="Alive within 30-day post-operation" |
+                (postOp_mortality_30day=="Dead within 30 days post-operation"|
+                   postOp_mortality_30day=="Alive within 30 days post-operation" |
                    postOp_mortality_30day=="Missing")) %>%
   dplyr::arrange(category_vaccination_status_before_test) %>% dplyr::ungroup() %>%
   dplyr::select(n_per_group)
@@ -138,8 +138,8 @@ prop_preDec2020_Vacc_postOp_mortality_30day <-
 n_postDec2020_Vacc_postOp_mortality_30day <-
   tableVacc_postOp_mortality_30day %>%
   dplyr::filter(surgery_pre_or_post_vaccine_UK=="postVaccine surgery",
-                (postOp_mortality_30day=="Dead within 30-day post-operation"|
-                   postOp_mortality_30day=="Alive within 30-day post-operation" |
+                (postOp_mortality_30day=="Dead within 30 days post-operation"|
+                   postOp_mortality_30day=="Alive within 30 days post-operation" |
                    postOp_mortality_30day=="Missing")) %>%
   dplyr::arrange(category_vaccination_status_before_test) %>% dplyr::ungroup() %>%
   dplyr::select(n_per_group)
@@ -154,8 +154,8 @@ prop_postDec2020_Vacc_postOp_mortality_30day <-
 n_subtotals_infection_none_Vacc_postOp_mortality_30day <-
   tableVacc_postOp_mortality_30day %>%
   dplyr::filter(surgery_pre_or_post_vaccine_UK=="postVaccine surgery",
-                (postOp_mortality_30day=="Dead within 30-day post-operation"|
-                   postOp_mortality_30day=="Alive within 30-day post-operation" |
+                (postOp_mortality_30day=="Dead within 30 days post-operation"|
+                   postOp_mortality_30day=="Alive within 30 days post-operation" |
                    postOp_mortality_30day=="Missing")) %>%
   dplyr::arrange(category_vaccination_status_before_test) %>% dplyr::ungroup() %>%
   dplyr::select(n_infection_none)
@@ -170,8 +170,8 @@ prop_subtotals_infection_none_Vacc_postOp_mortality_30day <-
 n_subtotals_infection_0to2wk_Vacc_postOp_mortality_30day <-
   tableVacc_postOp_mortality_30day %>%
   dplyr::filter(surgery_pre_or_post_vaccine_UK=="postVaccine surgery",
-                (postOp_mortality_30day=="Dead within 30-day post-operation"|
-                   postOp_mortality_30day=="Alive within 30-day post-operation" |
+                (postOp_mortality_30day=="Dead within 30 days post-operation"|
+                   postOp_mortality_30day=="Alive within 30 days post-operation" |
                    postOp_mortality_30day=="Missing")) %>%
   dplyr::arrange(category_vaccination_status_before_test) %>% dplyr::ungroup() %>%
   dplyr::select(n_infection_0to2wk)
@@ -186,8 +186,8 @@ prop_subtotals_infection_0to2wk_Vacc_postOp_mortality_30day <-
 n_subtotals_infection_3to4wk_Vacc_postOp_mortality_30day <-
   tableVacc_postOp_mortality_30day %>%
   dplyr::filter(surgery_pre_or_post_vaccine_UK=="postVaccine surgery",
-                (postOp_mortality_30day=="Dead within 30-day post-operation"|
-                   postOp_mortality_30day=="Alive within 30-day post-operation" |
+                (postOp_mortality_30day=="Dead within 30 days post-operation"|
+                   postOp_mortality_30day=="Alive within 30 days post-operation" |
                    postOp_mortality_30day=="Missing")) %>%
   dplyr::arrange(category_vaccination_status_before_test) %>% dplyr::ungroup() %>%
   dplyr::select(n_infection_3to4wk)
@@ -202,8 +202,8 @@ prop_subtotals_infection_3to4wk_Vacc_postOp_mortality_30day <-
 n_subtotals_infection_5to6wk_Vacc_postOp_mortality_30day <-
   tableVacc_postOp_mortality_30day %>%
   dplyr::filter(surgery_pre_or_post_vaccine_UK=="postVaccine surgery",
-                (postOp_mortality_30day=="Dead within 30-day post-operation"|
-                   postOp_mortality_30day=="Alive within 30-day post-operation" |
+                (postOp_mortality_30day=="Dead within 30 days post-operation"|
+                   postOp_mortality_30day=="Alive within 30 days post-operation" |
                    postOp_mortality_30day=="Missing")) %>%
   dplyr::arrange(category_vaccination_status_before_test) %>% dplyr::ungroup() %>%
   dplyr::select(n_infection_5to6wk)
@@ -218,8 +218,8 @@ prop_subtotals_infection_5to6wk_Vacc_postOp_mortality_30day <-
 n_subtotals_infection_7wk_Vacc_postOp_mortality_30day <-
   tableVacc_postOp_mortality_30day %>%
   dplyr::filter(surgery_pre_or_post_vaccine_UK=="postVaccine surgery",
-                (postOp_mortality_30day=="Dead within 30-day post-operation"|
-                   postOp_mortality_30day=="Alive within 30-day post-operation" |
+                (postOp_mortality_30day=="Dead within 30 days post-operation"|
+                   postOp_mortality_30day=="Alive within 30 days post-operation" |
                    postOp_mortality_30day=="Missing")) %>%
   dplyr::arrange(category_vaccination_status_before_test) %>% dplyr::ungroup() %>%
   dplyr::select(n_infection_7wk)
