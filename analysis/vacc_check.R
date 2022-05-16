@@ -190,8 +190,8 @@ myData <- myData %>%
   dplyr::mutate(
     postOp_mortality_30day = dplyr::case_when(
       (.$date_death < .$date_surgery) ~ "Error: Surgery after death",
-      (.$date_death - .$date_surgery) <= 30 ~ "Dead within 30-day post-operation",
-      (.$date_death - .$date_surgery) > 30 ~ "Alive within 30-day post-operation",
+      (.$date_death - .$date_surgery) <= 30 ~ "Dead within 30 days post-operation",
+      (.$date_death - .$date_surgery) > 30 ~ "Alive within 30 days post-operation",
       is.na(.$date_death) ~ "No death recorded",
       is.na(.$date_surgery) ~ "No surgery recorded"
     )
@@ -256,8 +256,8 @@ myData_3mths_vacc <- myData_3mths_vacc %>%
 # ##    2. "postVaccine surgery" (although labelled "post", this means during, too)
 # ##    3. "No surgery"
 # ## - and whether or not the patient died within 30 days of their surgery:
-# ##    1. "Alive within 30-day post-operation"
-# ##    2. "Dead within 30-day post-operation" 
+# ##    1. "Alive within 30 days post-operation"
+# ##    2. "Dead within 30 days post-operation" 
 # ##    3. "Error: Surgery after death"
 # ##    4. "No surgery recorded"
 # ##    5. "No death recorded"
@@ -360,8 +360,8 @@ SNOMED_tableVacc_postOp_mortality_30day <-
         "Error: No data on vaccine administration",
         "Unknown vaccination status before test"),
     postOp_mortality_30day = 
-      c("Alive within 30-day post-operation",
-        "Dead within 30-day post-operation",
+      c("Alive within 30 days post-operation",
+        "Dead within 30 days post-operation",
         "Error: Surgery after death",
         "No death recorded",
         "No surgery recorded",
@@ -386,8 +386,8 @@ TPP_tableVacc_postOp_mortality_30day <-
         "Error: No data on vaccine administration",
         "Unknown vaccination status before test"),
     postOp_mortality_30day = 
-      c("Alive within 30-day post-operation",
-        "Dead within 30-day post-operation",
+      c("Alive within 30 days post-operation",
+        "Dead within 30 days post-operation",
         "Error: Surgery after death",
         "No death recorded",
         "No surgery recorded",
@@ -408,8 +408,8 @@ AlwynSNOMED_tableVacc_postOp_mortality_30day <-
       c("Confirmed fully vaccinated before test",
         "Double vaccination before test not confirmed"),
     postOp_mortality_30day = 
-      c("Alive within 30-day post-operation",
-        "Dead within 30-day post-operation",
+      c("Alive within 30 days post-operation",
+        "Dead within 30 days post-operation",
         "Error: Surgery after death",
         "No death recorded",
         "No surgery recorded",
@@ -430,8 +430,8 @@ AlwynTPP_tableVacc_postOp_mortality_30day <-
       c("Confirmed fully vaccinated before test",
         "Double vaccination before test not confirmed"),
     postOp_mortality_30day = 
-      c("Alive within 30-day post-operation",
-        "Dead within 30-day post-operation",
+      c("Alive within 30 days post-operation",
+        "Dead within 30 days post-operation",
         "Error: Surgery after death",
         "No death recorded",
         "No surgery recorded",

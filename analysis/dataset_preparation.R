@@ -148,10 +148,46 @@ myData <- myData %>%
             dplyr::mutate(
              postOp_mortality_30day = dplyr::case_when(
               (.$date_death < .$date_surgery) ~ "Error: Surgery after death",
-                (.$date_death - .$date_surgery) <= 30 ~ "Dead within 30-day post-operation",
-                (.$date_death - .$date_surgery) > 30 ~ "Alive within 30-day post-operation",
+                (.$date_death - .$date_surgery) <= 30 ~ "Dead within 30 days post-operation",
+                (.$date_death - .$date_surgery) > 30 ~ "Alive within 30 days post-operation",
               is.na(.$date_death) ~ "No death recorded",
               is.na(.$date_surgery) ~ "No surgery recorded"
+              )
+            ) %>%
+            ## Indicator for 90-day post-operative mortality.
+            ## # NB: if the list of possible categories changes, the list will
+            ## #     need to be updated in Make_Table1.R, too.
+            dplyr::mutate(
+              postOp_mortality_90day = dplyr::case_when(
+                (.$date_death < .$date_surgery) ~ "Error: Surgery after death",
+                (.$date_death - .$date_surgery) <= 90 ~ "Dead within 90 days post-operation",
+                (.$date_death - .$date_surgery) > 90 ~ "Alive within 90 days post-operation",
+                is.na(.$date_death) ~ "No death recorded",
+                is.na(.$date_surgery) ~ "No surgery recorded"
+              )
+            ) %>%
+            ## Indicator for 6-month post-operative mortality.
+            ## # NB: if the list of possible categories changes, the list will
+            ## #     need to be updated in Make_Table1.R, too.
+            dplyr::mutate(
+              postOp_mortality_6mth = dplyr::case_when(
+                (.$date_death < .$date_surgery) ~ "Error: Surgery after death",
+                (.$date_death - .$date_surgery) <= 180 ~ "Dead within 6 months post-operation",
+                (.$date_death - .$date_surgery) > 180 ~ "Alive within 6 months post-operation",
+                is.na(.$date_death) ~ "No death recorded",
+                is.na(.$date_surgery) ~ "No surgery recorded"
+              )
+            ) %>%
+            ## Indicator for 12-month post-operative mortality.
+            ## # NB: if the list of possible categories changes, the list will
+            ## #     need to be updated in Make_Table1.R, too.
+            dplyr::mutate(
+              postOp_mortality_12mth = dplyr::case_when(
+                (.$date_death < .$date_surgery) ~ "Error: Surgery after death",
+                (.$date_death - .$date_surgery) <= 365 ~ "Dead within 12 months post-operation",
+                (.$date_death - .$date_surgery) > 365 ~ "Alive within 12 months post-operation",
+                is.na(.$date_death) ~ "No death recorded",
+                is.na(.$date_surgery) ~ "No surgery recorded"
               )
             ) %>%
             ## Week of surgery.

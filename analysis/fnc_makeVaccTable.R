@@ -12,18 +12,18 @@ makeVaccTable <- function(inputTable, prefix = c('SNOMED', 'TPP', 'AlwynSNOMED',
   TableRowNames <- 
     inputTable %>%
     dplyr::filter(surgery_pre_or_post_vaccine_UK=="preVaccine surgery",
-                  (postOp_mortality_30day=="Dead within 30-day post-operation"|
-                     postOp_mortality_30day=="Alive within 30-day post-operation" |
+                  (postOp_mortality_30day=="Dead within 30 days post-operation"|
+                     postOp_mortality_30day=="Alive within 30 days post-operation" |
                      postOp_mortality_30day=="Missing")) %>%
     dplyr::arrange(category_vaccination_status_before_test) %>% dplyr::ungroup() %>%
     dplyr::select(postOp_mortality_30day)
   # Pre-March 2020 totals.
-  # ## 30-day post-operative mortality.
+  # ## 30 days post-operative mortality.
   n_preDec2020_Vacc_postOp_mortality_30day <-
     inputTable %>%
     dplyr::filter(surgery_pre_or_post_vaccine_UK=="preVaccine surgery",
-                  (postOp_mortality_30day=="Dead within 30-day post-operation"|
-                     postOp_mortality_30day=="Alive within 30-day post-operation" |
+                  (postOp_mortality_30day=="Dead within 30 days post-operation"|
+                     postOp_mortality_30day=="Alive within 30 days post-operation" |
                      postOp_mortality_30day=="Missing")) %>%
     dplyr::arrange(category_vaccination_status_before_test) %>% dplyr::ungroup() %>%
     dplyr::select(n_per_group)
@@ -34,12 +34,12 @@ makeVaccTable <- function(inputTable, prefix = c('SNOMED', 'TPP', 'AlwynSNOMED',
     select(n_per_group) %>% sum()
   
   # Post-March 2020 totals.
-  # ## 30-day post-operative mortality.
+  # ## 30 days post-operative mortality.
   n_postDec2020_Vacc_postOp_mortality_30day <-
     inputTable %>%
     dplyr::filter(surgery_pre_or_post_vaccine_UK=="postVaccine surgery",
-                  (postOp_mortality_30day=="Dead within 30-day post-operation"|
-                     postOp_mortality_30day=="Alive within 30-day post-operation" |
+                  (postOp_mortality_30day=="Dead within 30 days post-operation"|
+                     postOp_mortality_30day=="Alive within 30 days post-operation" |
                      postOp_mortality_30day=="Missing")) %>%
     dplyr::arrange(category_vaccination_status_before_test) %>% dplyr::ungroup() %>%
     dplyr::select(n_per_group)
@@ -50,12 +50,12 @@ makeVaccTable <- function(inputTable, prefix = c('SNOMED', 'TPP', 'AlwynSNOMED',
     select(n_per_group) %>% sum()
   
   # No pre-operative infection.
-  # ## 30-day post-operative mortality.
+  # ## 30 days post-operative mortality.
   n_subtotals_infection_none_Vacc_postOp_mortality_30day <-
     inputTable %>%
     dplyr::filter(surgery_pre_or_post_vaccine_UK=="postVaccine surgery",
-                  (postOp_mortality_30day=="Dead within 30-day post-operation"|
-                     postOp_mortality_30day=="Alive within 30-day post-operation" |
+                  (postOp_mortality_30day=="Dead within 30 days post-operation"|
+                     postOp_mortality_30day=="Alive within 30 days post-operation" |
                      postOp_mortality_30day=="Missing")) %>%
     dplyr::arrange(category_vaccination_status_before_test) %>% dplyr::ungroup() %>%
     dplyr::select(n_infection_none)
@@ -66,12 +66,12 @@ makeVaccTable <- function(inputTable, prefix = c('SNOMED', 'TPP', 'AlwynSNOMED',
     select(n_infection_none) %>% sum()
   
   # Pre-operative infection (0-2 weeks).
-  # ## 30-day post-operative mortality.
+  # ## 30 days post-operative mortality.
   n_subtotals_infection_0to2wk_Vacc_postOp_mortality_30day <-
     inputTable %>%
     dplyr::filter(surgery_pre_or_post_vaccine_UK=="postVaccine surgery",
-                  (postOp_mortality_30day=="Dead within 30-day post-operation"|
-                     postOp_mortality_30day=="Alive within 30-day post-operation" |
+                  (postOp_mortality_30day=="Dead within 30 days post-operation"|
+                     postOp_mortality_30day=="Alive within 30 days post-operation" |
                      postOp_mortality_30day=="Missing")) %>%
     dplyr::arrange(category_vaccination_status_before_test) %>% dplyr::ungroup() %>%
     dplyr::select(n_infection_0to2wk)
@@ -82,12 +82,12 @@ makeVaccTable <- function(inputTable, prefix = c('SNOMED', 'TPP', 'AlwynSNOMED',
     select(n_infection_0to2wk) %>% sum()
   
   # Pre-operative infection (3-4 weeks).
-  # ## 30-day post-operative mortality.
+  # ## 30 days post-operative mortality.
   n_subtotals_infection_3to4wk_Vacc_postOp_mortality_30day <-
     inputTable %>%
     dplyr::filter(surgery_pre_or_post_vaccine_UK=="postVaccine surgery",
-                  (postOp_mortality_30day=="Dead within 30-day post-operation"|
-                     postOp_mortality_30day=="Alive within 30-day post-operation" |
+                  (postOp_mortality_30day=="Dead within 30 days post-operation"|
+                     postOp_mortality_30day=="Alive within 30 days post-operation" |
                      postOp_mortality_30day=="Missing")) %>%
     dplyr::arrange(category_vaccination_status_before_test) %>% dplyr::ungroup() %>%
     dplyr::select(n_infection_3to4wk)
@@ -98,12 +98,12 @@ makeVaccTable <- function(inputTable, prefix = c('SNOMED', 'TPP', 'AlwynSNOMED',
     select(n_infection_3to4wk) %>% sum()
   
   # Pre-operative infection (5-6 weeks).
-  # ## 30-day post-operative mortality.
+  # ## 30 days post-operative mortality.
   n_subtotals_infection_5to6wk_Vacc_postOp_mortality_30day <-
     inputTable %>%
     dplyr::filter(surgery_pre_or_post_vaccine_UK=="postVaccine surgery",
-                  (postOp_mortality_30day=="Dead within 30-day post-operation"|
-                     postOp_mortality_30day=="Alive within 30-day post-operation" |
+                  (postOp_mortality_30day=="Dead within 30 days post-operation"|
+                     postOp_mortality_30day=="Alive within 30 days post-operation" |
                      postOp_mortality_30day=="Missing")) %>%
     dplyr::arrange(category_vaccination_status_before_test) %>% dplyr::ungroup() %>%
     dplyr::select(n_infection_5to6wk)
@@ -114,12 +114,12 @@ makeVaccTable <- function(inputTable, prefix = c('SNOMED', 'TPP', 'AlwynSNOMED',
     select(n_infection_5to6wk) %>% sum()
   
   # Pre-operative infection (>=7 weeks).
-  # ## 30-day post-operative mortality.
+  # ## 30 days post-operative mortality.
   n_subtotals_infection_7wk_Vacc_postOp_mortality_30day <-
     inputTable %>%
     dplyr::filter(surgery_pre_or_post_vaccine_UK=="postVaccine surgery",
-                  (postOp_mortality_30day=="Dead within 30-day post-operation"|
-                     postOp_mortality_30day=="Alive within 30-day post-operation" |
+                  (postOp_mortality_30day=="Dead within 30 days post-operation"|
+                     postOp_mortality_30day=="Alive within 30 days post-operation" |
                      postOp_mortality_30day=="Missing")) %>%
     dplyr::arrange(category_vaccination_status_before_test) %>% dplyr::ungroup() %>%
     dplyr::select(n_infection_7wk)
