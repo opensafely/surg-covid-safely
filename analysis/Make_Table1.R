@@ -26,8 +26,6 @@
 # the data relating to the 4 week on-boarding. #
 ################################################
 # ----
-myData_noConstraints <- myData
-
 # ## Count  of patients in each of the categories for 
 # ## pre-operative infection status:
 # ##    1. "No record of pre-operative SARS-CoV-2 infection"
@@ -42,7 +40,7 @@ myData_noConstraints <- myData
 # ##    2. Pandemic no vaccine
 # ##    3. Pandemic wiht vaccine
 table1_totals_preOp_infection_status <- 
-  myData_noConstraints %>% dplyr::group_by(era,
+  data_to_use %>% dplyr::group_by(era,
                       preOperative_infection_status) %>% dplyr::summarise(n = n())
 # ## Count of patients in each of the categories for pre-operative infection
 # ## status (stratified by surgery era; see above) also stratified by age band:
@@ -52,7 +50,7 @@ table1_totals_preOp_infection_status <-
 # ##    4. 70-79
 # ##    5. 80+
 table1_ageGroup <- 
-  myData_noConstraints %>% dplyr::group_by(era, age_group_surgery) %>%
+  data_to_use %>% dplyr::group_by(era, age_group_surgery) %>%
   dplyr::summarise(n_all_intervals = sum(ifelse(preOperative_infection_status!=
                                        "Error: Test result after surgery. Check study_definition.",1,0)),
             n_infection_none = sum(ifelse(preOperative_infection_status==
@@ -71,7 +69,7 @@ table1_ageGroup <-
 # ##    1. Female
 # ##    2. Male
 table1_Sex <- 
-  myData_noConstraints %>% dplyr::group_by(era, Sex) %>%
+  data_to_use %>% dplyr::group_by(era, Sex) %>%
   dplyr::summarise(n_all_intervals = sum(ifelse(preOperative_infection_status!=
                                        "Error: Test result after surgery. Check study_definition.",1,0)),
             n_infection_none = sum(ifelse(preOperative_infection_status==
@@ -94,7 +92,7 @@ table1_Sex <-
 # ##    4. "No surgery recorded"
 # ##    5. "No death recorded"
 table1_postOp_mortality_30day <- 
-  myData_noConstraints %>% dplyr::group_by(era, postOp_mortality_30day) %>%
+  data_to_use %>% dplyr::group_by(era, postOp_mortality_30day) %>%
   dplyr::summarise(n_all_intervals = sum(ifelse(preOperative_infection_status!=
                                        "Error: Test result after surgery. Check study_definition.",1,0)),
             n_infection_none = sum(ifelse(preOperative_infection_status==
@@ -117,7 +115,7 @@ table1_postOp_mortality_30day <-
 # ##    4. "No surgery recorded"
 # ##    5. "No death recorded"
 table1_postOp_mortality_90day <- 
-  myData_noConstraints %>% dplyr::group_by(era, postOp_mortality_90day) %>%
+  data_to_use %>% dplyr::group_by(era, postOp_mortality_90day) %>%
   dplyr::summarise(n_all_intervals = sum(ifelse(preOperative_infection_status!=
                                                   "Error: Test result after surgery. Check study_definition.",1,0)),
                    n_infection_none = sum(ifelse(preOperative_infection_status==
@@ -140,7 +138,7 @@ table1_postOp_mortality_90day <-
 # ##    4. "No surgery recorded"
 # ##    5. "No death recorded"
 table1_postOp_mortality_6mth <- 
-  myData_noConstraints %>% dplyr::group_by(era, postOp_mortality_6mth) %>%
+  data_to_use %>% dplyr::group_by(era, postOp_mortality_6mth) %>%
   dplyr::summarise(n_all_intervals = sum(ifelse(preOperative_infection_status!=
                                                   "Error: Test result after surgery. Check study_definition.",1,0)),
                    n_infection_none = sum(ifelse(preOperative_infection_status==
@@ -163,7 +161,7 @@ table1_postOp_mortality_6mth <-
 # ##    4. "No surgery recorded"
 # ##    5. "No death recorded"
 table1_postOp_mortality_12mth <- 
-  myData_noConstraints %>% dplyr::group_by(era, postOp_mortality_12mth) %>%
+  data_to_use %>% dplyr::group_by(era, postOp_mortality_12mth) %>%
   dplyr::summarise(n_all_intervals = sum(ifelse(preOperative_infection_status!=
                                                   "Error: Test result after surgery. Check study_definition.",1,0)),
                    n_infection_none = sum(ifelse(preOperative_infection_status==
@@ -183,7 +181,7 @@ table1_postOp_mortality_12mth <-
 # ##    1. Yes
 # ##    1. No
 table1_chronic_cardiac_disease <- 
-  myData_noConstraints %>% dplyr::group_by(era, chronic_cardiac_disease) %>%
+  data_to_use %>% dplyr::group_by(era, chronic_cardiac_disease) %>%
   dplyr::summarise(n_all_intervals = sum(ifelse(preOperative_infection_status!=
                                               "Error: Test result after surgery. Check study_definition.",1,0)),
                    n_infection_none = sum(ifelse(preOperative_infection_status==
@@ -203,7 +201,7 @@ table1_chronic_cardiac_disease <-
 # ##    1. Yes
 # ##    1. No
 table1_diabetes <- 
-  myData_noConstraints %>% dplyr::group_by(era, diabetes) %>%
+  data_to_use %>% dplyr::group_by(era, diabetes) %>%
   dplyr::summarise(n_all_intervals = sum(ifelse(preOperative_infection_status!=
                                               "Error: Test result after surgery. Check study_definition.",1,0)),
                    n_infection_none = sum(ifelse(preOperative_infection_status==
@@ -223,7 +221,7 @@ table1_diabetes <-
 # ##    1. Yes
 # ##    1. No
 table1_chronic_respiratory_disease <- 
-  myData_noConstraints %>% dplyr::group_by(era, chronic_respiratory_disease) %>%
+  data_to_use %>% dplyr::group_by(era, chronic_respiratory_disease) %>%
   dplyr::summarise(n_all_intervals = sum(ifelse(preOperative_infection_status!=
                                               "Error: Test result after surgery. Check study_definition.",1,0)),
                    n_infection_none = sum(ifelse(preOperative_infection_status==
@@ -432,42 +430,42 @@ table1_chronic_respiratory_disease <-
 # Save tibbles that will inform vectors for the table #
 #######################################################
 # ----
-write.csv(
-  x = table1_ageGroup,
-  file = here::here("output","table1_ageGroup.csv")
-)
-write.csv(
-  x = table1_Sex,
-  file = here::here("output","table1_Sex.csv")
-)
-write.csv(
-  x = table1_postOp_mortality_30day,
-  file = here::here("output","table1_postOp_mortality_30day.csv")
-)
-write.csv(
-  x = table1_postOp_mortality_90day,
-  file = here::here("output","table1_postOp_mortality_90day.csv")
-)
-write.csv(
-  x = table1_postOp_mortality_6mth,
-  file = here::here("output","table1_postOp_mortality_6mth.csv")
-)
-write.csv(
-  x = table1_postOp_mortality_12mth,
-  file = here::here("output","table1_postOp_mortality_12mth.csv")
-)
-write.csv(
-  x = table1_chronic_cardiac_disease,
-  file = here::here("output","table1_chronic_cardiac_disease.csv")
-)
-write.csv(
-  x = table1_diabetes,
-  file = here::here("output","table1_diabetes.csv")
-)
-write.csv(
-  x = table1_chronic_respiratory_disease,
-  file = here::here("output","table1_chronic_respiratory_disease.csv")
-)
+# write.csv(
+#   x = table1_ageGroup,
+#   file = here::here("output",paste0("table1_ageGroup",sensitivity_cohort,".csv")))
+# )
+# write.csv(
+#   x = table1_Sex,
+#   file = here::here("output",paste0("table1_Sex",sensitivity_cohort,".csv"))
+# )
+# write.csv(
+#   x = table1_postOp_mortality_30day,)
+#   file = here::here("output",paste0("table1_postOp_mortality_30day",sensitivity_cohort,".csv")
+# )
+# write.csv(
+#   x = table1_postOp_mortality_90day,
+#   file = here::here("output",paste0("table1_postOp_mortality_90day",sensitivity_cohort,".csv"))
+# )
+# write.csv(
+#   x = table1_postOp_mortality_6mth,
+#   file = here::here("output",paste0("table1_postOp_mortality_6mth",sensitivity_cohort,".csv"))
+# )
+# write.csv(
+#   x = table1_postOp_mortality_12mth,
+#   file = here::here("output",paste0("table1_postOp_mortality_12mth",sensitivity_cohort,".csv"))
+# )
+# write.csv(
+#   x = table1_chronic_cardiac_disease,
+#   file = here::here("output",paste0("table1_chronic_cardiac_disease",sensitivity_cohort,".csv"))
+# )
+# write.csv(
+#   x = table1_diabetes,
+#   file = here::here("output",paste0("table1_diabetes",sensitivity_cohort,".csv"))
+# )
+# write.csv(
+#   x = table1_chronic_respiratory_disease,
+#   file = here::here("output",paste0("table1_chronic_respiratory_disease",sensitivity_cohort,".csv"))
+# )
 # ----
 
 ######################################
@@ -594,7 +592,7 @@ rm(PNV_n_Sex, PNV_pct_Sex)
 # ## Pandemic with vaccine.
 # ## ## Get counts per intervals and overall.
 PWV_n_Sex <- 
-  table1_Sex %>%  dplyr::filter(era=="Pandemic with vaccine") %>%
+  table1_Sex %>%  dplyr::filter(era=="Pandemic with vaccine", Sex!="Missing") %>%
   dplyr::arrange(Sex) %>% dplyr::ungroup() %>% dplyr::select(-c("era", "Sex"))
 # ## ## Get percentages per intervals and overall.
 PWV_pct_Sex <- 
@@ -615,7 +613,7 @@ PWV_Sex[,seq(1,length(colnames(PWV_Sex)),2)] <- PWV_n_Sex
 PWV_Sex[,seq(2,length(colnames(PWV_Sex)),2)] <- PWV_pct_Sex
 colnames(PWV_Sex)[seq(1,length(colnames(PWV_Sex)),2)] <- colnames(PWV_n_Sex)
 colnames(PWV_Sex)[seq(2,length(colnames(PWV_Sex)),2)] <- colnames(PWV_pct_Sex)
-PWV_Sex <- table1_Sex %>%  dplyr::filter(era=="Pandemic with vaccine") %>%
+PWV_Sex <- table1_Sex %>%  dplyr::filter(era=="Pandemic with vaccine", Sex!="Missing") %>%
   dplyr::arrange(Sex) %>% dplyr::select("Sex") %>% dplyr::bind_cols(PWV_Sex)
 # ## ## Clean up
 rm(PWV_n_Sex, PWV_pct_Sex)
@@ -1449,6 +1447,11 @@ tbl_PP_strata <-
       .before = "age_group_surgery"
       ) %>%
     `colnames<-`(c("variable", "strata", "n", "pct"))
+# Save table.
+write.csv(
+  x = tbl_PP_strata,
+  file = here::here("output",paste0("table1_PP_strata",sensitivity_cohort,".csv"))
+)
 # ## Outcomes table.
 tbl_PP_outcome <-
   rbind(
@@ -1465,6 +1468,11 @@ tbl_PP_outcome <-
     .before = "postOp_mortality_30day"
   ) %>%
   `colnames<-`(c("variable", "strata", "n", "pct"))
+# Save table.
+write.csv(
+  x = tbl_PP_outcome,
+  file = here::here("output",paste0("table1_PP_outcome",sensitivity_cohort,".csv"))
+)
 
 # Pandemic no vaccine tables.
 # ## Stratification table.
@@ -1485,6 +1493,11 @@ tbl_PNV_strata <-
     .before = "age_group_surgery"
   ) %>%
   `colnames<-`(c("variable", "strata", "n", "pct"))
+# Save table.
+write.csv(
+  x = tbl_PNV_strata,
+  file = here::here("output",paste0("table1_PNV_strata",sensitivity_cohort,".csv"))
+)
 # ## Outcomes table.
 tbl_PNV_outcome <-
   rbind(
@@ -1507,6 +1520,11 @@ tbl_PNV_outcome <-
                  "n_3to4_weeks","pct_3to4_weeks",
                  "n_5to6_weeks","pct_5to6_weeks",
                  "n_>7_weeks","pct_>7_weeks"))
+# Save table.
+write.csv(
+  x = tbl_PNV_outcome,
+  file = here::here("output",paste0("table1_PNV_outcome",sensitivity_cohort,".csv"))
+)
 
 # Pandemic with vaccine tables.
 # ## Stratification table.
@@ -1527,6 +1545,11 @@ tbl_PWV_strata <-
     .before = "age_group_surgery"
   ) %>%
   `colnames<-`(c("variable", "strata", "n", "pct"))
+# Save table.
+write.csv(
+  x = tbl_PWV_strata,
+  file = here::here("output",paste0("table1_PWV_strata",sensitivity_cohort,".csv"))
+)
 # ## Outcomes table.
 tbl_PWV_outcome <-
   rbind(
@@ -1549,365 +1572,10 @@ tbl_PWV_outcome <-
                  "n_3to4_weeks","pct_3to4_weeks",
                  "n_5to6_weeks","pct_5to6_weeks",
                  "n_>7_weeks","pct_>7_weeks"))
-# ----
-
-#################################################
-#################################################
-# CONTINUE FROM HERE
-#################################################
-#################################################
-
-
-
-
-
-# Post-March 2020 totals.
-# ## Age band.
-n_postMarch2020_ageGroup <- 
-          table1_ageGroup %>%
-          dplyr::filter(era=="Pandemic no vaccine") %>%
-          dplyr::arrange(age_group_surgery) %>% dplyr::ungroup() %>% dplyr::select(n_all_intervals)
-prop_postMarch2020_ageGroup <-
-          n_postMarch2020_ageGroup /
-            table1_ageGroup %>%
-              dplyr::filter(era=="Pandemic no vaccine") %>%
-                select(n_all_intervals) %>% sum()
-# ## Sex.
-n_postMarch2020_Sex <-
-  table1_Sex %>%
-  dplyr::filter(era=="Pandemic no vaccine") %>%
-  dplyr::arrange(Sex) %>% dplyr::ungroup() %>%
-  dplyr::select(n_all_intervals)
-prop_postMarch2020_Sex <- n_postMarch2020_Sex / 
-                            table1_Sex %>%
-                              dplyr::filter(era=="Pandemic no vaccine") %>%
-                                select(n_all_intervals) %>% sum()
-# ## 30-day post-operative mortality.
-n_postMarch2020_postOp_mortality_30day <-
-          table1_postOp_mortality_30day %>%
-          dplyr::filter(era=="Pandemic no vaccine",
-                        (postOp_mortality_30day=="Alive within 30 days post-operation"|
-                           postOp_mortality_30day=="Dead within 30 days post-operation"|
-                    postOp_mortality_30day=="Missing")) %>%
-          dplyr::arrange(postOp_mortality_30day) %>% dplyr::ungroup() %>%
-          dplyr::select(n_all_intervals)
-prop_postMarch2020_postOp_mortality_30day <-
-          n_postMarch2020_postOp_mortality_30day / 
-            table1_postOp_mortality_30day %>%
-              dplyr::filter(era=="Pandemic no vaccine") %>%
-                select(n_all_intervals) %>% sum()
-# ## Totals. `n` is count. `prop` is proportion.
-n_totals_postMarch2020 <- 
-          rbind(n_postMarch2020_ageGroup,
-                n_postMarch2020_Sex,
-                n_postMarch2020_postOp_mortality_30day)
-prop_totals_postMarch2020 <- 
-          rbind(prop_postMarch2020_ageGroup,
-                prop_postMarch2020_Sex,
-                prop_postMarch2020_postOp_mortality_30day)
-
-# No pre-operative infection.
-# ## Age band.
-n_subtotals_infection_none_ageGroup <- 
-          table1_ageGroup %>%
-          dplyr::filter(era=="Pandemic no vaccine") %>%
-          dplyr::arrange(age_group_surgery) %>% dplyr::ungroup() %>% dplyr::select(n_infection_none)
-prop_subtotals_infection_none_ageGroup <-
-          n_subtotals_infection_none_ageGroup /
-            table1_ageGroup %>%
-              dplyr::filter(era=="Pandemic no vaccine") %>%
-                select(n_infection_none) %>% sum()
-# ## Sex.
-n_subtotals_infection_none_Sex <-
-  table1_Sex %>%
-  dplyr::filter(era=="Pandemic no vaccine") %>%
-  dplyr::arrange(Sex) %>% dplyr::ungroup() %>%
-  dplyr::select(n_infection_none)
-prop_subtotals_infection_none_Sex <-
-          n_subtotals_infection_none_Sex /
-            table1_Sex %>%
-              dplyr::filter(era=="Pandemic no vaccine") %>%
-                select(n_infection_none) %>% sum()
-# ## 30-day post-operative mortality.
-n_subtotals_infection_none_postOp_mortality_30day <-
-          table1_postOp_mortality_30day %>%
-          dplyr::filter(era=="Pandemic no vaccine",
-                 (postOp_mortality_30day=="Alive within 30 days post-operation"|
-                    postOp_mortality_30day=="Dead within 30 days post-operation"|
-                    postOp_mortality_30day=="Missing")) %>%
-          dplyr::arrange(postOp_mortality_30day) %>% dplyr::ungroup() %>%
-          dplyr::select(n_infection_none)
-prop_subtotals_infection_none_postOp_mortality_30day <-
-          n_subtotals_infection_none_postOp_mortality_30day / 
-            table1_postOp_mortality_30day %>%
-              dplyr::filter(era=="Pandemic no vaccine") %>%
-                select(n_infection_none) %>% sum()
-# ## Totals. `n` is count. `prop` is proportion.
-n_subtotals_infection_none <- 
-          rbind(n_subtotals_infection_none_ageGroup,
-                n_subtotals_infection_none_Sex,
-                n_subtotals_infection_none_postOp_mortality_30day)
-prop_subtotals_infection_none <- 
-          rbind(prop_subtotals_infection_none_ageGroup,
-                prop_subtotals_infection_none_Sex,
-                prop_subtotals_infection_none_postOp_mortality_30day)
-
-# Pre-operative infection (0-2 weeks).
-# ## Age band.
-n_subtotals_infection_0to2wk_ageGroup <- 
-          table1_ageGroup %>%
-          dplyr::filter(era=="Pandemic no vaccine") %>%
-          dplyr::arrange(age_group_surgery) %>% dplyr::ungroup() %>% dplyr::select(n_infection_0to2wk)
-prop_subtotals_infection_0to2wk_ageGroup <-
-          n_subtotals_infection_0to2wk_ageGroup /
-            table1_ageGroup %>%
-              dplyr::filter(era=="Pandemic no vaccine") %>%
-                select(n_infection_0to2wk) %>% sum()
-# ## Sex.
-n_subtotals_infection_0to2wk_Sex <-
-  table1_Sex %>%
-  dplyr::filter(era=="Pandemic no vaccine") %>%
-  dplyr::arrange(Sex) %>% dplyr::ungroup() %>%
-  dplyr::select(n_infection_0to2wk)
-prop_subtotals_infection_0to2wk_Sex <-
-          n_subtotals_infection_0to2wk_Sex /
-            table1_Sex %>%
-              dplyr::filter(era=="Pandemic no vaccine") %>%
-                select(n_infection_0to2wk) %>% sum()
-# ## 30-day post-operative mortality.
-n_subtotals_infection_0to2wk_postOp_mortality_30day <-
-          table1_postOp_mortality_30day %>%
-          dplyr::filter(era=="Pandemic no vaccine",
-                 (postOp_mortality_30day=="Alive within 30 days post-operation"|
-                    postOp_mortality_30day=="Dead within 30 days post-operation"|
-                    postOp_mortality_30day=="Missing")) %>%
-          dplyr::arrange(postOp_mortality_30day) %>% dplyr::ungroup() %>%
-          dplyr::select(n_infection_0to2wk)
-prop_subtotals_infection_0to2wk_postOp_mortality_30day <-
-          n_subtotals_infection_0to2wk_postOp_mortality_30day / 
-            table1_postOp_mortality_30day %>%
-              dplyr::filter(era=="Pandemic no vaccine") %>%
-                select(n_infection_0to2wk) %>% sum()
-# ## Totals. `n` is count. `prop` is proportion.
-n_subtotals_infection_0to2wk <- 
-          rbind(n_subtotals_infection_0to2wk_ageGroup,
-                n_subtotals_infection_0to2wk_Sex,
-                n_subtotals_infection_0to2wk_postOp_mortality_30day)
-prop_subtotals_infection_0to2wk <- 
-          rbind(prop_subtotals_infection_0to2wk_ageGroup,
-                prop_subtotals_infection_0to2wk_Sex,
-                prop_subtotals_infection_0to2wk_postOp_mortality_30day)
-
-# Pre-operative infection (3-4 weeks).
-# ## Age band.
-n_subtotals_infection_3to4wk_ageGroup <- 
-          table1_ageGroup %>%
-          dplyr::filter(era=="Pandemic no vaccine") %>%
-          dplyr::arrange(age_group_surgery) %>% dplyr::ungroup() %>% dplyr::select(n_infection_3to4wk)
-prop_subtotals_infection_3to4wk_ageGroup <-
-          n_subtotals_infection_3to4wk_ageGroup /
-            table1_ageGroup %>%
-              dplyr::filter(era=="Pandemic no vaccine") %>%
-                select(n_infection_3to4wk) %>% sum()
-# ## Sex.
-n_subtotals_infection_3to4wk_Sex <-
-  table1_Sex %>%
-  dplyr::filter(era=="Pandemic no vaccine") %>%
-  dplyr::arrange(Sex) %>% dplyr::ungroup() %>%
-  dplyr::select(n_infection_3to4wk)
-prop_subtotals_infection_3to4wk_Sex <-
-          n_subtotals_infection_3to4wk_Sex /
-            table1_Sex %>%
-              dplyr::filter(era=="Pandemic no vaccine") %>%
-                select(n_infection_3to4wk) %>% sum()
-# ## 30-day post-operative mortality.
-n_subtotals_infection_3to4wk_postOp_mortality_30day <-
-          table1_postOp_mortality_30day %>%
-          dplyr::filter(era=="Pandemic no vaccine",
-                 (postOp_mortality_30day=="Alive within 30 days post-operation"|
-                    postOp_mortality_30day=="Dead within 30 days post-operation"|
-                    postOp_mortality_30day=="Missing")) %>%
-          dplyr::arrange(postOp_mortality_30day) %>% dplyr::ungroup() %>%
-          dplyr::select(n_infection_3to4wk)
-prop_subtotals_infection_3to4wk_postOp_mortality_30day <-
-          n_subtotals_infection_3to4wk_postOp_mortality_30day / 
-            table1_postOp_mortality_30day %>%
-              dplyr::filter(era=="Pandemic no vaccine") %>%
-                select(n_infection_3to4wk) %>% sum()
-# ## Totals. `n` is count. `prop` is proportion.
-n_subtotals_infection_3to4wk <- 
-          rbind(n_subtotals_infection_3to4wk_ageGroup,
-                n_subtotals_infection_3to4wk_Sex,
-                n_subtotals_infection_3to4wk_postOp_mortality_30day)
-prop_subtotals_infection_3to4wk <- 
-          rbind(prop_subtotals_infection_3to4wk_ageGroup,
-                prop_subtotals_infection_3to4wk_Sex,
-                prop_subtotals_infection_3to4wk_postOp_mortality_30day)
-
-# Pre-operative infection (5-6 weeks).
-# ## Age band.
-n_subtotals_infection_5to6wk_ageGroup <- 
-          table1_ageGroup %>%
-          dplyr::filter(era=="Pandemic no vaccine") %>%
-          dplyr::arrange(age_group_surgery) %>% dplyr::ungroup() %>% dplyr::select(n_infection_5to6wk)
-prop_subtotals_infection_5to6wk_ageGroup <-
-          n_subtotals_infection_5to6wk_ageGroup /
-            table1_ageGroup %>%
-              dplyr::filter(era=="Pandemic no vaccine") %>%
-                select(n_infection_5to6wk) %>% sum()
-# ## Sex.
-n_subtotals_infection_5to6wk_Sex <-
-  table1_Sex %>%
-  dplyr::filter(era=="Pandemic no vaccine") %>%
-  dplyr::arrange(Sex) %>% dplyr::ungroup() %>%
-  dplyr::select(n_infection_5to6wk)
-prop_subtotals_infection_5to6wk_Sex <-
-          n_subtotals_infection_5to6wk_Sex /
-            table1_Sex %>%
-              dplyr::filter(era=="Pandemic no vaccine") %>%
-                select(n_infection_5to6wk) %>% sum()
-# ## 30-day post-operative mortality.
-n_subtotals_infection_5to6wk_postOp_mortality_30day <-
-          table1_postOp_mortality_30day %>%
-          dplyr::filter(era=="Pandemic no vaccine",
-                 (postOp_mortality_30day=="Alive within 30 days post-operation"|
-                    postOp_mortality_30day=="Dead within 30 days post-operation"|
-                    postOp_mortality_30day=="Missing")) %>%
-          dplyr::arrange(postOp_mortality_30day) %>% dplyr::ungroup() %>%
-          dplyr::select(n_infection_5to6wk)
-prop_subtotals_infection_5to6wk_postOp_mortality_30day <-
-          n_subtotals_infection_5to6wk_postOp_mortality_30day / 
-            table1_postOp_mortality_30day %>%
-              dplyr::filter(era=="Pandemic no vaccine") %>%
-                select(n_infection_5to6wk) %>% sum()
-# ## Totals. `n` is count. `prop` is proportion.
-n_subtotals_infection_5to6wk <- 
-          rbind(n_subtotals_infection_5to6wk_ageGroup,
-                n_subtotals_infection_5to6wk_Sex,
-                n_subtotals_infection_5to6wk_postOp_mortality_30day)
-prop_subtotals_infection_5to6wk <- 
-          rbind(prop_subtotals_infection_5to6wk_ageGroup,
-                prop_subtotals_infection_5to6wk_Sex,
-                prop_subtotals_infection_5to6wk_postOp_mortality_30day)
-
-# Pre-operative infection (>=7 weeks).
-# ## Age band.
-n_subtotals_infection_7wk_ageGroup <- 
-          table1_ageGroup %>%
-          dplyr::filter(era=="Pandemic no vaccine") %>%
-          dplyr::arrange(age_group_surgery) %>% dplyr::ungroup() %>% dplyr::select(n_infection_7wk)
-prop_subtotals_infection_7wk_ageGroup <-
-          n_subtotals_infection_7wk_ageGroup /
-            table1_ageGroup %>%
-              dplyr::filter(era=="Pandemic no vaccine") %>%
-                select(n_infection_7wk) %>% sum()
-# ## Sex.
-n_subtotals_infection_7wk_Sex <-
-  table1_Sex %>%
-  dplyr::filter(era=="Pandemic no vaccine") %>%
-  dplyr::arrange(Sex) %>% dplyr::ungroup() %>%
-  dplyr::select(n_infection_7wk)
-prop_subtotals_infection_7wk_Sex <-
-          n_subtotals_infection_7wk_Sex /
-            table1_Sex %>%
-              dplyr::filter(era=="Pandemic no vaccine") %>%
-                select(n_infection_7wk) %>% sum()
-# ## 30-day post-operative mortality.
-n_subtotals_infection_7wk_postOp_mortality_30day <-
-          table1_postOp_mortality_30day %>%
-          dplyr::filter(era=="Pandemic no vaccine",
-                 (postOp_mortality_30day=="Alive within 30 days post-operation"|
-                    postOp_mortality_30day=="Dead within 30 days post-operation"|
-                    postOp_mortality_30day=="Missing")) %>%
-          dplyr::arrange(postOp_mortality_30day) %>% dplyr::ungroup() %>%
-          dplyr::select(n_infection_7wk)
-prop_subtotals_infection_7wk_postOp_mortality_30day <-
-          n_subtotals_infection_7wk_postOp_mortality_30day / 
-            table1_postOp_mortality_30day %>%
-              dplyr::filter(era=="Pandemic no vaccine") %>%
-                select(n_infection_7wk) %>% sum()
-# ## Totals. `n` is count. `prop` is proportion.
-n_subtotals_infection_7wk <- 
-          rbind(n_subtotals_infection_7wk_ageGroup,
-                n_subtotals_infection_7wk_Sex,
-                n_subtotals_infection_7wk_postOp_mortality_30day)
-prop_subtotals_infection_7wk <- 
-          rbind(prop_subtotals_infection_7wk_ageGroup,
-                prop_subtotals_infection_7wk_Sex,
-                prop_subtotals_infection_7wk_postOp_mortality_30day)
-# ----
-
-
-########################################################################
-# Make kable Table 1, for the data relating to the 4 week on-boarding. #
-########################################################################
-# ----
-# Make data frame.
-df_4wk <- data.frame(
-          # Pre-March 2020 totals, n.
-          n_totals_preMarch2020,
-          # Pre-March 2020 totals, %.
-          round(prop_totals_preMarch2020 * 100, 0),
-          # Post-March 2020 totals, n.
-          n_totals_postMarch2020,
-          # Post-March 2020 totals, %.
-          round(prop_totals_postMarch2020 * 100, 0),
-          # No pre-operative infection, n.
-          n_subtotals_infection_none,
-          # No pre-operative infection, %.
-          round(prop_subtotals_infection_none * 100, 0),
-          # Pre-operative infection (0-2 weeks), n.
-          n_subtotals_infection_0to2wk,
-          # Pre-operative infection (0-2 weeks), %.
-          round(prop_subtotals_infection_0to2wk * 100, 0),
-          # Pre-operative infection (3-4 weeks), n.
-          n_subtotals_infection_3to4wk,
-          # Pre-operative infection (3-4 weeks), %.
-          round(prop_subtotals_infection_3to4wk * 100, 0),
-          # Pre-operative infection (5-6 weeks), n.
-          n_subtotals_infection_5to6wk,
-          # Pre-operative infection (5-6 weeks), %.
-          round(prop_subtotals_infection_5to6wk * 100, 0),
-          # Pre-operative infection (>=7 weeks), n.
-          n_subtotals_infection_7wk,
-          # Pre-operative infection (>=7 weeks), %.
-          round(prop_subtotals_infection_7wk * 100, 0)
-        )
-# Label data frame.
-colnames(df_4wk) <- rep(c("n", "%"),7)
-rownames(df_4wk) <- c(
-          # ## Age groups.
-          "0-29","30-49","50-69","70-79",">=80","Missing",
-          # ## Sex.
-          "Female", "Male", "Missing ",
-          # ## 30-day post-operative mortality.
-          "Alive within 30 days post-operation",
-          "Dead within 30 days post-operation", "Missing  ")
-# Save data frame.
+# Save table.
 write.csv(
-  x = df_4wk,
-  file = here::here("output","table1_4wk_onboarding.csv")
+  x = tbl_PWV_outcome,
+  file = here::here("output",paste0("table1_PWV_outcome",sensitivity_cohort,".csv"))
 )
-# Make kable table.
-df_4wk %>%
-  kableExtra::kbl(caption = paste0("<b>Table 1</b> Baseline characteristics and outcomes for ",
-                       "patients undergoing surgery stratified by time from ",
-                       "indication of SARS-CoV-2 infection. Values are ",
-                       "counts and percentages.", collapse = ""),
-      format = 'html') %>%
-  kableExtra::kable_classic(full_width = F,
-                fixed_thead = T,
-                html_font="Cambria") %>%
-  kableExtra::pack_rows(index = c("Age" = 6, "Sex" = 3,
-                      "30-day post-operative mortality" = 3)) %>%
-  kableExtra::add_header_above(c(" " = 7, "0-2 weeks" = 2, "3-4 weeks" = 2,
-                     "5-6 weeks" = 2, ">=7 weeks" = 2)) %>%
-  kableExtra::add_header_above(c(" " = 1, "Pre-March 2020,\ntotals" = 2,
-                     "Post-March 2020,\ntotals" = 2,
-                     "No indication of infection" = 2,
-                     "\nIndication of infection" = 8)) %>%
-  kableExtra::add_header_above(c(" " = 5, "Post-March 2020" = 10)) %>%
-  kableExtra::column_spec(c(1:15), width = "5em") %>%
-  kableExtra::row_spec(0, align = "c") #%>%
-  #kableExtra::save_kable(file = here::here("output","Table1_4wk_onboarding.png"))
 # ----
+
