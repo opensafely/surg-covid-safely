@@ -1471,7 +1471,7 @@ tbl_PP_outcome <-
 # Save table.
 write.csv(
   x = tbl_PP_outcome,
-  file = here::here("output","table1_PP_outcome.csv")
+  file = here::here("output",paste0("table1_PP_outcome",sensitivity_cohort,".csv"))
 )
 
 # Pandemic no vaccine tables.
