@@ -371,8 +371,9 @@ study = StudyDefinition(
     
 
 	##'Urgency of surgery'.
+    # This will require the definition of a special OPCS codelist using https://www.opencodelists.org/codelist/user/ciaranmci/add/
 	# surgery_urgency = patients.admitted_to_hospital(
-		# with_these_procedures = codelist_cancer_surgery,
+		# with_these_procedures = OPCS_codelist_cancer_surgery,
 		# returning = "admission_method",
 		# on_or_after = start_date,
 		# find_first_match_in_period = True,

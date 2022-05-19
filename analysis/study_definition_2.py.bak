@@ -16,7 +16,7 @@ from codelists import *
 #/////import study_parameters
 # # Define variables explicitly from study_parameters
 start_date = "2018-03-17" #study_parameters["start_date"]
-end_date = "2022-01-01" #study_parameters["end_date"]
+end_date = "2022-03-17" #study_parameters["end_date"]
 
 #########################
 ## Study definition.
