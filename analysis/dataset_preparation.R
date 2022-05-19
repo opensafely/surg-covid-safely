@@ -65,6 +65,15 @@ myData <- myData %>%
       is.na(.$date_surgery) ~ "Error: No surgery"
     )
   ) %>%
+  ## Indicator of surgeries that took place within the data collection window
+  ## of the COVIDSurg paper that we are emulating.
+  dplyr::mutate(
+    COVIDSurg_data_collection_period = dplyr::case_when(
+      (.$date_surgery >= "2020-10-05" & .$date_surgery <= "2020-11-01") ~ "COVIDSurg data collection period",
+      is.na(.$date_surgery) ~ "Error: No surgery",
+      TRUE ~ "Not COVIDSurg data collection period"
+    )
+  ) %>%
   ## Date of death.
   dplyr::mutate(
     date_death = .$date_death_ons

@@ -27,6 +27,12 @@ codelist_cancer_surgery = codelist_from_csv(
     column="code",
 )
 
+# OPCS_codelist_cancer_surgery = codelist_from_csv(
+    # "codelists/user-ciaranmci-?????????.csv",
+    # system="OPCS",
+    # column="code",
+# )
+
 # First COVID vaccination administerd (https://www.opencodelists.org/codelist/primis-covid19-vacc-uptake/covadm1/v1/)
 codelist_COVID_first_vaccination = codelist_from_csv(
     "codelists/primis-covid19-vacc-uptake-covadm1.csv",
