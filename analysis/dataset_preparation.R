@@ -22,6 +22,7 @@ df_input <- readr::read_csv(
                    date_latest_test_preOp_SARS_CoV_2_outcome_negative = col_date(),
                    date_death_ons = col_date(),
                    date_death_cpns = col_date(),
+                   date_postOp_cerebrovascular_complication = col_date(),
                    SARS_CoV_2_test_type = col_factor(),
                    SARS_CoV_2_symptomatic = col_factor(),
                    age_at_surgery = col_integer(),
@@ -196,6 +197,18 @@ myData <- myData %>%
                 (.$date_death - .$date_surgery) <= 365 ~ "Dead within 12 months post-operation",
                 (.$date_death - .$date_surgery) > 365 ~ "Alive within 12 months post-operation",
                 is.na(.$date_death) ~ "No death recorded",
+                is.na(.$date_surgery) ~ "No surgery recorded"
+              )
+            ) %>%
+            ## Indicator for 30-day post-operative mortality.
+            ## # NB: if the list of possible categories changes, the list will
+            ## #     need to be updated in Make_Table1.R, too.
+            dplyr::mutate(
+              postOp_cerebrovascular_complication_30day = dplyr::case_when(
+                (.$date_postOp_cerebrovascular_complication < .$date_surgery) ~ "Ignore: Pre-operative complication",
+                (.$date_postOp_cerebrovascular_complication - .$date_surgery) <= 30 ~ "Cerebrovascular complication within 30 days post-operation",
+                (.$date_postOp_cerebrovascular_complication - .$date_surgery) > 30 ~ "No cerebrovascular complication within 30 days post-operation",
+                is.na(.$date_postOp_cerebrovascular_complication) ~ "No cerebrovascular complication recorded",
                 is.na(.$date_surgery) ~ "No surgery recorded"
               )
             ) %>%

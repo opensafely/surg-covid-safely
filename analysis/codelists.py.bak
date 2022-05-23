@@ -26,6 +26,7 @@ codelist_cancer_surgery_part1 = codelist_from_csv(
     system="snomed",
     column="code",
 )
+
 # (https://www.opencodelists.org/codelist/user/alwynkotze/surgery-covidsurg-replication-codes-from-abbott/13136379/)
 codelist_cancer_surgery_part2 = codelist_from_csv(
     "codelists/user-alwynkotze-surgery-covidsurg-replication-codes-from-abbott.csv",

@@ -1,14 +1,11 @@
-# Make_Table1_4wk_onboarding.R
+# Make_Table1.R
 #
 # This script processes data from the myData dataframe to create a table
 # in the style of Table 1 from the primary publication that this project is
 # emulating (doi: 10.1111/anae.15458).
-# The limited variables displayed in the table are those chosen for the 
-# 4-week on-boarding period in which the research team were inducted into the
-# proper use of the OpenSAFELY platform.
-# See Make_Table1_complete.R for similarly-structured R syntax to make a table
-# that displays all relevant variables.
 #
+# This script should not be used in isolation. Rather, it is called from
+# Make_all_Table1s.R, in which some parameters are specified.
 # 
 # # If ever running locally.
 # list_of_packages <- c("tidyverse", "lubridate", "kableExtra",
@@ -162,6 +159,30 @@ table1_postOp_mortality_6mth <-
 # ##    5. "No death recorded"
 table1_postOp_mortality_12mth <- 
   data_to_use %>% dplyr::group_by(era, postOp_mortality_12mth) %>%
+  dplyr::summarise(n_all_intervals = sum(ifelse(preOperative_infection_status!=
+                                                  "Error: Test result after surgery. Check study_definition.",1,0)),
+                   n_infection_none = sum(ifelse(preOperative_infection_status==
+                                                   "No record of pre-operative SARS-CoV-2 infection",1,0)),
+                   n_infection_0to2wk = sum(ifelse(preOperative_infection_status==
+                                                     "0-2 weeks record of pre-operative SARS-CoV-2 infection",1,0)),
+                   n_infection_3to4wk = sum(ifelse(preOperative_infection_status==
+                                                     "3-4 weeks record of pre-operative SARS-CoV-2 infection",1,0)),
+                   n_infection_5to6wk = sum(ifelse(preOperative_infection_status==
+                                                     "5-6 weeks record of pre-operative SARS-CoV-2 infection",1,0)),
+                   n_infection_7wk = sum(ifelse(preOperative_infection_status==
+                                                  ">=7 weeks record of pre-operative SARS-CoV-2 infection",1,0))
+  )
+# ## Count of patients in each of the categories for pre-operative infection
+# ## status (stratified by surgery era; see above) also stratified by whether
+# ## or not the patient experience cerebrovascular complications (i.e. TIA or
+# stroke) within 30 days of their surgery:
+# ##    1. "No cerebrovascular complication within 30 days post-operation"
+# ##    2. "Cerebrovascular complication within 30 days post-operation" 
+# ##    3. "Ignore: Pre-operative complication"
+# ##    4. "No cerebrovascular complication recorded"
+# ##    5. "No surgery recorded"
+table1_postOp_cerebrovascular_complication_30day <- 
+  data_to_use %>% dplyr::group_by(era, postOp_cerebrovascular_complication_30day) %>%
   dplyr::summarise(n_all_intervals = sum(ifelse(preOperative_infection_status!=
                                                   "Error: Test result after surgery. Check study_definition.",1,0)),
                    n_infection_none = sum(ifelse(preOperative_infection_status==
@@ -373,6 +394,26 @@ table1_postOp_mortality_12mth <-
                          "n_infection_3to4wk" = 0,
                          "n_infection_5to6wk" = 0,
                          "n_infection_7wk" = 0))
+# ## table1_postOp_cerebrovascular_complication_30day
+table1_postOp_cerebrovascular_complication_30day <- 
+  expand.grid(
+    era = 
+      c("Error: No surgery", "Pre-pandemic", "Pandemic no vaccine", "Pandemic with vaccine"),
+    postOp_cerebrovascular_complication_30day = 
+      c("No cerebrovascular complication within 30 days post-operation",
+        "Cerebrovascular complication within 30 days post-operation",
+        "Ignore: Pre-operative complication",
+        "No cerebrovascular complication recorded",
+        "No surgery recorded",
+        "Missing")) %>%
+  dplyr::full_join(table1_postOp_cerebrovascular_complication_30day) %>%
+  dplyr::arrange(era) %>%
+  tidyr::replace_na(list("n_all_intervals" = 0,
+                         "n_infection_none" = 0,
+                         "n_infection_0to2wk" = 0,
+                         "n_infection_3to4wk" = 0,
+                         "n_infection_5to6wk" = 0,
+                         "n_infection_7wk" = 0))
 # ## table1_chronic_cardiac_disease.
 table1_chronic_cardiac_disease <- 
   expand.grid(
@@ -453,6 +494,10 @@ table1_chronic_respiratory_disease <-
 # write.csv(
 #   x = table1_postOp_mortality_12mth,
 #   file = here::here("output",paste0("table1_postOp_mortality_12mth",sensitivity_cohort,".csv"))
+# )
+# write.csv(
+#   x = table1_postOp_cerebrovascular_complication_30day,
+#   file = here::here("output",paste0("table1_postOp_cerebrovascular_complication_30day",sensitivity_cohort,".csv"))
 # )
 # write.csv(
 #   x = table1_chronic_cardiac_disease,
@@ -1079,6 +1124,121 @@ PWV_postOp_mortality_12mth <-
 rm(PWV_n_postOp_mortality_12mth, PWV_pct_postOp_mortality_12mth)
 # ----
 
+# 30-day post-operative cerebrovascular_complication. ----
+# ## Pre-pandemic
+# ## ## Get counts per intervals and overall.
+PP_n_postOp_cerebrovascular_complication_30day <- 
+  table1_postOp_cerebrovascular_complication_30day %>%
+  dplyr::filter(era=="Pre-pandemic",
+                (postOp_cerebrovascular_complication_30day=="Cerebrovascular complication within 30 days post-operation"|
+                   postOp_cerebrovascular_complication_30day=="No cerebrovascular complication within 30 days post-operation")) %>%
+  dplyr::arrange(postOp_cerebrovascular_complication_30day) %>%
+  dplyr::ungroup() %>% dplyr::select("n_all_intervals")
+# ## ## Get percentages per intervals and overall.
+PP_pct_postOp_cerebrovascular_complication_30day <-
+  (PP_n_postOp_cerebrovascular_complication_30day / sum(PP_n_postOp_cerebrovascular_complication_30day)) %>%
+  "*"(100) %>% tidyr::replace_na(list("n_all_intervals" = 0)) %>%
+  `colnames<-`(c("pct_all_intervals"))
+# ## ## Bind the counts and percentages.
+PP_postOp_cerebrovascular_complication_30day <-
+  table1_postOp_cerebrovascular_complication_30day %>%
+  dplyr::filter(era=="Pre-pandemic",
+                (postOp_cerebrovascular_complication_30day=="Cerebrovascular complication within 30 days post-operation"|
+                   postOp_cerebrovascular_complication_30day=="No cerebrovascular complication within 30 days post-operation")) %>%
+  dplyr::arrange(postOp_cerebrovascular_complication_30day) %>%
+  dplyr::select(postOp_cerebrovascular_complication_30day) %>%
+  dplyr::bind_cols(PP_n_postOp_cerebrovascular_complication_30day, PP_pct_postOp_cerebrovascular_complication_30day)
+# ## ## Clean up.
+rm(PP_n_postOp_cerebrovascular_complication_30day, PP_pct_postOp_cerebrovascular_complication_30day)
+
+# ## Pandemic no vaccine.
+# ## ## Get counts per intervals and overall.
+PNV_n_postOp_cerebrovascular_complication_30day <- 
+  table1_postOp_cerebrovascular_complication_30day %>%
+  dplyr::filter(era=="Pandemic no vaccine",
+                (postOp_cerebrovascular_complication_30day=="Cerebrovascular complication within 30 days post-operation"|
+                   postOp_cerebrovascular_complication_30day=="No cerebrovascular complication within 30 days post-operation")) %>%
+  dplyr::arrange(postOp_cerebrovascular_complication_30day) %>%
+  dplyr::ungroup() %>% dplyr::select(-c("era", "postOp_cerebrovascular_complication_30day"))
+# ## ## Get percentages per intervals and overall.
+PNV_pct_postOp_cerebrovascular_complication_30day <- 
+  table1_postOp_cerebrovascular_complication_30day %>%
+  dplyr::filter(era=="Pandemic no vaccine",
+                (postOp_cerebrovascular_complication_30day=="Cerebrovascular complication within 30 days post-operation"|
+                   postOp_cerebrovascular_complication_30day=="No cerebrovascular complication within 30 days post-operation")) %>%
+  select(-c("era", "postOp_cerebrovascular_complication_30day")) %>%
+  colSums() %>% sweep(PNV_n_postOp_cerebrovascular_complication_30day, 2, ., "/") %>% "*"(100) %>%
+  tidyr::replace_na(list("n_all_intervals" = 0, "n_infection_none" = 0,
+                         "n_infection_0to2wk"  = 0, "n_infection_3to4wk" = 0,
+                         "n_infection_5to6wk" = 0, "n_infection_7wk" = 0)) %>%
+  `colnames<-`(c("pct_all_intervals", "pct_infection_none", "pct_infection_0to2wk",
+                 "pct_infection_3to4wk", "pct_infection_5to6wk", "pct_infection_7wk"))
+# ## ## Interlace counts and percentages.
+PNV_postOp_cerebrovascular_complication_30day <-
+  matrix(0,
+         nrow = length(rownames(PNV_n_postOp_cerebrovascular_complication_30day)),
+         ncol = length(colnames(PNV_n_postOp_cerebrovascular_complication_30day))*2) %>%
+  as.data.frame()
+PNV_postOp_cerebrovascular_complication_30day[,seq(1,length(colnames(PNV_postOp_cerebrovascular_complication_30day)),2)] <- PNV_n_postOp_cerebrovascular_complication_30day
+PNV_postOp_cerebrovascular_complication_30day[,seq(2,length(colnames(PNV_postOp_cerebrovascular_complication_30day)),2)] <- PNV_pct_postOp_cerebrovascular_complication_30day
+colnames(PNV_postOp_cerebrovascular_complication_30day)[seq(1,length(colnames(PNV_postOp_cerebrovascular_complication_30day)),2)] <- colnames(PNV_n_postOp_cerebrovascular_complication_30day)
+colnames(PNV_postOp_cerebrovascular_complication_30day)[seq(2,length(colnames(PNV_postOp_cerebrovascular_complication_30day)),2)] <- colnames(PNV_pct_postOp_cerebrovascular_complication_30day)
+PNV_postOp_cerebrovascular_complication_30day <-
+  table1_postOp_cerebrovascular_complication_30day %>%
+  dplyr::filter(era=="Pandemic no vaccine",
+                (postOp_cerebrovascular_complication_30day=="Cerebrovascular complication within 30 days post-operation"|
+                   postOp_cerebrovascular_complication_30day=="No cerebrovascular complication within 30 days post-operation")) %>%
+  dplyr::arrange(postOp_cerebrovascular_complication_30day) %>%
+  dplyr::select(postOp_cerebrovascular_complication_30day) %>%
+  dplyr::bind_cols(PNV_postOp_cerebrovascular_complication_30day)
+# ## ## Clean up.
+rm(PNV_n_postOp_cerebrovascular_complication_30day, PNV_pct_postOp_cerebrovascular_complication_30day)
+
+# ## Pandemic with vaccine.
+# ## ## Get counts per intervals and overall.
+PWV_n_postOp_cerebrovascular_complication_30day <- 
+  table1_postOp_cerebrovascular_complication_30day %>%
+  dplyr::filter(era=="Pandemic with vaccine",
+                (postOp_cerebrovascular_complication_30day=="Cerebrovascular complication within 30 days post-operation"|
+                   postOp_cerebrovascular_complication_30day=="No cerebrovascular complication within 30 days post-operation")) %>%
+  dplyr::arrange(postOp_cerebrovascular_complication_30day) %>%
+  dplyr::ungroup() %>% dplyr::select(-c("era", "postOp_cerebrovascular_complication_30day"))
+# ## ## Get percentages per intervals and overall.
+PWV_pct_postOp_cerebrovascular_complication_30day <- 
+  table1_postOp_cerebrovascular_complication_30day %>%
+  dplyr::filter(era=="Pandemic with vaccine",
+                (postOp_cerebrovascular_complication_30day=="Cerebrovascular complication within 30 days post-operation"|
+                   postOp_cerebrovascular_complication_30day=="No cerebrovascular complication within 30 days post-operation")) %>%
+  select(-c("era", "postOp_cerebrovascular_complication_30day")) %>%
+  colSums() %>% sweep(PWV_n_postOp_cerebrovascular_complication_30day, 2, ., "/") %>% "*"(100) %>%
+  tidyr::replace_na(list("n_all_intervals" = 0, "n_infection_none" = 0,
+                         "n_infection_0to2wk"  = 0, "n_infection_3to4wk" = 0,
+                         "n_infection_5to6wk" = 0, "n_infection_7wk" = 0
+  )) %>%
+  `colnames<-`(c("pct_all_intervals", "pct_infection_none", "pct_infection_0to2wk",
+                 "pct_infection_3to4wk", "pct_infection_5to6wk", "pct_infection_7wk"))
+# ## ## Interlace counts and percentages.
+PWV_postOp_cerebrovascular_complication_30day <-
+  matrix(0,
+         length(rownames(PWV_n_postOp_cerebrovascular_complication_30day)),
+         ncol = length(colnames(PWV_n_postOp_cerebrovascular_complication_30day))*2) %>%
+  as.data.frame()
+PWV_postOp_cerebrovascular_complication_30day[,seq(1,length(colnames(PWV_postOp_cerebrovascular_complication_30day)),2)] <- PWV_n_postOp_cerebrovascular_complication_30day
+PWV_postOp_cerebrovascular_complication_30day[,seq(2,length(colnames(PWV_postOp_cerebrovascular_complication_30day)),2)] <- PWV_pct_postOp_cerebrovascular_complication_30day
+colnames(PWV_postOp_cerebrovascular_complication_30day)[seq(1,length(colnames(PWV_postOp_cerebrovascular_complication_30day)),2)] <- colnames(PWV_n_postOp_cerebrovascular_complication_30day)
+colnames(PWV_postOp_cerebrovascular_complication_30day)[seq(2,length(colnames(PWV_postOp_cerebrovascular_complication_30day)),2)] <- colnames(PWV_pct_postOp_cerebrovascular_complication_30day)
+PWV_postOp_cerebrovascular_complication_30day <-
+  table1_postOp_cerebrovascular_complication_30day %>% 
+  dplyr::filter(era=="Pandemic with vaccine",
+                (postOp_cerebrovascular_complication_30day=="Cerebrovascular complication within 30 days post-operation"|
+                   postOp_cerebrovascular_complication_30day=="No cerebrovascular complication within 30 days post-operation")) %>%
+  dplyr::arrange(postOp_cerebrovascular_complication_30day) %>%
+  dplyr::select(postOp_cerebrovascular_complication_30day) %>%
+  dplyr::bind_cols(PWV_postOp_cerebrovascular_complication_30day)
+# ## ## Clean up
+rm(PWV_n_postOp_cerebrovascular_complication_30day, PWV_pct_postOp_cerebrovascular_complication_30day)
+# ----
+
 # Chronic cardiac disease. ----
 # ## Pre-pandemic
 # ## ## Get counts per intervals and overall.
@@ -1458,13 +1618,15 @@ tbl_PP_outcome <-
     as.matrix(PP_postOp_mortality_30day),
     as.matrix(PP_postOp_mortality_90day),
     as.matrix(PP_postOp_mortality_6mth),
-    as.matrix(PP_postOp_mortality_12mth)) %>%
+    as.matrix(PP_postOp_mortality_12mth),
+    as.matrix(PP_postOp_cerebrovascular_complication_30day)) %>%
   as.data.frame()  %>%
   tibble::add_column(., c(
     rep("30-day post-operative mortality",2),
     rep("90-day post-operative mortality",2),
     rep("6-month post-operative mortality",2),
-    rep("12-month post-operative mortality",2)),
+    rep("12-month post-operative mortality",2),
+    rep("30-day post-operative cerebrovascular complication",2)),
     .before = "postOp_mortality_30day"
   ) %>%
   `colnames<-`(c("variable", "strata", "n", "pct"))
@@ -1504,13 +1666,15 @@ tbl_PNV_outcome <-
     as.matrix(PNV_postOp_mortality_30day),
     as.matrix(PNV_postOp_mortality_90day),
     as.matrix(PNV_postOp_mortality_6mth),
-    as.matrix(PNV_postOp_mortality_12mth)) %>%
+    as.matrix(PNV_postOp_mortality_12mth),
+    as.matrix(PNV_postOp_cerebrovascular_complication_30day)) %>%
   as.data.frame()  %>%
   tibble::add_column(., c(
     rep("30-day post-operative mortality",2),
     rep("90-day post-operative mortality",2),
     rep("6-month post-operative mortality",2),
-    rep("12-month post-operative mortality",2)),
+    rep("12-month post-operative mortality",2),
+    rep("30-day post-operative cerebrovascular complication",2)),
     .before = "postOp_mortality_30day"
   ) %>%
   `colnames<-`(c("variable", "strata",
@@ -1556,13 +1720,15 @@ tbl_PWV_outcome <-
     as.matrix(PWV_postOp_mortality_30day),
     as.matrix(PWV_postOp_mortality_90day),
     as.matrix(PWV_postOp_mortality_6mth),
-    as.matrix(PWV_postOp_mortality_12mth)) %>%
+    as.matrix(PWV_postOp_mortality_12mth),
+    as.matrix(PWV_postOp_cerebrovascular_complication_30day)) %>%
   as.data.frame()  %>%
   tibble::add_column(., c(
     rep("30-day post-operative mortality",2),
     rep("90-day post-operative mortality",2),
     rep("6-month post-operative mortality",2),
-    rep("12-month post-operative mortality",2)),
+    rep("12-month post-operative mortality",2),
+    rep("30-day post-operative cerebrovascular complication",2)),
     .before = "postOp_mortality_30day"
   ) %>%
   `colnames<-`(c("variable", "strata",

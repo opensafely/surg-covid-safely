@@ -191,19 +191,13 @@ study = StudyDefinition(
 	#		"incidence": 0.3}
 	#),
 
-	### Date of post-operative cerebrovascular complications.
-	#date_postOp_cerebrovascular_complications = patients.with_these_clinical_events(
-	#	codelist_cerebrovascular_complications,
-	#	on_or_after = "date_surgery",
-	#	returning = 'date',
-	#	return_number_of_matches_in_period = True,
-	#	include_date_of_match = True,
-	#	date_format = “YYYY-MM-DD”,
-	#	return_expectations={
-	#		“date”: {“earliest”: date_surgery, “latest”: “today”},
-	#		“rate”: “uniform”,
-	#		“incidence”: 0.3}
-	#),
+	## Date of post-operative cerebrovascular complications.
+	date_postOp_cerebrovascular_complication = patients.with_these_clinical_events(
+		codelist_cerebrovascular_complications,
+		on_or_after = "date_surgery",
+		returning = "date",
+		date_format = "YYYY-MM-DD",
+	),
 
 	## Variables to calculate 'length of stay'.
 	# Date of admission.
