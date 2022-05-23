@@ -95,6 +95,12 @@
       "url": "https://codelists.opensafely.org/codelist/opensafely/chronic-respiratory-disease/69a34cc0/",
       "downloaded_at": "2022-05-12 15:14:20.760737Z",
       "sha": "77946d9b844f348daf5c8c9e81346b9776d13998"
+    },
+    "user-alwynkotze-stroke.csv": {
+      "id": "user/alwynkotze/stroke/7a03f043",
+      "url": "https://codelists.opensafely.org/codelist/user/alwynkotze/stroke/7a03f043/",
+      "downloaded_at": "2022-05-23 12:46:50.431217Z",
+      "sha": "c1fd606519181423972ea099ec4e7ca31ff04747"
     }
   }
 }

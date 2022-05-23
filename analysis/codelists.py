@@ -190,26 +190,12 @@ codelist_cancer_ctv3_combine = combine_codelists(
 #    codelist_**,
 #)
 #
-### 30-day post-operative cerebrovascular complications.
-## Defined by...
-#
-## Post-operative *<indicator of post-operative cerebrovascular complications>.
-#codelist_* = codelist_from_csv(
-#    "codelists/codelist-*.csv",
-#    system="snomed",
-#    column="code",
-#)
-### Post-operative **<indicator of post-operative cerebrovascular  #complications>.
-#codelist_** = codelist_from_csv(
-#    "codelists/codelist-*.csv",
-#    system="snomed",
-#    column="code",
-#)
-### Post-operative cerebrovascular complications.
-#codelist_cerebrovascular_complications = combine_codelists(
-#    codelist_*,
-#    codelist_**,
-#)
+# 30-day post-operative cerebrovascular complications, as indicated by TIA and stroke.
+codelist_cerebrovascular_complications = codelist_from_csv(
+   "codelists/user-alwynkotze-stroke.csv",
+   system="snomed",
+   column="code",
+)
 
 
 ################

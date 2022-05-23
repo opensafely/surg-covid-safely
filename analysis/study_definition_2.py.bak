@@ -191,19 +191,13 @@ study = StudyDefinition(
 	#		"incidence": 0.3}
 	#),
 
-	### Date of post-operative cerebrovascular complications.
-	#date_postOp_cerebrovascular_complications = patients.with_these_clinical_events(
-	#	codelist_cerebrovascular_complications,
-	#	on_or_after = "date_surgery",
-	#	returning = 'date',
-	#	return_number_of_matches_in_period = True,
-	#	include_date_of_match = True,
-	#	date_format = “YYYY-MM-DD”,
-	#	return_expectations={
-	#		“date”: {“earliest”: date_surgery, “latest”: “today”},
-	#		“rate”: “uniform”,
-	#		“incidence”: 0.3}
-	#),
+	## Date of post-operative cerebrovascular complications.
+	date_postOp_cerebrovascular_complications = patients.with_these_clinical_events(
+		codelist_cerebrovascular_complications,
+		on_or_after = "date_surgery",
+		returning = "date",
+		date_format = "YYYY-MM-DD",
+	),
 
 	## Variables to calculate 'length of stay'.
 	# Date of admission.
@@ -371,8 +365,9 @@ study = StudyDefinition(
     
 
 	##'Urgency of surgery'.
+    # This will require the definition of a special OPCS codelist using https://www.opencodelists.org/codelist/user/ciaranmci/add/
 	# surgery_urgency = patients.admitted_to_hospital(
-		# with_these_procedures = codelist_cancer_surgery,
+		# with_these_procedures = OPCS_codelist_cancer_surgery,
 		# returning = "admission_method",
 		# on_or_after = start_date,
 		# find_first_match_in_period = True,
