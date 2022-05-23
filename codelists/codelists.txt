@@ -15,3 +15,4 @@ opensafely/chronic-cardiac-disease-snomed/4ac64b59
 opensafely/diabetes-snomed/7a3271cd
 opensafely/chronic-respiratory-disease/69a34cc0
 user/alwynkotze/stroke/7a03f043
+user/alwynkotze/surgery-covidsurg-replication-codes-from-abbott/13136379

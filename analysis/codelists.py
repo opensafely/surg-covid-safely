@@ -21,13 +21,24 @@ codelist_cancer_ctv3 = codelist_from_csv(
 
 # Patients undergoing surgery
 # (https://www.opencodelists.org/codelist/user/ciaranmci/surgery-covidsurg-replication-excluding-exclusions/5c09dd62/).
-codelist_cancer_surgery = codelist_from_csv(
+codelist_cancer_surgery_part1 = codelist_from_csv(
     "codelists/user-ciaranmci-surgery-covidsurg-replication-excluding-exclusions.csv",
     system="snomed",
     column="code",
 )
+# (https://www.opencodelists.org/codelist/user/alwynkotze/surgery-covidsurg-replication-codes-from-abbott/13136379/)
+codelist_cancer_surgery_part2 = codelist_from_csv(
+    "codelists/user-alwynkotze-surgery-covidsurg-replication-codes-from-abbott.csv",
+    system="snomed",
+    column="code",
+)
 
-# OPCS_codelist_cancer_surgery = codelist_from_csv(
+codelist_cancer_surgery = combine_codelists(
+    codelist_cancer_surgery_part1,
+    codelist_cancer_surgery_part2
+)
+
+# OPCS_codelist_cancer_suurgery = codelist_from_csv(
     # "codelists/user-ciaranmci-?????????.csv",
     # system="OPCS",
     # column="code",
