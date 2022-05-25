@@ -135,24 +135,30 @@ actions:
                 # figure_C_wk: output/cancer_weekly_summary_proportion_surgeries_7wks_after_pos_test.png
                 
     emulate_table1:
-        run:    r:latest analysis/Make_all_Tables1.R
+        run:    r:latest analysis/Make_all_Table1s.R
         needs: [generate_study_population_2]
         outputs:
             moderately_sensitive:
                 table1_PP_strata: output/table1_PP_strata.csv
                 table1_PP_outcome: output/table1_PP_outcome.csv
+                table1_CSP_strata: output/table1_CSP_strata.csv
+                table1_CSP_outcome: output/table1_CSP_outcome.csv
                 table1_PNV_strata: output/table1_PNV_strata.csv
                 table1_PNV_outcome: output/table1_PNV_outcome.csv
                 table1_PWV_strata: output/table1_PWV_strata.csv
                 table1_PWV_outcome: output/table1_PWV_outcome.csv
                 table1_PP_strata_3mths: output/table1_PP_strata_3mths.csv
                 table1_PP_outcome_3mths: output/table1_PP_outcome_3mths.csv
+                table1_CSP_strata_3mths: output/table1_CSP_strata_3mths.csv
+                table1_CSP_outcome_3mths: output/table1_CSP_outcome_3mths.csv
                 table1_PNV_strata_3mths: output/table1_PNV_strata_3mths.csv
                 table1_PNV_outcome_3mths: output/table1_PNV_outcome_3mths.csv
                 table1_PWV_strata_3mths: output/table1_PWV_strata_3mths.csv
                 table1_PWV_outcome_3mths: output/table1_PWV_outcome_3mths.csv
                 table1_PP_strata_6mths: output/table1_PP_strata_6mths.csv
                 table1_PP_outcome_6mths: output/table1_PP_outcome_6mths.csv
+                table1_CSP_strata_6mths: output/table1_CSP_strata_6mths.csv
+                table1_CSP_outcome_6mths: output/table1_CSP_outcome_6mths.csv
                 table1_PNV_strata_6mths: output/table1_PNV_strata_6mths.csv
                 table1_PNV_outcome_6mths: output/table1_PNV_outcome_6mths.csv
                 table1_PWV_strata_6mths: output/table1_PWV_strata_6mths.csv
