@@ -18,10 +18,9 @@
 # }
 
 
-################################################
-# Make tibbles that will inform Table 1, for   #
-# the data relating to the 4 week on-boarding. #
-################################################
+##########################################
+# Make tibbles that will inform Table 1. #
+##########################################
 # ----
 # ## Count  of patients in each of the categories for 
 # ## pre-operative infection status:
@@ -2146,6 +2145,8 @@ rm(PWV_n_chronic_respiratory_disease, PWV_pct_chronic_respiratory_disease)
 # Make the tables. #
 ####################
 # ----
+intervals_less_than_7wks <- c("n_infection_none", "n_infection_0to2wk",
+                              "n_infection_3to4wk", "n_infection_5to6wk")
 # Pre-pandemic tables.
 # ## Stratification table.
 tbl_PP_strata <-
@@ -2212,11 +2213,28 @@ tbl_PNV_strata <-
     rep("Chronic respiratory disease",2)),
     .before = "age_group_surgery"
   ) %>%
-  `colnames<-`(c("variable", "strata", "n", "pct"))
+  `colnames<-`(c("variable", "strata", colnames(.)[3:ncol(.)]))
 # Save table.
 write.csv(
   x = tbl_PNV_strata,
   file = here::here("output",paste0("table1_PNV_strata",sensitivity_cohort,".csv"))
+)
+# Make table with only 7week threshold.
+tbl_PNV_strata_7wkThreshold <- 
+  tbl_PNV_strata %>% dplyr::select(intervals_less_than_7wks) %>% data.matrix() %>%
+  rowSums() %>% as.data.frame() %>% 
+  dplyr::mutate("pct_infection_<7wks" = (./ sum(.))*100) %>%
+  tibble::add_column(tbl_PNV_strata %>% dplyr::select(c(variable, strata)),
+                     .before = ".") %>%
+  tibble::add_column(tbl_PNV_strata %>%
+                       dplyr::select(c(n_infection_7wk, pct_infection_7wk))) %>%
+  `colnames<-`(c("variable", "strata", "n_infection_<7wks",
+                 "pct_infection_<7wks","n_infection_>7wks","pct_infection_>7wks")) %>%
+  tidyr::replace_na(list("pct_infection_<7wks" = 0))
+# Save table.
+write.csv(
+  x = tbl_PNV_strata_7wkThreshold,
+  file = here::here("output",paste0("table1_PNV_strata",sensitivity_cohort,"_7wkThreshold.csv"))
 )
 # ## Outcomes table.
 tbl_PNV_outcome <-
@@ -2235,17 +2253,28 @@ tbl_PNV_outcome <-
     rep("30-day post-operative cerebrovascular complication",2)),
     .before = "postOp_mortality_30day"
   ) %>%
-  `colnames<-`(c("variable", "strata",
-                 "n_all_intervals", "pct_all_intervals",
-                 "n_no_infection", "pct_no_infection",
-                 "n_0to2_weeks","pct_0to2_weeks",
-                 "n_3to4_weeks","pct_3to4_weeks",
-                 "n_5to6_weeks","pct_5to6_weeks",
-                 "n_>7_weeks","pct_>7_weeks"))
+  `colnames<-`(c("variable", "strata", colnames(.)[3:ncol(.)]))
 # Save table.
 write.csv(
   x = tbl_PNV_outcome,
   file = here::here("output",paste0("table1_PNV_outcome",sensitivity_cohort,".csv"))
+)
+# Make table with only 7week threshold.
+tbl_PNV_outcome_7wkThreshold <- 
+  tbl_PNV_outcome %>% dplyr::select(intervals_less_than_7wks) %>% data.matrix() %>%
+  rowSums() %>% as.data.frame() %>% 
+  dplyr::mutate("pct_infection_<7wks" = (./ sum(.))*100) %>%
+  tibble::add_column(tbl_PNV_outcome %>% dplyr::select(c(variable, strata)),
+                     .before = ".") %>%
+  tibble::add_column(tbl_PNV_outcome %>%
+                       dplyr::select(c(n_infection_7wk, pct_infection_7wk))) %>%
+  `colnames<-`(c("variable", "strata", "n_infection_<7wks",
+                 "pct_infection_<7wks","n_infection_>7wks","pct_infection_>7wks")) %>%
+  tidyr::replace_na(list("pct_infection_<7wks" = 0))
+# Save table.
+write.csv(
+  x = tbl_PNV_outcome_7wkThreshold,
+  file = here::here("output",paste0("table1_PNV_outcome",sensitivity_cohort,"_7wkThreshold.csv"))
 )
 
 # COVIDSurg data collection period tables.
@@ -2266,11 +2295,28 @@ tbl_CSP_strata <-
     rep("Chronic respiratory disease",2)),
     .before = "age_group_surgery"
   ) %>%
-  `colnames<-`(c("variable", "strata", "n", "pct"))
+  `colnames<-`(c("variable", "strata", colnames(.)[3:ncol(.)]))
 # Save table.
 write.csv(
   x = tbl_CSP_strata,
   file = here::here("output",paste0("table1_CSP_strata",sensitivity_cohort,".csv"))
+)
+# Make table with only 7week threshold.
+tbl_CSP_strata_7wkThreshold <- 
+  tbl_CSP_strata %>% dplyr::select(intervals_less_than_7wks) %>% data.matrix() %>%
+  rowSums() %>% as.data.frame() %>% 
+  dplyr::mutate("pct_infection_<7wks" = (./ sum(.))*100) %>%
+  tibble::add_column(tbl_CSP_strata %>% dplyr::select(c(variable, strata)),
+                     .before = ".") %>%
+  tibble::add_column(tbl_CSP_strata %>%
+                       dplyr::select(c(n_infection_7wk, pct_infection_7wk))) %>%
+  `colnames<-`(c("variable", "strata", "n_infection_<7wks",
+                 "pct_infection_<7wks","n_infection_>7wks","pct_infection_>7wks")) %>%
+  tidyr::replace_na(list("pct_infection_<7wks" = 0))
+# Save table.
+write.csv(
+  x = tbl_CSP_strata_7wkThreshold,
+  file = here::here("output",paste0("table1_CSP_strata",sensitivity_cohort,"_7wkThreshold.csv"))
 )
 # ## Outcomes table.
 tbl_CSP_outcome <-
@@ -2289,17 +2335,28 @@ tbl_CSP_outcome <-
     rep("30-day post-operative cerebrovascular complication",2)),
     .before = "postOp_mortality_30day"
   ) %>%
-  `colnames<-`(c("variable", "strata",
-                 "n_all_intervals", "pct_all_intervals",
-                 "n_no_infection", "pct_no_infection",
-                 "n_0to2_weeks","pct_0to2_weeks",
-                 "n_3to4_weeks","pct_3to4_weeks",
-                 "n_5to6_weeks","pct_5to6_weeks",
-                 "n_>7_weeks","pct_>7_weeks"))
+  `colnames<-`(c("variable", "strata", colnames(.)[3:ncol(.)]))
 # Save table.
 write.csv(
   x = tbl_CSP_outcome,
   file = here::here("output",paste0("table1_CSP_outcome",sensitivity_cohort,".csv"))
+)
+# Make table with only 7week threshold.
+tbl_CSP_outcome_7wkThreshold <- 
+  tbl_CSP_outcome %>% dplyr::select(intervals_less_than_7wks) %>% data.matrix() %>%
+  rowSums() %>% as.data.frame() %>% 
+  dplyr::mutate("pct_infection_<7wks" = (./ sum(.))*100) %>%
+  tibble::add_column(tbl_CSP_outcome %>% dplyr::select(c(variable, strata)),
+                     .before = ".") %>%
+  tibble::add_column(tbl_CSP_outcome %>%
+                       dplyr::select(c(n_infection_7wk, pct_infection_7wk))) %>%
+  `colnames<-`(c("variable", "strata", "n_infection_<7wks",
+                 "pct_infection_<7wks","n_infection_>7wks","pct_infection_>7wks")) %>%
+  tidyr::replace_na(list("pct_infection_<7wks" = 0))
+# Save table.
+write.csv(
+  x = tbl_CSP_outcome_7wkThreshold,
+  file = here::here("output",paste0("table1_CSP_outcome",sensitivity_cohort,"_7wkThreshold.csv"))
 )
 
 # Pandemic with vaccine tables.
@@ -2320,11 +2377,28 @@ tbl_PWV_strata <-
     rep("Chronic respiratory disease",2)),
     .before = "age_group_surgery"
   ) %>%
-  `colnames<-`(c("variable", "strata", "n", "pct"))
+  `colnames<-`(c("variable", "strata", colnames(.)[3:ncol(.)]))
 # Save table.
 write.csv(
   x = tbl_PWV_strata,
   file = here::here("output",paste0("table1_PWV_strata",sensitivity_cohort,".csv"))
+)
+# Make table with only 7week threshold.
+tbl_PWV_strata_7wkThreshold <- 
+  tbl_PWV_strata %>% dplyr::select(intervals_less_than_7wks) %>% data.matrix() %>%
+  rowSums() %>% as.data.frame() %>% 
+  dplyr::mutate("pct_infection_<7wks" = (./ sum(.))*100) %>%
+  tibble::add_column(tbl_PWV_strata %>% dplyr::select(c(variable, strata)),
+                     .before = ".") %>%
+  tibble::add_column(tbl_PWV_strata %>%
+                       dplyr::select(c(n_infection_7wk, pct_infection_7wk))) %>%
+  `colnames<-`(c("variable", "strata", "n_infection_<7wks",
+                 "pct_infection_<7wks","n_infection_>7wks","pct_infection_>7wks")) %>%
+  tidyr::replace_na(list("pct_infection_<7wks" = 0))
+# Save table.
+write.csv(
+  x = tbl_PWV_strata_7wkThreshold,
+  file = here::here("output",paste0("table1_PWV_strata",sensitivity_cohort,"_7wkThreshold.csv"))
 )
 # ## Outcomes table.
 tbl_PWV_outcome <-
@@ -2343,17 +2417,32 @@ tbl_PWV_outcome <-
     rep("30-day post-operative cerebrovascular complication",2)),
     .before = "postOp_mortality_30day"
   ) %>%
-  `colnames<-`(c("variable", "strata",
-                 "n_all_intervals", "pct_all_intervals",
-                 "n_no_infection", "pct_no_infection",
-                 "n_0to2_weeks","pct_0to2_weeks",
-                 "n_3to4_weeks","pct_3to4_weeks",
-                 "n_5to6_weeks","pct_5to6_weeks",
-                 "n_>7_weeks","pct_>7_weeks"))
+  `colnames<-`(c("variable", "strata", colnames(.)[3:ncol(.)]))
 # Save table.
 write.csv(
   x = tbl_PWV_outcome,
   file = here::here("output",paste0("table1_PWV_outcome",sensitivity_cohort,".csv"))
 )
+# Make table with only 7week threshold.
+tbl_PWV_outcome_7wkThreshold <- 
+tbl_PWV_outcome %>% dplyr::select(intervals_less_than_7wks) %>% data.matrix() %>%
+  rowSums() %>% as.data.frame() %>% 
+  dplyr::mutate("pct_infection_<7wks" = (./ sum(.))*100) %>%
+  tibble::add_column(tbl_PWV_outcome %>% dplyr::select(c(variable, strata)),
+                     .before = ".") %>%
+  tibble::add_column(tbl_PWV_outcome %>%
+                       dplyr::select(c(n_infection_7wk, pct_infection_7wk))) %>%
+  `colnames<-`(c("variable", "strata", "n_infection_<7wks",
+                 "pct_infection_<7wks","n_infection_>7wks","pct_infection_>7wks")) %>%
+  tidyr::replace_na(list("pct_infection_<7wks" = 0))
+# Save table.
+write.csv(
+  x = tbl_PWV_outcome_7wkThreshold,
+  file = here::here("output",paste0("table1_PWV_outcome",sensitivity_cohort,"_7wkThreshold.csv"))
+)
+
+
+  
+
 # ----
 
