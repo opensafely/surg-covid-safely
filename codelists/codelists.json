@@ -18,6 +18,12 @@
       "downloaded_at": "2022-02-25 09:25:19.743458Z",
       "sha": "d9bb1d5799028392d6a8953ed6d7835484e04c79"
     },
+    "user-ciaranmci-surgery-covidsurg-replication-opcs-49.csv": {
+      "id": "user/ciaranmci/surgery-covidsurg-replication-opcs-49/724a55aa",
+      "url": "https://codelists.opensafely.org/codelist/user/ciaranmci/surgery-covidsurg-replication-opcs-49/724a55aa/",
+      "downloaded_at": "2022-06-10 13:52:53.683692Z",
+      "sha": "fe64cd795f1e3d69c8f30e1e7deaaaca60b5b119"
+    },
     "primis-covid19-vacc-uptake-covadm1.csv": {
       "id": "primis-covid19-vacc-uptake/covadm1/v1",
       "url": "https://codelists.opensafely.org/codelist/primis-covid19-vacc-uptake/covadm1/v1/",
@@ -96,7 +102,6 @@
       "downloaded_at": "2022-05-12 15:14:20.760737Z",
       "sha": "77946d9b844f348daf5c8c9e81346b9776d13998"
     },
-
     "user-alwynkotze-stroke.csv": {
       "id": "user/alwynkotze/stroke/7a03f043",
       "url": "https://codelists.opensafely.org/codelist/user/alwynkotze/stroke/7a03f043/",
