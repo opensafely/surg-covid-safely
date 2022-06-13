@@ -35,6 +35,8 @@ df_input <- readr::read_csv(
                    chronic_cardiac_disease = col_logical(),
                    diabetes = col_logical(),
                    chronic_respiratory_disease = col_logical(),
+                   admission_method = col_factor(),
+                   category_admission_method = col_factor(),
                    patient_id = col_integer())
 )
 # Some fudges to handle unusual exceptions for the Sex variable.

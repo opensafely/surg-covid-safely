@@ -381,7 +381,7 @@ study = StudyDefinition(
 		{
 		"Elective": "surgery_urgency = 11 OR surgery_urgency = 12 OR surgery_urgency = 13",
 		"Emergency": "surgery_urgency = 21 OR surgery_urgency = 22 OR surgery_urgency = 23 OR surgery_urgency = 24 OR surgery_urgency = 25",
-        "Emergency": "surgery_urgency = 2A OR surgery_urgency = 2B OR surgery_urgency = 2C OR surgery_urgency = 2D OR surgery_urgency = 28",
+        "Emergency": "surgery_urgency = '2A' OR surgery_urgency = '2B' OR surgery_urgency = '2C' OR surgery_urgency = '2D' OR surgery_urgency = '28'",
         "Missing": "DEFAULT"
 		},
 		return_expectations = {
