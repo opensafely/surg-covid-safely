@@ -192,7 +192,7 @@ study = StudyDefinition(
 	#),
 
 	## Date of post-operative cerebrovascular complications.
-	date_postOp_cerebrovascular_complications = patients.with_these_clinical_events(
+	date_postOp_cerebrovascular_complication = patients.with_these_clinical_events(
 		codelist_cerebrovascular_complications,
 		on_or_after = "date_surgery",
 		returning = "date",
@@ -366,33 +366,35 @@ study = StudyDefinition(
 
 	##'Urgency of surgery'.
     # This will require the definition of a special OPCS codelist using https://www.opencodelists.org/codelist/user/ciaranmci/add/
-	# surgery_urgency = patients.admitted_to_hospital(
-		# with_these_procedures = OPCS_codelist_cancer_surgery,
-		# returning = "admission_method",
-		# on_or_after = start_date,
-		# find_first_match_in_period = True,
-		# return_expectations = {
-			# "category": {"ratios": {"11": 0.2, "12": 0.2, "13": 0.3, "21": 0.2, "2B": 0.1}}, 
-			# "incidence": 1
-		# }
-	# ),
-    ##Categorised based on HES codes https://digital.nhs.uk/data-and-information/data-tools-and-services/data-services/hospital-episode-statistics/hospital-episode-statistics-data-dictionary
-    # category_surgery_urgency = patients.categorised_as(
-		# {
-		# "Elective": "surgery_urgency == 11 or surgery_urgency == 12 or surgery_urgency == 13 or",
-		# "Emergency": "surgery_urgency == 21 or surgery_urgency == 22 or surgery_urgency == 23 or surgery_urgency == 24 or surgery_urgency == 25 or surgery_urgency == 2A or surgery_urgency == 2B or surgery_urgency == 2C or surgery_urgency == 2D or surgery_urgency == 28"
-		# },
-		# return_expectations = {
-			# "rate": "universal",
-			# "category": {
-				# "ratios": {
-					# "Elective": 0.4,
-					# "Emergency": 0.4,
-                    # "Missing": 0.2
-					# }
-				# }
-			# }
-	# ),
+	surgery_urgency = patients.admitted_to_hospital(
+		with_these_procedures = OPCS_codelist_cancer_surgery,
+		returning = "admission_method",
+		on_or_after = start_date,
+		find_first_match_in_period = True,
+		return_expectations = {
+			"category": {"ratios": {"11": 0.2, "12": 0.2, "13": 0.3, "21": 0.2, "2A": 0.1}}, 
+			"incidence": 1
+		}
+	),
+    # Categorised based on HES codes https://digital.nhs.uk/data-and-information/data-tools-and-services/data-services/hospital-episode-statistics/hospital-episode-statistics-data-dictionary
+    category_surgery_urgency = patients.categorised_as(
+		{
+		"Elective": "surgery_urgency = 11 OR surgery_urgency = 12 OR surgery_urgency = 13",
+		"Emergency": "surgery_urgency = 21 OR surgery_urgency = 22 OR surgery_urgency = 23 OR surgery_urgency = 24 OR surgery_urgency = 25",
+        "Emergency": "surgery_urgency = 2A OR surgery_urgency = 2B OR surgery_urgency = 2C OR surgery_urgency = 2D OR surgery_urgency = 28",
+        "Missing": "DEFAULT"
+		},
+		return_expectations = {
+			"rate": "universal",
+			"category": {
+				"ratios": {
+					"Elective": 0.4,
+					"Emergency": 0.4,
+                    "Missing": 0.2
+					}
+				}
+			}
+	),
 
 	### Local COVID-specific index of multiple deprivation.
 	# address_deprivation_index = patients.address_as_of(

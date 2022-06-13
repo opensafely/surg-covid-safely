@@ -26,7 +26,6 @@ codelist_cancer_surgery_part1 = codelist_from_csv(
     system="snomed",
     column="code",
 )
-
 # (https://www.opencodelists.org/codelist/user/alwynkotze/surgery-covidsurg-replication-codes-from-abbott/13136379/)
 codelist_cancer_surgery_part2 = codelist_from_csv(
     "codelists/user-alwynkotze-surgery-covidsurg-replication-codes-from-abbott.csv",
@@ -34,16 +33,16 @@ codelist_cancer_surgery_part2 = codelist_from_csv(
     column="code",
 )
 
-codelist_cancer_surgery = codelist_combine(
+codelist_cancer_surgery = combine_codelists(
     codelist_cancer_surgery_part1,
     codelist_cancer_surgery_part2
 )
 
-# OPCS_codelist_cancer_surgery = codelist_from_csv(
-    # "codelists/user-ciaranmci-?????????.csv",
-    # system="OPCS",
-    # column="code",
-# )
+OPCS_codelist_cancer_surgery = codelist_from_csv(
+    "codelists/user-ciaranmci-surgery-covidsurg-replication-opcs-49.csv",
+    system="OPCS",
+    column="OPCS4_or_ICD10",
+)
 
 # First COVID vaccination administerd (https://www.opencodelists.org/codelist/primis-covid19-vacc-uptake/covadm1/v1/)
 codelist_COVID_first_vaccination = codelist_from_csv(
@@ -202,26 +201,12 @@ codelist_cancer_ctv3_combine = combine_codelists(
 #    codelist_**,
 #)
 #
-### 30-day post-operative cerebrovascular complications.
-## Defined by...
-#
-## Post-operative *<indicator of post-operative cerebrovascular complications>.
-#codelist_* = codelist_from_csv(
-#    "codelists/codelist-*.csv",
-#    system="snomed",
-#    column="code",
-#)
-### Post-operative **<indicator of post-operative cerebrovascular  #complications>.
-#codelist_** = codelist_from_csv(
-#    "codelists/codelist-*.csv",
-#    system="snomed",
-#    column="code",
-#)
-### Post-operative cerebrovascular complications.
-#codelist_cerebrovascular_complications = combine_codelists(
-#    codelist_*,
-#    codelist_**,
-#)
+# 30-day post-operative cerebrovascular complications, as indicated by TIA and stroke.
+codelist_cerebrovascular_complications = codelist_from_csv(
+   "codelists/user-alwynkotze-stroke.csv",
+   system="snomed",
+   column="code",
+)
 
 
 ################
