@@ -127,6 +127,45 @@ table1_CSP_Sex <-
 table1_Sex <- dplyr::bind_rows(table1_Sex, table1_CSP_Sex)
 # ## Count of patients in each of the categories for pre-operative infection
 # ## status (stratified by surgery era; see above) also stratified by whether
+# ## their surgery was during an elective or Emergency admission:
+# ##    1. Elective
+# ##    2. Emergency
+table1_admission_method <- 
+  data_to_use %>% dplyr::group_by(era, category_admission_method) %>%
+  dplyr::summarise(n_all_intervals = sum(ifelse(preOperative_infection_status!=
+                                                  "Error: Test result after surgery. Check study_definition.",1,0)),
+                   n_infection_none = sum(ifelse(preOperative_infection_status==
+                                                   "No record of pre-operative SARS-CoV-2 infection",1,0)),
+                   n_infection_0to2wk = sum(ifelse(preOperative_infection_status==
+                                                     "0-2 weeks record of pre-operative SARS-CoV-2 infection",1,0)),
+                   n_infection_3to4wk = sum(ifelse(preOperative_infection_status==
+                                                     "3-4 weeks record of pre-operative SARS-CoV-2 infection",1,0)),
+                   n_infection_5to6wk = sum(ifelse(preOperative_infection_status==
+                                                     "5-6 weeks record of pre-operative SARS-CoV-2 infection",1,0)),
+                   n_infection_7wk = sum(ifelse(preOperative_infection_status==
+                                                  ">=7 weeks record of pre-operative SARS-CoV-2 infection",1,0))
+  )
+table1_CSP_admission_method <- 
+  data_to_use %>% dplyr::filter(COVIDSurg_data_collection_period != "Error: No surgery") %>%
+  dplyr::group_by(COVIDSurg_data_collection_period, category_admission_method) %>%
+  dplyr::summarise(n_all_intervals = sum(ifelse(preOperative_infection_status!=
+                                                  "Error: Test result after surgery. Check study_definition.",1,0)),
+                   n_infection_none = sum(ifelse(preOperative_infection_status==
+                                                   "No record of pre-operative SARS-CoV-2 infection",1,0)),
+                   n_infection_0to2wk = sum(ifelse(preOperative_infection_status==
+                                                     "0-2 weeks record of pre-operative SARS-CoV-2 infection",1,0)),
+                   n_infection_3to4wk = sum(ifelse(preOperative_infection_status==
+                                                     "3-4 weeks record of pre-operative SARS-CoV-2 infection",1,0)),
+                   n_infection_5to6wk = sum(ifelse(preOperative_infection_status==
+                                                     "5-6 weeks record of pre-operative SARS-CoV-2 infection",1,0)),
+                   n_infection_7wk = sum(ifelse(preOperative_infection_status==
+                                                  ">=7 weeks record of pre-operative SARS-CoV-2 infection",1,0))
+  ) %>% `colnames<-`(c("era", colnames(table1_admission_method)[2:ncol(table1_admission_method)]))
+
+table1_admission_method <-
+  dplyr::bind_rows(table1_admission_method, table1_CSP_admission_method)
+# ## Count of patients in each of the categories for pre-operative infection
+# ## status (stratified by surgery era; see above) also stratified by whether
 # ## or not the patient died within 30 days of their surgery:
 # ##    1. "Alive within 30 days post-operation"
 # ##    2. "Dead within 30 days post-operation" 
@@ -335,7 +374,7 @@ table1_postOp_cerebrovascular_complication_30day <-
 # ## status (stratified by surgery era; see above) also stratified by whether
 # ## or not the patient had a record of chronic cardiac disease before their surgery.
 # ##    1. Yes
-# ##    1. No
+# ##    2. No
 table1_chronic_cardiac_disease <- 
   data_to_use %>% dplyr::group_by(era, chronic_cardiac_disease) %>%
   dplyr::summarise(n_all_intervals = sum(ifelse(preOperative_infection_status!=
@@ -374,7 +413,7 @@ table1_chronic_cardiac_disease <-
 # ## status (stratified by surgery era; see above) also stratified by whether
 # ## or not the patient had a record of diabetes before their surgery.
 # ##    1. Yes
-# ##    1. No
+# ##    2. No
 table1_diabetes <- 
   data_to_use %>% dplyr::group_by(era, diabetes) %>%
   dplyr::summarise(n_all_intervals = sum(ifelse(preOperative_infection_status!=
@@ -412,7 +451,7 @@ table1_diabetes <- dplyr::bind_rows(table1_diabetes, table1_CSP_diabetes)
 # ## status (stratified by surgery era; see above) also stratified by whether
 # ## or not the patient had a record of chronic respiratory disease before their surgery.
 # ##    1. Yes
-# ##    1. No
+# ##    2. No
 table1_chronic_respiratory_disease <- 
   data_to_use %>% dplyr::group_by(era, chronic_respiratory_disease) %>%
   dplyr::summarise(n_all_intervals = sum(ifelse(preOperative_infection_status!=
@@ -450,7 +489,8 @@ table1_chronic_respiratory_disease <-
 # Clean up.
 rm(table1_CSP_totals_preOp_infection_status, table1_CSP_ageGroup,
    table1_CSP_chronic_cardiac_disease, table1_CSP_chronic_respiratory_disease,
-   table1_CSP_diabetes, table1_CSP_postOp_cerebrovascular_complication_30day,
+   table1_CSP_admission_method, table1_CSP_diabetes,
+   table1_CSP_postOp_cerebrovascular_complication_30day,
    table1_CSP_postOp_mortality_12mth, table1_CSP_postOp_mortality_30day,
    table1_CSP_postOp_mortality_6mth, table1_CSP_postOp_mortality_90day,
    table1_CSP_Sex)
@@ -509,6 +549,18 @@ table1_Sex <-
         "Male",
         "Missing")) %>%
   dplyr::full_join(table1_Sex) %>%
+  dplyr::arrange(era) %>%
+  tidyr::replace_na(na_replace_list)
+# ## table1_admission_method.
+table1_admission_method <- 
+  expand.grid(
+    era = 
+      era_set,
+    category_admission_method = 
+      c("Elective",
+        "Emergency",
+        "Missing")) %>%
+  dplyr::full_join(table1_admission_method) %>%
   dplyr::arrange(era) %>%
   tidyr::replace_na(na_replace_list)
 # ## table1_postOp_mortality_30day.
@@ -627,6 +679,10 @@ table1_chronic_respiratory_disease <-
 # write.csv(
 #   x = table1_Sex,
 #   file = here::here("output",paste0("table1_Sex",sensitivity_cohort,".csv"))
+# )
+# write.csv(
+#   x = table1_admission_method,
+#   file = here::here("output",paste0("table1_admission_method",sensitivity_cohort,".csv"))
 # )
 # write.csv(
 #   x = table1_postOp_mortality_30day,)
@@ -875,6 +931,109 @@ PWV_Sex <- table1_Sex %>%  dplyr::filter(era=="Pandemic with vaccine", Sex!="Mis
   dplyr::arrange(Sex) %>% dplyr::select("Sex") %>% dplyr::bind_cols(PWV_Sex)
 # ## ## Clean up
 rm(PWV_n_Sex, PWV_pct_Sex)
+# ----
+
+# Admission method. ----
+# ## Pre-pandemic
+# ## ## Get counts per intervals and overall.
+PP_n_admission_method <- 
+  table1_admission_method %>% dplyr::filter(era=="Pre-pandemic", category_admission_method!="Missing") %>%
+  dplyr::arrange(category_admission_method) %>% dplyr::ungroup() %>% dplyr::select("n_all_intervals")
+# ## ## Get percentages per intervals and overall.
+PP_pct_admission_method <- (PP_n_admission_method / sum(PP_n_admission_method)) %>% "*"(100) %>%
+  tidyr::replace_na(list("n_all_intervals" = 0)) %>%
+  `colnames<-`(c("pct_all_intervals"))
+PP_admission_method <- table1_admission_method %>% dplyr::filter(era=="Pandemic no vaccine", category_admission_method!="Missing") %>%
+  dplyr::arrange(category_admission_method) %>% dplyr::select("category_admission_method") %>% dplyr::bind_cols(., PP_n_admission_method, PP_pct_admission_method)
+# ## ## Clean up.
+rm(PP_n_admission_method, PP_pct_admission_method)
+
+# ## Pandemic no vaccine.
+# ## ## Get counts per intervals and overall.
+PNV_n_admission_method <- 
+  table1_admission_method %>%  dplyr::filter(era=="Pandemic no vaccine", category_admission_method!="Missing") %>%
+  dplyr::arrange(category_admission_method) %>% dplyr::ungroup() %>% dplyr::select(-c("era", "category_admission_method"))
+# ## ## Get percentages per intervals and overall.
+PNV_pct_admission_method <- 
+  table1_admission_method %>% dplyr::filter(era=="Pandemic no vaccine", category_admission_method!="Missing") %>% select(-c("era", "category_admission_method")) %>%
+  colSums() %>% sweep(PNV_n_admission_method, 2, ., "/") %>% "*"(100) %>%
+  tidyr::replace_na(list("n_all_intervals" = 0, "n_infection_none" = 0,
+                         "n_infection_0to2wk"  = 0, "n_infection_3to4wk" = 0,
+                         "n_infection_5to6wk" = 0, "n_infection_7wk" = 0
+  )) %>%
+  `colnames<-`(c("pct_all_intervals", "pct_infection_none", "pct_infection_0to2wk",
+                 "pct_infection_3to4wk", "pct_infection_5to6wk", "pct_infection_7wk"))
+# ## ## Interlace counts and percentages.
+PNV_admission_method <- matrix(0,
+                  nrow = length(rownames(PNV_n_admission_method)),
+                  ncol = length(colnames(PNV_n_admission_method))*2) %>%
+  as.data.frame()
+PNV_admission_method[,seq(1,length(colnames(PNV_admission_method)),2)] <- PNV_n_admission_method
+PNV_admission_method[,seq(2,length(colnames(PNV_admission_method)),2)] <- PNV_pct_admission_method
+colnames(PNV_admission_method)[seq(1,length(colnames(PNV_admission_method)),2)] <- colnames(PNV_n_admission_method)
+colnames(PNV_admission_method)[seq(2,length(colnames(PNV_admission_method)),2)] <- colnames(PNV_pct_admission_method)
+PNV_admission_method <- table1_admission_method %>%  dplyr::filter(era=="Pandemic no vaccine", category_admission_method!="Missing") %>%
+  dplyr::arrange(category_admission_method) %>% dplyr::select("category_admission_method") %>% dplyr::bind_cols(PNV_admission_method)
+# ## ## Clean up.
+rm(PNV_n_admission_method, PNV_pct_admission_method)
+
+# ## COVIDSurg data collection period.
+# ## ## Get counts per intervals and overall.
+CSP_n_admission_method <- 
+  table1_admission_method %>%  dplyr::filter(era=="COVIDSurg data collection period", category_admission_method!="Missing") %>%
+  dplyr::arrange(category_admission_method) %>% dplyr::ungroup() %>% dplyr::select(-c("era", "category_admission_method"))
+# ## ## Get percentages per intervals and overall.
+CSP_pct_admission_method <- 
+  table1_admission_method %>% dplyr::filter(era=="COVIDSurg data collection period", category_admission_method!="Missing") %>% select(-c("era", "category_admission_method")) %>%
+  colSums() %>% sweep(CSP_n_admission_method, 2, ., "/") %>% "*"(100) %>%
+  tidyr::replace_na(list("n_all_intervals" = 0, "n_infection_none" = 0,
+                         "n_infection_0to2wk"  = 0, "n_infection_3to4wk" = 0,
+                         "n_infection_5to6wk" = 0, "n_infection_7wk" = 0
+  )) %>%
+  `colnames<-`(c("pct_all_intervals", "pct_infection_none", "pct_infection_0to2wk",
+                 "pct_infection_3to4wk", "pct_infection_5to6wk", "pct_infection_7wk"))
+# ## ## Interlace counts and percentages.
+CSP_admission_method <- matrix(0,
+                  nrow = length(rownames(CSP_n_admission_method)),
+                  ncol = length(colnames(CSP_n_admission_method))*2) %>%
+  as.data.frame()
+CSP_admission_method[,seq(1,length(colnames(CSP_admission_method)),2)] <- CSP_n_admission_method
+CSP_admission_method[,seq(2,length(colnames(CSP_admission_method)),2)] <- CSP_pct_admission_method
+colnames(CSP_admission_method)[seq(1,length(colnames(CSP_admission_method)),2)] <- colnames(CSP_n_admission_method)
+colnames(CSP_admission_method)[seq(2,length(colnames(CSP_admission_method)),2)] <- colnames(CSP_pct_admission_method)
+CSP_admission_method <- table1_admission_method %>%  dplyr::filter(era=="COVIDSurg data collection period", category_admission_method!="Missing") %>%
+  dplyr::arrange(category_admission_method) %>% dplyr::select("category_admission_method") %>% dplyr::bind_cols(CSP_admission_method)
+# ## ## Clean up.
+rm(CSP_n_admission_method, CSP_pct_admission_method)
+
+# ## Pandemic with vaccine.
+# ## ## Get counts per intervals and overall.
+PWV_n_admission_method <- 
+  table1_admission_method %>%  dplyr::filter(era=="Pandemic with vaccine", category_admission_method!="Missing") %>%
+  dplyr::arrange(category_admission_method) %>% dplyr::ungroup() %>% dplyr::select(-c("era", "category_admission_method"))
+# ## ## Get percentages per intervals and overall.
+PWV_pct_admission_method <- 
+  table1_admission_method %>% dplyr::filter(era=="Pandemic with vaccine") %>% select(-c("era", "category_admission_method")) %>%
+  colSums() %>% sweep(PWV_n_admission_method, 2, ., "/") %>% "*"(100) %>%
+  tidyr::replace_na(list("n_all_intervals" = 0, "n_infection_none" = 0,
+                         "n_infection_0to2wk"  = 0, "n_infection_3to4wk" = 0,
+                         "n_infection_5to6wk" = 0, "n_infection_7wk" = 0
+  )) %>%
+  `colnames<-`(c("pct_all_intervals", "pct_infection_none", "pct_infection_0to2wk",
+                 "pct_infection_3to4wk", "pct_infection_5to6wk", "pct_infection_7wk"))
+# ## ## Interlace counts and percentages.
+PWV_admission_method <- matrix(0,
+                  nrow = length(rownames(PWV_n_admission_method)),
+                  ncol = length(colnames(PWV_n_admission_method))*2) %>%
+  as.data.frame()
+PWV_admission_method[,seq(1,length(colnames(PWV_admission_method)),2)] <- PWV_n_admission_method
+PWV_admission_method[,seq(2,length(colnames(PWV_admission_method)),2)] <- PWV_pct_admission_method
+colnames(PWV_admission_method)[seq(1,length(colnames(PWV_admission_method)),2)] <- colnames(PWV_n_admission_method)
+colnames(PWV_admission_method)[seq(2,length(colnames(PWV_admission_method)),2)] <- colnames(PWV_pct_admission_method)
+PWV_admission_method <- table1_admission_method %>%  dplyr::filter(era=="Pandemic with vaccine", category_admission_method!="Missing") %>%
+  dplyr::arrange(category_admission_method) %>% dplyr::select("category_admission_method") %>% dplyr::bind_cols(PWV_admission_method)
+# ## ## Clean up
+rm(PWV_n_admission_method, PWV_pct_admission_method)
 # ----
 
 # 30-day post-operative mortality. ----
@@ -2153,6 +2312,7 @@ tbl_PP_strata <-
   rbind(
   as.matrix(PP_ageGroup),
   as.matrix(PP_Sex),
+  as.matrix(PP_admission_method),
   as.matrix(PP_chronic_cardiac_disease),
   as.matrix(PP_diabetes),
   as.matrix(PP_chronic_respiratory_disease)) %>%
@@ -2160,6 +2320,7 @@ tbl_PP_strata <-
     tibble::add_column(., c(
       rep("Age group",5),
       rep("Sex",2),
+      rep("Admission method",2),
       rep("Chronic cardiac disease",2),
       rep("Diabetes",2),
       rep("Chronic respiratory disease",2)),
@@ -2201,6 +2362,7 @@ tbl_PNV_strata <-
   rbind(
     as.matrix(PNV_ageGroup),
     as.matrix(PNV_Sex),
+    as.matrix(PNV_admission_method),
     as.matrix(PNV_chronic_cardiac_disease),
     as.matrix(PNV_diabetes),
     as.matrix(PNV_chronic_respiratory_disease)) %>%
@@ -2208,6 +2370,7 @@ tbl_PNV_strata <-
   tibble::add_column(., c(
     rep("Age group",5),
     rep("Sex",2),
+    rep("Admission method",2),
     rep("Chronic cardiac disease",2),
     rep("Diabetes",2),
     rep("Chronic respiratory disease",2)),
@@ -2283,6 +2446,7 @@ tbl_CSP_strata <-
   rbind(
     as.matrix(CSP_ageGroup),
     as.matrix(CSP_Sex),
+    as.matrix(CSP_admission_method),
     as.matrix(CSP_chronic_cardiac_disease),
     as.matrix(CSP_diabetes),
     as.matrix(CSP_chronic_respiratory_disease)) %>%
@@ -2290,6 +2454,7 @@ tbl_CSP_strata <-
   tibble::add_column(., c(
     rep("Age group",5),
     rep("Sex",2),
+    rep("Admission method",2),
     rep("Chronic cardiac disease",2),
     rep("Diabetes",2),
     rep("Chronic respiratory disease",2)),
@@ -2365,6 +2530,7 @@ tbl_PWV_strata <-
   rbind(
     as.matrix(PWV_ageGroup),
     as.matrix(PWV_Sex),
+    as.matrix(PWV_admission_method),
     as.matrix(PWV_chronic_cardiac_disease),
     as.matrix(PWV_diabetes),
     as.matrix(PWV_chronic_respiratory_disease)) %>%
@@ -2372,6 +2538,7 @@ tbl_PWV_strata <-
   tibble::add_column(., c(
     rep("Age group",5),
     rep("Sex",2),
+    rep("Admission method",2),
     rep("Chronic cardiac disease",2),
     rep("Diabetes",2),
     rep("Chronic respiratory disease",2)),
