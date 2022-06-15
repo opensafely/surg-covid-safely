@@ -38,7 +38,7 @@ fnc_preprintFigure_dataPlot <- function(data, cohort, figureCaption = F)
                    "surgeries conducted less than 7 weeks from a positive\n",
                    "PCR test for SARS-CoV-2"),
             subtitle = paste0("(Cohort = Patients ", cohort,
-                              " a cancer diagnosis within 6 months of\nsurgery)")) +
+                              " a cancer diagnosis within 3 months of\nsurgery)")) +
     theme(plot.title = element_text(size = 8),
           plot.subtitle = element_text(size = 7),
           axis.title = element_text(size = 10),
@@ -94,7 +94,7 @@ fnc_preprintFigure_dataPlot <- function(data, cohort, figureCaption = F)
                      "surgeries conducted less than 7 weeks from a positive\n",
                      "PCR test for SARS-CoV-2"),
               subtitle = paste0("(Cohort = Patients ", cohort,
-                                " a cancer diagnosis within 6 months of\nsurgery)")) +
+                                " a cancer diagnosis within 3 months of\nsurgery)")) +
       theme(plot.title = element_text(size = 8),
             plot.subtitle = element_text(size = 7),
             axis.title = element_text(size = 10),
@@ -149,7 +149,7 @@ fnc_preprintFigure_dataPlot <- function(data, cohort, figureCaption = F)
                      "surgeries conducted less than 7 weeks from a positive\n",
                      "PCR test for SARS-CoV-2"),
               subtitle = paste0("(Cohort = Patients ", cohort,
-                                " a cancer diagnosis within 6 months of\nsurgery)")) +
+                                " a cancer diagnosis within 3 months of\nsurgery)")) +
       theme(plot.title = element_text(size = 8),
             plot.subtitle = element_text(size = 7),
             axis.title = element_text(size = 10),
@@ -209,7 +209,7 @@ fnc_preprintFigure_dataPlot <- function(data, cohort, figureCaption = F)
                      "surgeries conducted less than 7 weeks from a positive\n",
                      "PCR test for SARS-CoV-2"),
               subtitle = paste0("(Cohort = Patients ", cohort,
-                                " a cancer diagnosis within 6 months of\nsurgery)"))
+                                " a cancer diagnosis within 3 months of\nsurgery)"))
   }
   
   ggsave(filename = 

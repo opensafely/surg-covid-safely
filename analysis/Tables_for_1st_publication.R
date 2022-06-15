@@ -30,7 +30,11 @@ if(file.exists(
              "table_30day_post-op_mortality_for_each_cohort_in_each_era.csv")
   ) == F)
 {
-  source(here::here("analysis","Make_all_Table1s.R"))
+  source(here::here("analysis","dataset_preparation.R"))
+  # Make Table1 for all patients.
+  data_to_use <- myData
+  sensitivity_cohort <- ""
+  source(here::here("analysis","Make_Table1.R"))
 }
 # ----
 
@@ -74,6 +78,8 @@ table1Demogs_PWV[,3:ncol(table1Demogs_PWV)] <-
 # ##    3. No cancer diagnosis
 tbl_timing_of_cancer_diagnosis <- 
   myData %>% dplyr::filter(era != "Error: No surgery") %>%
+  dplyr::filter(postOp_mortality_30day %in% c("Dead within 30 days post-operation",
+                                              "Alive within 30 days post-operation")) %>%
     dplyr::filter(category_cancer_within_3mths_surgery != "No surgery recorded") %>%
     dplyr::mutate(
       cancer_diagnosis_within_3mths = dplyr::case_when(
@@ -102,6 +108,8 @@ tbl_timing_of_cancer_diagnosis <-
     )
 tbl_CSP <- 
   myData %>% dplyr::filter(era != "Error: No surgery") %>%
+  dplyr::filter(postOp_mortality_30day %in% c("Dead within 30 days post-operation",
+                                              "Alive within 30 days post-operation")) %>%
   dplyr::filter(category_cancer_within_3mths_surgery != "No surgery recorded") %>%
   dplyr::mutate(
     cancer_diagnosis_within_3mths = dplyr::case_when(
@@ -163,7 +171,7 @@ rm(PP_n_timing_of_cancer_diagnosis, PP_pct_timing_of_cancer_diagnosis)
 # ## ## Pandemic no vaccine.
 # ## ## ## Get counts per intervals and overall.
 PNV_n_timing_of_cancer_diagnosis <- 
-  tbl_timing_of_cancer_diagnosis %>%  dplyr::filter(era=="Pandemic no vaccine") %>%
+  tbl_timing_of_cancer_diagnosis %>% dplyr::filter(era=="Pandemic no vaccine") %>%
   dplyr::arrange(cancer_diagnosis_within_3mths) %>% dplyr::ungroup() %>% dplyr::select(-c(era,cancer_diagnosis_within_3mths))
 # ## ## ## Get percentages per intervals and overall.
 PNV_pct_timing_of_cancer_diagnosis <- 
@@ -281,11 +289,123 @@ rows_to_add <-
 colnames(rows_to_add)[2] <- "strata"
 table1Demogs_PWV <-
   table1Demogs_PWV %>% tibble::add_row(., rows_to_add, .before = 5)
+# ----
 
+# Save tibbles to CSV. ----
+# Pre-pandemic.
+write.csv(
+  x = table1Demogs_PP,
+  file = here::here("output",
+                    "table1Demogs_PP.csv")
+)
+# Pandemic no vaccine.
+write.csv(
+  x = table1Demogs_PNV,
+  file = here::here("output",
+                    "table1Demogs_PNV.csv")
+)
+# COVIDSurg data collection period.
+write.csv(
+  x = table1Demogs_CSP,
+  file = here::here("output",
+                    "table1Demogs_CSP.csv")
+)
+# Pandemic with vaccine.
+write.csv(
+  x = table1Demogs_PWV,
+  file = here::here("output",
+                    "table1Demogs_PWV.csv")
+)
 # ----
 
 
+######################
+## Table 1 Outcomes ##
+######################
+# Define base tables. ----
+# Pre-pandemic.
+table1Outcomes_PP <-
+  tbl_PP_outcome %>%
+    dplyr::filter(!variable %in% c("90-day post-operative mortality",
+                                   "12-month post-operative mortality"))
+table1Outcomes_PP[,3:ncol(table1Outcomes_PP)] <-
+  table1Outcomes_PP %>% dplyr::select(-c(variable, strata)) %>% 
+  sapply(as.double)
+# Pandemic no vaccine.
+table1Outcomes_PNV <-
+  tbl_PNV_outcome %>%
+    dplyr::filter(!variable %in% c("90-day post-operative mortality",
+                                   "12-month post-operative mortality"))
+table1Outcomes_PNV[,3:ncol(table1Outcomes_PNV)] <-
+  table1Outcomes_PNV %>% dplyr::select(-c(variable, strata)) %>% 
+  sapply(as.double)
+# COVIDSurg data collection period.
+table1Outcomes_CSP <-
+  tbl_CSP_outcome %>%
+    dplyr::filter(!variable %in% c("90-day post-operative mortality",
+                                   "12-month post-operative mortality"))
+table1Outcomes_CSP[,3:ncol(table1Outcomes_CSP)] <-
+  table1Outcomes_CSP %>% dplyr::select(-c(variable, strata)) %>% 
+  sapply(as.double)
+# Pandemic with vaccine.
+table1Outcomes_PWV <-
+  tbl_PWV_outcome %>%
+    dplyr::filter(!variable %in% c("90-day post-operative mortality",
+                                   "12-month post-operative mortality"))
+table1Outcomes_PWV[,3:ncol(table1Outcomes_PWV)] <-
+  table1Outcomes_PWV %>% dplyr::select(-c(variable, strata)) %>% 
+  sapply(as.double)
+# ----
+
+# Save tibbles to CSV. ----
+# Pre-pandemic.
+write.csv(
+  x = table1Outcomes_PP,
+  file = here::here("output",
+                    "table1Outcomes_PP.csv")
+)
+# Pandemic no vaccine.
+write.csv(
+  x = table1Outcomes_PNV,
+  file = here::here("output",
+                    "table1Outcomes_PNV.csv")
+)
+# COVIDSurg data collection period.
+write.csv(
+  x = table1Outcomes_CSP,
+  file = here::here("output",
+                    "table1Outcomes_CSP.csv")
+)
+# Pandemic with vaccine.
+write.csv(
+  x = table1Outcomes_PWV,
+  file = here::here("output",
+                    "table1Outcomes_PWV.csv")
+)
+# ----
 
 
-
+###############
+## Table Era ##
+###############
+# ----
+# This table is just the table_mrtality_intervals tibble produced in 
+# Make_table_COVIDSurg_compare.R, which is saved as
+# table_30day_post-op_mortality_in_each_era_across_all_intervals.csv
+#
+# Here, we just rename the table
+#
+data_to_use_C <- myData %>% 
+  dplyr::filter(category_cancer_within_6mths_surgery == 
+                  "Cancer diagnosis within 6mths before surgery" |
+                  category_cancer_within_6mths_surgery == 
+                  "Cancer diagnosis within 6mths after surgery")
+data_to_use_NC <- myData %>% dplyr::filter(has_cancer == FALSE)
+source(here::here("analysis","Make_table_COVIDSurg_compare.R"))
+TableEra <- table_mortality_intervals
+write.csv(
+  x = TableEra,
+  file = here::here("output", "TableEra.csv")
+)
+# ----
 
