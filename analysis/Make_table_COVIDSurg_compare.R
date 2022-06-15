@@ -3,9 +3,9 @@
 # This script processes data from the myData dataframe to create a table
 # that compares the 30-day post-operative mortality in the following cohorts:
 #   1. COVIDSurg study estimates (doi: 10.1111/anae.15458)
-#   2. OpenSAFELY surgery patients who do not have a cancer diagnosis within 6
+#   2. OpenSAFELY surgery patients who do not have a cancer diagnosis within 3
 #      months before or after their surgery.
-#   3. OpenSAFELY surgery patients who do have a cancer diagnosis within 6
+#   3. OpenSAFELY surgery patients who do have a cancer diagnosis within 3
 #      months before or after their surgery.
 #
 
@@ -62,10 +62,10 @@ if(!exists("data_to_use_C"))
 {
   source(here::here("analysis","dataset_preparation.R"))
   data_to_use_C <- myData %>% 
-    dplyr::filter(category_cancer_within_6mths_surgery == 
-                    "Cancer diagnosis within 6mths before surgery" |
-                    category_cancer_within_6mths_surgery == 
-                    "Cancer diagnosis within 6mths after surgery")
+    dplyr::filter(category_cancer_within_3mths_surgery == 
+                    "Cancer diagnosis within 3mths before surgery" |
+                    category_cancer_within_3mths_surgery == 
+                    "Cancer diagnosis within 3mths after surgery")
   data_to_use_NC <- myData %>% dplyr::filter(has_cancer == FALSE)
   }
 # ----

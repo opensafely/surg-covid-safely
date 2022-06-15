@@ -67,25 +67,25 @@ endDate = "31-03-2022"
 
 # Load and run the function that does the work.
 source(here::here("analysis","fnc_preprintFigure_dataPrep.R"))
-OS_C6m_windowed_proportion_7wkPreOpInfection <- 
+OS_C3m_windowed_proportion_7wkPreOpInfection <- 
   fnc_preprintFigure_dataPrep(data = plotData_OS_C,
                               start = startDate,
                               end = endDate)
-OS_NC6m_windowed_proportion_7wkPreOpInfection <-
+OS_NC3m_windowed_proportion_7wkPreOpInfection <-
   fnc_preprintFigure_dataPrep(data = plotData_OS_NC,
                               start = startDate,
                               end = endDate)
 
 # Save the plot data.
 write.csv(
-  x = OS_C6m_windowed_proportion_7wkPreOpInfection,
+  x = OS_C3m_windowed_proportion_7wkPreOpInfection,
   file = here::here("output",
-                    "plotData_OS_C6m.csv")
+                    "plotData_OS_C3m.csv")
 )
 write.csv(
-  x = OS_NC6m_windowed_proportion_7wkPreOpInfection,
+  x = OS_NC3m_windowed_proportion_7wkPreOpInfection,
   file = here::here("output",
-                    "plotData_OS_NC6m.csv")
+                    "plotData_OS_NC3m.csv")
 )
 # ----
 
@@ -97,9 +97,9 @@ write.csv(
 #
 # Load and run the function that does the work.
 source(here::here("analysis","fnc_preprintFigure_dataPlot.R"))
-fnc_preprintFigure_dataPlot(data = OS_C6m_windowed_proportion_7wkPreOpInfection,
+fnc_preprintFigure_dataPlot(data = OS_C3m_windowed_proportion_7wkPreOpInfection,
                             cohort = "with", figureCaption = F)
-fnc_preprintFigure_dataPlot(data = OS_NC6m_windowed_proportion_7wkPreOpInfection,
+fnc_preprintFigure_dataPlot(data = OS_NC3m_windowed_proportion_7wkPreOpInfection,
                             cohort = "without", figureCaption = F)
 
 # ----

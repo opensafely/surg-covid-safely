@@ -183,3 +183,18 @@ actions:
                 table1_PNV_outcome_6mths_7wkThreshold: output/table1_PNV_outcome_6mths_7wkThreshold.csv
                 table1_PWV_strata_6mths_7wkThreshold: output/table1_PWV_strata_6mths_7wkThreshold.csv
                 table1_PWV_outcome_6mths_7wkThreshold: output/table1_PWV_outcome_6mths_7wkThreshold.csv
+
+    output_for_publication:
+            run:    r:latest analysis/Tables_for_1st_publication.R
+            needs: [generate_study_population_2]
+            outputs:
+                moderately_sensitive:
+                    table1Demogs_PP: output/table1Demogs_PP.csv
+                    table1Demogs_PNV: output/table1Demogs_PNV.csv
+                    table1Demogs_CSP: output/table1Demogs_CSP.csv
+                    table1Demogs_PWV: output/table1Demogs_PWV.csv
+                    table1Outcomes_PP: output/table1Outcomes_PP.csv
+                    table1Outcomes_PNV: output/table1Outcomes_PNV.csv
+                    table1Outcomes_CSP: output/table1Outcomes_CSP.csv
+                    table1Outcomes_PWV: output/table1Outcomes_PWV.csv
+                    TableEra: output/TableEra.csv
