@@ -14,4 +14,6 @@ opensafely/lung-cancer/53469981
 opensafely/chronic-cardiac-disease-snomed/4ac64b59
 opensafely/diabetes-snomed/7a3271cd
 opensafely/chronic-respiratory-disease/69a34cc0
-user/alwynkotze/stroke/7a03f043
+user/alwynkotze/covidsurg-replication-tia-stroke/31204854
+user/alwynkotze/mace-snomed/4ce27b7f
+user/alwynkotze/postop-pulmonary-complications-covidsurg/1ac39515

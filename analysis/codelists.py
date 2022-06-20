@@ -122,77 +122,37 @@ codelist_cancer_ctv3_combine = combine_codelists(
    codelist_cancer_haematological_ctv3
 )
 
-# #####################
-# Exposure
-# #####################
+## #####################
+## Exposure
+## #####################
 # No codelits needed.
 
 
-# #####################
-# Outcomes
-# #####################
-# ## Outcomes used in the original COVIDSurg study.
-
+## #####################
+## Outcomes
+## #####################
+## ## Outcomes used in the original COVIDSurg study.
 ## Post-operative mortality.
 # No codelists needed.
 
-### 30-day post-operative pulmonary complications.
-## Defined by the presence of any codes for pneumonia,
-## acute respiratory distress syndrome, or unexpected
-## post-operative ventilation.
-#
-## Pneumonia.
-#codelist_pneumonia = codelist_from_csv(
-#    "codelists/codelist-pneumonia.csv",
-#    system="snomed",
-#    column="code",
-#)
-## Acute respiratory distress syndrome, ARDS.
-#codelist_ARDS = codelist_from_csv(
-#    "codelists/codelist-ARDS.csv",
-#    system="snomed",
-#    column="code",
-#)
-## Unexpected post-operative ventilation.
-#codelist_unexpected_ventilation = codelist_from_csv(
-#    "codelists/codelist-unexpected-ventilation.csv",
-#    system="snomed",
-#    column="code",
-#)
-## Post-operative pulmonary complications.
-#codelist_pulmonary_complications = combine_codelists(
-#    codelist_pneumonia,
-#    codelist_ARDS,
-#    codelist_unexpected_ventilation,
-#)
-#
-## ## Outcomes in addition to those used in the original
-## ## COVIDSurg study.
-#
-### 30-day post-operative cardiac complications.
-## Defined by...
-#
-### Post-operative *<indicator of post-operative cardiac complications>.
-#codelist_* = codelist_from_csv(
-#    "codelists/codelist-*.csv",
-#    system="snomed",
-#    column="code",
-#)
-### Post-operative **<indicator of post-operative cardiac complications>.
-#codelist_** = codelist_from_csv(
-#    "codelists/codelist-**.csv",
-#    system="snomed",
-#    column="code",
-#)
-### Post-operative cardiac complications.
-#codelist_cardiac_complications = combine_codelists(
-#    codelist_*,
-#    codelist_**,
-#)
-#
-# 30-day post-operative cerebrovascular complications, as indicated by TIA and stroke.
+## 30-day post-operative pulmonary complications. (https://www.opencodelists.org/codelist/user/alwynkotze/postop-pulmonary-complications-covidsurg/1ac39515/#search-results)
+codelist_pulmonary_complications = codelist_from_csv(
+   "codelists/user-alwynkotze-postop-pulmonary-complications-covidsurg.csv",
+   system="snomed",
+   column="code",
+   )
+
+## ## Outcomes in addition to those used in the original COVIDSurg study.
+## 30-day post-operative cardiac complications. (https://www.opencodelists.org/codelist/user/alwynkotze/mace-snomed/4ce27b7f/)
+codelist_cardiac_complications = codelist_from_csv(
+   "codelists/user-alwynkotze-mace-snomed.csv",
+   system="snomed",
+   column="code",
+   )
+
+## 30-day post-operative cerebrovascular complications, as indicated by TIA and stroke.
 codelist_cerebrovascular_complications = codelist_from_csv(
-   "codelists/user-alwynkotze-stroke.csv",
+   "codelists/user-alwynkotzecovidsurg-replication-tia-stroke.csv",
    system="snomed",
    column="code",
 )
@@ -229,3 +189,6 @@ codelist_chronic_respiratory_disease = codelist_from_csv(
  system="ctv3",
  column="CTV3ID",
 )
+
+# Cerebrovascular disease.
+# Uses codelist_cerebrovascular_complications

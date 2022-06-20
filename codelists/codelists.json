@@ -96,11 +96,23 @@
       "downloaded_at": "2022-05-12 15:14:20.760737Z",
       "sha": "77946d9b844f348daf5c8c9e81346b9776d13998"
     },
-    "user-alwynkotze-stroke.csv": {
-      "id": "user/alwynkotze/stroke/7a03f043",
-      "url": "https://codelists.opensafely.org/codelist/user/alwynkotze/stroke/7a03f043/",
-      "downloaded_at": "2022-05-23 12:46:50.431217Z",
-      "sha": "c1fd606519181423972ea099ec4e7ca31ff04747"
+    "user-alwynkotze-covidsurg-replication-tia-stroke.csv": {
+      "id": "user/alwynkotze/covidsurg-replication-tia-stroke/31204854",
+      "url": "https://codelists.opensafely.org/codelist/user/alwynkotze/covidsurg-replication-tia-stroke/31204854/",
+      "downloaded_at": "2022-06-20 09:55:43.018497Z",
+      "sha": "504b286e270d9fec68ba38fd4c2fa0fde4e384b1"
+    },
+    "user-alwynkotze-mace-snomed.csv": {
+      "id": "user/alwynkotze/mace-snomed/4ce27b7f",
+      "url": "https://codelists.opensafely.org/codelist/user/alwynkotze/mace-snomed/4ce27b7f/",
+      "downloaded_at": "2022-06-20 09:55:43.300688Z",
+      "sha": "9a39853a75919d454224eccffe9f69ba14110e67"
+    },
+    "user-alwynkotze-postop-pulmonary-complications-covidsurg.csv": {
+      "id": "user/alwynkotze/postop-pulmonary-complications-covidsurg/1ac39515",
+      "url": "https://codelists.opensafely.org/codelist/user/alwynkotze/postop-pulmonary-complications-covidsurg/1ac39515/",
+      "downloaded_at": "2022-06-20 09:55:43.539008Z",
+      "sha": "d2c70d23d65e4915569e27b28dcbe3cae204eb99"
     }
   }
 }
