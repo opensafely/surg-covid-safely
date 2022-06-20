@@ -152,7 +152,7 @@ codelist_cardiac_complications = codelist_from_csv(
 
 ## 30-day post-operative cerebrovascular complications, as indicated by TIA and stroke.
 codelist_cerebrovascular_complications = codelist_from_csv(
-   "codelists/user-alwynkotzecovidsurg-replication-tia-stroke.csv",
+   "codelists/user-alwynkotze-covidsurg-replication-tia-stroke.csv",
    system="snomed",
    column="code",
 )
