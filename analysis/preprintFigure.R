@@ -4,9 +4,9 @@
 # summaries of the proportion of surgeries conducted more than 7 weeks from a 
 # positive PCR test for SARS-CoV-2 (as per the data available in OpenSAFELY).
 #
-# Data for two cohorts are plotted: surgery patients without a cancer diagnosis
-# within +-6 months of surgery, and for patient with a cancer diagnosis within
-# +-6 months of surgery.
+# Data for two cohorts are plotted: surgery patients with a cancer diagnosis
+# within +-6 months of surgery, and for patient without a cancer diagnosis
+# since the study start date (2018-03-17).
 #
 # The plot area is annotated with key dates:
 #   1. March 2020 - The first publication by the COVIDSurg Collaborative that
@@ -34,36 +34,27 @@ library(lubridate)
 ## Filter datasets ##
 #####################
 # ----
-# Select only the variables needed for plotting.
-myPlotData <- myData %>% select(c(
-  date_surgery,
-  category_cancer_within_6mths_surgery,
-  preOperative_infection_status,
-  Week_surgery,
-  Month_surgery,
-  Year_surgery
-))
-
-# Filter the dataset for patients with a record of a cancer diagnosis within
-# 6 months before or after their surgery.
-# Naming convention is:
-#   - OS = OpenSAFELY data
-#   - C  = Cancer patient
-#   - NC = Non-cancer patient
-#
 # OpenSAFELY data, cancer patients, within 6 months of surgery.
-myData_OS_C6m <- myPlotData %>% 
-  dplyr::filter(category_cancer_within_6mths_surgery == 
-                  "Cancer diagnosis within 6mths before surgery" |
-                  category_cancer_within_6mths_surgery == 
-                  "Cancer diagnosis within 6mths after surgery")
+plotData_OS_C <- data_to_use_C %>%
+  select(c(
+    date_surgery,
+    category_cancer_within_6mths_surgery,
+    preOperative_infection_status,
+    Week_surgery,
+    Month_surgery,
+    Year_surgery
+  ))
 
 # OpenSAFELY data, cancer patients, NOT within 6 months of surgery.
-myData_OS_NC6m <- myPlotData %>%
-  dplyr::filter(category_cancer_within_6mths_surgery != 
-                  "Cancer diagnosis within 6mths before surgery" |
-                  category_cancer_within_6mths_surgery != 
-                  "Cancer diagnosis within 6mths after surgery")
+plotData_OS_NC <- data_to_use_NC %>%
+  select(c(
+    date_surgery,
+    category_cancer_within_6mths_surgery,
+    preOperative_infection_status,
+    Week_surgery,
+    Month_surgery,
+    Year_surgery
+  ))
 # ----
 
 #################################
@@ -76,25 +67,25 @@ endDate = "31-03-2022"
 
 # Load and run the function that does the work.
 source(here::here("analysis","fnc_preprintFigure_dataPrep.R"))
-OS_C6m_windowed_proportion_7wkPreOpInfection <- 
-  fnc_preprintFigure_dataPrep(data = myData_OS_C6m,
+OS_C3m_windowed_proportion_7wkPreOpInfection <- 
+  fnc_preprintFigure_dataPrep(data = plotData_OS_C,
                               start = startDate,
                               end = endDate)
-OS_NC6m_windowed_proportion_7wkPreOpInfection <-
-  fnc_preprintFigure_dataPrep(data = myData_OS_NC6m,
+OS_NC3m_windowed_proportion_7wkPreOpInfection <-
+  fnc_preprintFigure_dataPrep(data = plotData_OS_NC,
                               start = startDate,
                               end = endDate)
 
 # Save the plot data.
 write.csv(
-  x = OS_C6m_windowed_proportion_7wkPreOpInfection,
+  x = OS_C3m_windowed_proportion_7wkPreOpInfection,
   file = here::here("output",
-                    "plotData_OS_C6m.csv")
+                    "plotData_OS_C3m.csv")
 )
 write.csv(
-  x = OS_NC6m_windowed_proportion_7wkPreOpInfection,
+  x = OS_NC3m_windowed_proportion_7wkPreOpInfection,
   file = here::here("output",
-                    "plotData_OS_NC6m.csv")
+                    "plotData_OS_NC3m.csv")
 )
 # ----
 
@@ -106,10 +97,10 @@ write.csv(
 #
 # Load and run the function that does the work.
 source(here::here("analysis","fnc_preprintFigure_dataPlot.R"))
-fnc_preprintFigure_dataPlot(data = OS_C6m_windowed_proportion_7wkPreOpInfection,
-                            cohort = "with")
-fnc_preprintFigure_dataPlot(data = OS_NC6m_windowed_proportion_7wkPreOpInfection,
-                            cohort = "without")
+fnc_preprintFigure_dataPlot(data = OS_C3m_windowed_proportion_7wkPreOpInfection,
+                            cohort = "with", figureCaption = F)
+fnc_preprintFigure_dataPlot(data = OS_NC3m_windowed_proportion_7wkPreOpInfection,
+                            cohort = "without", figureCaption = F)
 
 # ----
 

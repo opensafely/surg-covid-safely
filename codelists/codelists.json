@@ -18,6 +18,12 @@
       "downloaded_at": "2022-02-25 09:25:19.743458Z",
       "sha": "d9bb1d5799028392d6a8953ed6d7835484e04c79"
     },
+    "user-ciaranmci-surgery-covidsurg-replication-opcs-49.csv": {
+      "id": "user/ciaranmci/surgery-covidsurg-replication-opcs-49/7a62958c",
+      "url": "https://codelists.opensafely.org/codelist/user/ciaranmci/surgery-covidsurg-replication-opcs-49/7a62958c/",
+      "downloaded_at": "2022-06-15 10:33:23.329676Z",
+      "sha": "b531a55b8e2ea89ec9c25431cd12dd72a0909057"
+    },
     "primis-covid19-vacc-uptake-covadm1.csv": {
       "id": "primis-covid19-vacc-uptake/covadm1/v1",
       "url": "https://codelists.opensafely.org/codelist/primis-covid19-vacc-uptake/covadm1/v1/",
@@ -113,6 +119,11 @@
       "url": "https://codelists.opensafely.org/codelist/user/alwynkotze/postop-pulmonary-complications-covidsurg/1ac39515/",
       "downloaded_at": "2022-06-20 09:55:43.539008Z",
       "sha": "d2c70d23d65e4915569e27b28dcbe3cae204eb99"
+    "user-alwynkotze-surgery-covidsurg-replication-codes-from-abbott.csv": {
+      "id": "user/alwynkotze/surgery-covidsurg-replication-codes-from-abbott/13136379",
+      "url": "https://codelists.opensafely.org/codelist/user/alwynkotze/surgery-covidsurg-replication-codes-from-abbott/13136379/",
+      "downloaded_at": "2022-05-23 12:08:07.974332Z",
+      "sha": "28bd638627f787abd11bfbd13cd96716fc9a9d05"
     }
   }
 }
