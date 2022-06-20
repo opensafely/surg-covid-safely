@@ -163,33 +163,21 @@ study = StudyDefinition(
 		},
 	),
 
-	### Date of post-operative pulmonary complications.
-	#date_postOp_pulmonary_complications = patients.with_these_clinical_events(
-	#   codelist_pulmonary_complications,
-	#	on_or_after = "date_surgery",
-	#	returning = "date",
-	#	return_number_of_matches_in_period = True,
-	#	include_date_of_match = True,
-	#	date_format = "YYYY-MM-DD",
-	#	return_expectations={
-	#		"date": {"earliest": date_surgery, latest": "today"},
-	#		"rate": "uniform",
-	#		"incidence": 0.3}
-	#),
-
-	### Date of post-operative cardiac complications.
-	#date_postOp_cardiac_complications = patients.with_these_clinical_events(
-	#   codelist_cardiac_complications,
-	#	on_or_after = "date_surgery",
-	#	returning = "date",
-	#	return_number_of_matches_in_period = True,
-	#	include_date_of_match = True,
-	#	date_format = "YYYY-MM-DD",
-	#	return_expectations={
-	#		"date": {"earliest": date_surgery, "latest": "today"},
-	#		"rate": "uniform",
-	#		"incidence": 0.3}
-	#),
+	## Date of post-operative pulmonary complications.
+	date_postOp_pulmonary_complications = patients.with_these_clinical_events(
+        codelist_pulmonary_complications,
+		on_or_after = "date_surgery",
+		returning = "date",
+		date_format = "YYYY-MM-DD",
+	),
+    
+    ## Date of post-operatve cardiac complications.
+	date_postOp_cardiac_complications = patients.with_these_clinical_events(
+        codelist_cardiac_complications,
+		on_or_after = "date_surgery",
+		returning = "date",
+		date_format = "YYYY-MM-DD",
+	),
 
 	## Date of post-operative cerebrovascular complications.
 	date_postOp_cerebrovascular_complication = patients.with_these_clinical_events(
@@ -343,7 +331,7 @@ study = StudyDefinition(
 		}
 	),
     
-        ## Diabetes.
+    ## Diabetes.
     diabetes = patients.with_these_clinical_events(
 		codelist_diabetes,
 		on_or_before = "date_surgery",
@@ -363,7 +351,16 @@ study = StudyDefinition(
 		}
 	),
     
-
+    ## Cerebrovascular disease.
+	cerebrovascular_disease = patients.with_these_clinical_events(
+		codelist_cerebrovascular_complications,
+		on_or_before = "date_surgery",
+		returning = "binary_flag",
+		return_expectations={
+			"incidence": 0.3
+		}
+	),
+    
 	##'Urgency of surgery'.
     # This will require the definition of a special OPCS codelist using https://www.opencodelists.org/codelist/user/ciaranmci/add/
 	admission_method = patients.admitted_to_hospital(

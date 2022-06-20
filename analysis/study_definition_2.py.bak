@@ -366,7 +366,7 @@ study = StudyDefinition(
 
 	##'Urgency of surgery'.
     # This will require the definition of a special OPCS codelist using https://www.opencodelists.org/codelist/user/ciaranmci/add/
-	surgery_urgency = patients.admitted_to_hospital(
+	admission_method = patients.admitted_to_hospital(
 		with_these_procedures = OPCS_codelist_cancer_surgery,
 		returning = "admission_method",
 		on_or_after = start_date,
@@ -377,11 +377,11 @@ study = StudyDefinition(
 		}
 	),
     # Categorised based on HES codes https://digital.nhs.uk/data-and-information/data-tools-and-services/data-services/hospital-episode-statistics/hospital-episode-statistics-data-dictionary
-    category_surgery_urgency = patients.categorised_as(
+    category_admission_method = patients.categorised_as(
 		{
-		"Elective": "surgery_urgency = 11 OR surgery_urgency = 12 OR surgery_urgency = 13",
-		"Emergency": "surgery_urgency = 21 OR surgery_urgency = 22 OR surgery_urgency = 23 OR surgery_urgency = 24 OR surgery_urgency = 25",
-        "Emergency": "surgery_urgency = '2A' OR surgery_urgency = '2B' OR surgery_urgency = '2C' OR surgery_urgency = '2D' OR surgery_urgency = '28'",
+		"Elective": "admission_method = 11 OR admission_method = 12 OR admission_method = 13",
+		"Emergency": "admission_method = 21 OR admission_method = 22 OR admission_method = 23 OR admission_method = 24 OR admission_method = 25",
+        "Emergency": "admission_method = '2A' OR admission_method = '2B' OR admission_method = '2C' OR admission_method = '2D' OR admission_method = '28'",
         "Missing": "DEFAULT"
 		},
 		return_expectations = {
