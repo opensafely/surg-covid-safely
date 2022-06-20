@@ -35,6 +35,8 @@ df_input <- readr::read_csv(
                    chronic_cardiac_disease = col_logical(),
                    diabetes = col_logical(),
                    chronic_respiratory_disease = col_logical(),
+                   admission_method = col_factor(),
+                   category_admission_method = col_factor(),
                    patient_id = col_integer())
 )
 # Some fudges to handle unusual exceptions for the Sex variable.
@@ -206,9 +208,9 @@ myData <- myData %>%
             dplyr::mutate(
               postOp_cerebrovascular_complication_30day = dplyr::case_when(
                 (.$date_postOp_cerebrovascular_complication < .$date_surgery) ~ "Ignore: Pre-operative complication",
-                (.$date_postOp_cerebrovascular_complication - .$date_surgery) <= 30 ~ "Cerebrovascular complication within 30 days post-operation",
-                (.$date_postOp_cerebrovascular_complication - .$date_surgery) > 30 ~ "No cerebrovascular complication within 30 days post-operation",
-                is.na(.$date_postOp_cerebrovascular_complication) ~ "No cerebrovascular complication recorded",
+                (.$date_postOp_cerebrovascular_complication - .$date_surgery) <= 30 ~ "Complications",
+                (.$date_postOp_cerebrovascular_complication - .$date_surgery) > 30 ~ "No complications",
+                is.na(.$date_postOp_cerebrovascular_complication) ~ "No complication recorded",
                 is.na(.$date_surgery) ~ "No surgery recorded"
               )
             ) %>%

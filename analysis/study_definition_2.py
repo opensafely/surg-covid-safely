@@ -366,33 +366,35 @@ study = StudyDefinition(
 
 	##'Urgency of surgery'.
     # This will require the definition of a special OPCS codelist using https://www.opencodelists.org/codelist/user/ciaranmci/add/
-	# surgery_urgency = patients.admitted_to_hospital(
-		# with_these_procedures = OPCS_codelist_cancer_surgery,
-		# returning = "admission_method",
-		# on_or_after = start_date,
-		# find_first_match_in_period = True,
-		# return_expectations = {
-			# "category": {"ratios": {"11": 0.2, "12": 0.2, "13": 0.3, "21": 0.2, "2B": 0.1}}, 
-			# "incidence": 1
-		# }
-	# ),
-    ##Categorised based on HES codes https://digital.nhs.uk/data-and-information/data-tools-and-services/data-services/hospital-episode-statistics/hospital-episode-statistics-data-dictionary
-    # category_surgery_urgency = patients.categorised_as(
-		# {
-		# "Elective": "surgery_urgency == 11 or surgery_urgency == 12 or surgery_urgency == 13 or",
-		# "Emergency": "surgery_urgency == 21 or surgery_urgency == 22 or surgery_urgency == 23 or surgery_urgency == 24 or surgery_urgency == 25 or surgery_urgency == 2A or surgery_urgency == 2B or surgery_urgency == 2C or surgery_urgency == 2D or surgery_urgency == 28"
-		# },
-		# return_expectations = {
-			# "rate": "universal",
-			# "category": {
-				# "ratios": {
-					# "Elective": 0.4,
-					# "Emergency": 0.4,
-                    # "Missing": 0.2
-					# }
-				# }
-			# }
-	# ),
+	admission_method = patients.admitted_to_hospital(
+		with_these_procedures = OPCS_codelist_cancer_surgery,
+		returning = "admission_method",
+		on_or_after = start_date,
+		find_first_match_in_period = True,
+		return_expectations = {
+			"category": {"ratios": {"11": 0.2, "12": 0.2, "13": 0.3, "21": 0.2, "2A": 0.1}}, 
+			"incidence": 1
+		}
+	),
+    # Categorised based on HES codes https://digital.nhs.uk/data-and-information/data-tools-and-services/data-services/hospital-episode-statistics/hospital-episode-statistics-data-dictionary
+    category_admission_method = patients.categorised_as(
+		{
+		"Elective": "admission_method = 11 OR admission_method = 12 OR admission_method = 13",
+		"Emergency": "admission_method = 21 OR admission_method = 22 OR admission_method = 23 OR admission_method = 24 OR admission_method = 25",
+        "Emergency": "admission_method = '2A' OR admission_method = '2B' OR admission_method = '2C' OR admission_method = '2D' OR admission_method = '28'",
+        "Missing": "DEFAULT"
+		},
+		return_expectations = {
+			"rate": "universal",
+			"category": {
+				"ratios": {
+					"Elective": 0.4,
+					"Emergency": 0.4,
+                    "Missing": 0.2
+					}
+				}
+			}
+	),
 
 	### Local COVID-specific index of multiple deprivation.
 	# address_deprivation_index = patients.address_as_of(
