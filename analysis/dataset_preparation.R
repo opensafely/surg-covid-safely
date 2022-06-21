@@ -35,6 +35,7 @@ df_input <- readr::read_csv(
                    chronic_cardiac_disease = col_logical(),
                    diabetes = col_logical(),
                    chronic_respiratory_disease = col_logical(),
+                   cerebrovascular_disease = col_logical(),
                    admission_method = col_factor(),
                    category_admission_method = col_factor(),
                    patient_id = col_integer())
@@ -46,6 +47,7 @@ df_input <- df_input[!(df_input$Sex == "I" | df_input$Sex == "U"),]
 df_input$chronic_cardiac_disease <- plyr::mapvalues(df_input$chronic_cardiac_disease, from = c(TRUE, FALSE), to = c("Yes", "No"))
 df_input$diabetes <- plyr::mapvalues(df_input$diabetes, from = c(TRUE, FALSE), to = c("Yes", "No"))
 df_input$chronic_respiratory_disease <- plyr::mapvalues(df_input$chronic_respiratory_disease, from = c(TRUE, FALSE), to = c("Yes", "No"))
+df_input$cerebrovascular_disease <- plyr::mapvalues(df_input$cerebrovascular_disease, from = c(TRUE, FALSE), to = c("Yes", "No"))
 
 # Assign input to secondary variable. 
 myData <- df_input
@@ -202,7 +204,7 @@ myData <- myData %>%
                 is.na(.$date_surgery) ~ "No surgery recorded"
               )
             ) %>%
-            ## Indicator for 30-day post-operative mortality.
+            ## Indicator for 30-day post-operative cerebrovascular complication.
             ## # NB: if the list of possible categories changes, the list will
             ## #     need to be updated in Make_Table1.R, too.
             dplyr::mutate(
@@ -211,6 +213,30 @@ myData <- myData %>%
                 (.$date_postOp_cerebrovascular_complication - .$date_surgery) <= 30 ~ "Complications",
                 (.$date_postOp_cerebrovascular_complication - .$date_surgery) > 30 ~ "No complications",
                 is.na(.$date_postOp_cerebrovascular_complication) ~ "No complication recorded",
+                is.na(.$date_surgery) ~ "No surgery recorded"
+              )
+            ) %>%
+            ## Indicator for 30-day post-operative pulmonary complication
+            ## # NB: if the list of possible categories changes, the list will
+            ## #     need to be updated in Make_Table1.R, too.
+            dplyr::mutate(
+              postOp_pulmonary_complication_30day = dplyr::case_when(
+                (.$date_postOp_pulmonary_complication < .$date_surgery) ~ "Ignore: Pre-operative complication",
+                (.$date_postOp_pulmonary_complication - .$date_surgery) <= 30 ~ "Complications",
+                (.$date_postOp_pulmonary_complication - .$date_surgery) > 30 ~ "No complications",
+                is.na(.$date_postOp_pulmonary_complication) ~ "No complication recorded",
+                is.na(.$date_surgery) ~ "No surgery recorded"
+              )
+            ) %>%
+            ## Indicator for 30-day post-operative cardiac complication
+            ## # NB: if the list of possible categories changes, the list will
+            ## #     need to be updated in Make_Table1.R, too.
+            dplyr::mutate(
+              postOp_cardiac_complication_30day = dplyr::case_when(
+                (.$date_postOp_cardiac_complication < .$date_surgery) ~ "Ignore: Pre-operative complication",
+                (.$date_postOp_cardiac_complication - .$date_surgery) <= 30 ~ "Complications",
+                (.$date_postOp_cardiac_complication - .$date_surgery) > 30 ~ "No complications",
+                is.na(.$date_postOp_cardiac_complication) ~ "No complication recorded",
                 is.na(.$date_surgery) ~ "No surgery recorded"
               )
             ) %>%
