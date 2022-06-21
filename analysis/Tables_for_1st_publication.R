@@ -389,20 +389,23 @@ write.csv(
 ## Table Era ##
 ###############
 # ----
-# This table is just the table_mrtality_intervals tibble produced in 
-# Make_table_COVIDSurg_compare.R, which is saved as
-# table_30day_post-op_mortality_in_each_era_across_all_intervals.csv
+# This table is just the table_mortality_totals tibble produced in 
+# Make_table_COVIDSurg_compare.R.
 #
-# Here, we just rename the table
+# Here, we just make sure it has been created and then rename it.
 #
-data_to_use_C <- myData %>% 
-  dplyr::filter(category_cancer_within_6mths_surgery == 
-                  "Cancer diagnosis within 6mths before surgery" |
-                  category_cancer_within_6mths_surgery == 
-                  "Cancer diagnosis within 6mths after surgery")
+
+data_to_use_C_within3m <- myData %>% 
+  dplyr::filter(category_cancer_within_3mths_surgery == 
+                  "Cancer diagnosis within 3mths before surgery" |
+                  category_cancer_within_3mths_surgery == 
+                  "Cancer diagnosis within 3mths after surgery")
+data_to_use_C_outwith3m <- myData %>% 
+  dplyr::filter(category_cancer_within_3mths_surgery == 
+                  "No cancer diagnosis within 3mths before or after surgery")
 data_to_use_NC <- myData %>% dplyr::filter(has_cancer == FALSE)
 source(here::here("analysis","Make_table_COVIDSurg_compare.R"))
-TableEra <- table_mortality_intervals
+TableEra <- table_mortality_totals
 write.csv(
   x = TableEra,
   file = here::here("output", "TableEra.csv")
