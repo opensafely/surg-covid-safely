@@ -197,4 +197,4 @@ actions:
                     table1Outcomes_PNV: output/table1Outcomes_PNV.csv
                     table1Outcomes_CSP: output/table1Outcomes_CSP.csv
                     table1Outcomes_PWV: output/table1Outcomes_PWV.csv
-                    #TableEra: output/TableEra.csv
+                    TableEra: output/TableEra.csv
