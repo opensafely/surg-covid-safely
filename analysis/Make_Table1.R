@@ -433,6 +433,126 @@ table1_postOp_cerebrovascular_complication_30day <-
   dplyr::bind_rows(table1_postOp_cerebrovascular_complication_30day,table1_CSP_postOp_cerebrovascular_complication_30day)
 # ## Count of patients in each of the categories for pre-operative infection
 # ## status (stratified by surgery era; see above) also stratified by whether
+# ## or not the patient experience pulmonary complications (i.e. TIA or
+# stroke) within 30 days of their surgery:
+# ##    1. "No complications"
+# ##    2. "Complications" 
+# ##    3. "Ignore: Pre-operative complication"
+# ##    4. "No pulmonary complication recorded"
+# ##    5. "No surgery recorded"
+table1_postOp_pulmonary_complication_30day <- 
+  data_to_use %>%
+  dplyr::filter(postOp_mortality_30day %in% c("Dead within 30 days post-operation",
+                                              "Alive within 30 days post-operation")) %>%
+  dplyr::mutate(
+    pulmonary_complication_30day = dplyr::case_when(
+      postOp_pulmonary_complication_30day ==
+        "Complications" ~ "Complications",
+      TRUE ~ "No complications"
+    )
+  ) %>%
+  dplyr::group_by(era, pulmonary_complication_30day) %>%
+  dplyr::summarise(n_all_intervals = sum(ifelse(preOperative_infection_status!=
+                                                  "Error: Test result after surgery. Check study_definition.",1,0)),
+                   n_infection_none = sum(ifelse(preOperative_infection_status==
+                                                   "No record of pre-operative SARS-CoV-2 infection",1,0)),
+                   n_infection_0to2wk = sum(ifelse(preOperative_infection_status==
+                                                     "0-2 weeks record of pre-operative SARS-CoV-2 infection",1,0)),
+                   n_infection_3to4wk = sum(ifelse(preOperative_infection_status==
+                                                     "3-4 weeks record of pre-operative SARS-CoV-2 infection",1,0)),
+                   n_infection_5to6wk = sum(ifelse(preOperative_infection_status==
+                                                     "5-6 weeks record of pre-operative SARS-CoV-2 infection",1,0)),
+                   n_infection_7wk = sum(ifelse(preOperative_infection_status==
+                                                  ">=7 weeks record of pre-operative SARS-CoV-2 infection",1,0))
+  )
+table1_CSP_postOp_pulmonary_complication_30day <- 
+  data_to_use %>%
+  dplyr::filter(postOp_mortality_30day %in% c("Dead within 30 days post-operation",
+                                              "Alive within 30 days post-operation")) %>%
+  dplyr::filter(COVIDSurg_data_collection_period != "Error: No surgery") %>%
+  dplyr::mutate(
+    pulmonary_complication_30day = dplyr::case_when(
+      postOp_pulmonary_complication_30day ==
+        "Complications" ~ "Complications", TRUE ~ "No complications")
+  ) %>%
+  dplyr::group_by(COVIDSurg_data_collection_period, pulmonary_complication_30day) %>%
+  dplyr::summarise(n_all_intervals = sum(ifelse(preOperative_infection_status!=
+                                                  "Error: Test result after surgery. Check study_definition.",1,0)),
+                   n_infection_none = sum(ifelse(preOperative_infection_status==
+                                                   "No record of pre-operative SARS-CoV-2 infection",1,0)),
+                   n_infection_0to2wk = sum(ifelse(preOperative_infection_status==
+                                                     "0-2 weeks record of pre-operative SARS-CoV-2 infection",1,0)),
+                   n_infection_3to4wk = sum(ifelse(preOperative_infection_status==
+                                                     "3-4 weeks record of pre-operative SARS-CoV-2 infection",1,0)),
+                   n_infection_5to6wk = sum(ifelse(preOperative_infection_status==
+                                                     "5-6 weeks record of pre-operative SARS-CoV-2 infection",1,0)),
+                   n_infection_7wk = sum(ifelse(preOperative_infection_status==
+                                                  ">=7 weeks record of pre-operative SARS-CoV-2 infection",1,0))
+  ) %>% `colnames<-`(c("era", colnames(table1_postOp_pulmonary_complication_30day)[2:ncol(table1_postOp_pulmonary_complication_30day)]))
+table1_postOp_pulmonary_complication_30day <-
+  dplyr::bind_rows(table1_postOp_pulmonary_complication_30day,table1_CSP_postOp_pulmonary_complication_30day)
+# ## Count of patients in each of the categories for pre-operative infection
+# ## status (stratified by surgery era; see above) also stratified by whether
+# ## or not the patient experience cardiac complications (i.e. TIA or
+# stroke) within 30 days of their surgery:
+# ##    1. "No complications"
+# ##    2. "Complications" 
+# ##    3. "Ignore: Pre-operative complication"
+# ##    4. "No cardiac complication recorded"
+# ##    5. "No surgery recorded"
+table1_postOp_cardiac_complication_30day <- 
+  data_to_use %>%
+  dplyr::filter(postOp_mortality_30day %in% c("Dead within 30 days post-operation",
+                                              "Alive within 30 days post-operation")) %>%
+  dplyr::mutate(
+    cardiac_complication_30day = dplyr::case_when(
+      postOp_cardiac_complication_30day ==
+        "Complications" ~ "Complications",
+      TRUE ~ "No complications"
+    )
+  ) %>%
+  dplyr::group_by(era, cardiac_complication_30day) %>%
+  dplyr::summarise(n_all_intervals = sum(ifelse(preOperative_infection_status!=
+                                                  "Error: Test result after surgery. Check study_definition.",1,0)),
+                   n_infection_none = sum(ifelse(preOperative_infection_status==
+                                                   "No record of pre-operative SARS-CoV-2 infection",1,0)),
+                   n_infection_0to2wk = sum(ifelse(preOperative_infection_status==
+                                                     "0-2 weeks record of pre-operative SARS-CoV-2 infection",1,0)),
+                   n_infection_3to4wk = sum(ifelse(preOperative_infection_status==
+                                                     "3-4 weeks record of pre-operative SARS-CoV-2 infection",1,0)),
+                   n_infection_5to6wk = sum(ifelse(preOperative_infection_status==
+                                                     "5-6 weeks record of pre-operative SARS-CoV-2 infection",1,0)),
+                   n_infection_7wk = sum(ifelse(preOperative_infection_status==
+                                                  ">=7 weeks record of pre-operative SARS-CoV-2 infection",1,0))
+  )
+table1_CSP_postOp_cardiac_complication_30day <- 
+  data_to_use %>%
+  dplyr::filter(postOp_mortality_30day %in% c("Dead within 30 days post-operation",
+                                              "Alive within 30 days post-operation")) %>%
+  dplyr::filter(COVIDSurg_data_collection_period != "Error: No surgery") %>%
+  dplyr::mutate(
+    cardiac_complication_30day = dplyr::case_when(
+      postOp_cardiac_complication_30day ==
+        "Complications" ~ "Complications", TRUE ~ "No complications")
+  ) %>%
+  dplyr::group_by(COVIDSurg_data_collection_period, cardiac_complication_30day) %>%
+  dplyr::summarise(n_all_intervals = sum(ifelse(preOperative_infection_status!=
+                                                  "Error: Test result after surgery. Check study_definition.",1,0)),
+                   n_infection_none = sum(ifelse(preOperative_infection_status==
+                                                   "No record of pre-operative SARS-CoV-2 infection",1,0)),
+                   n_infection_0to2wk = sum(ifelse(preOperative_infection_status==
+                                                     "0-2 weeks record of pre-operative SARS-CoV-2 infection",1,0)),
+                   n_infection_3to4wk = sum(ifelse(preOperative_infection_status==
+                                                     "3-4 weeks record of pre-operative SARS-CoV-2 infection",1,0)),
+                   n_infection_5to6wk = sum(ifelse(preOperative_infection_status==
+                                                     "5-6 weeks record of pre-operative SARS-CoV-2 infection",1,0)),
+                   n_infection_7wk = sum(ifelse(preOperative_infection_status==
+                                                  ">=7 weeks record of pre-operative SARS-CoV-2 infection",1,0))
+  ) %>% `colnames<-`(c("era", colnames(table1_postOp_cardiac_complication_30day)[2:ncol(table1_postOp_cardiac_complication_30day)]))
+table1_postOp_cardiac_complication_30day <-
+  dplyr::bind_rows(table1_postOp_cardiac_complication_30day,table1_CSP_postOp_cardiac_complication_30day)
+# ## Count of patients in each of the categories for pre-operative infection
+# ## status (stratified by surgery era; see above) also stratified by whether
 # ## or not the patient had a record of chronic cardiac disease before their surgery.
 # ##    1. Yes
 # ##    2. No
@@ -565,14 +685,61 @@ table1_CSP_chronic_respiratory_disease <-
 
 table1_chronic_respiratory_disease <-
   dplyr::bind_rows(table1_chronic_respiratory_disease, table1_CSP_chronic_respiratory_disease)
+# ## Count of patients in each of the categories for pre-operative infection
+# ## status (stratified by surgery era; see above) also stratified by whether
+# ## or not the patient had a record of cerebrovascular disease before their surgery.
+# ##    1. Yes
+# ##    2. No
+table1_cerebrovascular_disease <- 
+  data_to_use %>%
+  dplyr::filter(postOp_mortality_30day %in% c("Dead within 30 days post-operation",
+                                              "Alive within 30 days post-operation")) %>%
+  dplyr::group_by(era, cerebrovascular_disease) %>%
+  dplyr::summarise(n_all_intervals = sum(ifelse(preOperative_infection_status!=
+                                                  "Error: Test result after surgery. Check study_definition.",1,0)),
+                   n_infection_none = sum(ifelse(preOperative_infection_status==
+                                                   "No record of pre-operative SARS-CoV-2 infection",1,0)),
+                   n_infection_0to2wk = sum(ifelse(preOperative_infection_status==
+                                                     "0-2 weeks record of pre-operative SARS-CoV-2 infection",1,0)),
+                   n_infection_3to4wk = sum(ifelse(preOperative_infection_status==
+                                                     "3-4 weeks record of pre-operative SARS-CoV-2 infection",1,0)),
+                   n_infection_5to6wk = sum(ifelse(preOperative_infection_status==
+                                                     "5-6 weeks record of pre-operative SARS-CoV-2 infection",1,0)),
+                   n_infection_7wk = sum(ifelse(preOperative_infection_status==
+                                                  ">=7 weeks record of pre-operative SARS-CoV-2 infection",1,0))
+  )
+table1_CSP_cerebrovascular_disease <- 
+  data_to_use %>%
+  dplyr::filter(postOp_mortality_30day %in% c("Dead within 30 days post-operation",
+                                              "Alive within 30 days post-operation")) %>%
+  dplyr::filter(COVIDSurg_data_collection_period != "Error: No surgery") %>%
+  dplyr::group_by(COVIDSurg_data_collection_period, cerebrovascular_disease) %>%
+  dplyr::summarise(n_all_intervals = sum(ifelse(preOperative_infection_status!=
+                                                  "Error: Test result after surgery. Check study_definition.",1,0)),
+                   n_infection_none = sum(ifelse(preOperative_infection_status==
+                                                   "No record of pre-operative SARS-CoV-2 infection",1,0)),
+                   n_infection_0to2wk = sum(ifelse(preOperative_infection_status==
+                                                     "0-2 weeks record of pre-operative SARS-CoV-2 infection",1,0)),
+                   n_infection_3to4wk = sum(ifelse(preOperative_infection_status==
+                                                     "3-4 weeks record of pre-operative SARS-CoV-2 infection",1,0)),
+                   n_infection_5to6wk = sum(ifelse(preOperative_infection_status==
+                                                     "5-6 weeks record of pre-operative SARS-CoV-2 infection",1,0)),
+                   n_infection_7wk = sum(ifelse(preOperative_infection_status==
+                                                  ">=7 weeks record of pre-operative SARS-CoV-2 infection",1,0))
+  ) %>% `colnames<-`(c("era", colnames(table1_cerebrovascular_disease)[2:ncol(table1_cerebrovascular_disease)]))
+
+table1_cerebrovascular_disease <-
+  dplyr::bind_rows(table1_cerebrovascular_disease, table1_CSP_cerebrovascular_disease)
 # Clean up.
 rm(table1_CSP_totals_preOp_infection_status, table1_CSP_ageGroup,
    table1_CSP_chronic_cardiac_disease, table1_CSP_chronic_respiratory_disease,
-   table1_CSP_admission_method, table1_CSP_diabetes,
-   table1_CSP_postOp_cerebrovascular_complication_30day,
+   table1_CSP_cerebrovascular_disease, table1_CSP_admission_method,
+   table1_CSP_diabetes, table1_CSP_postOp_cerebrovascular_complication_30day,
+   table1_CSP_postOp_cardiac_complication_30day, table1_CSP_Sex,
    table1_CSP_postOp_mortality_12mth, table1_CSP_postOp_mortality_30day,
    table1_CSP_postOp_mortality_6mth, table1_CSP_postOp_mortality_90day,
-   table1_CSP_Sex)
+   table1_CSP_postOp_pulmonary_complication_30day
+   )
 # ----
 
 #######################################################################
@@ -698,6 +865,26 @@ table1_postOp_mortality_12mth <-
   dplyr::full_join(table1_postOp_mortality_12mth) %>%
   dplyr::arrange(era) %>%
   tidyr::replace_na(na_replace_list)
+# ## table1_postOp_pulmonary_complication_30day
+table1_postOp_pulmonary_complication_30day <- 
+  expand.grid(
+    era = era_set,
+    pulmonary_complication_30day = 
+      c("Complications",
+        "No complications")) %>%
+  dplyr::full_join(table1_postOp_pulmonary_complication_30day) %>%
+  dplyr::arrange(era) %>%
+  tidyr::replace_na(na_replace_list)
+# ## table1_postOp_cardiac_complication_30day
+table1_postOp_cardiac_complication_30day <- 
+  expand.grid(
+    era = era_set,
+    cardiac_complication_30day = 
+      c("Complications",
+        "No complications")) %>%
+  dplyr::full_join(table1_postOp_cardiac_complication_30day) %>%
+  dplyr::arrange(era) %>%
+  tidyr::replace_na(na_replace_list)
 # ## table1_postOp_cerebrovascular_complication_30day
 table1_postOp_cerebrovascular_complication_30day <- 
   expand.grid(
@@ -741,6 +928,17 @@ table1_chronic_respiratory_disease <-
   dplyr::full_join(table1_chronic_respiratory_disease) %>%
   dplyr::arrange(era) %>%
   tidyr::replace_na(na_replace_list)
+# ## table1_cerebrovascular_disease.
+table1_cerebrovascular_disease <- 
+  expand.grid(
+    era = era_set,
+    cerebrovascular_disease = 
+      c("Yes",
+        "No",
+        "Missing")) %>%
+  dplyr::full_join(table1_cerebrovascular_disease) %>%
+  dplyr::arrange(era) %>%
+  tidyr::replace_na(na_replace_list)
 # ----
 
 #######################################################
@@ -776,6 +974,14 @@ table1_chronic_respiratory_disease <-
 #   file = here::here("output",paste0("table1_postOp_mortality_12mth",sensitivity_cohort,".csv"))
 # )
 # write.csv(
+#   x = table1_postOp_pulmonary_complication_30day,
+#   file = here::here("output",paste0("table1_postOp_pulmonary_complication_30day",sensitivity_cohort,".csv"))
+# )
+# write.csv(
+#   x = table1_postOp_cardiac_complication_30day,
+#   file = here::here("output",paste0("table1_postOp_cardiac_complication_30day",sensitivity_cohort,".csv"))
+# )
+# write.csv(
 #   x = table1_postOp_cerebrovascular_complication_30day,
 #   file = here::here("output",paste0("table1_postOp_cerebrovascular_complication_30day",sensitivity_cohort,".csv"))
 # )
@@ -790,6 +996,10 @@ table1_chronic_respiratory_disease <-
 # write.csv(
 #   x = table1_chronic_respiratory_disease,
 #   file = here::here("output",paste0("table1_chronic_respiratory_disease",sensitivity_cohort,".csv"))
+# )
+# write.csv(
+#   x = table1_cerebrovascular_disease,
+#   file = here::here("output",paste0("table1_cerebrovascular_disease",sensitivity_cohort,".csv"))
 # )
 # ----
 
@@ -1743,6 +1953,278 @@ PWV_postOp_mortality_12mth <-
 rm(PWV_n_postOp_mortality_12mth, PWV_pct_postOp_mortality_12mth)
 # ----
 
+# 30-day post-operative pulmonary complication. ----
+# ## Pre-pandemic
+# ## ## Get counts per intervals and overall.
+PP_n_postOp_pulmonary_complication_30day <- 
+  table1_postOp_pulmonary_complication_30day %>%
+  dplyr::filter(era=="Pre-pandemic") %>%
+  dplyr::arrange(pulmonary_complication_30day) %>%
+  dplyr::ungroup() %>% dplyr::select("n_all_intervals")
+# ## ## Get percentages per intervals and overall.
+PP_pct_postOp_pulmonary_complication_30day <-
+  (PP_n_postOp_pulmonary_complication_30day / sum(PP_n_postOp_pulmonary_complication_30day)) %>%
+  "*"(100) %>% tidyr::replace_na(list("n_all_intervals" = 0)) %>%
+  `colnames<-`(c("pct_all_intervals"))
+# ## ## Bind the counts and percentages.
+PP_postOp_pulmonary_complication_30day <-
+  table1_postOp_pulmonary_complication_30day %>%
+  dplyr::filter(era=="Pre-pandemic") %>%
+  dplyr::arrange(pulmonary_complication_30day) %>%
+  dplyr::select(pulmonary_complication_30day) %>%
+  dplyr::bind_cols(PP_n_postOp_pulmonary_complication_30day, PP_pct_postOp_pulmonary_complication_30day)
+# ## ## Clean up.
+rm(PP_n_postOp_pulmonary_complication_30day, PP_pct_postOp_pulmonary_complication_30day)
+
+# ## Pandemic no vaccine.
+# ## ## Get counts per intervals and overall.
+PNV_n_postOp_pulmonary_complication_30day <- 
+  table1_postOp_pulmonary_complication_30day %>%
+  dplyr::filter(era=="Pandemic no vaccine") %>%
+  dplyr::arrange(pulmonary_complication_30day) %>%
+  dplyr::ungroup() %>% dplyr::select(-c("era", "pulmonary_complication_30day"))
+# ## ## Get percentages per intervals and overall.
+PNV_pct_postOp_pulmonary_complication_30day <- 
+  table1_postOp_pulmonary_complication_30day %>%
+  dplyr::filter(era=="Pandemic no vaccine") %>%
+  select(-c("era", "pulmonary_complication_30day")) %>%
+  colSums() %>% sweep(PNV_n_postOp_pulmonary_complication_30day, 2, ., "/") %>% "*"(100) %>%
+  tidyr::replace_na(list("n_all_intervals" = 0, "n_infection_none" = 0,
+                         "n_infection_0to2wk"  = 0, "n_infection_3to4wk" = 0,
+                         "n_infection_5to6wk" = 0, "n_infection_7wk" = 0)) %>%
+  `colnames<-`(c("pct_all_intervals", "pct_infection_none", "pct_infection_0to2wk",
+                 "pct_infection_3to4wk", "pct_infection_5to6wk", "pct_infection_7wk"))
+# ## ## Interlace counts and percentages.
+PNV_postOp_pulmonary_complication_30day <-
+  matrix(0,
+         nrow = length(rownames(PNV_n_postOp_pulmonary_complication_30day)),
+         ncol = length(colnames(PNV_n_postOp_pulmonary_complication_30day))*2) %>%
+  as.data.frame()
+PNV_postOp_pulmonary_complication_30day[,seq(1,length(colnames(PNV_postOp_pulmonary_complication_30day)),2)] <- PNV_n_postOp_pulmonary_complication_30day
+PNV_postOp_pulmonary_complication_30day[,seq(2,length(colnames(PNV_postOp_pulmonary_complication_30day)),2)] <- PNV_pct_postOp_pulmonary_complication_30day
+colnames(PNV_postOp_pulmonary_complication_30day)[seq(1,length(colnames(PNV_postOp_pulmonary_complication_30day)),2)] <- colnames(PNV_n_postOp_pulmonary_complication_30day)
+colnames(PNV_postOp_pulmonary_complication_30day)[seq(2,length(colnames(PNV_postOp_pulmonary_complication_30day)),2)] <- colnames(PNV_pct_postOp_pulmonary_complication_30day)
+PNV_postOp_pulmonary_complication_30day <-
+  table1_postOp_pulmonary_complication_30day %>%
+  dplyr::filter(era=="Pandemic no vaccine") %>%
+  dplyr::arrange(pulmonary_complication_30day) %>%
+  dplyr::select(pulmonary_complication_30day) %>%
+  dplyr::bind_cols(PNV_postOp_pulmonary_complication_30day)
+# ## ## Clean up.
+rm(PNV_n_postOp_pulmonary_complication_30day, PNV_pct_postOp_pulmonary_complication_30day)
+
+# ## COVIDSurg data collection period.
+# ## ## Get counts per intervals and overall.
+CSP_n_postOp_pulmonary_complication_30day <- 
+  table1_postOp_pulmonary_complication_30day %>%
+  dplyr::filter(era=="COVIDSurg data collection period") %>%
+  dplyr::arrange(pulmonary_complication_30day) %>%
+  dplyr::ungroup() %>% dplyr::select(-c("era", "pulmonary_complication_30day"))
+# ## ## Get percentages per intervals and overall.
+CSP_pct_postOp_pulmonary_complication_30day <- 
+  table1_postOp_pulmonary_complication_30day %>%
+  dplyr::filter(era=="COVIDSurg data collection period") %>%
+  select(-c("era", "pulmonary_complication_30day")) %>%
+  colSums() %>% sweep(CSP_n_postOp_pulmonary_complication_30day, 2, ., "/") %>% "*"(100) %>%
+  tidyr::replace_na(list("n_all_intervals" = 0, "n_infection_none" = 0,
+                         "n_infection_0to2wk"  = 0, "n_infection_3to4wk" = 0,
+                         "n_infection_5to6wk" = 0, "n_infection_7wk" = 0)) %>%
+  `colnames<-`(c("pct_all_intervals", "pct_infection_none", "pct_infection_0to2wk",
+                 "pct_infection_3to4wk", "pct_infection_5to6wk", "pct_infection_7wk"))
+# ## ## Interlace counts and percentages.
+CSP_postOp_pulmonary_complication_30day <-
+  matrix(0,
+         nrow = length(rownames(CSP_n_postOp_pulmonary_complication_30day)),
+         ncol = length(colnames(CSP_n_postOp_pulmonary_complication_30day))*2) %>%
+  as.data.frame()
+CSP_postOp_pulmonary_complication_30day[,seq(1,length(colnames(CSP_postOp_pulmonary_complication_30day)),2)] <- CSP_n_postOp_pulmonary_complication_30day
+CSP_postOp_pulmonary_complication_30day[,seq(2,length(colnames(CSP_postOp_pulmonary_complication_30day)),2)] <- CSP_pct_postOp_pulmonary_complication_30day
+colnames(CSP_postOp_pulmonary_complication_30day)[seq(1,length(colnames(CSP_postOp_pulmonary_complication_30day)),2)] <- colnames(CSP_n_postOp_pulmonary_complication_30day)
+colnames(CSP_postOp_pulmonary_complication_30day)[seq(2,length(colnames(CSP_postOp_pulmonary_complication_30day)),2)] <- colnames(CSP_pct_postOp_pulmonary_complication_30day)
+CSP_postOp_pulmonary_complication_30day <-
+  table1_postOp_pulmonary_complication_30day %>%
+  dplyr::filter(era=="COVIDSurg data collection period") %>%
+  dplyr::arrange(pulmonary_complication_30day) %>%
+  dplyr::select(pulmonary_complication_30day) %>%
+  dplyr::bind_cols(CSP_postOp_pulmonary_complication_30day)
+# ## ## Clean up.
+rm(CSP_n_postOp_pulmonary_complication_30day, CSP_pct_postOp_pulmonary_complication_30day)
+
+# ## Pandemic with vaccine.
+# ## ## Get counts per intervals and overall.
+PWV_n_postOp_pulmonary_complication_30day <- 
+  table1_postOp_pulmonary_complication_30day %>%
+  dplyr::filter(era=="Pandemic with vaccine") %>%
+  dplyr::arrange(pulmonary_complication_30day) %>%
+  dplyr::ungroup() %>% dplyr::select(-c("era", "pulmonary_complication_30day"))
+# ## ## Get percentages per intervals and overall.
+PWV_pct_postOp_pulmonary_complication_30day <- 
+  table1_postOp_pulmonary_complication_30day %>%
+  dplyr::filter(era=="Pandemic with vaccine") %>%
+  select(-c("era", "pulmonary_complication_30day")) %>%
+  colSums() %>% sweep(PWV_n_postOp_pulmonary_complication_30day, 2, ., "/") %>% "*"(100) %>%
+  tidyr::replace_na(list("n_all_intervals" = 0, "n_infection_none" = 0,
+                         "n_infection_0to2wk"  = 0, "n_infection_3to4wk" = 0,
+                         "n_infection_5to6wk" = 0, "n_infection_7wk" = 0
+  )) %>%
+  `colnames<-`(c("pct_all_intervals", "pct_infection_none", "pct_infection_0to2wk",
+                 "pct_infection_3to4wk", "pct_infection_5to6wk", "pct_infection_7wk"))
+# ## ## Interlace counts and percentages.
+PWV_postOp_pulmonary_complication_30day <-
+  matrix(0,
+         length(rownames(PWV_n_postOp_pulmonary_complication_30day)),
+         ncol = length(colnames(PWV_n_postOp_pulmonary_complication_30day))*2) %>%
+  as.data.frame()
+PWV_postOp_pulmonary_complication_30day[,seq(1,length(colnames(PWV_postOp_pulmonary_complication_30day)),2)] <- PWV_n_postOp_pulmonary_complication_30day
+PWV_postOp_pulmonary_complication_30day[,seq(2,length(colnames(PWV_postOp_pulmonary_complication_30day)),2)] <- PWV_pct_postOp_pulmonary_complication_30day
+colnames(PWV_postOp_pulmonary_complication_30day)[seq(1,length(colnames(PWV_postOp_pulmonary_complication_30day)),2)] <- colnames(PWV_n_postOp_pulmonary_complication_30day)
+colnames(PWV_postOp_pulmonary_complication_30day)[seq(2,length(colnames(PWV_postOp_pulmonary_complication_30day)),2)] <- colnames(PWV_pct_postOp_pulmonary_complication_30day)
+PWV_postOp_pulmonary_complication_30day <-
+  table1_postOp_pulmonary_complication_30day %>% 
+  dplyr::filter(era=="Pandemic with vaccine") %>%
+  dplyr::arrange(pulmonary_complication_30day) %>%
+  dplyr::select(pulmonary_complication_30day) %>%
+  dplyr::bind_cols(PWV_postOp_pulmonary_complication_30day)
+# ## ## Clean up
+rm(PWV_n_postOp_pulmonary_complication_30day, PWV_pct_postOp_pulmonary_complication_30day)
+# ----
+
+# 30-day post-operative cardiac complication. ----
+# ## Pre-pandemic
+# ## ## Get counts per intervals and overall.
+PP_n_postOp_cardiac_complication_30day <- 
+  table1_postOp_cardiac_complication_30day %>%
+  dplyr::filter(era=="Pre-pandemic") %>%
+  dplyr::arrange(cardiac_complication_30day) %>%
+  dplyr::ungroup() %>% dplyr::select("n_all_intervals")
+# ## ## Get percentages per intervals and overall.
+PP_pct_postOp_cardiac_complication_30day <-
+  (PP_n_postOp_cardiac_complication_30day / sum(PP_n_postOp_cardiac_complication_30day)) %>%
+  "*"(100) %>% tidyr::replace_na(list("n_all_intervals" = 0)) %>%
+  `colnames<-`(c("pct_all_intervals"))
+# ## ## Bind the counts and percentages.
+PP_postOp_cardiac_complication_30day <-
+  table1_postOp_cardiac_complication_30day %>%
+  dplyr::filter(era=="Pre-pandemic") %>%
+  dplyr::arrange(cardiac_complication_30day) %>%
+  dplyr::select(cardiac_complication_30day) %>%
+  dplyr::bind_cols(PP_n_postOp_cardiac_complication_30day, PP_pct_postOp_cardiac_complication_30day)
+# ## ## Clean up.
+rm(PP_n_postOp_cardiac_complication_30day, PP_pct_postOp_cardiac_complication_30day)
+
+# ## Pandemic no vaccine.
+# ## ## Get counts per intervals and overall.
+PNV_n_postOp_cardiac_complication_30day <- 
+  table1_postOp_cardiac_complication_30day %>%
+  dplyr::filter(era=="Pandemic no vaccine") %>%
+  dplyr::arrange(cardiac_complication_30day) %>%
+  dplyr::ungroup() %>% dplyr::select(-c("era", "cardiac_complication_30day"))
+# ## ## Get percentages per intervals and overall.
+PNV_pct_postOp_cardiac_complication_30day <- 
+  table1_postOp_cardiac_complication_30day %>%
+  dplyr::filter(era=="Pandemic no vaccine") %>%
+  select(-c("era", "cardiac_complication_30day")) %>%
+  colSums() %>% sweep(PNV_n_postOp_cardiac_complication_30day, 2, ., "/") %>% "*"(100) %>%
+  tidyr::replace_na(list("n_all_intervals" = 0, "n_infection_none" = 0,
+                         "n_infection_0to2wk"  = 0, "n_infection_3to4wk" = 0,
+                         "n_infection_5to6wk" = 0, "n_infection_7wk" = 0)) %>%
+  `colnames<-`(c("pct_all_intervals", "pct_infection_none", "pct_infection_0to2wk",
+                 "pct_infection_3to4wk", "pct_infection_5to6wk", "pct_infection_7wk"))
+# ## ## Interlace counts and percentages.
+PNV_postOp_cardiac_complication_30day <-
+  matrix(0,
+         nrow = length(rownames(PNV_n_postOp_cardiac_complication_30day)),
+         ncol = length(colnames(PNV_n_postOp_cardiac_complication_30day))*2) %>%
+  as.data.frame()
+PNV_postOp_cardiac_complication_30day[,seq(1,length(colnames(PNV_postOp_cardiac_complication_30day)),2)] <- PNV_n_postOp_cardiac_complication_30day
+PNV_postOp_cardiac_complication_30day[,seq(2,length(colnames(PNV_postOp_cardiac_complication_30day)),2)] <- PNV_pct_postOp_cardiac_complication_30day
+colnames(PNV_postOp_cardiac_complication_30day)[seq(1,length(colnames(PNV_postOp_cardiac_complication_30day)),2)] <- colnames(PNV_n_postOp_cardiac_complication_30day)
+colnames(PNV_postOp_cardiac_complication_30day)[seq(2,length(colnames(PNV_postOp_cardiac_complication_30day)),2)] <- colnames(PNV_pct_postOp_cardiac_complication_30day)
+PNV_postOp_cardiac_complication_30day <-
+  table1_postOp_cardiac_complication_30day %>%
+  dplyr::filter(era=="Pandemic no vaccine") %>%
+  dplyr::arrange(cardiac_complication_30day) %>%
+  dplyr::select(cardiac_complication_30day) %>%
+  dplyr::bind_cols(PNV_postOp_cardiac_complication_30day)
+# ## ## Clean up.
+rm(PNV_n_postOp_cardiac_complication_30day, PNV_pct_postOp_cardiac_complication_30day)
+
+# ## COVIDSurg data collection period.
+# ## ## Get counts per intervals and overall.
+CSP_n_postOp_cardiac_complication_30day <- 
+  table1_postOp_cardiac_complication_30day %>%
+  dplyr::filter(era=="COVIDSurg data collection period") %>%
+  dplyr::arrange(cardiac_complication_30day) %>%
+  dplyr::ungroup() %>% dplyr::select(-c("era", "cardiac_complication_30day"))
+# ## ## Get percentages per intervals and overall.
+CSP_pct_postOp_cardiac_complication_30day <- 
+  table1_postOp_cardiac_complication_30day %>%
+  dplyr::filter(era=="COVIDSurg data collection period") %>%
+  select(-c("era", "cardiac_complication_30day")) %>%
+  colSums() %>% sweep(CSP_n_postOp_cardiac_complication_30day, 2, ., "/") %>% "*"(100) %>%
+  tidyr::replace_na(list("n_all_intervals" = 0, "n_infection_none" = 0,
+                         "n_infection_0to2wk"  = 0, "n_infection_3to4wk" = 0,
+                         "n_infection_5to6wk" = 0, "n_infection_7wk" = 0)) %>%
+  `colnames<-`(c("pct_all_intervals", "pct_infection_none", "pct_infection_0to2wk",
+                 "pct_infection_3to4wk", "pct_infection_5to6wk", "pct_infection_7wk"))
+# ## ## Interlace counts and percentages.
+CSP_postOp_cardiac_complication_30day <-
+  matrix(0,
+         nrow = length(rownames(CSP_n_postOp_cardiac_complication_30day)),
+         ncol = length(colnames(CSP_n_postOp_cardiac_complication_30day))*2) %>%
+  as.data.frame()
+CSP_postOp_cardiac_complication_30day[,seq(1,length(colnames(CSP_postOp_cardiac_complication_30day)),2)] <- CSP_n_postOp_cardiac_complication_30day
+CSP_postOp_cardiac_complication_30day[,seq(2,length(colnames(CSP_postOp_cardiac_complication_30day)),2)] <- CSP_pct_postOp_cardiac_complication_30day
+colnames(CSP_postOp_cardiac_complication_30day)[seq(1,length(colnames(CSP_postOp_cardiac_complication_30day)),2)] <- colnames(CSP_n_postOp_cardiac_complication_30day)
+colnames(CSP_postOp_cardiac_complication_30day)[seq(2,length(colnames(CSP_postOp_cardiac_complication_30day)),2)] <- colnames(CSP_pct_postOp_cardiac_complication_30day)
+CSP_postOp_cardiac_complication_30day <-
+  table1_postOp_cardiac_complication_30day %>%
+  dplyr::filter(era=="COVIDSurg data collection period") %>%
+  dplyr::arrange(cardiac_complication_30day) %>%
+  dplyr::select(cardiac_complication_30day) %>%
+  dplyr::bind_cols(CSP_postOp_cardiac_complication_30day)
+# ## ## Clean up.
+rm(CSP_n_postOp_cardiac_complication_30day, CSP_pct_postOp_cardiac_complication_30day)
+
+# ## Pandemic with vaccine.
+# ## ## Get counts per intervals and overall.
+PWV_n_postOp_cardiac_complication_30day <- 
+  table1_postOp_cardiac_complication_30day %>%
+  dplyr::filter(era=="Pandemic with vaccine") %>%
+  dplyr::arrange(cardiac_complication_30day) %>%
+  dplyr::ungroup() %>% dplyr::select(-c("era", "cardiac_complication_30day"))
+# ## ## Get percentages per intervals and overall.
+PWV_pct_postOp_cardiac_complication_30day <- 
+  table1_postOp_cardiac_complication_30day %>%
+  dplyr::filter(era=="Pandemic with vaccine") %>%
+  select(-c("era", "cardiac_complication_30day")) %>%
+  colSums() %>% sweep(PWV_n_postOp_cardiac_complication_30day, 2, ., "/") %>% "*"(100) %>%
+  tidyr::replace_na(list("n_all_intervals" = 0, "n_infection_none" = 0,
+                         "n_infection_0to2wk"  = 0, "n_infection_3to4wk" = 0,
+                         "n_infection_5to6wk" = 0, "n_infection_7wk" = 0
+  )) %>%
+  `colnames<-`(c("pct_all_intervals", "pct_infection_none", "pct_infection_0to2wk",
+                 "pct_infection_3to4wk", "pct_infection_5to6wk", "pct_infection_7wk"))
+# ## ## Interlace counts and percentages.
+PWV_postOp_cardiac_complication_30day <-
+  matrix(0,
+         length(rownames(PWV_n_postOp_cardiac_complication_30day)),
+         ncol = length(colnames(PWV_n_postOp_cardiac_complication_30day))*2) %>%
+  as.data.frame()
+PWV_postOp_cardiac_complication_30day[,seq(1,length(colnames(PWV_postOp_cardiac_complication_30day)),2)] <- PWV_n_postOp_cardiac_complication_30day
+PWV_postOp_cardiac_complication_30day[,seq(2,length(colnames(PWV_postOp_cardiac_complication_30day)),2)] <- PWV_pct_postOp_cardiac_complication_30day
+colnames(PWV_postOp_cardiac_complication_30day)[seq(1,length(colnames(PWV_postOp_cardiac_complication_30day)),2)] <- colnames(PWV_n_postOp_cardiac_complication_30day)
+colnames(PWV_postOp_cardiac_complication_30day)[seq(2,length(colnames(PWV_postOp_cardiac_complication_30day)),2)] <- colnames(PWV_pct_postOp_cardiac_complication_30day)
+PWV_postOp_cardiac_complication_30day <-
+  table1_postOp_cardiac_complication_30day %>% 
+  dplyr::filter(era=="Pandemic with vaccine") %>%
+  dplyr::arrange(cardiac_complication_30day) %>%
+  dplyr::select(cardiac_complication_30day) %>%
+  dplyr::bind_cols(PWV_postOp_cardiac_complication_30day)
+# ## ## Clean up
+rm(PWV_n_postOp_cardiac_complication_30day, PWV_pct_postOp_cardiac_complication_30day)
+# ----
+
 # 30-day post-operative cerebrovascular complication. ----
 # ## Pre-pandemic
 # ## ## Get counts per intervals and overall.
@@ -2353,6 +2835,164 @@ PWV_chronic_respiratory_disease <-
 rm(PWV_n_chronic_respiratory_disease, PWV_pct_chronic_respiratory_disease)
 # ----
 
+# Cerebrovascular disease. ----
+# ## Pre-pandemic
+# ## ## Get counts per intervals and overall.
+PP_n_cerebrovascular_disease <- 
+  table1_cerebrovascular_disease %>%
+  dplyr::filter(era=="Pre-pandemic",
+                (cerebrovascular_disease=="Yes"|
+                   cerebrovascular_disease=="No")) %>%
+  dplyr::arrange(cerebrovascular_disease) %>%
+  dplyr::ungroup() %>% dplyr::select("n_all_intervals")
+# ## ## Get percentages per intervals and overall.
+PP_pct_cerebrovascular_disease <-
+  (PP_n_cerebrovascular_disease / sum(PP_n_cerebrovascular_disease)) %>%
+  "*"(100) %>% tidyr::replace_na(list("n_all_intervals" = 0)) %>%
+  `colnames<-`(c("pct_all_intervals"))
+# ## ## Bind the counts and percentages.
+PP_cerebrovascular_disease <-
+  table1_cerebrovascular_disease %>%
+  dplyr::filter(era=="Pre-pandemic",
+                (cerebrovascular_disease=="Yes"|
+                   cerebrovascular_disease=="No")) %>%
+  dplyr::arrange(cerebrovascular_disease) %>%
+  dplyr::select("cerebrovascular_disease") %>%
+  dplyr::bind_cols(PP_n_cerebrovascular_disease, PP_pct_cerebrovascular_disease)
+# ## ## Clean up.
+rm(PP_n_cerebrovascular_disease, PP_pct_cerebrovascular_disease)
+
+# ## Pandemic no vaccine.
+# ## ## Get counts per intervals and overall.
+PNV_n_cerebrovascular_disease <- 
+  table1_cerebrovascular_disease %>%
+  dplyr::filter(era=="Pandemic no vaccine",
+                (cerebrovascular_disease=="Yes"|
+                   cerebrovascular_disease=="No")) %>%
+  dplyr::arrange(cerebrovascular_disease) %>%
+  dplyr::ungroup() %>% dplyr::select(-c("era", "cerebrovascular_disease"))
+# ## ## Get percentages per intervals and overall.
+PNV_pct_cerebrovascular_disease <- 
+  table1_cerebrovascular_disease %>%
+  dplyr::filter(era=="Pandemic no vaccine",
+                (cerebrovascular_disease=="Yes"|
+                   cerebrovascular_disease=="No")) %>%
+  select(-c("era", "cerebrovascular_disease")) %>%
+  colSums() %>% sweep(PNV_n_cerebrovascular_disease, 2, ., "/") %>% "*"(100) %>%
+  tidyr::replace_na(list("n_all_intervals" = 0, "n_infection_none" = 0,
+                         "n_infection_0to2wk"  = 0, "n_infection_3to4wk" = 0,
+                         "n_infection_5to6wk" = 0, "n_infection_7wk" = 0)) %>%
+  `colnames<-`(c("pct_all_intervals", "pct_infection_none", "pct_infection_0to2wk",
+                 "pct_infection_3to4wk", "pct_infection_5to6wk", "pct_infection_7wk"))
+# ## ## Interlace counts and percentages.
+PNV_cerebrovascular_disease <-
+  matrix(0,
+         nrow = length(rownames(PNV_n_cerebrovascular_disease)),
+         ncol = length(colnames(PNV_n_cerebrovascular_disease))*2) %>%
+  as.data.frame()
+PNV_cerebrovascular_disease[,seq(1,length(colnames(PNV_cerebrovascular_disease)),2)] <- PNV_n_cerebrovascular_disease
+PNV_cerebrovascular_disease[,seq(2,length(colnames(PNV_cerebrovascular_disease)),2)] <- PNV_pct_cerebrovascular_disease
+colnames(PNV_cerebrovascular_disease)[seq(1,length(colnames(PNV_cerebrovascular_disease)),2)] <- colnames(PNV_n_cerebrovascular_disease)
+colnames(PNV_cerebrovascular_disease)[seq(2,length(colnames(PNV_cerebrovascular_disease)),2)] <- colnames(PNV_pct_cerebrovascular_disease)
+PNV_cerebrovascular_disease <-
+  table1_cerebrovascular_disease %>%
+  dplyr::filter(era=="Pandemic no vaccine",
+                (cerebrovascular_disease=="Yes"|
+                   cerebrovascular_disease=="No")) %>%
+  dplyr::arrange(cerebrovascular_disease) %>%
+  dplyr::select("cerebrovascular_disease") %>%
+  dplyr::bind_cols(PNV_cerebrovascular_disease)
+# ## ## Clean up.
+rm(PNV_n_cerebrovascular_disease, PNV_pct_cerebrovascular_disease)
+
+# ## COVIDSurg data collection period.
+# ## ## Get counts per intervals and overall.
+CSP_n_cerebrovascular_disease <- 
+  table1_cerebrovascular_disease %>%
+  dplyr::filter(era=="COVIDSurg data collection period",
+                (cerebrovascular_disease=="Yes"|
+                   cerebrovascular_disease=="No")) %>%
+  dplyr::arrange(cerebrovascular_disease) %>%
+  dplyr::ungroup() %>% dplyr::select(-c("era", "cerebrovascular_disease"))
+# ## ## Get percentages per intervals and overall.
+CSP_pct_cerebrovascular_disease <- 
+  table1_cerebrovascular_disease %>%
+  dplyr::filter(era=="COVIDSurg data collection period",
+                (cerebrovascular_disease=="Yes"|
+                   cerebrovascular_disease=="No")) %>%
+  select(-c("era", "cerebrovascular_disease")) %>%
+  colSums() %>% sweep(CSP_n_cerebrovascular_disease, 2, ., "/") %>% "*"(100) %>%
+  tidyr::replace_na(list("n_all_intervals" = 0, "n_infection_none" = 0,
+                         "n_infection_0to2wk"  = 0, "n_infection_3to4wk" = 0,
+                         "n_infection_5to6wk" = 0, "n_infection_7wk" = 0)) %>%
+  `colnames<-`(c("pct_all_intervals", "pct_infection_none", "pct_infection_0to2wk",
+                 "pct_infection_3to4wk", "pct_infection_5to6wk", "pct_infection_7wk"))
+# ## ## Interlace counts and percentages.
+CSP_cerebrovascular_disease <-
+  matrix(0,
+         nrow = length(rownames(CSP_n_cerebrovascular_disease)),
+         ncol = length(colnames(CSP_n_cerebrovascular_disease))*2) %>%
+  as.data.frame()
+CSP_cerebrovascular_disease[,seq(1,length(colnames(CSP_cerebrovascular_disease)),2)] <- CSP_n_cerebrovascular_disease
+CSP_cerebrovascular_disease[,seq(2,length(colnames(CSP_cerebrovascular_disease)),2)] <- CSP_pct_cerebrovascular_disease
+colnames(CSP_cerebrovascular_disease)[seq(1,length(colnames(CSP_cerebrovascular_disease)),2)] <- colnames(CSP_n_cerebrovascular_disease)
+colnames(CSP_cerebrovascular_disease)[seq(2,length(colnames(CSP_cerebrovascular_disease)),2)] <- colnames(CSP_pct_cerebrovascular_disease)
+CSP_cerebrovascular_disease <-
+  table1_cerebrovascular_disease %>%
+  dplyr::filter(era=="COVIDSurg data collection period",
+                (cerebrovascular_disease=="Yes"|
+                   cerebrovascular_disease=="No")) %>%
+  dplyr::arrange(cerebrovascular_disease) %>%
+  dplyr::select("cerebrovascular_disease") %>%
+  dplyr::bind_cols(CSP_cerebrovascular_disease)
+# ## ## Clean up.
+rm(CSP_n_cerebrovascular_disease, CSP_pct_cerebrovascular_disease)
+
+# ## Pandemic with vaccine.
+# ## ## Get counts per intervals and overall.
+PWV_n_cerebrovascular_disease <- 
+  table1_cerebrovascular_disease %>%
+  dplyr::filter(era=="Pandemic with vaccine",
+                (cerebrovascular_disease=="Yes"|
+                   cerebrovascular_disease=="No")) %>%
+  dplyr::arrange(cerebrovascular_disease) %>%
+  dplyr::ungroup() %>% dplyr::select(-c("era", "cerebrovascular_disease"))
+# ## ## Get percentages per intervals and overall.
+PWV_pct_cerebrovascular_disease <- 
+  table1_cerebrovascular_disease %>%
+  dplyr::filter(era=="Pandemic with vaccine",
+                (cerebrovascular_disease=="Yes"|
+                   cerebrovascular_disease=="No")) %>%
+  select(-c("era", "cerebrovascular_disease")) %>%
+  colSums() %>% sweep(PWV_n_cerebrovascular_disease, 2, ., "/") %>% "*"(100) %>%
+  tidyr::replace_na(list("n_all_intervals" = 0, "n_infection_none" = 0,
+                         "n_infection_0to2wk"  = 0, "n_infection_3to4wk" = 0,
+                         "n_infection_5to6wk" = 0, "n_infection_7wk" = 0
+  )) %>%
+  `colnames<-`(c("pct_all_intervals", "pct_infection_none", "pct_infection_0to2wk",
+                 "pct_infection_3to4wk", "pct_infection_5to6wk", "pct_infection_7wk"))
+# ## ## Interlace counts and percentages.
+PWV_cerebrovascular_disease <-
+  matrix(0,
+         length(rownames(PWV_n_cerebrovascular_disease)),
+         ncol = length(colnames(PWV_n_cerebrovascular_disease))*2) %>%
+  as.data.frame()
+PWV_cerebrovascular_disease[,seq(1,length(colnames(PWV_cerebrovascular_disease)),2)] <- PWV_n_cerebrovascular_disease
+PWV_cerebrovascular_disease[,seq(2,length(colnames(PWV_cerebrovascular_disease)),2)] <- PWV_pct_cerebrovascular_disease
+colnames(PWV_cerebrovascular_disease)[seq(1,length(colnames(PWV_cerebrovascular_disease)),2)] <- colnames(PWV_n_cerebrovascular_disease)
+colnames(PWV_cerebrovascular_disease)[seq(2,length(colnames(PWV_cerebrovascular_disease)),2)] <- colnames(PWV_pct_cerebrovascular_disease)
+PWV_cerebrovascular_disease <-
+  table1_cerebrovascular_disease %>% 
+  dplyr::filter(era=="Pandemic with vaccine",
+                (cerebrovascular_disease=="Yes"|
+                   cerebrovascular_disease=="No")) %>%
+  dplyr::arrange(cerebrovascular_disease) %>%
+  dplyr::select("cerebrovascular_disease") %>%
+  dplyr::bind_cols(PWV_cerebrovascular_disease)
+# ## ## Clean up
+rm(PWV_n_cerebrovascular_disease, PWV_pct_cerebrovascular_disease)
+# ----
+
 ####################
 # Make the tables. #
 ####################
@@ -2367,7 +3007,8 @@ tbl_PP_strata <-
   as.matrix(PP_admission_method),
   as.matrix(PP_chronic_cardiac_disease),
   as.matrix(PP_diabetes),
-  as.matrix(PP_chronic_respiratory_disease)) %>%
+  as.matrix(PP_chronic_respiratory_disease),
+  as.matrix(PP_cerebrovascular_disease)) %>%
     as.data.frame()  %>%
     tibble::add_column(., c(
       rep("Age group",5),
@@ -2375,7 +3016,8 @@ tbl_PP_strata <-
       rep("Admission method",2),
       rep("Chronic cardiac disease",2),
       rep("Diabetes",2),
-      rep("Chronic respiratory disease",2)),
+      rep("Chronic respiratory disease",2),
+      rep("Cerebrovascular disease",2)),
       .before = "age_group_surgery"
       ) %>%
     `colnames<-`(c("variable", "strata", "n", "pct"))
@@ -2391,6 +3033,8 @@ tbl_PP_outcome <-
     as.matrix(PP_postOp_mortality_90day),
     as.matrix(PP_postOp_mortality_6mth),
     as.matrix(PP_postOp_mortality_12mth),
+    as.matrix(PP_postOp_pulmonary_complication_30day),
+    as.matrix(PP_postOp_cardiac_complication_30day),
     as.matrix(PP_postOp_cerebrovascular_complication_30day)) %>%
   as.data.frame()  %>%
   tibble::add_column(., c(
@@ -2398,6 +3042,8 @@ tbl_PP_outcome <-
     rep("90-day post-operative mortality",2),
     rep("6-month post-operative mortality",2),
     rep("12-month post-operative mortality",2),
+    rep("30-day post-operative pulmonary complication",2),
+    rep("30-day post-operative cardiac complication",2),
     rep("30-day post-operative cerebrovascular complication",2)),
     .before = "postOp_mortality_30day"
   ) %>%
@@ -2418,7 +3064,8 @@ tbl_PNV_strata <-
     as.matrix(PNV_admission_method),
     as.matrix(PNV_chronic_cardiac_disease),
     as.matrix(PNV_diabetes),
-    as.matrix(PNV_chronic_respiratory_disease)) %>%
+    as.matrix(PNV_chronic_respiratory_disease),
+    as.matrix(PNV_cerebrovascular_disease)) %>%
   as.data.frame()  %>%
   tibble::add_column(., c(
     rep("Age group",5),
@@ -2426,7 +3073,8 @@ tbl_PNV_strata <-
     rep("Admission method",2),
     rep("Chronic cardiac disease",2),
     rep("Diabetes",2),
-    rep("Chronic respiratory disease",2)),
+    rep("Chronic respiratory disease",2),
+    rep("Cerebrovascular disease",2)),
     .before = "age_group_surgery"
   ) %>%
   `colnames<-`(c("variable", "strata", colnames(.)[3:ncol(.)]))
@@ -2437,7 +3085,7 @@ write.csv(
 )
 # Make table with only 7week threshold.
 tbl_PNV_strata_7wkThreshold <- 
-  tbl_PNV_strata %>% dplyr::select(intervals_less_than_7wks) %>% data.matrix() %>%
+  tbl_PNV_strata %>% dplyr::select(tidyselect::all_of(intervals_less_than_7wks)) %>% data.matrix() %>%
   rowSums() %>% as.data.frame() %>% 
   dplyr::mutate("pct_infection_<7wks" = (./ sum(.))*100) %>%
   tibble::add_column(tbl_PNV_strata %>% dplyr::select(c(variable, strata)),
@@ -2459,6 +3107,8 @@ tbl_PNV_outcome <-
     as.matrix(PNV_postOp_mortality_90day),
     as.matrix(PNV_postOp_mortality_6mth),
     as.matrix(PNV_postOp_mortality_12mth),
+    as.matrix(PNV_postOp_pulmonary_complication_30day),
+    as.matrix(PNV_postOp_cardiac_complication_30day),
     as.matrix(PNV_postOp_cerebrovascular_complication_30day)) %>%
   as.data.frame()  %>%
   tibble::add_column(., c(
@@ -2466,6 +3116,8 @@ tbl_PNV_outcome <-
     rep("90-day post-operative mortality",2),
     rep("6-month post-operative mortality",2),
     rep("12-month post-operative mortality",2),
+    rep("30-day post-operative pulmonary complication",2),
+    rep("30-day post-operative cardiac complication",2),
     rep("30-day post-operative cerebrovascular complication",2)),
     .before = "postOp_mortality_30day"
   ) %>%
@@ -2477,7 +3129,7 @@ write.csv(
 )
 # Make table with only 7week threshold.
 tbl_PNV_outcome_7wkThreshold <- 
-  tbl_PNV_outcome %>% dplyr::select(intervals_less_than_7wks) %>% data.matrix() %>%
+  tbl_PNV_outcome %>% dplyr::select(tidyselect::all_of(intervals_less_than_7wks)) %>% data.matrix() %>%
   rowSums() %>% as.data.frame() %>% 
   dplyr::mutate("pct_infection_<7wks" = (./ sum(.))*100) %>%
   tibble::add_column(tbl_PNV_outcome %>% dplyr::select(c(variable, strata)),
@@ -2503,7 +3155,8 @@ tbl_CSP_strata <-
     as.matrix(CSP_admission_method),
     as.matrix(CSP_chronic_cardiac_disease),
     as.matrix(CSP_diabetes),
-    as.matrix(CSP_chronic_respiratory_disease)) %>%
+    as.matrix(CSP_chronic_respiratory_disease),
+    as.matrix(CSP_cerebrovascular_disease)) %>%
   as.data.frame()  %>%
   tibble::add_column(., c(
     rep("Age group",5),
@@ -2511,7 +3164,8 @@ tbl_CSP_strata <-
     rep("Admission method",2),
     rep("Chronic cardiac disease",2),
     rep("Diabetes",2),
-    rep("Chronic respiratory disease",2)),
+    rep("Chronic respiratory disease",2),
+    rep("Cerebrovascular disease",2)),
     .before = "age_group_surgery"
   ) %>%
   `colnames<-`(c("variable", "strata", colnames(.)[3:ncol(.)]))
@@ -2522,7 +3176,7 @@ write.csv(
 )
 # Make table with only 7week threshold.
 tbl_CSP_strata_7wkThreshold <- 
-  tbl_CSP_strata %>% dplyr::select(intervals_less_than_7wks) %>% data.matrix() %>%
+  tbl_CSP_strata %>% dplyr::select(tidyselect::all_of(intervals_less_than_7wks)) %>% data.matrix() %>%
   rowSums() %>% as.data.frame() %>% 
   dplyr::mutate("pct_infection_<7wks" = (./ sum(.))*100) %>%
   tibble::add_column(tbl_CSP_strata %>% dplyr::select(c(variable, strata)),
@@ -2544,6 +3198,8 @@ tbl_CSP_outcome <-
     as.matrix(CSP_postOp_mortality_90day),
     as.matrix(CSP_postOp_mortality_6mth),
     as.matrix(CSP_postOp_mortality_12mth),
+    as.matrix(CSP_postOp_pulmonary_complication_30day),
+    as.matrix(CSP_postOp_cardiac_complication_30day),
     as.matrix(CSP_postOp_cerebrovascular_complication_30day)) %>%
   as.data.frame()  %>%
   tibble::add_column(., c(
@@ -2551,6 +3207,8 @@ tbl_CSP_outcome <-
     rep("90-day post-operative mortality",2),
     rep("6-month post-operative mortality",2),
     rep("12-month post-operative mortality",2),
+    rep("30-day post-operative pulmonary complication",2),
+    rep("30-day post-operative cardiac complication",2),
     rep("30-day post-operative cerebrovascular complication",2)),
     .before = "postOp_mortality_30day"
   ) %>%
@@ -2562,7 +3220,7 @@ write.csv(
 )
 # Make table with only 7week threshold.
 tbl_CSP_outcome_7wkThreshold <- 
-  tbl_CSP_outcome %>% dplyr::select(intervals_less_than_7wks) %>% data.matrix() %>%
+  tbl_CSP_outcome %>% dplyr::select(tidyselect::all_of(intervals_less_than_7wks)) %>% data.matrix() %>%
   rowSums() %>% as.data.frame() %>% 
   dplyr::mutate("pct_infection_<7wks" = (./ sum(.))*100) %>%
   tibble::add_column(tbl_CSP_outcome %>% dplyr::select(c(variable, strata)),
@@ -2588,7 +3246,8 @@ tbl_PWV_strata <-
     as.matrix(PWV_admission_method),
     as.matrix(PWV_chronic_cardiac_disease),
     as.matrix(PWV_diabetes),
-    as.matrix(PWV_chronic_respiratory_disease)) %>%
+    as.matrix(PWV_chronic_respiratory_disease),
+    as.matrix(PWV_cerebrovascular_disease)) %>%
   as.data.frame()  %>%
   tibble::add_column(., c(
     rep("Age group",5),
@@ -2596,7 +3255,8 @@ tbl_PWV_strata <-
     rep("Admission method",2),
     rep("Chronic cardiac disease",2),
     rep("Diabetes",2),
-    rep("Chronic respiratory disease",2)),
+    rep("Chronic respiratory disease",2),
+    rep("Cerebrovascular disease",2)),
     .before = "age_group_surgery"
   ) %>%
   `colnames<-`(c("variable", "strata", colnames(.)[3:ncol(.)]))
@@ -2607,7 +3267,7 @@ write.csv(
 )
 # Make table with only 7week threshold.
 tbl_PWV_strata_7wkThreshold <- 
-  tbl_PWV_strata %>% dplyr::select(intervals_less_than_7wks) %>% data.matrix() %>%
+  tbl_PWV_strata %>% dplyr::select(tidyselect::all_of(intervals_less_than_7wks)) %>% data.matrix() %>%
   rowSums() %>% as.data.frame() %>% 
   dplyr::mutate("pct_infection_<7wks" = (./ sum(.))*100) %>%
   tibble::add_column(tbl_PWV_strata %>% dplyr::select(c(variable, strata)),
@@ -2629,6 +3289,8 @@ tbl_PWV_outcome <-
     as.matrix(PWV_postOp_mortality_90day),
     as.matrix(PWV_postOp_mortality_6mth),
     as.matrix(PWV_postOp_mortality_12mth),
+    as.matrix(PWV_postOp_pulmonary_complication_30day),
+    as.matrix(PWV_postOp_cardiac_complication_30day),
     as.matrix(PWV_postOp_cerebrovascular_complication_30day)) %>%
   as.data.frame()  %>%
   tibble::add_column(., c(
@@ -2636,6 +3298,8 @@ tbl_PWV_outcome <-
     rep("90-day post-operative mortality",2),
     rep("6-month post-operative mortality",2),
     rep("12-month post-operative mortality",2),
+    rep("30-day post-operative pulmonary complication",2),
+    rep("30-day post-operative cardiac complication",2),
     rep("30-day post-operative cerebrovascular complication",2)),
     .before = "postOp_mortality_30day"
   ) %>%
@@ -2647,7 +3311,7 @@ write.csv(
 )
 # Make table with only 7week threshold.
 tbl_PWV_outcome_7wkThreshold <- 
-tbl_PWV_outcome %>% dplyr::select(intervals_less_than_7wks) %>% data.matrix() %>%
+tbl_PWV_outcome %>% dplyr::select(tidyselect::all_of(intervals_less_than_7wks)) %>% data.matrix() %>%
   rowSums() %>% as.data.frame() %>% 
   dplyr::mutate("pct_infection_<7wks" = (./ sum(.))*100) %>%
   tibble::add_column(tbl_PWV_outcome %>% dplyr::select(c(variable, strata)),

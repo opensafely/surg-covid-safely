@@ -164,7 +164,7 @@ study = StudyDefinition(
 	),
 
 	## Date of post-operative pulmonary complications.
-	date_postOp_pulmonary_complications = patients.with_these_clinical_events(
+	date_postOp_pulmonary_complication = patients.with_these_clinical_events(
         codelist_pulmonary_complications,
 		on_or_after = "date_surgery",
 		returning = "date",
@@ -172,7 +172,7 @@ study = StudyDefinition(
 	),
     
     ## Date of post-operatve cardiac complications.
-	date_postOp_cardiac_complications = patients.with_these_clinical_events(
+	date_postOp_cardiac_complication = patients.with_these_clinical_events(
         codelist_cardiac_complications,
 		on_or_after = "date_surgery",
 		returning = "date",
