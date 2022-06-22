@@ -4,9 +4,19 @@
 # is called in the script entitled "preprintFigure.R".
 #
 
-fnc_preprintFigure_dataPlot <- function(data, cohort, figureCaption = F)
+fnc_preprintFigure_dataPlot <- function(data, cancer = c("with", "without"), window, figureCaption = F)
 {
-  if (cohort == "with") {cancer <- "cancer"}else{cancer <- "noCancer"}
+  if(!cancer %in% c("with", "without")){stop("Argument <cancer> must be with 'with' or 'without'")}
+  if (cancer == "with") {fileprefix1 <- "cancer"}else{fileprefix1 <- "noCancer"}
+  if (window == "")
+  {
+    fileprefix2 <- "_"
+    subtitleSuffix <- ""
+  } else {
+      fileprefix2 <- paste0("_",window,"months_")
+      subtitleSuffix <- paste0(" within ", window, " months of\nsurgery")
+  }
+  
   # Plot showing weekly summary of the proportion of surgeries conducted less
   # than 7 weeks from a positive PCR test for SARS-CoV-2.
   p <-
@@ -37,8 +47,8 @@ fnc_preprintFigure_dataPlot <- function(data, cohort, figureCaption = F)
     ggtitle(paste0("Rolling weekly summary of the proportion of\n",
                    "surgeries conducted less than 7 weeks from a positive\n",
                    "PCR test for SARS-CoV-2"),
-            subtitle = paste0("(Cohort = Patients ", cohort,
-                              " a cancer diagnosis within 3 months of\nsurgery)")) +
+            subtitle = paste0("(Cohort = Patients ", cancer,
+                              " a cancer diagnosis", subtitleSuffix, ")")) +
     theme(plot.title = element_text(size = 8),
           plot.subtitle = element_text(size = 7),
           axis.title = element_text(size = 10),
@@ -55,7 +65,7 @@ fnc_preprintFigure_dataPlot <- function(data, cohort, figureCaption = F)
   }
   
   ggsave(filename = 
-           paste0(cancer,"_",
+           paste0(fileprefix1,fileprefix2,"_",
                   "weekly_summary_proportion_surgeries_within_7wks_after_pos_test.png"),
          plot = p,
          device = "png",
@@ -93,8 +103,8 @@ fnc_preprintFigure_dataPlot <- function(data, cohort, figureCaption = F)
       ggtitle(paste0("Rolling monthly summary of the proportion of\n",
                      "surgeries conducted less than 7 weeks from a positive\n",
                      "PCR test for SARS-CoV-2"),
-              subtitle = paste0("(Cohort = Patients ", cohort,
-                                " a cancer diagnosis within 3 months of\nsurgery)")) +
+              subtitle = paste0("(Cohort = Patients ", cancer,
+                                " a cancer diagnosis ", window, ")")) +
       theme(plot.title = element_text(size = 8),
             plot.subtitle = element_text(size = 7),
             axis.title = element_text(size = 10),
@@ -110,7 +120,7 @@ fnc_preprintFigure_dataPlot <- function(data, cohort, figureCaption = F)
   }
   
   ggsave(filename = 
-           paste0(cancer,"_",
+           paste0(fileprefix1,fileprefix2,"_",
                   "1monthly_summary_proportion_surgeries_within_7wks_after_pos_test.png"),
          plot = p,
          device = "png",
@@ -148,8 +158,8 @@ fnc_preprintFigure_dataPlot <- function(data, cohort, figureCaption = F)
       ggtitle(paste0("Rolling two-monthly summary of the proportion of\n",
                      "surgeries conducted less than 7 weeks from a positive\n",
                      "PCR test for SARS-CoV-2"),
-              subtitle = paste0("(Cohort = Patients ", cohort,
-                                " a cancer diagnosis within 3 months of\nsurgery)")) +
+              subtitle = paste0("(Cohort = Patients ", cancer,
+                                " a cancer diagnosis ", window, ")")) +
       theme(plot.title = element_text(size = 8),
             plot.subtitle = element_text(size = 7),
             axis.title = element_text(size = 10),
@@ -165,7 +175,7 @@ fnc_preprintFigure_dataPlot <- function(data, cohort, figureCaption = F)
   }
   
   ggsave(filename = 
-           paste0(cancer,"_",
+           paste0(fileprefix1,fileprefix2,"_",
                   "2monthly_summary_proportion_surgeries_within_7wks_after_pos_test.png"),
          plot = p,
          device = "png",
@@ -195,12 +205,7 @@ fnc_preprintFigure_dataPlot <- function(data, cohort, figureCaption = F)
     geom_vline(xintercept = 23) + # Index for January 2021
     annotate(x = 23, y = 70, label = "Estimated\ndate of vaccine\neffectiveness", hjust = "right", geom = "label", size = 2) +
     geom_vline(xintercept = 25) + # Index for March 2021
-    annotate(x = 25, y = 95, label = "2nd COVIDSurg\npublication",  hjust = "right", geom = "label", size = 2) +
-    theme(plot.title = element_text(size = 8),
-          plot.subtitle = element_text(size = 7),
-          axis.title = element_text(size = 10),
-          axis.text = element_text(size = 10),
-          axis.line = element_line(colour = "black"))
+    annotate(x = 25, y = 95, label = "2nd COVIDSurg\npublication",  hjust = "right", geom = "label", size = 2)
   
   if(figureCaption == T)
   {
@@ -208,12 +213,24 @@ fnc_preprintFigure_dataPlot <- function(data, cohort, figureCaption = F)
       ggtitle(paste0("Rolling three-monthly summary of the proportion of\n",
                      "surgeries conducted less than 7 weeks from a positive\n",
                      "PCR test for SARS-CoV-2"),
-              subtitle = paste0("(Cohort = Patients ", cohort,
-                                " a cancer diagnosis within 3 months of\nsurgery)"))
+              subtitle = paste0("(Cohort = Patients ", cancer,
+                                " a cancer diagnosis ", window, ")")) +
+      theme(plot.title = element_text(size = 8),
+            plot.subtitle = element_text(size = 7),
+            axis.title = element_text(size = 10),
+            axis.text = element_text(size = 10),
+            axis.line = element_line(colour = "black"))
+  } else {
+    p <- p +
+      theme(plot.title = element_text(size = 8),
+            plot.subtitle = element_text(size = 7),
+            axis.title = element_text(size = 10),
+            axis.text = element_text(size = 10),
+            axis.line = element_line(colour = "black"))
   }
   
   ggsave(filename = 
-           paste0(cancer,"_",
+           paste0(fileprefix1,fileprefix2,"_",
                   "3monthly_summary_proportion_surgeries_within_7wks_after_pos_test.png"),
          plot = p,
          device = "png",

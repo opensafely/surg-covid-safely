@@ -1056,6 +1056,6 @@ write.csv(
 ## weeks of a positive test.                                                ##
 ##############################################################################
 # ----
-#source(here::here("analysis","preprintFigure.R"))
+source(here::here("analysis","preprintFigure.R"))
 # ----
 
