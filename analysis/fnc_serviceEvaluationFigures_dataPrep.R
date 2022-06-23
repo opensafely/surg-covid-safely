@@ -1,10 +1,10 @@
-# fnc_preprintFigure_dataPrep.R
+# fnc_serviceEvaluationFigures_dataPrep.R
 #
 # This script defines a function that prepares the submitted dataset for
 # plotting. The function is called in the script entitled "preprintFigure.R".
 #
 
-fnc_preprintFigure_dataPrep <- function(data, start, end)
+fnc_serviceEvaluationFigures_dataPrep <- function(data, start, end)
 {
   # Make timeline backbone. 
   backbone <- 
