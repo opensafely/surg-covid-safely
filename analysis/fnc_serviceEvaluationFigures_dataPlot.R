@@ -4,7 +4,7 @@
 # is called in the script entitled "preprintFigure.R".
 #
 
-fnc_preprintFigure_dataPlot <- function(data, cancer = c("with", "without"), window, figureCaption = F)
+fnc_serviceEvaluationFigures_dataPlot <- function(data, cancer = c("with", "without"), window, figureCaption = F)
 {
   if(!cancer %in% c("with", "without")){stop("Argument <cancer> must be with 'with' or 'without'")}
   if (cancer == "with") {fileprefix1 <- "cancer"}else{fileprefix1 <- "noCancer"}
