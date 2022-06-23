@@ -1,4 +1,4 @@
-# fnc_preprintFigure_dataPlot.R
+# fnc_serviceEvaluationigures_dataPlot.R
 #
 # This script defines a function that plots the submitted dataset  The function
 # is called in the script entitled "preprintFigure.R".
