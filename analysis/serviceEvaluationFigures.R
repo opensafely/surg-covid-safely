@@ -1,4 +1,4 @@
-# preprintFigure.R
+# serviceEvaluationFigures.R
 #
 # This script produces plots of weekly, monthly, 2-monthly and 3-monthly
 # summaries of the proportion of surgeries conducted more than 7 weeks from a 
@@ -81,17 +81,17 @@ startDate = "01-03-2020"
 endDate = "31-03-2022"
 
 # Load and run the function that does the work.
-source(here::here("analysis","fnc_preprintFigure_dataPrep.R"))
+source(here::here("analysis","fnc_serviceEvaluationFigures_dataPrep.R"))
 OS_C3m_windowed_proportion_7wkPreOpInfection <- 
-  fnc_preprintFigure_dataPrep(data = plotData_OS_C_within3m,
+  fnc_serviceEvaluationFigures_dataPrep(data = plotData_OS_C_within3m,
                               start = startDate,
                               end = endDate)
 OS_C6m_windowed_proportion_7wkPreOpInfection <-
-  fnc_preprintFigure_dataPrep(data = plotData_OS_C_within6m,
+  fnc_serviceEvaluationFigures_dataPrep(data = plotData_OS_C_within6m,
                               start = startDate,
                               end = endDate)
 OS_NC_windowed_proportion_7wkPreOpInfection <- 
-  fnc_preprintFigure_dataPrep(data = plotData_OS_NC,
+  fnc_serviceEvaluationFigures_dataPrep(data = plotData_OS_NC,
                               start = startDate,
                               end = endDate)
 
@@ -120,12 +120,12 @@ write.csv(
 # NOTE: Nested horizontal axes require the ggh4x package to be installed.
 #
 # Load and run the function that does the work.
-source(here::here("analysis","fnc_preprintFigure_dataPlot.R"))
-fnc_preprintFigure_dataPlot(data = OS_C3m_windowed_proportion_7wkPreOpInfection,
+source(here::here("analysis","fnc_serviceEvaluationFigures_dataPlot.R"))
+fnc_serviceEvaluationFigures_dataPlot(data = OS_C3m_windowed_proportion_7wkPreOpInfection,
                             cancer = "with", window = 3, figureCaption = F)
-fnc_preprintFigure_dataPlot(data = OS_C6m_windowed_proportion_7wkPreOpInfection,
+fnc_serviceEvaluationFigures_dataPlot(data = OS_C6m_windowed_proportion_7wkPreOpInfection,
                             cancer = "with", window = 6, figureCaption = F)
-fnc_preprintFigure_dataPlot(data = OS_NC_windowed_proportion_7wkPreOpInfection,
+fnc_serviceEvaluationFigures_dataPlot(data = OS_NC_windowed_proportion_7wkPreOpInfection,
                             cancer = "without", window = "", figureCaption = F)
 
 # ----
