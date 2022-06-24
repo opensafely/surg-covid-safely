@@ -1,7 +1,8 @@
 # fnc_serviceEvaluationFigures_dataPrep.R
 #
 # This script defines a function that prepares the submitted dataset for
-# plotting. The function is called in the script entitled "preprintFigure.R".
+# plotting. The function is called in the script entitled
+# "serviceEvaluationFigures.R".
 #
 
 fnc_serviceEvaluationFigures_dataPrep <- function(data, start, end)

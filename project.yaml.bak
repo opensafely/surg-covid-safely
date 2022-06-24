@@ -125,12 +125,13 @@ actions:
                 table_mortality_intervals: output/table_30day_post-op_mortality_in_each_era_across_all_intervals.csv
                 table_mortality_intervals_7wkThreshold: output/table_7wkThreshold_30day_post-op_mortality_in_each_era_across_all_intervals.csv
                 table_mortality_totals: output/table_30day_post-op_mortality_for_each_cohort_in_each_era.csv
-                plotData_C3m: output/plotData_OS_C3m.csv
-                plotData_C6m: output/plotData_OS_C6m.csv
-                plotData_NC: output/plotData_OS_NC.csv
+                plotData_C3m: output/plotData_C3m.csv
+                plotData_C6m: output/plotData_C6m.csv
+                plotData_NC: output/plotData_NC.csv
+                plotData_AdmMethod: output/plotData_AdmMethod.csv
                 figure_NC_3m: output/noCancer__3monthly_summary_proportion_surgeries_within_7wks_after_pos_test.png
                 figure_NC_2m: output/noCancer__2monthly_summary_proportion_surgeries_within_7wks_after_pos_test.png
-                figure_NC_1m: \output/noCancer__1monthly_summary_proportion_surgeries_within_7wks_after_pos_test.png
+                figure_NC_1m: output/noCancer__1monthly_summary_proportion_surgeries_within_7wks_after_pos_test.png
                 figure_NC_wk: output/noCancer__weekly_summary_proportion_surgeries_within_7wks_after_pos_test.png
                 figure_C3m_3m: output/cancer_3months__3monthly_summary_proportion_surgeries_within_7wks_after_pos_test.png
                 figure_C3m_2m: output/cancer_3months__2monthly_summary_proportion_surgeries_within_7wks_after_pos_test.png
@@ -140,6 +141,10 @@ actions:
                 figure_C6m_2m: output/cancer_6months__2monthly_summary_proportion_surgeries_within_7wks_after_pos_test.png
                 figure_C6m_1m: output/cancer_6months__1monthly_summary_proportion_surgeries_within_7wks_after_pos_test.png
                 figure_C6m_wk: output/cancer_6months__weekly_summary_proportion_surgeries_within_7wks_after_pos_test.png
+                figure_AdmMethod_3m: output/AdmMethod__3monthly_summary_proportion_surgeries_within_7wks_after_pos_test.png
+                figure_AdmMethod_2m: output/AdmMethod__2monthly_summary_proportion_surgeries_within_7wks_after_pos_test.png
+                figure_AdmMethod_1m: output/AdmMethod__1monthly_summary_proportion_surgeries_within_7wks_after_pos_test.png
+                figure_AdmMethod_wk: output/AdmMethod__weekly_summary_proportion_surgeries_within_7wks_after_pos_test.png
                 
     emulate_table1:
         run:    r:latest analysis/Make_all_Table1s.R
