@@ -35,10 +35,10 @@ library(lubridate)
 #####################
 # ----
 # OpenSAFELY data, cancer patients, within 3 months of surgery.
-plotData_OS_C_within3m <- data_to_use_C_within3m %>%
+plotData_C_within3m <- data_to_use_C_within3m %>%
   select(c(
     date_surgery,
-    category_cancer_within_6mths_surgery,
+    category_admission_method,
     preOperative_infection_status,
     Week_surgery,
     Month_surgery,
@@ -46,14 +46,14 @@ plotData_OS_C_within3m <- data_to_use_C_within3m %>%
   ))
 
 # OpenSAFELY data, cancer patients, within 6 months of surgery.
-plotData_OS_C_within6m <- myData %>% 
+plotData_C_within6m <- myData %>% 
   dplyr::filter(category_cancer_within_6mths_surgery == 
                   "Cancer diagnosis within 6mths before surgery" |
                   category_cancer_within_6mths_surgery == 
                   "Cancer diagnosis within 6mths after surgery") %>%
   select(c(
     date_surgery,
-    category_cancer_within_6mths_surgery,
+    category_admission_method,
     preOperative_infection_status,
     Week_surgery,
     Month_surgery,
@@ -61,10 +61,21 @@ plotData_OS_C_within6m <- myData %>%
   ))
 
 # OpenSAFELY data, no-cancer patients.
-plotData_OS_NC <- data_to_use_NC %>%
+plotData_NC <- data_to_use_NC %>%
   select(c(
     date_surgery,
-    category_cancer_within_6mths_surgery,
+    category_admission_method,
+    preOperative_infection_status,
+    Week_surgery,
+    Month_surgery,
+    Year_surgery
+  ))
+
+# OpenSAFELY data, all patients (identified by our surgery codelist).
+plotData_AdmMethod <- myData %>%
+  select(c(
+    date_surgery,
+    category_admission_method,
     preOperative_infection_status,
     Week_surgery,
     Month_surgery,
@@ -82,34 +93,52 @@ endDate = "31-03-2022"
 
 # Load and run the function that does the work.
 source(here::here("analysis","fnc_serviceEvaluationFigures_dataPrep.R"))
-OS_C3m_windowed_proportion_7wkPreOpInfection <- 
-  fnc_serviceEvaluationFigures_dataPrep(data = plotData_OS_C_within3m,
+C3m_windowed_proportion_7wkPreOpInfection <- 
+  fnc_serviceEvaluationFigures_dataPrep(data = plotData_C_within3m,
                               start = startDate,
                               end = endDate)
-OS_C6m_windowed_proportion_7wkPreOpInfection <-
-  fnc_serviceEvaluationFigures_dataPrep(data = plotData_OS_C_within6m,
+C6m_windowed_proportion_7wkPreOpInfection <-
+  fnc_serviceEvaluationFigures_dataPrep(data = plotData_C_within6m,
                               start = startDate,
                               end = endDate)
-OS_NC_windowed_proportion_7wkPreOpInfection <- 
-  fnc_serviceEvaluationFigures_dataPrep(data = plotData_OS_NC,
+NC_windowed_proportion_7wkPreOpInfection <- 
+  fnc_serviceEvaluationFigures_dataPrep(data = plotData_NC,
                               start = startDate,
                               end = endDate)
+AdmMethod_windowed_proportion_7wkPreOpInfection <-
+  dplyr::bind_rows(
+    fnc_serviceEvaluationFigures_dataPrep(data = plotData_AdmMethod %>%
+                                            dplyr::filter(category_admission_method == "Emergency"),
+                                          start = startDate,
+                                          end = endDate) %>%
+      tibble::add_column(Admission_method = rep("Emergency",nrow(.)), .before = "Year_surgery"),
+    fnc_serviceEvaluationFigures_dataPrep(data = plotData_AdmMethod %>%
+                                            dplyr::filter(category_admission_method == "Elective"),
+                                          start = startDate,
+                                          end = endDate) %>%
+      tibble::add_column(Admission_method = rep("Elective",nrow(.)), .before = "Year_surgery")
+  ) %>% dplyr::arrange(Year_surgery, Month_surgery, Week_surgery)
 
 # Save the plot data.
 write.csv(
-  x = OS_C3m_windowed_proportion_7wkPreOpInfection,
+  x = C3m_windowed_proportion_7wkPreOpInfection,
   file = here::here("output",
-                    "plotData_OS_C3m.csv")
+                    "plotData_C3m.csv")
 )
 write.csv(
-  x = OS_C6m_windowed_proportion_7wkPreOpInfection,
+  x = C6m_windowed_proportion_7wkPreOpInfection,
   file = here::here("output",
-                    "plotData_OS_C6m.csv")
+                    "plotData_C6m.csv")
 )
 write.csv(
-  x = OS_NC_windowed_proportion_7wkPreOpInfection,
+  x = NC_windowed_proportion_7wkPreOpInfection,
   file = here::here("output",
-                    "plotData_OS_NC.csv")
+                    "plotData_NC.csv")
+)
+write.csv(
+  x = AdmMethod_windowed_proportion_7wkPreOpInfection,
+  file = here::here("output",
+                    "plotData_AdmMethod.csv")
 )
 # ----
 
@@ -121,12 +150,15 @@ write.csv(
 #
 # Load and run the function that does the work.
 source(here::here("analysis","fnc_serviceEvaluationFigures_dataPlot.R"))
-fnc_serviceEvaluationFigures_dataPlot(data = OS_C3m_windowed_proportion_7wkPreOpInfection,
+fnc_serviceEvaluationFigures_dataPlot(data = C3m_windowed_proportion_7wkPreOpInfection,
                             cancer = "with", window = 3, figureCaption = F)
-fnc_serviceEvaluationFigures_dataPlot(data = OS_C6m_windowed_proportion_7wkPreOpInfection,
+fnc_serviceEvaluationFigures_dataPlot(data = C6m_windowed_proportion_7wkPreOpInfection,
                             cancer = "with", window = 6, figureCaption = F)
-fnc_serviceEvaluationFigures_dataPlot(data = OS_NC_windowed_proportion_7wkPreOpInfection,
+fnc_serviceEvaluationFigures_dataPlot(data = NC_windowed_proportion_7wkPreOpInfection,
                             cancer = "without", window = "", figureCaption = F)
+fnc_serviceEvaluationFigures_dataPlot(data = AdmMethod_windowed_proportion_7wkPreOpInfection,
+                                      cancer = "without", window = "", figureCaption = F,
+                                      strata = "Admission_method")
 
 # ----
 
