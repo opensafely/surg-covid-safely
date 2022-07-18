@@ -389,10 +389,10 @@ write.csv(
 ## Table Era ##
 ###############
 # ----
-# This table is just the table_mortality_totals tibble produced in 
-# Make_table_COVIDSurg_compare.R.
+# This table is just the table_mortality_intervals tibble produced in 
+# Make_table_COVIDSurg_compare.R, with some rearranging.
 #
-# Here, we just make sure it has been created and then rename it.
+# Here, we just make sure it has been created, rearrange and then rename it.
 #
 
 data_to_use_C_within3m <- myData %>% 
@@ -405,7 +405,7 @@ data_to_use_C_outwith3m <- myData %>%
                   "No cancer diagnosis within 3mths before or after surgery")
 data_to_use_NC <- myData %>% dplyr::filter(has_cancer == FALSE)
 source(here::here("analysis","Make_table_COVIDSurg_compare.R"))
-TableEra <- table_mortality_totals
+TableEra <- table_mortality_intervals
 write.csv(
   x = TableEra,
   file = here::here("output", "TableEra.csv")
