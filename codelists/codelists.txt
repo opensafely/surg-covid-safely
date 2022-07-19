@@ -1,7 +1,7 @@
 user/jkua/cancer/1d9bf8ff
 user/ciaranmci/cancer-snomed-ct/4602666f
 user/ciaranmci/surgery-covidsurg-replication-excluding-exclusions/5c09dd62
-user/ciaranmci/surgery-covidsurg-replication-opcs-49/7a62958c
+user/ciaranmci/surgery-covidsurg-replication-opcs-49/367c5f43
 primis-covid19-vacc-uptake/covadm1/v1
 primis-covid19-vacc-uptake/covadm2/v1
 primis-covid19-vacc-uptake/cov1decl/v1.1
