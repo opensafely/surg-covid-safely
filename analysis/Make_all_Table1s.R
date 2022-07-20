@@ -35,4 +35,5 @@ data_to_use_C_outwith3m <- myData %>%
   dplyr::filter(category_cancer_within_3mths_surgery == 
                   "No cancer diagnosis within 3mths before or after surgery")
 data_to_use_NC <- myData %>% dplyr::filter(has_cancer == FALSE)
+data_to_use_all <- myData 
 source(here::here("analysis","Make_table_COVIDSurg_compare.R"))
