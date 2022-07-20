@@ -1275,18 +1275,7 @@ rownames(table_mortality_intervals) <-
     "PWV_OS_C_within3m",
     "PWV_OS_C_outwith3m"
   )
-# Redact small numbers based on output from 2022 05 13.
-table_mortality_intervals["PNV_OS_NC",
-                          c("d_infection_3to4wk", "pct_infection_3to4wk",
-                            "d_infection_5to6wk", "pct_infection_5to6wk")] <- NA
-table_mortality_intervals["PNV_OS_C_within3m",
-                          c("d_infection_0to2wk", "pct_infection_0to2wk",
-                            "d_infection_5to6wk", "pct_infection_5to6wk",
-                            "d_infection_7wk",    "pct_infection_7wk")] <- NA
-table_mortality_intervals["PWV_OS_C_within3m",
-                          c("d_infection_0to2wk", "pct_infection_0to2wk",
-                            "d_infection_3to4wk", "pct_infection_3to4wk",
-                            "d_infection_5to6wk", "pct_infection_5to6wk")] <- NA
+
 # Save table.
 write.csv(
   x = table_mortality_intervals,
