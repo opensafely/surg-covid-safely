@@ -404,8 +404,21 @@ data_to_use_C_outwith3m <- myData %>%
   dplyr::filter(category_cancer_within_3mths_surgery == 
                   "No cancer diagnosis within 3mths before or after surgery")
 data_to_use_NC <- myData %>% dplyr::filter(has_cancer == FALSE)
+data_to_use_all <- myData
 source(here::here("analysis","Make_table_COVIDSurg_compare.R"))
-TableEra <- table_mortality_intervals
+
+TableEra <- 
+  table_mortality_intervals %>%
+    tibble::rownames_to_column() %>%
+    dplyr::rows_delete(
+      y = tibble::tibble(rowname = 
+                           c("PNV_COVIDSurg", "PNV_OS_C_outwith3m",
+                             "CSP_OS_NC", "CSP_OS_C_within3m",
+                             "CSP_OS_C_outwith3m", "PWV_COVIDSurg",
+                             "PWV_OS_C_outwith3m")
+                        )
+                      ) %>%
+    `rownames<-`(.$rowname) %>% select(-c(rowname, d_total, pct_total))
 write.csv(
   x = TableEra,
   file = here::here("output", "TableEra.csv")
