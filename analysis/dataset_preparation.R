@@ -16,6 +16,7 @@ library("here")
 df_input <- readr::read_csv(
   here::here("output", "input_2.csv"),
   col_types = cols(has_cancer = col_logical(),
+                   has_surgery = col_logical(),
                    date_surgery = col_date(),
                    date_latest_test_preOp_SARS_CoV_2_outcome_any = col_date(),
                    date_latest_test_preOp_SARS_CoV_2_outcome_positive = col_date(),
@@ -62,20 +63,20 @@ myData <- myData %>%
   ## #     need to be updated in Make_Table1.R, too.
   dplyr::mutate(
     era = dplyr::case_when(
+      .$has_surgery == FALSE ~ "No surgery recorded",
       .$date_surgery <= "2020-03-17" ~ "Pre-pandemic",
       .$date_surgery <= lubridate::ymd("2020-12-08") + lubridate::weeks(5) ~
                                        "Pandemic no vaccine",
       .$date_surgery > lubridate::ymd("2020-12-08") + lubridate::weeks(5) ~ 
-                                       "Pandemic with vaccine",
-      is.na(.$date_surgery) ~ "Error: No surgery"
+                                       "Pandemic with vaccine"
     )
   ) %>%
   ## Indicator of surgeries that took place within the data collection window
   ## of the COVIDSurg paper that we are emulating.
   dplyr::mutate(
     COVIDSurg_data_collection_period = dplyr::case_when(
+      .$has_surgery == FALSE ~ "No surgery recorded",
       (.$date_surgery >= "2020-10-05" & .$date_surgery <= "2020-11-01") ~ "COVIDSurg data collection period",
-      is.na(.$date_surgery) ~ "Error: No surgery",
       TRUE ~ "Not COVIDSurg data collection period"
     )
   ) %>%
@@ -94,8 +95,8 @@ myData <- myData %>%
   ## before or after surgery.
   dplyr::mutate(
     category_cancer_within_3mths_surgery = dplyr::case_when(
-      is.na(.$date_cancer) ~ "No cancer diagnosis recorded",
-      is.na(.$date_surgery) ~ "No surgery recorded",
+      .$has_cancer == FALSE ~ "No cancer diagnosis recorded",
+      .$has_surgery == FALSE ~ "No surgery recorded",
       (.$date_surgery - .$date_cancer > 0) & (.$date_surgery - .$date_cancer < 90) ~ "Cancer diagnosis within 3mths before surgery",
       (.$date_cancer - .$date_surgery > 0) & (.$date_cancer - .$date_surgery < 90) ~ "Cancer diagnosis within 3mths after surgery",
       abs(.$date_cancer - .$date_surgery) > 90 ~ "No cancer diagnosis within 3mths before or after surgery"
@@ -105,8 +106,8 @@ myData <- myData %>%
   ## before or after surgery.
   dplyr::mutate(
     category_cancer_within_6mths_surgery = dplyr::case_when(
-      is.na(.$date_cancer) ~ "No cancer diagnosis recorded",
-      is.na(.$date_surgery) ~ "No surgery recorded",
+      .$has_cancer == FALSE ~ "No cancer diagnosis recorded",
+      .$has_surgery == FALSE ~ "No surgery recorded",
       (.$date_surgery - .$date_cancer > 0) & (.$date_surgery - .$date_cancer < 180) ~ "Cancer diagnosis within 6mths before surgery",
       (.$date_cancer - .$date_surgery > 0) & (.$date_cancer - .$date_surgery < 180) ~ "Cancer diagnosis within 6mths after surgery",
       abs(.$date_cancer - .$date_surgery) > 180 ~ "No cancer diagnosis within 6mths before or after surgery"
@@ -117,9 +118,9 @@ myData <- myData %>%
   ## #     need to be updated in Make_Table1.R, too.
   dplyr::mutate(
     surgery_pre_or_post_vaccine_UK = dplyr::case_when(
+      .$has_surgery == FALSE ~ "No surgery recorded",
       .$date_surgery <= "2020-12-08" ~ "preVaccine surgery",
       .$date_surgery > "2020-12-08" ~ "postVaccine surgery",
-      is.na(.$date_surgery) ~ "No surgery"
     )
   ) %>%
   ## Categorising patients based on their vaccination status prior to the 
@@ -161,11 +162,11 @@ myData <- myData %>%
             ## #     need to be updated in Make_Table1.R, too.
             dplyr::mutate(
              postOp_mortality_30day = dplyr::case_when(
+               .$has_surgery == FALSE ~ "No surgery recorded",
               (.$date_death < .$date_surgery) ~ "Error: Surgery after death",
                 (.$date_death - .$date_surgery) <= 30 ~ "Dead within 30 days post-operation",
                 (.$date_death - .$date_surgery) > 30 ~ "Alive within 30 days post-operation",
-              is.na(.$date_death) ~ "No death recorded",
-              is.na(.$date_surgery) ~ "No surgery recorded"
+              is.na(.$date_death) ~ "No death recorded"
               )
             ) %>%
             ## Indicator for 90-day post-operative mortality.
@@ -173,11 +174,11 @@ myData <- myData %>%
             ## #     need to be updated in Make_Table1.R, too.
             dplyr::mutate(
               postOp_mortality_90day = dplyr::case_when(
+                .$has_surgery == FALSE ~ "No surgery recorded",
                 (.$date_death < .$date_surgery) ~ "Error: Surgery after death",
                 (.$date_death - .$date_surgery) <= 90 ~ "Dead within 90 days post-operation",
                 (.$date_death - .$date_surgery) > 90 ~ "Alive within 90 days post-operation",
-                is.na(.$date_death) ~ "No death recorded",
-                is.na(.$date_surgery) ~ "No surgery recorded"
+                is.na(.$date_death) ~ "No death recorded"
               )
             ) %>%
             ## Indicator for 6-month post-operative mortality.
@@ -185,11 +186,11 @@ myData <- myData %>%
             ## #     need to be updated in Make_Table1.R, too.
             dplyr::mutate(
               postOp_mortality_6mth = dplyr::case_when(
+                .$has_surgery == FALSE ~ "No surgery recorded",
                 (.$date_death < .$date_surgery) ~ "Error: Surgery after death",
                 (.$date_death - .$date_surgery) <= 180 ~ "Dead within 6 months post-operation",
                 (.$date_death - .$date_surgery) > 180 ~ "Alive within 6 months post-operation",
-                is.na(.$date_death) ~ "No death recorded",
-                is.na(.$date_surgery) ~ "No surgery recorded"
+                is.na(.$date_death) ~ "No death recorded"
               )
             ) %>%
             ## Indicator for 12-month post-operative mortality.
@@ -197,11 +198,11 @@ myData <- myData %>%
             ## #     need to be updated in Make_Table1.R, too.
             dplyr::mutate(
               postOp_mortality_12mth = dplyr::case_when(
+                .$has_surgery == FALSE ~ "No surgery recorded",
                 (.$date_death < .$date_surgery) ~ "Error: Surgery after death",
                 (.$date_death - .$date_surgery) <= 365 ~ "Dead within 12 months post-operation",
                 (.$date_death - .$date_surgery) > 365 ~ "Alive within 12 months post-operation",
-                is.na(.$date_death) ~ "No death recorded",
-                is.na(.$date_surgery) ~ "No surgery recorded"
+                is.na(.$date_death) ~ "No death recorded"
               )
             ) %>%
             ## Indicator for 30-day post-operative cerebrovascular complication.
@@ -209,11 +210,11 @@ myData <- myData %>%
             ## #     need to be updated in Make_Table1.R, too.
             dplyr::mutate(
               postOp_cerebrovascular_complication_30day = dplyr::case_when(
+                .$has_surgery == FALSE ~ "No surgery recorded",
                 (.$date_postOp_cerebrovascular_complication < .$date_surgery) ~ "Ignore: Pre-operative complication",
                 (.$date_postOp_cerebrovascular_complication - .$date_surgery) <= 30 ~ "Complications",
                 (.$date_postOp_cerebrovascular_complication - .$date_surgery) > 30 ~ "No complications",
-                is.na(.$date_postOp_cerebrovascular_complication) ~ "No complication recorded",
-                is.na(.$date_surgery) ~ "No surgery recorded"
+                is.na(.$date_postOp_cerebrovascular_complication) ~ "No complication recorded"
               )
             ) %>%
             ## Indicator for 30-day post-operative pulmonary complication
@@ -221,11 +222,11 @@ myData <- myData %>%
             ## #     need to be updated in Make_Table1.R, too.
             dplyr::mutate(
               postOp_pulmonary_complication_30day = dplyr::case_when(
+                .$has_surgery == FALSE ~ "No surgery recorded",
                 (.$date_postOp_pulmonary_complication < .$date_surgery) ~ "Ignore: Pre-operative complication",
                 (.$date_postOp_pulmonary_complication - .$date_surgery) <= 30 ~ "Complications",
                 (.$date_postOp_pulmonary_complication - .$date_surgery) > 30 ~ "No complications",
-                is.na(.$date_postOp_pulmonary_complication) ~ "No complication recorded",
-                is.na(.$date_surgery) ~ "No surgery recorded"
+                is.na(.$date_postOp_pulmonary_complication) ~ "No complication recorded"
               )
             ) %>%
             ## Indicator for 30-day post-operative cardiac complication
@@ -233,11 +234,11 @@ myData <- myData %>%
             ## #     need to be updated in Make_Table1.R, too.
             dplyr::mutate(
               postOp_cardiac_complication_30day = dplyr::case_when(
+                .$has_surgery == FALSE ~ "No surgery recorded",
                 (.$date_postOp_cardiac_complication < .$date_surgery) ~ "Ignore: Pre-operative complication",
                 (.$date_postOp_cardiac_complication - .$date_surgery) <= 30 ~ "Complications",
                 (.$date_postOp_cardiac_complication - .$date_surgery) > 30 ~ "No complications",
-                is.na(.$date_postOp_cardiac_complication) ~ "No complication recorded",
-                is.na(.$date_surgery) ~ "No surgery recorded"
+                is.na(.$date_postOp_cardiac_complication) ~ "No complication recorded"
               )
             ) %>%
             ## Week of surgery.

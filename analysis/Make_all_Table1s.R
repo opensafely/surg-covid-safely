@@ -2,7 +2,7 @@
 source(here::here("analysis","dataset_preparation.R"))
 # Make Table1 for all patients.
 data_to_use <- myData
-sensitivity_cohort <- ""
+sensitivity_cohort <- "_EntireSurgeryCohort"
 source(here::here("analysis","Make_Table1.R"))
 # Make Table1 for patients whose cancer diagnosis was within
 # 3 months of their surgery.
@@ -23,6 +23,14 @@ data_to_use <- myData %>%
 sensitivity_cohort <- "_6mths"
 source(here::here("analysis","Make_Table1.R"))
 rm(data_to_use, sensitivity_cohort)
+# Make Table1 for patients who do not have a cancer diagnosis
+# since the start of our data collection period (17th March 2018).
+data_to_use <- myData %>% dplyr::filter(has_cancer == FALSE)
+sensitivity_cohort <- "_CohortNoCancer"
+source(here::here("analysis","Make_Table1.R"))
+rm(data_to_use, sensitivity_cohort)
+
+
 # Make Table1 for patients identified by:
 # 1. having a cancer diagnosis within 3 months of their surgery.
 # 2. not having any cancer diagnosis after the study start date, 2018-03-17.

@@ -3024,7 +3024,7 @@ tbl_PP_strata <-
 # Save table.
 write.csv(
   x = tbl_PP_strata,
-  file = here::here("output",paste0("table1_PP_strata",sensitivity_cohort,".csv"))
+  file = here::here("output",paste0("table1Demogs_PP",sensitivity_cohort,".csv"))
 )
 # ## Outcomes table.
 tbl_PP_outcome <-
@@ -3051,7 +3051,7 @@ tbl_PP_outcome <-
 # Save table.
 write.csv(
   x = tbl_PP_outcome,
-  file = here::here("output",paste0("table1_PP_outcome",sensitivity_cohort,".csv"))
+  file = here::here("output",paste0("table1Outcomes_PP",sensitivity_cohort,".csv"))
 )
 # ----
 
@@ -3081,7 +3081,7 @@ tbl_PNV_strata <-
 # Save table.
 write.csv(
   x = tbl_PNV_strata,
-  file = here::here("output",paste0("table1_PNV_strata",sensitivity_cohort,".csv"))
+  file = here::here("output",paste0("table1Demogs_PNV",sensitivity_cohort,".csv"))
 )
 # Make table with only 7week threshold.
 tbl_PNV_strata_7wkThreshold <- 
@@ -3098,7 +3098,7 @@ tbl_PNV_strata_7wkThreshold <-
 # Save table.
 write.csv(
   x = tbl_PNV_strata_7wkThreshold,
-  file = here::here("output",paste0("table1_PNV_strata",sensitivity_cohort,"_7wkThreshold.csv"))
+  file = here::here("output",paste0("table1Demogs_PNV",sensitivity_cohort,"_7wkThreshold.csv"))
 )
 # ## Outcomes table.
 tbl_PNV_outcome <-
@@ -3125,7 +3125,7 @@ tbl_PNV_outcome <-
 # Save table.
 write.csv(
   x = tbl_PNV_outcome,
-  file = here::here("output",paste0("table1_PNV_outcome",sensitivity_cohort,".csv"))
+  file = here::here("output",paste0("table1Outcomes_PNV",sensitivity_cohort,".csv"))
 )
 # Make table with only 7week threshold.
 tbl_PNV_outcome_7wkThreshold <- 
@@ -3142,7 +3142,7 @@ tbl_PNV_outcome_7wkThreshold <-
 # Save table.
 write.csv(
   x = tbl_PNV_outcome_7wkThreshold,
-  file = here::here("output",paste0("table1_PNV_outcome",sensitivity_cohort,"_7wkThreshold.csv"))
+  file = here::here("output",paste0("table1Outcomes_PNV",sensitivity_cohort,"_7wkThreshold.csv"))
 )
 # ----
 
@@ -3172,7 +3172,7 @@ tbl_CSP_strata <-
 # Save table.
 write.csv(
   x = tbl_CSP_strata,
-  file = here::here("output",paste0("table1_CSP_strata",sensitivity_cohort,".csv"))
+  file = here::here("output",paste0("table1Demogs_CSP",sensitivity_cohort,".csv"))
 )
 # Make table with only 7week threshold.
 tbl_CSP_strata_7wkThreshold <- 
@@ -3189,7 +3189,7 @@ tbl_CSP_strata_7wkThreshold <-
 # Save table.
 write.csv(
   x = tbl_CSP_strata_7wkThreshold,
-  file = here::here("output",paste0("table1_CSP_strata",sensitivity_cohort,"_7wkThreshold.csv"))
+  file = here::here("output",paste0("table1Demogs_CSP",sensitivity_cohort,"_7wkThreshold.csv"))
 )
 # ## Outcomes table.
 tbl_CSP_outcome <-
@@ -3216,7 +3216,7 @@ tbl_CSP_outcome <-
 # Save table.
 write.csv(
   x = tbl_CSP_outcome,
-  file = here::here("output",paste0("table1_CSP_outcome",sensitivity_cohort,".csv"))
+  file = here::here("output",paste0("table1Outcomes_CSP",sensitivity_cohort,".csv"))
 )
 # Make table with only 7week threshold.
 tbl_CSP_outcome_7wkThreshold <- 
@@ -3233,7 +3233,7 @@ tbl_CSP_outcome_7wkThreshold <-
 # Save table.
 write.csv(
   x = tbl_CSP_outcome_7wkThreshold,
-  file = here::here("output",paste0("table1_CSP_outcome",sensitivity_cohort,"_7wkThreshold.csv"))
+  file = here::here("output",paste0("table1Outcomes_CSP",sensitivity_cohort,"_7wkThreshold.csv"))
 )
 # ----
 
@@ -3263,7 +3263,7 @@ tbl_PWV_strata <-
 # Save table.
 write.csv(
   x = tbl_PWV_strata,
-  file = here::here("output",paste0("table1_PWV_strata",sensitivity_cohort,".csv"))
+  file = here::here("output",paste0("table1Demogs_PWV",sensitivity_cohort,".csv"))
 )
 # Make table with only 7week threshold.
 tbl_PWV_strata_7wkThreshold <- 
@@ -3280,7 +3280,7 @@ tbl_PWV_strata_7wkThreshold <-
 # Save table.
 write.csv(
   x = tbl_PWV_strata_7wkThreshold,
-  file = here::here("output",paste0("table1_PWV_strata",sensitivity_cohort,"_7wkThreshold.csv"))
+  file = here::here("output",paste0("table1Demogs_PWV",sensitivity_cohort,"_7wkThreshold.csv"))
 )
 # ## Outcomes table.
 tbl_PWV_outcome <-
@@ -3307,7 +3307,7 @@ tbl_PWV_outcome <-
 # Save table.
 write.csv(
   x = tbl_PWV_outcome,
-  file = here::here("output",paste0("table1_PWV_outcome",sensitivity_cohort,".csv"))
+  file = here::here("output",paste0("table1Outcomes_PWV",sensitivity_cohort,".csv"))
 )
 # Make table with only 7week threshold.
 tbl_PWV_outcome_7wkThreshold <- 
@@ -3324,7 +3324,7 @@ tbl_PWV_outcome %>% dplyr::select(tidyselect::all_of(intervals_less_than_7wks)) 
 # Save table.
 write.csv(
   x = tbl_PWV_outcome_7wkThreshold,
-  file = here::here("output",paste0("table1_PWV_outcome",sensitivity_cohort,"_7wkThreshold.csv"))
+  file = here::here("output",paste0("table1Outcomes_PWV",sensitivity_cohort,"_7wkThreshold.csv"))
 )
 # ----
 
