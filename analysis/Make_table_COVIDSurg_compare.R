@@ -59,20 +59,24 @@ COVIDSurg_mortality_totals <- data.frame(
 ## Generate data. ##
 ####################
 # ----
-if(!exists("data_to_use_C_within3m"))
-{
-  source(here::here("analysis","dataset_preparation.R"))
-  data_to_use_C_within3m <- myData %>% 
-    dplyr::filter(category_cancer_within_3mths_surgery == 
-                    "Cancer diagnosis within 3mths before surgery" |
-                    category_cancer_within_3mths_surgery == 
-                    "Cancer diagnosis within 3mths after surgery")
-  data_to_use_C_outwith3m <- myData %>% 
-    dplyr::filter(category_cancer_within_3mths_surgery == 
-                    "No cancer diagnosis within 3mths before or after surgery")
-  data_to_use_NC <- myData %>% dplyr::filter(has_cancer == FALSE)
-  data_to_use_all <- myData
-  }
+source(here::here("analysis","dataset_preparation.R"))
+data_to_use_all <- myData %>% dplyr::filter(has_surgery == TRUE)
+data_to_use_NC <- myData %>% dplyr::filter(has_surgery == TRUE) %>%
+  dplyr::filter(has_cancer == FALSE)
+data_to_use_C_within3m <- myData %>% 
+  dplyr::filter(has_cancer == TRUE) %>%
+  dplyr::filter(has_surgery == TRUE) %>%
+  dplyr::filter(category_cancer_within_3mths_surgery == 
+                  "Cancer diagnosis within 3mths before surgery" |
+                  category_cancer_within_3mths_surgery == 
+                  "Cancer diagnosis within 3mths after surgery")
+data_to_use_C_outwith3m <- myData %>%
+  dplyr::filter(has_cancer == TRUE) %>%
+  dplyr::filter(has_surgery == TRUE) %>%
+  dplyr::filter(category_cancer_within_3mths_surgery == 
+                  "No cancer diagnosis within 3mths before or after surgery")
+
+
 # ----
 
 

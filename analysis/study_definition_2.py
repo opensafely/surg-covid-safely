@@ -32,12 +32,18 @@ study = StudyDefinition(
 		"""
         has_surgery
         """,
-        has_surgery = patients.with_these_clinical_events(
-			codelist_cancer_surgery,
-			on_or_after = start_date
-		),
+        # has_surgery = patients.with_these_clinical_events(
+			# codelist_cancer_surgery,
+			# on_or_after = start_date
+		# ),
 	),
     
+    has_surgery = patients.with_these_clinical_events(
+			codelist_cancer_surgery,
+			on_or_after = start_date,
+            returning = "binary_flag"
+		),
+        
     has_cancer = patients.with_these_clinical_events(
 			codelist_cancer,
 			on_or_after = start_date,
@@ -376,8 +382,8 @@ study = StudyDefinition(
     # Categorised based on HES codes https://digital.nhs.uk/data-and-information/data-tools-and-services/data-services/hospital-episode-statistics/hospital-episode-statistics-data-dictionary
     category_admission_method = patients.categorised_as(
 		{
-		"Elective": "admission_method = 11 OR admission_method = 12 OR admission_method = 13",
-		"Emergency": "admission_method = 21 OR admission_method = 22 OR admission_method = 23 OR admission_method = 24 OR admission_method = 25",
+		"Elective": "admission_method = '11' OR admission_method = '12' OR admission_method = '13'",
+		"Emergency": "admission_method = '21' OR admission_method = '22' OR admission_method = '23' OR admission_method = '24' OR admission_method = '25'",
         "Emergency": "admission_method = '2A' OR admission_method = '2B' OR admission_method = '2C' OR admission_method = '2D' OR admission_method = '28'",
         "Missing": "DEFAULT"
 		},

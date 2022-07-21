@@ -27,7 +27,7 @@
 source(here::here("analysis","dataset_preparation.R"))
 # Make Table1 for all patients.
 data_to_use <- myData
-sensitivity_cohort <- ""
+sensitivity_cohort <- "_EntireSurgeryCohort"
 source(here::here("analysis","Make_Table1.R"))
 # ----
 
@@ -402,7 +402,6 @@ table1Demogs_CSP[which(table1Demogs_CSP$strata %in%
 
 # ----
 
-
 # Save tibbles to CSV. ----
 # Pre-pandemic.
 write.csv(
@@ -441,16 +440,13 @@ write.csv(
 # Here, we just make sure it has been created, rearrange and then rename it.
 #
 
-data_to_use_C_within3m <- myData %>% 
-  dplyr::filter(category_cancer_within_3mths_surgery == 
-                  "Cancer diagnosis within 3mths before surgery" |
-                  category_cancer_within_3mths_surgery == 
-                  "Cancer diagnosis within 3mths after surgery")
-data_to_use_C_outwith3m <- myData %>% 
-  dplyr::filter(category_cancer_within_3mths_surgery == 
-                  "No cancer diagnosis within 3mths before or after surgery")
-data_to_use_NC <- myData %>% dplyr::filter(has_cancer == FALSE)
-data_to_use_all <- myData
+
+tbl_PNV_outcome %>% dplyr::filter(strata == "Dead within 30 days post-operation")
+tbl_PNV_outcome %>% dplyr::filter(strata == "Dead within 30 days post-operation")
+
+
+
+
 source(here::here("analysis","Make_table_COVIDSurg_compare.R"))
 
 TableEra <- 
