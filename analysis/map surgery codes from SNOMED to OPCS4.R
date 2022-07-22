@@ -46,8 +46,8 @@ SNOMED_Abbott <-
 # Combine the two codelists.
 surgeries <- SNOMED_surgeries %>% dplyr::bind_rows(SNOMED_Abbott)
 # Load TRUD map.
-TRUDmap <- read_delim(paste0(folder_loc, "\\SnomedCT_UKClinicalRF2_PRODUCTION_20220608T000001Z", "\\Full",
-                             "\\RefSet", "\\Map", "\\der2_iisssciRefset_ExtendedMapUKCLFull_GB1000000_20220608.txt"),
+TRUDmap <- read_delim(paste0(folder_loc, "\\SnomedCT_UKClinicalRF2_PRODUCTION_20220706T000001Z", "\\Full",
+                             "\\RefSet", "\\Map", "\\der2_iisssciRefset_ExtendedMapUKCLFull_GB1000000_20220706.txt"),
                       delim = "\t", escape_double = FALSE,
                       col_types = cols(effectiveTime = col_character(),
                                        moduleId = col_character(),
