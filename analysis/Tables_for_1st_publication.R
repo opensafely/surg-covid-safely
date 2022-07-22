@@ -437,30 +437,21 @@ write.csv(
 # This table is just the table_mortality_intervals tibble produced in 
 # Make_table_COVIDSurg_compare.R, with some rearranging.
 #
-# Here, we just make sure it has been created, rearrange and then rename it.
+# Here, we just make sure it has been created, then rearrange and rename it.
 #
-
-
-tbl_PNV_outcome %>% dplyr::filter(strata == "Dead within 30 days post-operation")
-tbl_PNV_outcome %>% dplyr::filter(strata == "Dead within 30 days post-operation")
-
-
-
 
 source(here::here("analysis","Make_table_COVIDSurg_compare.R"))
 
-TableEra <- 
-  table_mortality_intervals %>%
-    tibble::rownames_to_column() %>%
-    dplyr::rows_delete(
-      y = tibble::tibble(rowname = 
-                           c("PNV_COVIDSurg", "PNV_OS_C_outwith3m",
-                             "CSP_OS_NC", "CSP_OS_C_within3m",
-                             "CSP_OS_C_outwith3m", "PWV_COVIDSurg",
-                             "PWV_OS_C_outwith3m")
-                        )
-                      ) %>%
-    `rownames<-`(.$rowname) %>% select(-c(rowname, d_total, pct_total))
+TableEra <-
+  rbind(
+    table_mortality_intervals[c("PNV_OS_all", "PNV_OS_NC"),],
+    PNV_OS_C = table_mortality_intervals[c("PNV_OS_C_within3m", "PNV_OS_C_outwith3m"),] %>% colSums,
+    table_mortality_intervals[c("CSP_COVIDSurg","CSP_OS_all", "CSP_OS_NC"),],
+    CSP_OS_C = table_mortality_intervals[c("PNV_OS_C_within3m", "PNV_OS_C_outwith3m"),] %>% colSums,
+    table_mortality_intervals[c("PWV_OS_all", "PWV_OS_NC"),],
+    PWV_OS_C = table_mortality_intervals[c("PWV_OS_C_within3m", "PWV_OS_C_outwith3m"),] %>% colSums
+  ) %>% dplyr::select(-c("d_total", "pct_total"))
+
 write.csv(
   x = TableEra,
   file = here::here("output", "TableEra.csv")
