@@ -165,8 +165,7 @@ myData <- myData %>%
                .$has_surgery == FALSE ~ "No surgery recorded",
               (.$date_death < .$date_surgery) ~ "Error: Surgery after death",
                 (.$date_death - .$date_surgery) <= 30 ~ "Dead within 30 days post-operation",
-                (.$date_death - .$date_surgery) > 30 ~ "Alive within 30 days post-operation",
-              is.na(.$date_death) ~ "No death recorded"
+                ((.$date_death - .$date_surgery) > 30 | is.na(.$date_death)) ~ "Alive within 30 days post-operation"
               )
             ) %>%
             ## Indicator for 90-day post-operative mortality.
@@ -177,8 +176,7 @@ myData <- myData %>%
                 .$has_surgery == FALSE ~ "No surgery recorded",
                 (.$date_death < .$date_surgery) ~ "Error: Surgery after death",
                 (.$date_death - .$date_surgery) <= 90 ~ "Dead within 90 days post-operation",
-                (.$date_death - .$date_surgery) > 90 ~ "Alive within 90 days post-operation",
-                is.na(.$date_death) ~ "No death recorded"
+                ((.$date_death - .$date_surgery) > 90 | is.na(.$date_death)) ~ "Alive within 90 days post-operation"
               )
             ) %>%
             ## Indicator for 6-month post-operative mortality.
@@ -189,8 +187,7 @@ myData <- myData %>%
                 .$has_surgery == FALSE ~ "No surgery recorded",
                 (.$date_death < .$date_surgery) ~ "Error: Surgery after death",
                 (.$date_death - .$date_surgery) <= 180 ~ "Dead within 6 months post-operation",
-                (.$date_death - .$date_surgery) > 180 ~ "Alive within 6 months post-operation",
-                is.na(.$date_death) ~ "No death recorded"
+                ((.$date_death - .$date_surgery) > 180| is.na(.$date_death)) ~ "Alive within 6 months post-operation"
               )
             ) %>%
             ## Indicator for 12-month post-operative mortality.
@@ -201,8 +198,7 @@ myData <- myData %>%
                 .$has_surgery == FALSE ~ "No surgery recorded",
                 (.$date_death < .$date_surgery) ~ "Error: Surgery after death",
                 (.$date_death - .$date_surgery) <= 365 ~ "Dead within 12 months post-operation",
-                (.$date_death - .$date_surgery) > 365 ~ "Alive within 12 months post-operation",
-                is.na(.$date_death) ~ "No death recorded"
+                ((.$date_death - .$date_surgery) > 365 | is.na(.$date_death)) ~ "Alive within 12 months post-operation"
               )
             ) %>%
             ## Indicator for 30-day post-operative cerebrovascular complication.
@@ -213,8 +209,7 @@ myData <- myData %>%
                 .$has_surgery == FALSE ~ "No surgery recorded",
                 (.$date_postOp_cerebrovascular_complication < .$date_surgery) ~ "Ignore: Pre-operative complication",
                 (.$date_postOp_cerebrovascular_complication - .$date_surgery) <= 30 ~ "Complications",
-                (.$date_postOp_cerebrovascular_complication - .$date_surgery) > 30 ~ "No complications",
-                is.na(.$date_postOp_cerebrovascular_complication) ~ "No complication recorded"
+                ((.$date_postOp_cerebrovascular_complication - .$date_surgery) > 30 | is.na(.$date_postOp_cerebrovascular_complication)) ~ "No complications"
               )
             ) %>%
             ## Indicator for 30-day post-operative pulmonary complication
@@ -225,8 +220,7 @@ myData <- myData %>%
                 .$has_surgery == FALSE ~ "No surgery recorded",
                 (.$date_postOp_pulmonary_complication < .$date_surgery) ~ "Ignore: Pre-operative complication",
                 (.$date_postOp_pulmonary_complication - .$date_surgery) <= 30 ~ "Complications",
-                (.$date_postOp_pulmonary_complication - .$date_surgery) > 30 ~ "No complications",
-                is.na(.$date_postOp_pulmonary_complication) ~ "No complication recorded"
+                ((.$date_postOp_pulmonary_complication - .$date_surgery) > 30 | is.na(.$date_postOp_pulmonary_complication)) ~ "No complications"
               )
             ) %>%
             ## Indicator for 30-day post-operative cardiac complication
@@ -237,8 +231,7 @@ myData <- myData %>%
                 .$has_surgery == FALSE ~ "No surgery recorded",
                 (.$date_postOp_cardiac_complication < .$date_surgery) ~ "Ignore: Pre-operative complication",
                 (.$date_postOp_cardiac_complication - .$date_surgery) <= 30 ~ "Complications",
-                (.$date_postOp_cardiac_complication - .$date_surgery) > 30 ~ "No complications",
-                is.na(.$date_postOp_cardiac_complication) ~ "No complication recorded"
+                ((.$date_postOp_cardiac_complication - .$date_surgery) > 30 | is.na(.$date_postOp_cardiac_complication)) ~ "No complications"
               )
             ) %>%
             ## Week of surgery.
