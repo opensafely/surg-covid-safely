@@ -26,7 +26,13 @@
 # ----
 source(here::here("analysis","dataset_preparation.R"))
 # Make Table1 for all patients.
-data_to_use <- myData
+myDataSelect <- myData %>%
+  dplyr::filter(postOp_mortality_30day %in% c("Dead within 30 days post-operation",
+                                              "Alive within 30 days post-operation",
+                                              "No death recorded"),
+                preOperative_infection_status!=
+                  "Error: Test result after surgery. Check study_definition.")
+data_to_use <- myDataSelect %>% dplyr::filter(has_surgery == TRUE)
 sensitivity_cohort <- "_EntireSurgeryCohort"
 source(here::here("analysis","Make_Table1.R"))
 # ----
@@ -37,25 +43,25 @@ source(here::here("analysis","Make_Table1.R"))
 # Define base tables. ----
 # Pre-pandemic.
 table1Demogs_PP <-
-  tbl_PP_strata %>% dplyr::filter(variable != "Age group")
+  tbl_PP_demogs %>% dplyr::filter(variable != "Age group")
 table1Demogs_PP[,3:ncol(table1Demogs_PP)] <-
   table1Demogs_PP %>% dplyr::select(-c(variable, strata)) %>% 
   sapply(as.double)
 # Pandemic no vaccine.
 table1Demogs_PNV <-
-  tbl_PNV_strata %>% dplyr::filter(variable != "Age group")
+  tbl_PNV_demogs %>% dplyr::filter(variable != "Age group")
 table1Demogs_PNV[,3:ncol(table1Demogs_PNV)] <-
   table1Demogs_PNV %>% dplyr::select(-c(variable, strata)) %>% 
   sapply(as.double)
 # COVIDSurg data collection period.
 table1Demogs_CSP <-
-  tbl_CSP_strata %>% dplyr::filter(variable != "Age group")
+  tbl_CSP_demogs %>% dplyr::filter(variable != "Age group")
 table1Demogs_CSP[,3:ncol(table1Demogs_CSP)] <-
   table1Demogs_CSP %>% dplyr::select(-c(variable, strata)) %>% 
   sapply(as.double)
 # Pandemic with vaccine.
 table1Demogs_PWV <-
-  tbl_PWV_strata %>% dplyr::filter(variable != "Age group")
+  tbl_PWV_demogs %>% dplyr::filter(variable != "Age group")
 table1Demogs_PWV[,3:ncol(table1Demogs_PWV)] <-
   table1Demogs_PWV %>% dplyr::select(-c(variable, strata)) %>% 
   sapply(as.double)
@@ -69,53 +75,22 @@ table1Demogs_PWV[,3:ncol(table1Demogs_PWV)] <-
 # ##    1. Within 3 months
 # ##    2. Outwith 3 months
 # ##    3. No cancer diagnosis
-tbl_timing_of_cancer_diagnosis <- 
-  myData %>% dplyr::filter(era != "Error: No surgery") %>%
+table1_timing_of_cancer_diagnosis <- 
+  data_to_use %>% 
   dplyr::filter(postOp_mortality_30day %in% c("Dead within 30 days post-operation",
-                                              "Alive within 30 days post-operation")) %>%
-    dplyr::filter(category_cancer_within_3mths_surgery != "No surgery recorded") %>%
-    dplyr::mutate(
-      cancer_diagnosis_within_3mths = dplyr::case_when(
-        .$category_cancer_within_3mths_surgery %in%
-          c("Cancer diagnosis within 3mths after surgery",
-            "Cancer diagnosis within 3mths before surgery") ~ "Within 3 months",
-        .$category_cancer_within_3mths_surgery ==
-          "No cancer diagnosis within 3mths before or after surgery" ~ "Outwith 3 months",
-        .$category_cancer_within_3mths_surgery ==
-          "No cancer diagnosis recorded" ~ "No cancer diagnosis",
-      )
-    ) %>%
-    dplyr::group_by(era, cancer_diagnosis_within_3mths) %>%
-    dplyr::summarise(n_all_intervals = sum(ifelse(preOperative_infection_status!=
-                                                    "Error: Test result after surgery. Check study_definition.",1,0)),
-                     n_infection_none = sum(ifelse(preOperative_infection_status==
-                                                     "No record of pre-operative SARS-CoV-2 infection",1,0)),
-                     n_infection_0to2wk = sum(ifelse(preOperative_infection_status==
-                                                       "0-2 weeks record of pre-operative SARS-CoV-2 infection",1,0)),
-                     n_infection_3to4wk = sum(ifelse(preOperative_infection_status==
-                                                       "3-4 weeks record of pre-operative SARS-CoV-2 infection",1,0)),
-                     n_infection_5to6wk = sum(ifelse(preOperative_infection_status==
-                                                       "5-6 weeks record of pre-operative SARS-CoV-2 infection",1,0)),
-                     n_infection_7wk = sum(ifelse(preOperative_infection_status==
-                                                    ">=7 weeks record of pre-operative SARS-CoV-2 infection",1,0))
-    )
-tbl_CSP <- 
-  myData %>% dplyr::filter(era != "Error: No surgery") %>%
-  dplyr::filter(postOp_mortality_30day %in% c("Dead within 30 days post-operation",
-                                              "Alive within 30 days post-operation")) %>%
-  dplyr::filter(category_cancer_within_3mths_surgery != "No surgery recorded") %>%
+                                              "Alive within 30 days post-operation",
+                                              "No death recorded")) %>%
   dplyr::mutate(
-    cancer_diagnosis_within_3mths = dplyr::case_when(
+    timing_of_cancer_diagnosis = dplyr::case_when(
       .$category_cancer_within_3mths_surgery %in%
         c("Cancer diagnosis within 3mths after surgery",
           "Cancer diagnosis within 3mths before surgery") ~ "Within 3 months",
       .$category_cancer_within_3mths_surgery ==
         "No cancer diagnosis within 3mths before or after surgery" ~ "Outwith 3 months",
-      .$category_cancer_within_3mths_surgery ==
-        "No cancer diagnosis recorded" ~ "No cancer diagnosis",
+      .$has_cancer == FALSE ~ "No cancer diagnosis",
     )
   ) %>%
-  dplyr::group_by(COVIDSurg_data_collection_period, cancer_diagnosis_within_3mths) %>%
+  dplyr::group_by(era, timing_of_cancer_diagnosis) %>%
   dplyr::summarise(n_all_intervals = sum(ifelse(preOperative_infection_status!=
                                                   "Error: Test result after surgery. Check study_definition.",1,0)),
                    n_infection_none = sum(ifelse(preOperative_infection_status==
@@ -128,160 +103,97 @@ tbl_CSP <-
                                                      "5-6 weeks record of pre-operative SARS-CoV-2 infection",1,0)),
                    n_infection_7wk = sum(ifelse(preOperative_infection_status==
                                                   ">=7 weeks record of pre-operative SARS-CoV-2 infection",1,0))
-  ) %>% `colnames<-`(c("era", colnames(tbl_timing_of_cancer_diagnosis)[2:ncol(tbl_timing_of_cancer_diagnosis)]))
-tbl_timing_of_cancer_diagnosis <- dplyr::bind_rows(tbl_timing_of_cancer_diagnosis, tbl_CSP)
-rm(tbl_CSP)
+  )
+table1_CSP_timing_of_cancer_diagnosis <- 
+  data_to_use %>% 
+  dplyr::filter(postOp_mortality_30day %in% c("Dead within 30 days post-operation",
+                                              "Alive within 30 days post-operation",
+                                              "No death recorded")) %>%
+  dplyr::mutate(
+    timing_of_cancer_diagnosis = dplyr::case_when(
+      .$category_cancer_within_3mths_surgery %in%
+        c("Cancer diagnosis within 3mths after surgery",
+          "Cancer diagnosis within 3mths before surgery") ~ "Within 3 months",
+      .$category_cancer_within_3mths_surgery ==
+        "No cancer diagnosis within 3mths before or after surgery" ~ "Outwith 3 months",
+      .$has_cancer == FALSE ~ "No cancer diagnosis",
+    )
+  ) %>%
+  dplyr::group_by(COVIDSurg_data_collection_period, timing_of_cancer_diagnosis) %>%
+  dplyr::summarise(n_all_intervals = sum(ifelse(preOperative_infection_status!=
+                                                  "Error: Test result after surgery. Check study_definition.",1,0)),
+                   n_infection_none = sum(ifelse(preOperative_infection_status==
+                                                   "No record of pre-operative SARS-CoV-2 infection",1,0)),
+                   n_infection_0to2wk = sum(ifelse(preOperative_infection_status==
+                                                     "0-2 weeks record of pre-operative SARS-CoV-2 infection",1,0)),
+                   n_infection_3to4wk = sum(ifelse(preOperative_infection_status==
+                                                     "3-4 weeks record of pre-operative SARS-CoV-2 infection",1,0)),
+                   n_infection_5to6wk = sum(ifelse(preOperative_infection_status==
+                                                     "5-6 weeks record of pre-operative SARS-CoV-2 infection",1,0)),
+                   n_infection_7wk = sum(ifelse(preOperative_infection_status==
+                                                  ">=7 weeks record of pre-operative SARS-CoV-2 infection",1,0))
+  ) %>% dplyr::rename(era = COVIDSurg_data_collection_period)
+
+
+table1_timing_of_cancer_diagnosis <- dplyr::bind_rows(table1_CSP_timing_of_cancer_diagnosis, table1_timing_of_cancer_diagnosis)
+rm(table1_CSP_timing_of_cancer_diagnosis)
 # ## Ensure tibble shows zero values when categories are not in the data.
-tbl_timing_of_cancer_diagnosis <- 
+table1_timing_of_cancer_diagnosis <- 
   expand.grid(
     era = 
       era_set,
-    cancer_diagnosis_within_3mths = 
+    timing_of_cancer_diagnosis = 
       c("Within 3 months",
         "Outwith 3 months",
         "No cancer diagnosis")) %>%
-  dplyr::full_join(tbl_timing_of_cancer_diagnosis) %>%
+  dplyr::full_join(table1_timing_of_cancer_diagnosis) %>%
   dplyr::arrange(era) %>%
   tidyr::replace_na(na_replace_list)
 # ----
 
 # Make vectors for tables. ----
-# ## ## Pre-pandemic
-# ## ## ## Get counts per intervals and overall.
-PP_n_timing_of_cancer_diagnosis <- 
-  tbl_timing_of_cancer_diagnosis %>% dplyr::filter(era=="Pre-pandemic") %>%
-  dplyr::arrange(cancer_diagnosis_within_3mths) %>% dplyr::ungroup() %>% dplyr::select("n_all_intervals")
-# ## ## ## Get percentages per intervals and overall.
-PP_pct_timing_of_cancer_diagnosis <- (PP_n_timing_of_cancer_diagnosis / sum(PP_n_timing_of_cancer_diagnosis)) %>% "*"(100) %>%
-  tidyr::replace_na(list("n_all_intervals" = 0)) %>%
-  `colnames<-`(c("pct_all_intervals"))
-PP_timing_of_cancer_diagnosis <- tbl_timing_of_cancer_diagnosis %>% dplyr::filter(era=="Pandemic no vaccine") %>%
-  dplyr::arrange(cancer_diagnosis_within_3mths) %>% dplyr::select(cancer_diagnosis_within_3mths) %>%
-  dplyr::bind_cols(., PP_n_timing_of_cancer_diagnosis, PP_pct_timing_of_cancer_diagnosis)
-# ## ## ## Clean up.
-rm(PP_n_timing_of_cancer_diagnosis, PP_pct_timing_of_cancer_diagnosis)
-
-# ## ## Pandemic no vaccine.
-# ## ## ## Get counts per intervals and overall.
-PNV_n_timing_of_cancer_diagnosis <- 
-  tbl_timing_of_cancer_diagnosis %>% dplyr::filter(era=="Pandemic no vaccine") %>%
-  dplyr::arrange(cancer_diagnosis_within_3mths) %>% dplyr::ungroup() %>% dplyr::select(-c(era,cancer_diagnosis_within_3mths))
-# ## ## ## Get percentages per intervals and overall.
-PNV_pct_timing_of_cancer_diagnosis <- 
-  tbl_timing_of_cancer_diagnosis %>% dplyr::filter(era=="Pandemic no vaccine") %>% dplyr::select(-c(era,cancer_diagnosis_within_3mths)) %>%
-  colSums() %>% sweep(PNV_n_timing_of_cancer_diagnosis, 2, ., "/") %>% "*"(100) %>%
-  tidyr::replace_na(list("n_all_intervals" = 0, "n_infection_none" = 0,
-                         "n_infection_0to2wk"  = 0, "n_infection_3to4wk" = 0,
-                         "n_infection_5to6wk" = 0, "n_infection_7wk" = 0
-  )) %>%
-  `colnames<-`(c("pct_all_intervals", "pct_infection_none", "pct_infection_0to2wk",
-                 "pct_infection_3to4wk", "pct_infection_5to6wk", "pct_infection_7wk"))
-# ## ## ## Interlace counts and percentages.
-PNV_timing_of_cancer_diagnosis <- matrix(0,
-                  nrow = length(rownames(PNV_n_timing_of_cancer_diagnosis)),
-                  ncol = length(colnames(PNV_n_timing_of_cancer_diagnosis))*2) %>%
-  as.data.frame()
-PNV_timing_of_cancer_diagnosis[,seq(1,length(colnames(PNV_timing_of_cancer_diagnosis)),2)] <- PNV_n_timing_of_cancer_diagnosis
-PNV_timing_of_cancer_diagnosis[,seq(2,length(colnames(PNV_timing_of_cancer_diagnosis)),2)] <- PNV_pct_timing_of_cancer_diagnosis
-colnames(PNV_timing_of_cancer_diagnosis)[seq(1,length(colnames(PNV_timing_of_cancer_diagnosis)),2)] <- colnames(PNV_n_timing_of_cancer_diagnosis)
-colnames(PNV_timing_of_cancer_diagnosis)[seq(2,length(colnames(PNV_timing_of_cancer_diagnosis)),2)] <- colnames(PNV_pct_timing_of_cancer_diagnosis)
-PNV_timing_of_cancer_diagnosis <- tbl_timing_of_cancer_diagnosis %>%  dplyr::filter(era=="Pandemic no vaccine") %>%
-  dplyr::arrange(cancer_diagnosis_within_3mths) %>% dplyr::select("cancer_diagnosis_within_3mths") %>% dplyr::bind_cols(PNV_timing_of_cancer_diagnosis)
-# ## ## ## Clean up.
-rm(PNV_n_timing_of_cancer_diagnosis, PNV_pct_timing_of_cancer_diagnosis)
-
-# ## ## COVIDSurg data collection period.
-# ## ## ## Get counts per intervals and overall.
-CSP_n_timing_of_cancer_diagnosis <- 
-  tbl_timing_of_cancer_diagnosis %>%  dplyr::filter(era=="COVIDSurg data collection period") %>%
-  dplyr::arrange(cancer_diagnosis_within_3mths) %>% dplyr::ungroup() %>% dplyr::select(-c(era,cancer_diagnosis_within_3mths))
-# ## ## ## Get percentages per intervals and overall.
-CSP_pct_timing_of_cancer_diagnosis <- 
-  tbl_timing_of_cancer_diagnosis %>% dplyr::filter(era=="COVIDSurg data collection period") %>% dplyr::select(-c(era,cancer_diagnosis_within_3mths)) %>%
-  colSums() %>% sweep(CSP_n_timing_of_cancer_diagnosis, 2, ., "/") %>% "*"(100) %>%
-  tidyr::replace_na(list("n_all_intervals" = 0, "n_infection_none" = 0,
-                         "n_infection_0to2wk"  = 0, "n_infection_3to4wk" = 0,
-                         "n_infection_5to6wk" = 0, "n_infection_7wk" = 0
-  )) %>%
-  `colnames<-`(c("pct_all_intervals", "pct_infection_none", "pct_infection_0to2wk",
-                 "pct_infection_3to4wk", "pct_infection_5to6wk", "pct_infection_7wk"))
-# ## ## ## Interlace counts and percentages.
-CSP_timing_of_cancer_diagnosis <- matrix(0,
-                  nrow = length(rownames(CSP_n_timing_of_cancer_diagnosis)),
-                  ncol = length(colnames(CSP_n_timing_of_cancer_diagnosis))*2) %>%
-  as.data.frame()
-CSP_timing_of_cancer_diagnosis[,seq(1,length(colnames(CSP_timing_of_cancer_diagnosis)),2)] <- CSP_n_timing_of_cancer_diagnosis
-CSP_timing_of_cancer_diagnosis[,seq(2,length(colnames(CSP_timing_of_cancer_diagnosis)),2)] <- CSP_pct_timing_of_cancer_diagnosis
-colnames(CSP_timing_of_cancer_diagnosis)[seq(1,length(colnames(CSP_timing_of_cancer_diagnosis)),2)] <- colnames(CSP_n_timing_of_cancer_diagnosis)
-colnames(CSP_timing_of_cancer_diagnosis)[seq(2,length(colnames(CSP_timing_of_cancer_diagnosis)),2)] <- colnames(CSP_pct_timing_of_cancer_diagnosis)
-CSP_timing_of_cancer_diagnosis <- tbl_timing_of_cancer_diagnosis %>%  dplyr::filter(era=="COVIDSurg data collection period") %>%
-  dplyr::arrange(cancer_diagnosis_within_3mths) %>% dplyr::select("cancer_diagnosis_within_3mths") %>% dplyr::bind_cols(CSP_timing_of_cancer_diagnosis)
-# ## ## ## Clean up.
-rm(CSP_n_timing_of_cancer_diagnosis, CSP_pct_timing_of_cancer_diagnosis)
-
-# ## ## Pandemic with vaccine.
-# ## ## ## Get counts per intervals and overall.
-PWV_n_timing_of_cancer_diagnosis <- 
-  tbl_timing_of_cancer_diagnosis %>%  dplyr::filter(era=="Pandemic with vaccine") %>%
-  dplyr::arrange(cancer_diagnosis_within_3mths) %>% dplyr::ungroup() %>% dplyr::select(-c(era,cancer_diagnosis_within_3mths))
-# ## ## ## Get percentages per intervals and overall.
-PWV_pct_timing_of_cancer_diagnosis <- 
-  tbl_timing_of_cancer_diagnosis %>% dplyr::filter(era=="Pandemic with vaccine") %>% dplyr::select(-c(era,cancer_diagnosis_within_3mths)) %>%
-  colSums() %>% sweep(PWV_n_timing_of_cancer_diagnosis, 2, ., "/") %>% "*"(100) %>%
-  tidyr::replace_na(list("n_all_intervals" = 0, "n_infection_none" = 0,
-                         "n_infection_0to2wk"  = 0, "n_infection_3to4wk" = 0,
-                         "n_infection_5to6wk" = 0, "n_infection_7wk" = 0
-  )) %>%
-  `colnames<-`(c("pct_all_intervals", "pct_infection_none", "pct_infection_0to2wk",
-                 "pct_infection_3to4wk", "pct_infection_5to6wk", "pct_infection_7wk"))
-# ## ## ## Interlace counts and percentages.
-PWV_timing_of_cancer_diagnosis <- matrix(0,
-                  nrow = length(rownames(PWV_n_timing_of_cancer_diagnosis)),
-                  ncol = length(colnames(PWV_n_timing_of_cancer_diagnosis))*2) %>%
-  as.data.frame()
-PWV_timing_of_cancer_diagnosis[,seq(1,length(colnames(PWV_timing_of_cancer_diagnosis)),2)] <- PWV_n_timing_of_cancer_diagnosis
-PWV_timing_of_cancer_diagnosis[,seq(2,length(colnames(PWV_timing_of_cancer_diagnosis)),2)] <- PWV_pct_timing_of_cancer_diagnosis
-colnames(PWV_timing_of_cancer_diagnosis)[seq(1,length(colnames(PWV_timing_of_cancer_diagnosis)),2)] <- colnames(PWV_n_timing_of_cancer_diagnosis)
-colnames(PWV_timing_of_cancer_diagnosis)[seq(2,length(colnames(PWV_timing_of_cancer_diagnosis)),2)] <- colnames(PWV_pct_timing_of_cancer_diagnosis)
-PWV_timing_of_cancer_diagnosis <- tbl_timing_of_cancer_diagnosis %>%  dplyr::filter(era=="Pandemic with vaccine") %>%
-  dplyr::arrange(cancer_diagnosis_within_3mths) %>% dplyr::select("cancer_diagnosis_within_3mths") %>% dplyr::bind_cols(PWV_timing_of_cancer_diagnosis)
-# ## ## ## Clean up
-rm(PWV_n_timing_of_cancer_diagnosis, PWV_pct_timing_of_cancer_diagnosis)
+list_timing_of_cancer_diagnosis <-
+  fnc_countsAndPercentages(table_to_use = table1_timing_of_cancer_diagnosis,
+                           strata = "_timing_of_cancer_diagnosis",
+                           strata_col = "timing_of_cancer_diagnosis")
 # ----
 
 # Insert rows of timing data into the main tibble. ----
 # Pre-pandemic.
 rows_to_add <-
-  PP_timing_of_cancer_diagnosis %>%
-  tibble::add_column(., variable = rep("Timing of cancer diagnosis",3),
-                     .before = "cancer_diagnosis_within_3mths") %>%
+  list_timing_of_cancer_diagnosis$PP_timing_of_cancer_diagnosis %>%
+  dplyr::select(strata, n_all_intervals, pct_all_intervals) %>%
+  tibble::add_column(variable = rep("Timing of cancer diagnosis",3),
+                     .before = "strata") %>%
   `colnames<-`(c("variable", "strata", "n", "pct"))
 table1Demogs_PP <-
   table1Demogs_PP %>% tibble::add_row(., rows_to_add, .before = 5)
 # Pandemic no vaccine.
 rows_to_add <-
-  PNV_timing_of_cancer_diagnosis %>%
+  list_timing_of_cancer_diagnosis$PNV_timing_of_cancer_diagnosis %>%
   tibble::add_column(., variable = rep("Timing of cancer diagnosis",3),
-                     .before = "cancer_diagnosis_within_3mths")
+                     .before = "strata")
 colnames(rows_to_add)[2] <- "strata"
 table1Demogs_PNV <-
   table1Demogs_PNV %>% tibble::add_row(., rows_to_add, .before = 5)
 # COVIDSurg data collection period.
 rows_to_add <-
-  CSP_timing_of_cancer_diagnosis %>%
+  list_timing_of_cancer_diagnosis$CSP_timing_of_cancer_diagnosis %>%
   tibble::add_column(., variable = rep("Timing of cancer diagnosis",3),
-                     .before = "cancer_diagnosis_within_3mths")
+                     .before = "strata")
 colnames(rows_to_add)[2] <- "strata"
 table1Demogs_CSP <-
   table1Demogs_CSP %>% tibble::add_row(., rows_to_add, .before = 5)
 # Pandemic with vaccine.
 rows_to_add <-
-  PWV_timing_of_cancer_diagnosis %>%
+  list_timing_of_cancer_diagnosis$PWV_timing_of_cancer_diagnosis %>%
   tibble::add_column(., variable = rep("Timing of cancer diagnosis",3),
-                     .before = "cancer_diagnosis_within_3mths")
+                     .before = "strata")
 colnames(rows_to_add)[2] <- "strata"
 table1Demogs_PWV <-
   table1Demogs_PWV %>% tibble::add_row(., rows_to_add, .before = 5)
+# Clean up
+rm(rows_to_add)
 # ----
 
 # Save tibbles to CSV. ----
@@ -318,7 +230,7 @@ write.csv(
 # Define base tables. ----
 # Pre-pandemic.
 table1Outcomes_PP <-
-  tbl_PP_outcome %>%
+  tbl_PP_outcomes %>%
     dplyr::filter(!variable %in% c("90-day post-operative mortality",
                                    "12-month post-operative mortality"))
 table1Outcomes_PP[,3:ncol(table1Outcomes_PP)] <-
@@ -326,7 +238,7 @@ table1Outcomes_PP[,3:ncol(table1Outcomes_PP)] <-
   sapply(as.double)
 # Pandemic no vaccine.
 table1Outcomes_PNV <-
-  tbl_PNV_outcome %>%
+  tbl_PNV_outcomes %>%
     dplyr::filter(!variable %in% c("90-day post-operative mortality",
                                    "12-month post-operative mortality"))
 table1Outcomes_PNV[,3:ncol(table1Outcomes_PNV)] <-
@@ -334,7 +246,7 @@ table1Outcomes_PNV[,3:ncol(table1Outcomes_PNV)] <-
   sapply(as.double)
 # COVIDSurg data collection period.
 table1Outcomes_CSP <-
-  tbl_CSP_outcome %>%
+  tbl_CSP_outcomes %>%
     dplyr::filter(!variable %in% c("90-day post-operative mortality",
                                    "12-month post-operative mortality"))
 table1Outcomes_CSP[,3:ncol(table1Outcomes_CSP)] <-
@@ -342,7 +254,7 @@ table1Outcomes_CSP[,3:ncol(table1Outcomes_CSP)] <-
   sapply(as.double)
 # Pandemic with vaccine.
 table1Outcomes_PWV <-
-  tbl_PWV_outcome %>%
+  tbl_PWV_outcomes %>%
     dplyr::filter(!variable %in% c("90-day post-operative mortality",
                                    "12-month post-operative mortality"))
 table1Outcomes_PWV[,3:ncol(table1Outcomes_PWV)] <-
@@ -450,7 +362,7 @@ TableEra <-
     CSP_OS_C = table_mortality_intervals[c("PNV_OS_C_within3m", "PNV_OS_C_outwith3m"),] %>% colSums,
     table_mortality_intervals[c("PWV_OS_all", "PWV_OS_NC"),],
     PWV_OS_C = table_mortality_intervals[c("PWV_OS_C_within3m", "PWV_OS_C_outwith3m"),] %>% colSums
-  ) %>% dplyr::select(-c("d_total", "pct_total"))
+  )
 
 write.csv(
   x = TableEra,

@@ -60,17 +60,23 @@ COVIDSurg_mortality_totals <- data.frame(
 ####################
 # ----
 source(here::here("analysis","dataset_preparation.R"))
-data_to_use_all <- myData %>% dplyr::filter(has_surgery == TRUE)
-data_to_use_NC <- myData %>% dplyr::filter(has_surgery == TRUE) %>%
+myDataSelect <- myData %>%
+  dplyr::filter(postOp_mortality_30day %in% c("Dead within 30 days post-operation",
+                                              "Alive within 30 days post-operation",
+                                              "No death recorded"),
+                preOperative_infection_status!=
+                  "Error: Test result after surgery. Check study_definition.")
+data_to_use_all <- myDataSelect %>% dplyr::filter(has_surgery == TRUE)
+data_to_use_NC <- myDataSelect %>% dplyr::filter(has_surgery == TRUE) %>%
   dplyr::filter(has_cancer == FALSE)
-data_to_use_C_within3m <- myData %>% 
+data_to_use_C_within3m <- myDataSelect %>% 
   dplyr::filter(has_cancer == TRUE) %>%
   dplyr::filter(has_surgery == TRUE) %>%
   dplyr::filter(category_cancer_within_3mths_surgery == 
                   "Cancer diagnosis within 3mths before surgery" |
                   category_cancer_within_3mths_surgery == 
                   "Cancer diagnosis within 3mths after surgery")
-data_to_use_C_outwith3m <- myData %>%
+data_to_use_C_outwith3m <- myDataSelect %>%
   dplyr::filter(has_cancer == TRUE) %>%
   dplyr::filter(has_surgery == TRUE) %>%
   dplyr::filter(category_cancer_within_3mths_surgery == 
