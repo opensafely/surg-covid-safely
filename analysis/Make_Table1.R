@@ -28,6 +28,8 @@ source(here::here("analysis", "fnc_make7wkTable.R"))
 ##########################################
 # ----
 # ## Get count of patients per era.
+if(!exists(OS_all_counts))
+{source(here::here("analysis","Make_table_COVIDSurg_compare.R"))}
 all_counts <- 
   OS_all_counts %>% dplyr::group_by(era) %>% dplyr::summarise(n = sum(n))
   
