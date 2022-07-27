@@ -28,13 +28,10 @@ source(here::here("analysis", "fnc_make7wkTable.R"))
 ##########################################
 # ----
 # ## Get count of patients per era.
-all_counts <- data_to_use %>%
-  dplyr::filter(postOp_mortality_30day %in% c("Dead within 30 days post-operation",
-                                              "Alive within 30 days post-operation",
-                                              "No death recorded"),
-                preOperative_infection_status!=
-                  "Error: Test result after surgery. Check study_definition.") %>%
-  dplyr::group_by(era) %>% dplyr::summarise(n = n())
+if(!exists("OS_all_counts"))
+{source(here::here("analysis","Make_table_COVIDSurg_compare.R"))}
+all_counts <- 
+  OS_all_counts %>% dplyr::group_by(era) %>% dplyr::summarise(n = sum(n))
   
 # ## Count  of patients in each of the categories for 
 # ## pre-operative infection status:
@@ -913,8 +910,8 @@ table1_postOp_pulmonary_complication_30day <-
   expand.grid(
     era = era_set,
     pulmonary_complication_30day = 
-      c("Complications",
-        "No complications")) %>%
+      c("No complications",
+        "Complications")) %>%
   dplyr::full_join(table1_postOp_pulmonary_complication_30day) %>%
   dplyr::arrange(era) %>%
   tidyr::replace_na(na_replace_list)
@@ -923,8 +920,8 @@ table1_postOp_cardiac_complication_30day <-
   expand.grid(
     era = era_set,
     cardiac_complication_30day = 
-      c("Complications",
-        "No complications")) %>%
+      c("No complications",
+        "Complications")) %>%
   dplyr::full_join(table1_postOp_cardiac_complication_30day) %>%
   dplyr::arrange(era) %>%
   tidyr::replace_na(na_replace_list)
@@ -933,8 +930,8 @@ table1_postOp_cerebrovascular_complication_30day <-
   expand.grid(
     era = era_set,
     cerebrovascular_complication_30day = 
-      c("Complications",
-        "No complications")) %>%
+      c("No complications",
+        "Complications")) %>%
   dplyr::full_join(table1_postOp_cerebrovascular_complication_30day) %>%
   dplyr::arrange(era) %>%
   tidyr::replace_na(na_replace_list)

@@ -9,7 +9,7 @@ fnc_countsAndPercentages <-
   function(table_to_use, strata, strata_col)
   {
 
-    # Make sure variable 'all_counts' exists.
+    # Make sure variable 'OS_all_counts' exists.
     if(!exists("all_counts"))
     {
       stop(paste0("\nVariable 'all_counts' is needed for this function.",
@@ -44,9 +44,10 @@ fnc_countsAndPercentages <-
         `colnames<-`(c("pct_all_intervals", "pct_infection_none", "pct_infection_0to2wk",
                        "pct_infection_3to4wk", "pct_infection_5to6wk", "pct_infection_7wk"))
       # Interlace counts and percentages.
-      era_Strata <- matrix(0,
-                           nrow = length(rownames(n)),
-                           ncol = length(colnames(n))*2) %>%
+      era_Strata <-
+        matrix(0,
+               nrow = length(rownames(n)),
+               ncol = length(colnames(n))*2) %>%
         as.data.frame()
       era_Strata[,seq(1,length(colnames(era_Strata)),2)] <- n
       era_Strata[,seq(2,length(colnames(era_Strata)),2)] <- pct
