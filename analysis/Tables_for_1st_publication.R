@@ -25,6 +25,7 @@
 ###################
 # ----
 source(here::here("analysis","dataset_preparation.R"))
+source(here::here("analysis","Make_table_COVIDSurg_compare.R"))
 # Make Table1 for all patients.
 myDataSelect <- myData %>%
   dplyr::filter(postOp_mortality_30day %in% c("Dead within 30 days post-operation",
@@ -352,18 +353,45 @@ write.csv(
 # Here, we just make sure it has been created, then rearrange and rename it.
 #
 
-source(here::here("analysis","Make_table_COVIDSurg_compare.R"))
+# Combine both cancer groups.
+PNV_OS_C <-
+  table_mortality_intervals[c("PNV_OS_C_within3m", "PNV_OS_C_outwith3m"),] %>%
+  colSums()
+PNV_OS_C[seq(2, ncol(table_mortality_intervals), 2)] <-
+  PNV_OS_C[seq(1, ncol(table_mortality_intervals), 2)] /
+  colSums(PNV_OS_C_within3m_counts, PNV_OS_C_outwith3m_counts)
+CSP_OS_C <-
+  table_mortality_intervals[c("CSP_OS_C_within3m", "CSP_OS_C_outwith3m"),] %>%
+  colSums()
+CSP_OS_C[seq(2, ncol(table_mortality_intervals), 2)] <-
+  CSP_OS_C[seq(1, ncol(table_mortality_intervals), 2)] /
+  colSums(CSP_OS_C_within3m_counts, CSP_OS_C_outwith3m_counts)
+PWV_OS_C <-
+  table_mortality_intervals[c("PWV_OS_C_within3m", "PWV_OS_C_outwith3m"),] %>%
+  colSums()
+PWV_OS_C[seq(2, ncol(table_mortality_intervals), 2)] <-
+  PWV_OS_C[seq(1, ncol(table_mortality_intervals), 2)] /
+  colSums(PWV_OS_C_within3m_counts, PWV_OS_C_outwith3m_counts)
 
+# Make table.
 TableEra <-
   rbind(
     table_mortality_intervals[c("PNV_OS_all", "PNV_OS_NC"),],
-    PNV_OS_C = table_mortality_intervals[c("PNV_OS_C_within3m", "PNV_OS_C_outwith3m"),] %>% colSums,
+    PNV_OS_C = PNV_OS_C,
     table_mortality_intervals[c("CSP_COVIDSurg","CSP_OS_all", "CSP_OS_NC"),],
-    CSP_OS_C = table_mortality_intervals[c("PNV_OS_C_within3m", "PNV_OS_C_outwith3m"),] %>% colSums,
+    CSP_OS_C = CSP_OS_C,
     table_mortality_intervals[c("PWV_OS_all", "PWV_OS_NC"),],
-    PWV_OS_C = table_mortality_intervals[c("PWV_OS_C_within3m", "PWV_OS_C_outwith3m"),] %>% colSums
-  )
-
+    PWV_OS_C = PWV_OS_C
+  ) %>%
+  dplyr::mutate(dplyr::across(, ~ ifelse(is.nan(.),NA,.))) %>%
+  tidyr::replace_na(list("pct_total" = 0,
+                         "pct_all_intervals" = 0,
+                         "pct_infection_none" = 0,
+                         "pct_infection_0to2wk" = 0,
+                         "pct_infection_3to4wk" = 0,
+                         "pct_infection_5to6wk" = 0,
+                         "pct_infection_7wk" = 0)
+                    )
 write.csv(
   x = TableEra,
   file = here::here("output", "TableEra.csv")

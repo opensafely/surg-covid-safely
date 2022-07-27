@@ -125,7 +125,7 @@ OS_all_counts <-
                   preOperative_infection_status) %>%
   dplyr::summarise(n = n())
 CSP_OS_all_counts <- 
-  data_to_use_all %>% dplyr::filter(COVIDSurg_data_collection_period != "Error: No surgery") %>%
+  data_to_use_all %>%
   dplyr::group_by(COVIDSurg_data_collection_period, preOperative_infection_status) %>%
   dplyr::summarise(n = n()) %>%
   `colnames<-`(colnames(OS_all_counts))
@@ -134,7 +134,7 @@ OS_all_counts <-
 OS_all_counts <- 
   expand.grid(
     era = 
-      c("Error: No surgery", "Pre-pandemic", "Pandemic no vaccine",
+      c("Pre-pandemic", "Pandemic no vaccine",
         "Pandemic with vaccine", "COVIDSurg data collection period",
         "Not COVIDSurg data collection period"),
     "preOperative_infection_status" = 
@@ -152,7 +152,7 @@ rm(CSP_OS_all_counts)
 PP_OS_all_counts <- OS_all_counts %>%
   dplyr::filter(era == "Pre-pandemic" &
                   preOperative_infection_status %in% intervals) %>%
-  dplyr::arrange(preOperative_infection_status) %>% select(n) %>% t() %>% data.frame()
+  dplyr::arrange(preOperative_infection_status) %>% dplyr::select(n) %>% t()
 PP_OS_all_counts <- cbind(sum(PP_OS_all_counts), PP_OS_all_counts)
 colnames(PP_OS_all_counts) <- colnames(COVIDSurg_counts)
 # In pre-pandemic era, there should not be any instances of test results. Therefore,
@@ -170,21 +170,21 @@ PP_OS_all_counts[2:ncol(PP_OS_all_counts)] <- NA
 PNV_OS_all_counts <- OS_all_counts %>%
   dplyr::filter(era == "Pandemic no vaccine" &
                   preOperative_infection_status %in% intervals) %>%
-  dplyr::arrange(preOperative_infection_status) %>% select(n) %>% t() %>% data.frame()
+  dplyr::arrange(preOperative_infection_status) %>% dplyr::select(n) %>% t()
 PNV_OS_all_counts <- cbind(sum(PNV_OS_all_counts), PNV_OS_all_counts)
 colnames(PNV_OS_all_counts) <- colnames(COVIDSurg_counts)
 ## ## # COVIDSurg data collection period, OpenSAFELY data, no-cancer patients.
 CSP_OS_all_counts <- OS_all_counts %>%
   dplyr::filter(era == "COVIDSurg data collection period" &
                   preOperative_infection_status %in% intervals) %>%
-  dplyr::arrange(preOperative_infection_status) %>% select(n) %>% t() %>% data.frame()
+  dplyr::arrange(preOperative_infection_status) %>% dplyr::select(n) %>% t()
 CSP_OS_all_counts <- cbind(sum(CSP_OS_all_counts), CSP_OS_all_counts)
 colnames(CSP_OS_all_counts) <- colnames(COVIDSurg_counts)
 ## ## # Pandemic with vaccines, OpenSAFELY data, no-cancer patients.
 PWV_OS_all_counts <- OS_all_counts %>%
   dplyr::filter(era == "Pandemic with vaccine" &
                   preOperative_infection_status %in% intervals) %>%
-  dplyr::arrange(preOperative_infection_status) %>% select(n) %>% t() %>% data.frame()
+  dplyr::arrange(preOperative_infection_status) %>% dplyr::select(n) %>% t()
 PWV_OS_all_counts <- cbind(sum(PWV_OS_all_counts), PWV_OS_all_counts)
 colnames(PWV_OS_all_counts) <- colnames(COVIDSurg_counts)
 # ----
@@ -196,7 +196,7 @@ OS_NC_counts <-
                     preOperative_infection_status) %>%
     dplyr::summarise(n = n())
 CSP_OS_NC_counts <- 
-  data_to_use_NC %>% dplyr::filter(COVIDSurg_data_collection_period != "Error: No surgery") %>%
+  data_to_use_NC %>%
   dplyr::group_by(COVIDSurg_data_collection_period, preOperative_infection_status) %>%
   dplyr::summarise(n = n()) %>%
   `colnames<-`(colnames(OS_NC_counts))
@@ -205,7 +205,7 @@ OS_NC_counts <-
 OS_NC_counts <- 
   expand.grid(
     era = 
-      c("Error: No surgery", "Pre-pandemic", "Pandemic no vaccine",
+      c("Pre-pandemic", "Pandemic no vaccine",
         "Pandemic with vaccine", "COVIDSurg data collection period",
         "Not COVIDSurg data collection period"),
     "preOperative_infection_status" = 
@@ -223,7 +223,7 @@ rm(CSP_OS_NC_counts)
 PP_OS_NC_counts <- OS_NC_counts %>%
   dplyr::filter(era == "Pre-pandemic" &
                   preOperative_infection_status %in% intervals) %>%
-  dplyr::arrange(preOperative_infection_status) %>% select(n) %>% t() %>% data.frame()
+  dplyr::arrange(preOperative_infection_status) %>% dplyr::select(n) %>% t()
 PP_OS_NC_counts <- cbind(sum(PP_OS_NC_counts), PP_OS_NC_counts)
 colnames(PP_OS_NC_counts) <- colnames(COVIDSurg_counts)
 # In pre-pandemic era, there should not be any instances of test results. Therefore,
@@ -241,21 +241,21 @@ PP_OS_NC_counts[2:ncol(PP_OS_NC_counts)] <- NA
 PNV_OS_NC_counts <- OS_NC_counts %>%
   dplyr::filter(era == "Pandemic no vaccine" &
                   preOperative_infection_status %in% intervals) %>%
-  dplyr::arrange(preOperative_infection_status) %>% select(n) %>% t() %>% data.frame()
+  dplyr::arrange(preOperative_infection_status) %>% dplyr::select(n) %>%t()
 PNV_OS_NC_counts <- cbind(sum(PNV_OS_NC_counts), PNV_OS_NC_counts)
 colnames(PNV_OS_NC_counts) <- colnames(COVIDSurg_counts)
 ## ## # COVIDSurg data collection period, OpenSAFELY data, no-cancer patients.
 CSP_OS_NC_counts <- OS_NC_counts %>%
   dplyr::filter(era == "COVIDSurg data collection period" &
                   preOperative_infection_status %in% intervals) %>%
-  dplyr::arrange(preOperative_infection_status) %>% select(n) %>% t() %>% data.frame()
+  dplyr::arrange(preOperative_infection_status) %>% dplyr::select(n) %>%t()
 CSP_OS_NC_counts <- cbind(sum(CSP_OS_NC_counts), CSP_OS_NC_counts)
 colnames(CSP_OS_NC_counts) <- colnames(COVIDSurg_counts)
 ## ## # Pandemic with vaccines, OpenSAFELY data, no-cancer patients.
 PWV_OS_NC_counts <- OS_NC_counts %>%
   dplyr::filter(era == "Pandemic with vaccine" &
                   preOperative_infection_status %in% intervals) %>%
-  dplyr::arrange(preOperative_infection_status) %>% select(n) %>% t() %>% data.frame()
+  dplyr::arrange(preOperative_infection_status) %>% dplyr::select(n) %>% t()
 PWV_OS_NC_counts <- cbind(sum(PWV_OS_NC_counts), PWV_OS_NC_counts)
 colnames(PWV_OS_NC_counts) <- colnames(COVIDSurg_counts)
 # ----
@@ -267,7 +267,7 @@ OS_C_within3m_counts <-
                   preOperative_infection_status) %>%
   dplyr::summarise(n = n())
 CSP_OS_C_within3m_counts <- 
-  data_to_use_C_within3m %>% dplyr::filter(COVIDSurg_data_collection_period != "Error: No surgery") %>%
+  data_to_use_C_within3m %>%
   dplyr::group_by(COVIDSurg_data_collection_period, preOperative_infection_status) %>%
   dplyr::summarise(n = n()) %>%
   `colnames<-`(colnames(OS_C_within3m_counts))
@@ -276,7 +276,7 @@ OS_C_within3m_counts <-
 OS_C_within3m_counts <- 
   expand.grid(
     era = 
-      c("Error: No surgery", "Pre-pandemic", "Pandemic no vaccine",
+      c("Pre-pandemic", "Pandemic no vaccine",
         "Pandemic with vaccine", "COVIDSurg data collection period",
         "Not COVIDSurg data collection period"),
     "preOperative_infection_status" = 
@@ -294,7 +294,7 @@ rm(CSP_OS_C_within3m_counts)
 PP_OS_C_within3m_counts <- OS_C_within3m_counts %>%
   dplyr::filter(era == "Pre-pandemic" &
                   preOperative_infection_status %in% intervals) %>%
-  dplyr::arrange(preOperative_infection_status) %>% select(n) %>% t() %>% data.frame()
+  dplyr::arrange(preOperative_infection_status) %>% dplyr::select(n) %>% t()
 PP_OS_C_within3m_counts <- cbind(sum(PP_OS_C_within3m_counts), PP_OS_C_within3m_counts)
 colnames(PP_OS_C_within3m_counts) <- colnames(COVIDSurg_counts)
 # In pre-pandemic era, there should not be any instances of test results. Therefore,
@@ -312,21 +312,21 @@ PP_OS_C_within3m_counts[2:ncol(PP_OS_C_within3m_counts)] <- NA
 PNV_OS_C_within3m_counts <- OS_C_within3m_counts %>%
   dplyr::filter(era == "Pandemic no vaccine" &
                   preOperative_infection_status %in% intervals) %>%
-  dplyr::arrange(preOperative_infection_status) %>% select(n) %>% t() %>% data.frame()
+  dplyr::arrange(preOperative_infection_status) %>% dplyr::select(n) %>% t()
 PNV_OS_C_within3m_counts <- cbind(sum(PNV_OS_C_within3m_counts), PNV_OS_C_within3m_counts)
 colnames(PNV_OS_C_within3m_counts) <- colnames(COVIDSurg_counts)
 ## ## # COVIDSurg data collection period, OpenSAFELY data, no-cancer patients.
 CSP_OS_C_within3m_counts <- OS_C_within3m_counts %>%
   dplyr::filter(era == "COVIDSurg data collection period" &
                   preOperative_infection_status %in% intervals) %>%
-  dplyr::arrange(preOperative_infection_status) %>% select(n) %>% t() %>% data.frame()
+  dplyr::arrange(preOperative_infection_status) %>% dplyr::select(n) %>% t()
 CSP_OS_C_within3m_counts <- cbind(sum(CSP_OS_C_within3m_counts), CSP_OS_C_within3m_counts)
 colnames(CSP_OS_C_within3m_counts) <- colnames(COVIDSurg_counts)
 ## ## # Pandemic with vaccines, OpenSAFELY data, no-cancer patients.
 PWV_OS_C_within3m_counts <- OS_C_within3m_counts %>%
   dplyr::filter(era == "Pandemic with vaccine" &
                   preOperative_infection_status %in% intervals) %>%
-  dplyr::arrange(preOperative_infection_status) %>% select(n) %>% t() %>% data.frame()
+  dplyr::arrange(preOperative_infection_status) %>% dplyr::select(n) %>% t()
 PWV_OS_C_within3m_counts <- cbind(sum(PWV_OS_C_within3m_counts), PWV_OS_C_within3m_counts)
 colnames(PWV_OS_C_within3m_counts) <- colnames(COVIDSurg_counts)
 # ----
@@ -338,7 +338,7 @@ OS_C_outwith3m_counts <-
                   preOperative_infection_status) %>%
   dplyr::summarise(n = n())
 CSP_OS_C_outwith3m_counts <- 
-  data_to_use_C_outwith3m %>% dplyr::filter(COVIDSurg_data_collection_period != "Error: No surgery") %>%
+  data_to_use_C_outwith3m %>%
   dplyr::group_by(COVIDSurg_data_collection_period, preOperative_infection_status) %>%
   dplyr::summarise(n = n()) %>%
   `colnames<-`(colnames(OS_C_outwith3m_counts))
@@ -347,7 +347,7 @@ OS_C_outwith3m_counts <-
 OS_C_outwith3m_counts <- 
   expand.grid(
     era = 
-      c("Error: No surgery", "Pre-pandemic", "Pandemic no vaccine",
+      c("Pre-pandemic", "Pandemic no vaccine",
         "Pandemic with vaccine", "COVIDSurg data collection period",
         "Not COVIDSurg data collection period"),
     "preOperative_infection_status" = 
@@ -365,7 +365,7 @@ rm(CSP_OS_C_outwith3m_counts)
 PP_OS_C_outwith3m_counts <- OS_C_outwith3m_counts %>%
   dplyr::filter(era == "Pre-pandemic" &
                   preOperative_infection_status %in% intervals) %>%
-  dplyr::arrange(preOperative_infection_status) %>% select(n) %>% t() %>% data.frame()
+  dplyr::arrange(preOperative_infection_status) %>% dplyr::select(n) %>% t()
 PP_OS_C_outwith3m_counts <- cbind(sum(PP_OS_C_outwith3m_counts), PP_OS_C_outwith3m_counts)
 colnames(PP_OS_C_outwith3m_counts) <- colnames(COVIDSurg_counts)
 # In pre-pandemic era, there should not be any instances of test results. Therefore,
@@ -383,21 +383,21 @@ PP_OS_C_outwith3m_counts[2:ncol(PP_OS_C_outwith3m_counts)] <- NA
 PNV_OS_C_outwith3m_counts <- OS_C_outwith3m_counts %>%
   dplyr::filter(era == "Pandemic no vaccine" &
                   preOperative_infection_status %in% intervals) %>%
-  dplyr::arrange(preOperative_infection_status) %>% select(n) %>% t() %>% data.frame()
+  dplyr::arrange(preOperative_infection_status) %>% dplyr::select(n) %>% t()
 PNV_OS_C_outwith3m_counts <- cbind(sum(PNV_OS_C_outwith3m_counts), PNV_OS_C_outwith3m_counts)
 colnames(PNV_OS_C_outwith3m_counts) <- colnames(COVIDSurg_counts)
 ## ## # COVIDSurg data collection period, OpenSAFELY data, no-cancer patients.
 CSP_OS_C_outwith3m_counts <- OS_C_outwith3m_counts %>%
   dplyr::filter(era == "COVIDSurg data collection period" &
                   preOperative_infection_status %in% intervals) %>%
-  dplyr::arrange(preOperative_infection_status) %>% select(n) %>% t() %>% data.frame()
+  dplyr::arrange(preOperative_infection_status) %>% dplyr::select(n) %>% t()
 CSP_OS_C_outwith3m_counts <- cbind(sum(CSP_OS_C_outwith3m_counts), CSP_OS_C_outwith3m_counts)
 colnames(CSP_OS_C_outwith3m_counts) <- colnames(COVIDSurg_counts)
 ## ## # Pandemic with vaccines, OpenSAFELY data, no-cancer patients.
 PWV_OS_C_outwith3m_counts <- OS_C_outwith3m_counts %>%
   dplyr::filter(era == "Pandemic with vaccine" &
                   preOperative_infection_status %in% intervals) %>%
-  dplyr::arrange(preOperative_infection_status) %>% select(n) %>% t() %>% data.frame()
+  dplyr::arrange(preOperative_infection_status) %>% dplyr::select(n) %>% t()
 PWV_OS_C_outwith3m_counts <- cbind(sum(PWV_OS_C_outwith3m_counts), PWV_OS_C_outwith3m_counts)
 colnames(PWV_OS_C_outwith3m_counts) <- colnames(COVIDSurg_counts)
 # ----
@@ -432,7 +432,7 @@ OS_all_mortality <-
 OS_all_mortality <- 
   expand.grid(
     era = 
-      c("Error: No surgery", "Pre-pandemic", "Pandemic no vaccine",
+      c("Pre-pandemic", "Pandemic no vaccine",
         "Pandemic with vaccine", "COVIDSurg data collection period",
         "Not COVIDSurg data collection period"),
     postOp_mortality_30day = 
@@ -610,7 +610,7 @@ OS_NC_mortality <-
 OS_NC_mortality <- 
   expand.grid(
     era = 
-      c("Error: No surgery", "Pre-pandemic", "Pandemic no vaccine",
+      c("Pre-pandemic", "Pandemic no vaccine",
         "Pandemic with vaccine", "COVIDSurg data collection period",
         "Not COVIDSurg data collection period"),
     postOp_mortality_30day = 
@@ -789,7 +789,7 @@ OS_C_within3m_mortality <-
 OS_C_within3m_mortality <- 
   expand.grid(
     era = 
-      c("Error: No surgery", "Pre-pandemic", "Pandemic no vaccine",
+      c("Pre-pandemic", "Pandemic no vaccine",
         "Pandemic with vaccine", "COVIDSurg data collection period",
         "Not COVIDSurg data collection period"),
     postOp_mortality_30day = 
@@ -967,7 +967,7 @@ OS_C_outwith3m_mortality <-
 OS_C_outwith3m_mortality <- 
   expand.grid(
     era = 
-      c("Error: No surgery", "Pre-pandemic", "Pandemic no vaccine",
+      c("Pre-pandemic", "Pandemic no vaccine",
         "Pandemic with vaccine", "COVIDSurg data collection period",
         "Not COVIDSurg data collection period"),
     postOp_mortality_30day = 
