@@ -38,6 +38,7 @@ df_input <- readr::read_csv(
                    chronic_respiratory_disease = col_logical(),
                    cerebrovascular_disease = col_logical(),
                    admission_method = col_factor(),
+                   admission_method_patient_classification = col_factor(),
                    category_admission_method = col_factor(),
                    patient_id = col_integer())
 )
@@ -251,15 +252,15 @@ myData <- myData %>%
                     "Positive test and surgery on the same day. Surgery event excluded",
                 !is.na(.$date_latest_test_preOp_SARS_CoV_2_outcome_positive) & 
                   abs(.$date_surgery - .$date_latest_test_preOp_SARS_CoV_2_outcome_positive) > 0 & 
-                  abs(.$date_surgery - .$date_latest_test_preOp_SARS_CoV_2_outcome_positive) < 14 ~ 
+                  abs(.$date_surgery - .$date_latest_test_preOp_SARS_CoV_2_outcome_positive) <= 14 ~ 
                     "0-2 weeks record of pre-operative SARS-CoV-2 infection",
                 !is.na(.$date_latest_test_preOp_SARS_CoV_2_outcome_positive) & 
                   abs(.$date_surgery - .$date_latest_test_preOp_SARS_CoV_2_outcome_positive) > 15 &
-                  abs(.$date_surgery - .$date_latest_test_preOp_SARS_CoV_2_outcome_positive) < 28 ~
+                  abs(.$date_surgery - .$date_latest_test_preOp_SARS_CoV_2_outcome_positive) <= 28 ~
                     "3-4 weeks record of pre-operative SARS-CoV-2 infection",
                 !is.na(.$date_latest_test_preOp_SARS_CoV_2_outcome_positive) & 
                   abs(.$date_surgery - .$date_latest_test_preOp_SARS_CoV_2_outcome_positive) > 29 &
-                  abs(.$date_surgery - .$date_latest_test_preOp_SARS_CoV_2_outcome_positive) < 42 ~
+                  abs(.$date_surgery - .$date_latest_test_preOp_SARS_CoV_2_outcome_positive) <= 42 ~
                     "5-6 weeks record of pre-operative SARS-CoV-2 infection",
                 !is.na(.$date_latest_test_preOp_SARS_CoV_2_outcome_positive) & 
                   abs(.$date_surgery - .$date_latest_test_preOp_SARS_CoV_2_outcome_positive) >= 49 ~ 
