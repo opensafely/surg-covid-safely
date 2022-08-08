@@ -208,3 +208,10 @@ actions:
                     table1Outcomes_CSP: output/table1Outcomes_CSP.csv
                     table1Outcomes_PWV: output/table1Outcomes_PWV.csv
                     TableEra: output/TableEra.csv
+                    
+    admission_check:
+        run: r:latest analysis/admission_check.R
+        needs: [generate_study_population_2]
+        outputs:
+            moderately_sensitive:
+                tbl_admission_check: output/tbl_admission_check.csv

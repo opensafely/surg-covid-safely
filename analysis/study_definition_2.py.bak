@@ -36,7 +36,7 @@ study = StudyDefinition(
 			# codelist_cancer_surgery,
 			# on_or_after = start_date
 		# ),
-	# ),
+	),
     
     has_surgery = patients.with_these_clinical_events(
 			codelist_cancer_surgery,
