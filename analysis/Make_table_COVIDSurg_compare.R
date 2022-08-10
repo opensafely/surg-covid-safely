@@ -429,6 +429,26 @@ OS_all_mortality <-
                    n_infection_7wk = sum(ifelse(preOperative_infection_status==
                                                   ">=7 weeks record of pre-operative SARS-CoV-2 infection",1,0))
   )
+OS_CSP_all_mortality <- 
+  data_to_use_all %>% 
+  dplyr::filter(COVIDSurg_data_collection_period != "Error: No surgery") %>%
+  dplyr::group_by(COVIDSurg_data_collection_period, postOp_mortality_30day) %>%
+  dplyr::summarise(n_per_group = sum(ifelse(preOperative_infection_status!=
+                                              "Error: Test result after surgery. Check study_definition.",1,0)),
+                   n_infection_none = sum(ifelse(preOperative_infection_status==
+                                                   "No record of pre-operative SARS-CoV-2 infection",1,0)),
+                   n_infection_0to2wk = sum(ifelse(preOperative_infection_status==
+                                                     "0-2 weeks record of pre-operative SARS-CoV-2 infection",1,0)),
+                   n_infection_3to4wk = sum(ifelse(preOperative_infection_status==
+                                                     "3-4 weeks record of pre-operative SARS-CoV-2 infection",1,0)),
+                   n_infection_5to6wk = sum(ifelse(preOperative_infection_status==
+                                                     "5-6 weeks record of pre-operative SARS-CoV-2 infection",1,0)),
+                   n_infection_7wk = sum(ifelse(preOperative_infection_status==
+                                                  ">=7 weeks record of pre-operative SARS-CoV-2 infection",1,0))
+  ) %>%
+  `colnames<-`(c("era",colnames(OS_all_mortality)[2:ncol(OS_all_mortality)]))
+OS_all_mortality <- dplyr::bind_rows(OS_all_mortality, OS_CSP_all_mortality)
+rm(OS_CSP_all_mortality)
 OS_all_mortality <- 
   expand.grid(
     era = 

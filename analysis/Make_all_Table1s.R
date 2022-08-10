@@ -30,13 +30,13 @@ source(here::here("analysis","Make_table_COVIDSurg_compare.R"))
 
 # Make Table1 for all patients.
 data_to_use <- myDataSelect %>% dplyr::filter(has_surgery == TRUE)
-sensitivity_cohort <- "_EntireSurgeryCohort"
+sensitivity_cohort <- "all"
 source(here::here("analysis","Make_Table1.R"))
 # Make Table1 for patients who do not have a cancer diagnosis
 # since the start of our data collection period (17th March 2018).
 data_to_use <- myDataSelect %>% dplyr::filter(has_surgery == TRUE) %>%
   dplyr::filter(has_cancer == FALSE)
-sensitivity_cohort <- "_CohortNoCancer"
+sensitivity_cohort <- "NC"
 source(here::here("analysis","Make_Table1.R"))
 rm(data_to_use, sensitivity_cohort)
 # Make Table1 for patients whose cancer diagnosis was within
@@ -47,7 +47,7 @@ data_to_use <- myDataSelect %>% dplyr::filter(has_surgery == TRUE) %>%
                   "Cancer diagnosis within 3mths before surgery" |
                   category_cancer_within_3mths_surgery == 
                   "Cancer diagnosis within 3mths after surgery")
-sensitivity_cohort <- "_3mths"
+sensitivity_cohort <- "C_within3m"
 source(here::here("analysis","Make_Table1.R"))
 # Make Table1 for patients whose cancer diagnosis was within
 # 6 months of their surgery.
@@ -57,7 +57,7 @@ data_to_use <- myDataSelect %>% dplyr::filter(has_surgery == TRUE) %>%
                   "Cancer diagnosis within 6mths before surgery" |
                   category_cancer_within_6mths_surgery == 
                   "Cancer diagnosis within 6mths after surgery")
-sensitivity_cohort <- "_6mths"
+sensitivity_cohort <- "C_within6m"
 source(here::here("analysis","Make_Table1.R"))
 rm(data_to_use, sensitivity_cohort)
 
