@@ -34,7 +34,7 @@ myDataSelect <- myData %>%
                 preOperative_infection_status!=
                   "Error: Test result after surgery. Check study_definition.")
 data_to_use <- myDataSelect %>% dplyr::filter(has_surgery == TRUE)
-sensitivity_cohort <- "_EntireSurgeryCohort"
+sensitivity_cohort <- "all"
 source(here::here("analysis","Make_Table1.R"))
 # ----
 
@@ -263,55 +263,55 @@ table1Outcomes_PWV[,3:ncol(table1Outcomes_PWV)] <-
   sapply(as.double)
 # ----
 
-# Redactions based on servers results on 2022 07 08. ----
-# # Outcomes
-# # # Pandemic no vaccine.
-table1Outcomes_PNV[which(table1Outcomes_PNV$variable ==
-                           "30-day post-operative cardiac complication"),
-                   c("n_infection_3to4wk", "pct_infection_3to4wk",
-                     "n_infection_5to6wk", "pct_infection_5to6wk")] <- NA 
-table1Outcomes_PNV[which(table1Outcomes_PNV$variable ==
-                           "30-day post-operative pulmonary complication"),
-                   c("n_infection_0to2wk", "pct_infection_0to2wk",
-                     "n_infection_5to6wk", "pct_infection_5to6wk")] <- NA
-table1Outcomes_PNV[which(table1Outcomes_PNV$variable ==
-                           "30-day post-operative cerebrovascular complication"),
-                   c("n_infection_0to2wk", "pct_infection_0to2wk",
-                     "n_infection_5to6wk", "pct_infection_5to6wk")] <- NA
-
-# # # Pandemic with vaccine.
-table1Outcomes_PWV[which(table1Outcomes_PWV$variable ==
-                           "30-day post-operative cardiac complication"),
-                   c("n_infection_0to2wk", "pct_infection_0to2wk",
-                     "n_infection_3to4wk", "pct_infection_3to4wk",
-                     "n_infection_5to6wk", "pct_infection_5to6wk")] <- NA 
-table1Outcomes_PWV[which(table1Outcomes_PWV$variable ==
-                           "30-day post-operative pulmonary complication"),
-                   c("n_infection_3to4wk", "pct_infection_3to4wk",
-                     "n_infection_5to6wk", "pct_infection_5to6wk")] <- NA
-table1Outcomes_PWV[which(table1Outcomes_PWV$variable ==
-                           "30-day post-operative cerebrovascular complication"),
-                   c("n_infection_0to2wk", "pct_infection_0to2wk",
-                     "n_infection_5to6wk", "pct_infection_5to6wk",
-                     "n_infection_7wk", "pct_infection_7wk")] <- NA
-
-# # # COVIDSurg data collection period.
-table1Outcomes_CSP[, !colnames(table1Outcomes_CSP) %in%
-                     c("variable", "strata",
-                       "n_all_intervals", "pct_all_intervals",
-                       "n_infection_none", "pct_infection_none",
-                       "n_infection_7wk", "pct_infection_7wk")] <- NA
-
-# # Demographics
-# # #
-table1Demogs_CSP[, !colnames(table1Outcomes_CSP) %in%
-                   c("variable", "strata",
-                     "n_all_intervals", "pct_all_intervals",
-                     "n_infection_none", "pct_infection_none",
-                     "n_infection_7wk", "pct_infection_7wk")] <- NA
-table1Demogs_CSP[which(table1Demogs_CSP$strata %in%
-                         c("Outwith 3 months", "Within 3 months")),
-                   c("n_infection_7wk", "pct_infection_7wk")] <- NA
+# # Redactions based on servers results on 2022 07 08. ----
+# # # Outcomes
+# # # # Pandemic no vaccine.
+# table1Outcomes_PNV[which(table1Outcomes_PNV$variable ==
+#                            "30-day post-operative cardiac complication"),
+#                    c("n_infection_3to4wk", "pct_infection_3to4wk",
+#                      "n_infection_5to6wk", "pct_infection_5to6wk")] <- NA 
+# table1Outcomes_PNV[which(table1Outcomes_PNV$variable ==
+#                            "30-day post-operative pulmonary complication"),
+#                    c("n_infection_0to2wk", "pct_infection_0to2wk",
+#                      "n_infection_5to6wk", "pct_infection_5to6wk")] <- NA
+# table1Outcomes_PNV[which(table1Outcomes_PNV$variable ==
+#                            "30-day post-operative cerebrovascular complication"),
+#                    c("n_infection_0to2wk", "pct_infection_0to2wk",
+#                      "n_infection_5to6wk", "pct_infection_5to6wk")] <- NA
+# 
+# # # # Pandemic with vaccine.
+# table1Outcomes_PWV[which(table1Outcomes_PWV$variable ==
+#                            "30-day post-operative cardiac complication"),
+#                    c("n_infection_0to2wk", "pct_infection_0to2wk",
+#                      "n_infection_3to4wk", "pct_infection_3to4wk",
+#                      "n_infection_5to6wk", "pct_infection_5to6wk")] <- NA 
+# table1Outcomes_PWV[which(table1Outcomes_PWV$variable ==
+#                            "30-day post-operative pulmonary complication"),
+#                    c("n_infection_3to4wk", "pct_infection_3to4wk",
+#                      "n_infection_5to6wk", "pct_infection_5to6wk")] <- NA
+# table1Outcomes_PWV[which(table1Outcomes_PWV$variable ==
+#                            "30-day post-operative cerebrovascular complication"),
+#                    c("n_infection_0to2wk", "pct_infection_0to2wk",
+#                      "n_infection_5to6wk", "pct_infection_5to6wk",
+#                      "n_infection_7wk", "pct_infection_7wk")] <- NA
+# 
+# # # # COVIDSurg data collection period.
+# table1Outcomes_CSP[, !colnames(table1Outcomes_CSP) %in%
+#                      c("variable", "strata",
+#                        "n_all_intervals", "pct_all_intervals",
+#                        "n_infection_none", "pct_infection_none",
+#                        "n_infection_7wk", "pct_infection_7wk")] <- NA
+# 
+# # # Demographics
+# # # #
+# table1Demogs_CSP[, !colnames(table1Outcomes_CSP) %in%
+#                    c("variable", "strata",
+#                      "n_all_intervals", "pct_all_intervals",
+#                      "n_infection_none", "pct_infection_none",
+#                      "n_infection_7wk", "pct_infection_7wk")] <- NA
+# table1Demogs_CSP[which(table1Demogs_CSP$strata %in%
+#                          c("Outwith 3 months", "Within 3 months")),
+#                    c("n_infection_7wk", "pct_infection_7wk")] <- NA
 
 # ----
 
@@ -359,19 +359,19 @@ PNV_OS_C <-
   colSums()
 PNV_OS_C[seq(2, ncol(table_mortality_intervals), 2)] <-
   PNV_OS_C[seq(1, ncol(table_mortality_intervals), 2)] /
-  colSums(PNV_OS_C_within3m_counts, PNV_OS_C_outwith3m_counts)
+  colSums(PNV_OS_C_within3m_counts, PNV_OS_C_outwith3m_counts) * 100
 CSP_OS_C <-
   table_mortality_intervals[c("CSP_OS_C_within3m", "CSP_OS_C_outwith3m"),] %>%
   colSums()
 CSP_OS_C[seq(2, ncol(table_mortality_intervals), 2)] <-
   CSP_OS_C[seq(1, ncol(table_mortality_intervals), 2)] /
-  colSums(CSP_OS_C_within3m_counts, CSP_OS_C_outwith3m_counts)
+  colSums(CSP_OS_C_within3m_counts, CSP_OS_C_outwith3m_counts) * 100
 PWV_OS_C <-
   table_mortality_intervals[c("PWV_OS_C_within3m", "PWV_OS_C_outwith3m"),] %>%
   colSums()
 PWV_OS_C[seq(2, ncol(table_mortality_intervals), 2)] <-
   PWV_OS_C[seq(1, ncol(table_mortality_intervals), 2)] /
-  colSums(PWV_OS_C_within3m_counts, PWV_OS_C_outwith3m_counts)
+  colSums(PWV_OS_C_within3m_counts, PWV_OS_C_outwith3m_counts) * 100
 
 # Make table.
 TableEra <-

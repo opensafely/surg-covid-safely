@@ -6,37 +6,47 @@
 #
 
 fnc_countsAndPercentages <-
-  function(table_to_use, strata, strata_col)
+  function(table_to_use, strata, strata_col,
+           interval_counts = c("all", "NC", "C_within3m", "C_outwith3m",
+                               "C_within6m", "C_outwith6m"))
   {
-
-    # Make sure variable 'OS_all_counts' exists.
-    if(!exists("all_counts"))
+    # Set default value.
+    if(missing(interval_counts))
     {
-      stop(paste0("\nVariable 'all_counts' is needed for this function.",
-                  "\nPlease, run Make_Table1.R."))
-      
+      if(exists(sensitivity_cohort))
+      {interval_counts <- sensitivity_cohort}
+      else
+      {interval_counts <- "all"}
     }
     # Define reusable items.
     era_longname <- c("Pre-pandemic", "Pandemic no vaccine",
                       "COVIDSurg data collection period", "Pandemic with vaccine")
-    era_shortname <- paste0(c("PP", "PNV", "CSP", "PWV"), strata)
+    #era_shortname <- paste0(c("PP", "PNV", "CSP", "PWV"), strata)
+    era_shortname <- c("PP", "PNV", "CSP", "PWV")
     
     # Make tables
     table_to_use <- table_to_use %>% dplyr::rename(strata = strata_col)
-    counter = 1
-    for(i_era in era_longname)
+    counts_to_use <-
+      table_counts %>% rownames_to_column() %>%
+        dplyr::filter(grepl(interval_counts, .$rowname))
+    
+
+    for(i in 1:length(era_longname))
     {  
-      # Get counts per intervals and overall.
-      n <- 
+      i_table_to_use <- 
         table_to_use %>%
-        dplyr::filter(era == i_era, strata !="Missing") %>%
-        dplyr::arrange(strata) %>% dplyr::ungroup() %>%
-        dplyr::select(-c("era", strata))
+        dplyr::filter(era == era_longname[i], strata !="Missing") %>%
+        dplyr::arrange(strata) %>% dplyr::ungroup()
+      i_counts_to_use <-
+        counts_to_use %>%
+        dplyr::filter(grepl(era_shortname[i], .$rowname)) %>% dplyr::select(-rowname)
+      # Get counts per intervals and overall.
+      n <- i_table_to_use %>% dplyr::select(-c("era", strata))
       # Get percentages per intervals and overall.
       pct <- 
-        n %>%
-        '/'(all_counts %>% dplyr::filter(era == i_era) %>%
-              dplyr::select(n) %>% as.integer()) %>% '*'(100) %>%
+        n %>% mapply('/', ., i_counts_to_use) %>% '*'(100) %>%
+        tibble::as_tibble() %>%
+        dplyr::mutate(dplyr::across(, ~ ifelse(is.nan(.),NA,.))) %>%
         tidyr::replace_na(list("n_all_intervals" = 0, "n_infection_none" = 0,
                                "n_infection_0to2wk" = 0, "n_infection_3to4wk" = 0,
                                "n_infection_5to6wk" = 0, "n_infection_7wk" = 0
@@ -53,18 +63,18 @@ fnc_countsAndPercentages <-
       era_Strata[,seq(2,length(colnames(era_Strata)),2)] <- pct
       colnames(era_Strata)[seq(1,length(colnames(era_Strata)),2)] <- colnames(n)
       colnames(era_Strata)[seq(2,length(colnames(era_Strata)),2)] <- colnames(pct)
-      era_Strata <- table_to_use %>%
-        dplyr::filter(era == i_era, strata !="Missing") %>%
-        dplyr::arrange(strata) %>% dplyr::select(strata) %>%
+      era_Strata <- i_table_to_use %>% dplyr::select(strata) %>%
         dplyr::bind_cols(era_Strata)
       # Assign era_shortname.
-      assign(x = era_shortname[counter], value = era_Strata)
+      assign(x = paste0(era_shortname[i], strata), value = era_Strata)
       # Clean up.
       rm(n, pct)
-      counter = counter + 1
     }
     
-    eval(parse(text = paste0("output <- list(", paste(era_shortname, collapse=","), ")")))
-    names(output) <- era_shortname
+    eval(parse(text = paste0("output <- list(",
+                             paste(paste0(era_shortname, strata),
+                                   collapse=","),
+                             ")")))
+    names(output) <- paste0(era_shortname, strata)
     return(output)
   }

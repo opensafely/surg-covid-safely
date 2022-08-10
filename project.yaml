@@ -1,7 +1,7 @@
 version: '3.0'
 
 expectations:
-  population_size: 1000
+  population_size: 1000000
 
 actions:
 
@@ -151,48 +151,48 @@ actions:
         needs: [generate_study_population_2]
         outputs:
             moderately_sensitive:
-                table1Demogs_PP_EntireSurgeryCohort: output/table1Demogs_PP_EntireSurgeryCohort.csv
-                table1Outcomes_PP_EntireSurgeryCohort: output/table1Outcomes_PP_EntireSurgeryCohort.csv
-                table1Demogs_CSP_EntireSurgeryCohort: output/table1Demogs_CSP_EntireSurgeryCohort.csv
-                table1Outcomes_CSP_EntireSurgeryCohort: output/table1Outcomes_CSP_EntireSurgeryCohort.csv
-                table1Demogs_PNV_EntireSurgeryCohort: output/table1Demogs_PNV_EntireSurgeryCohort.csv
-                table1Outcomes_PNV_EntireSurgeryCohort: output/table1Outcomes_PNV_EntireSurgeryCohort.csv
-                table1Demogs_PWV_EntireSurgeryCohort: output/table1Demogs_PWV_EntireSurgeryCohort.csv
-                table1Outcomes_PWV_EntireSurgeryCohort: output/table1Outcomes_PWV_EntireSurgeryCohort.csv
-                table1Demogs_PP_3mths: output/table1Demogs_PP_3mths.csv
-                table1Outcomes_PP_3mths: output/table1Outcomes_PP_3mths.csv
-                table1Demogs_CSP_3mths: output/table1Demogs_CSP_3mths.csv
-                table1Outcomes_CSP_3mths: output/table1Outcomes_CSP_3mths.csv
-                table1Demogs_PNV_3mths: output/table1Demogs_PNV_3mths.csv
-                table1Outcomes_PNV_3mths: output/table1Outcomes_PNV_3mths.csv
-                table1Demogs_PWV_3mths: output/table1Demogs_PWV_3mths.csv
-                table1Outcomes_PWV_3mths: output/table1Outcomes_PWV_3mths.csv
-                table1Demogs_PP_6mths: output/table1Demogs_PP_6mths.csv
-                table1Outcomes_PP_6mths: output/table1Outcomes_PP_6mths.csv
-                table1Demogs_CSP_6mths: output/table1Demogs_CSP_6mths.csv
-                table1Outcomes_CSP_6mths: output/table1Outcomes_CSP_6mths.csv
-                table1Demogs_PNV_6mths: output/table1Demogs_PNV_6mths.csv
-                table1Outcomes_PNV_6mths: output/table1Outcomes_PNV_6mths.csv
-                table1Demogs_PWV_6mths: output/table1Demogs_PWV_6mths.csv
-                table1Outcomes_PWV_6mths: output/table1Outcomes_PWV_6mths.csv
-                table1Demogs_CSP_7wkThreshold: output/table1Demogs_CSP_EntireSurgeryCohort_7wkThreshold.csv
-                table1Outcomes_CSP_7wkThreshold: output/table1Outcomes_CSP_EntireSurgeryCohort_7wkThreshold.csv
-                table1Demogs_PNV_7wkThreshold: output/table1Demogs_PNV_EntireSurgeryCohort_7wkThreshold.csv
-                table1Outcomes_PNV_7wkThreshold: output/table1Outcomes_PNV_EntireSurgeryCohort_7wkThreshold.csv
-                table1Demogs_PWV_7wkThreshold: output/table1Demogs_PWV_EntireSurgeryCohort_7wkThreshold.csv
-                table1Outcomes_PWV_7wkThreshold: output/table1Outcomes_PWV_EntireSurgeryCohort_7wkThreshold.csv
-                table1Demogs_CSP_3mths_7wkThreshold: output/table1Demogs_CSP_3mths_7wkThreshold.csv
-                table1Outcomes_CSP_3mths_7wkThreshold: output/table1Outcomes_CSP_3mths_7wkThreshold.csv
-                table1Demogs_PNV_3mths_7wkThreshold: output/table1Demogs_PNV_3mths_7wkThreshold.csv
-                table1Outcomes_PNV_3mths_7wkThreshold: output/table1Outcomes_PNV_3mths_7wkThreshold.csv
-                table1Demogs_PWV_3mths_7wkThreshold: output/table1Demogs_PWV_3mths_7wkThreshold.csv
-                table1Outcomes_PWV_3mths_7wkThreshold: output/table1Outcomes_PWV_3mths_7wkThreshold.csv
-                table1Demogs_CSP_6mths_7wkThreshold: output/table1Demogs_CSP_6mths_7wkThreshold.csv
-                table1Outcomes_CSP_6mths_7wkThreshold: output/table1Outcomes_CSP_6mths_7wkThreshold.csv
-                table1Demogs_PNV_6mths_7wkThreshold: output/table1Demogs_PNV_6mths_7wkThreshold.csv
-                table1Outcomes_PNV_6mths_7wkThreshold: output/table1Outcomes_PNV_6mths_7wkThreshold.csv
-                table1Demogs_PWV_6mths_7wkThreshold: output/table1Demogs_PWV_6mths_7wkThreshold.csv
-                table1Outcomes_PWV_6mths_7wkThreshold: output/table1Outcomes_PWV_6mths_7wkThreshold.csv
+                table1Demogs_PP_all: output/table1Demogs_PP_all.csv
+                table1Outcomes_PP_all: output/table1Outcomes_PP_all.csv
+                table1Demogs_CSP_all: output/table1Demogs_CSP_all.csv
+                table1Outcomes_CSP_all: output/table1Outcomes_CSP_all.csv
+                table1Demogs_PNV_all: output/table1Demogs_PNV_all.csv
+                table1Outcomes_PNV_all: output/table1Outcomes_PNV_all.csv
+                table1Demogs_PWV_all: output/table1Demogs_PWV_all.csv
+                table1Outcomes_PWV_all: output/table1Outcomes_PWV_all.csv
+                table1Demogs_PP_3mths: output/table1Demogs_PP_C_within3m.csv
+                table1Outcomes_PP_C_within3m: output/table1Outcomes_PP_C_within3m.csv
+                table1Demogs_CSP_C_within3m: output/table1Demogs_CSP_C_within3m.csv
+                table1Outcomes_CSP_C_within3m: output/table1Outcomes_CSP_C_within3m.csv
+                table1Demogs_PNV_C_within3m: output/table1Demogs_PNV_C_within3m.csv
+                table1Outcomes_PNV_C_within3m: output/table1Outcomes_PNV_C_within3m.csv
+                table1Demogs_PWV_C_within3m: output/table1Demogs_PWV_C_within3m.csv
+                table1Outcomes_PWV_C_within3m: output/table1Outcomes_PWV_C_within3m.csv
+                table1Demogs_PP_C_within6m: output/table1Demogs_PP_C_within6m.csv
+                table1Outcomes_PP_C_within6m: output/table1Outcomes_PP_C_within6m.csv
+                table1Demogs_CSP_C_within6m: output/table1Demogs_CSP_C_within6m.csv
+                table1Outcomes_CSP_C_within6m: output/table1Outcomes_CSP_C_within6m.csv
+                table1Demogs_PNV_C_within6m: output/table1Demogs_PNV_C_within6m.csv
+                table1Outcomes_PNV_C_within6m: output/table1Outcomes_PNV_C_within6m.csv
+                table1Demogs_PWV_C_within6m: output/table1Demogs_PWV_C_within6m.csv
+                table1Outcomes_PWV_C_within6m: output/table1Outcomes_PWV_C_within6m.csv
+                table1Demogs_CSP_7wkThreshold: output/table1Demogs_CSP_all_7wkThreshold.csv
+                table1Outcomes_CSP_7wkThreshold: output/table1Outcomes_CSP_all_7wkThreshold.csv
+                table1Demogs_PNV_7wkThreshold: output/table1Demogs_PNV_all_7wkThreshold.csv
+                table1Outcomes_PNV_7wkThreshold: output/table1Outcomes_PNV_all_7wkThreshold.csv
+                table1Demogs_PWV_7wkThreshold: output/table1Demogs_PWV_all_7wkThreshold.csv
+                table1Outcomes_PWV_7wkThreshold: output/table1Outcomes_PWV_all_7wkThreshold.csv
+                table1Demogs_CSP_C_within3m_7wkThreshold: output/table1Demogs_CSP_C_within3m_7wkThreshold.csv
+                table1Outcomes_CSP_C_within3m_7wkThreshold: output/table1Outcomes_CSP_C_within3m_7wkThreshold.csv
+                table1Demogs_PNV_C_within3m_7wkThreshold: output/table1Demogs_PNV_C_within3m_7wkThreshold.csv
+                table1Outcomes_PNV_C_within3m_7wkThreshold: output/table1Outcomes_PNV_C_within3m_7wkThreshold.csv
+                table1Demogs_PWV_C_within3m_7wkThreshold: output/table1Demogs_PWV_C_within3m_7wkThreshold.csv
+                table1Outcomes_PWV_C_within3m_7wkThreshold: output/table1Outcomes_PWV_C_within3m_7wkThreshold.csv
+                table1Demogs_CSP_C_within6m_7wkThreshold: output/table1Demogs_CSP_C_within6m_7wkThreshold.csv
+                table1Outcomes_CSP_C_within6m_7wkThreshold: output/table1Outcomes_CSP_C_within6m_7wkThreshold.csv
+                table1Demogs_PNV_C_within6m_7wkThreshold: output/table1Demogs_PNV_C_within6m_7wkThreshold.csv
+                table1Outcomes_PNV_C_within6m_7wkThreshold: output/table1Outcomes_PNV_C_within6m_7wkThreshold.csv
+                table1Demogs_PWV_C_within6m_7wkThreshold: output/table1Demogs_PWV_C_within6m_7wkThreshold.csv
+                table1Outcomes_PWV_C_within6m_7wkThreshold: output/table1Outcomes_PWV_C_within6m_7wkThreshold.csv
 
     output_for_publication:
             run:    r:latest analysis/Tables_for_1st_publication.R
