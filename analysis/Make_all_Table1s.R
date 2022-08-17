@@ -41,5 +41,6 @@ rm(data_to_use, sensitivity_cohort)
 # Make Table1 for patients whose cancer diagnosis was within
 # 6 months of their surgery.
 data_to_use <- data_to_use_C_outwith3m
+sensitivity_cohort <- "C_outwith3m"
 source(here::here("analysis","Make_Table1.R"))
 rm(data_to_use, sensitivity_cohort)

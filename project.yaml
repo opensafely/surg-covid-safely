@@ -122,7 +122,7 @@ actions:
             moderately_sensitive:
                 figure_NC_2m: output/noCancer__2monthly_summary_proportion_surgeries_within_7wks_after_pos_test.png
                 figure_NC_1m: output/noCancer__1monthly_summary_proportion_surgeries_within_7wks_after_pos_test.png
-                figure_NC_wk: output/noCancer__weekly_summary_proportion_surgeries_within_7wks_after_pos_test.pngng
+                figure_NC_wk: output/noCancer__weekly_summary_proportion_surgeries_within_7wks_after_pos_test.png
                 figure_C3m_2m: output/cancer_3months__2monthly_summary_proportion_surgeries_within_7wks_after_pos_test.png
                 figure_C3m_1m: output/cancer_3months__1monthly_summary_proportion_surgeries_within_7wks_after_pos_test.png
                 figure_C3m_wk: output/cancer_3months__weekly_summary_proportion_surgeries_within_7wks_after_pos_test.png
