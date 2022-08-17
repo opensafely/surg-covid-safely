@@ -16,6 +16,11 @@
 # {
 #   library(list_of_packages[i],character.only = T)
 # }
+
+#######################
+# Requisite constants #
+#######################
+# ----
 intervals <- c(
   "No record of pre-operative SARS-CoV-2 infection",
   "0-2 weeks record of pre-operative SARS-CoV-2 infection",
@@ -23,11 +28,19 @@ intervals <- c(
   "5-6 weeks record of pre-operative SARS-CoV-2 infection",
   ">=7 weeks record of pre-operative SARS-CoV-2 infection"
 )
+n_intervals_less_than_7wks <- c("n_infection_0to2wk", "n_infection_3to4wk",
+                                "n_infection_5to6wk")
+pct_intervals_less_than_7wks <- c("pct_infection_0to2wk", "pct_infection_3to4wk",
+                                  "pct_infection_5to6wk")
+# ----
+
 #############################
 # Load requisite functions. #
 #############################
+# ----
 source(here::here("analysis", "fnc_countsAndPercentages.R"))
 source(here::here("analysis", "fnc_make7wkTable.R"))
+# ----
 
 ##########################################
 # Make tibbles that will inform Table 1. #
@@ -1160,10 +1173,7 @@ list_cerebrovascular_disease <-
 ####################
 # Make the tables. #
 ####################
-n_intervals_less_than_7wks <- c("n_infection_0to2wk", "n_infection_3to4wk",
-                              "n_infection_5to6wk")
-pct_intervals_less_than_7wks <- c("pct_infection_0to2wk", "pct_infection_3to4wk",
-                                "pct_infection_5to6wk")
+
 # Pre-pandemic tables. ----
 # ## Demographics table.
 tbl_PP_demogs <-
@@ -1187,21 +1197,16 @@ tbl_PP_demogs <-
       .before = "strata"
       ) %>%
     `colnames<-`(c("variable", "strata", "n", "pct"))
-# Save table.
-write.csv(
-  x = tbl_PP_demogs,
-  file = here::here("output",paste0("table1Demogs_PP","_",sensitivity_cohort,".csv"))
-)
 # ## Outcomes table.
-tbl_PP_outcomes <-
+table1Outcomes_PP <-
   rbind(
     list_postOp_mortality_30day$PP_postOp_mortality_30day,
     list_postOp_mortality_90day$PP_postOp_mortality_90day,
     list_postOp_mortality_6mth$PP_postOp_mortality_6mth,
     list_postOp_mortality_12mth$PP_postOp_mortality_12mth,
-    list_postOp_pulmonary_complication_30day$PP_pulmonary_complication_30day,
-    list_postOp_cardiac_complication_30day$PP_cardiac_complication_30day,
-    list_postOp_cerebrovascular_complication_30day$PP_cerebrovascular_complication_30day) %>%
+    list_postOp_pulmonary_complication_30day$PP_pulmonary_complication_30day %>% arrange(desc(strata)),
+    list_postOp_cardiac_complication_30day$PP_cardiac_complication_30day %>% arrange(desc(strata)),
+    list_postOp_cerebrovascular_complication_30day$PP_cerebrovascular_complication_30day %>% arrange(desc(strata))) %>%
   dplyr::select(strata, n_all_intervals, pct_all_intervals) %>%
   dplyr::filter(!strata %in% c("Error: Surgery after death",
                                "No death recorded", "No surgery recorded")) %>%
@@ -1216,9 +1221,9 @@ tbl_PP_outcomes <-
     .before = "strata"
   ) %>%
   `colnames<-`(c("variable", "strata", "n", "pct"))
-# Save table.
+# ## Save table.
 write.csv(
-  x = tbl_PP_outcomes,
+  x = table1Outcomes_PP,
   file = here::here("output",paste0("table1Outcomes_PP","_",sensitivity_cohort,".csv"))
 )
 # ----
@@ -1245,28 +1250,16 @@ tbl_PNV_demogs <-
     .before = "strata"
   ) %>%
   `colnames<-`(c("variable", "strata", colnames(.)[3:ncol(.)]))
-# Save table.
-write.csv(
-  x = tbl_PNV_demogs,
-  file = here::here("output",paste0("table1Demogs_PNV","_",sensitivity_cohort,".csv"))
-)
-# Make table with 7week threshold instead of interim intervals.
-tbl_PNV_demogs_7wkThreshold <-
-  fnc_make7wkTable(tbl_PNV_demogs) %>% dplyr::filter(variable != "Age group")
-write.csv(
-  x = tbl_PNV_demogs_7wkThreshold,
-  file = here::here("output",paste0("table1Demogs_PNV","_",sensitivity_cohort,"_7wkThreshold.csv"))
-)
 # ## Outcomes table.
-tbl_PNV_outcomes <-
+table1Outcomes_PNV <-
   rbind(
     list_postOp_mortality_30day$PNV_postOp_mortality_30day,
     list_postOp_mortality_90day$PNV_postOp_mortality_90day,
     list_postOp_mortality_6mth$PNV_postOp_mortality_6mth,
     list_postOp_mortality_12mth$PNV_postOp_mortality_12mth,
-    list_postOp_pulmonary_complication_30day$PNV_pulmonary_complication_30day,
-    list_postOp_cardiac_complication_30day$PNV_cardiac_complication_30day,
-    list_postOp_cerebrovascular_complication_30day$PNV_cerebrovascular_complication_30day) %>%
+    list_postOp_pulmonary_complication_30day$PNV_pulmonary_complication_30day %>% arrange(desc(strata)),
+    list_postOp_cardiac_complication_30day$PNV_cardiac_complication_30day %>% arrange(desc(strata)),
+    list_postOp_cerebrovascular_complication_30day$PNV_cerebrovascular_complication_30day %>% arrange(desc(strata))) %>%
   dplyr::filter(!strata %in% c("Error: Surgery after death",
                                "No death recorded", "No surgery recorded")) %>%
   tibble::add_column(., c(
@@ -1282,15 +1275,8 @@ tbl_PNV_outcomes <-
   `colnames<-`(c("variable", "strata", colnames(.)[3:ncol(.)]))
 # Save table.
 write.csv(
-  x = tbl_PNV_outcomes,
+  x = table1Outcomes_PNV,
   file = here::here("output",paste0("table1Outcomes_PNV","_",sensitivity_cohort,".csv"))
-)
-# Make table with only 7week threshold.
-tbl_PNV_outcomes_7wkThreshold <-
-  fnc_make7wkTable(tbl_PNV_outcomes) %>% dplyr::filter(variable != "Age group")
-write.csv(
-  x = tbl_PNV_outcomes_7wkThreshold,
-  file = here::here("output",paste0("table1Outcomes_PNV","_",sensitivity_cohort,"_7wkThreshold.csv"))
 )
 # ----
 
@@ -1316,28 +1302,16 @@ tbl_CSP_demogs <-
     .before = "strata"
   ) %>%
   `colnames<-`(c("variable", "strata", colnames(.)[3:ncol(.)]))
-# Save table.
-write.csv(
-  x = tbl_CSP_demogs,
-  file = here::here("output",paste0("table1Demogs_CSP","_",sensitivity_cohort,".csv"))
-)
-# Make table with 7week threshold instead of interim intervals.
-tbl_CSP_demogs_7wkThreshold <- 
-  fnc_make7wkTable(tbl_CSP_demogs) %>% dplyr::filter(variable != "Age group")
-write.csv(
-  x = tbl_CSP_demogs_7wkThreshold,
-  file = here::here("output",paste0("table1Demogs_CSP","_",sensitivity_cohort,"_7wkThreshold.csv"))
-)
 # ## Outcomes table.
-tbl_CSP_outcomes <-
+table1Outcomes_CSP <-
   rbind(
     list_postOp_mortality_30day$CSP_postOp_mortality_30day,
     list_postOp_mortality_90day$CSP_postOp_mortality_90day,
     list_postOp_mortality_6mth$CSP_postOp_mortality_6mth,
     list_postOp_mortality_12mth$CSP_postOp_mortality_12mth,
-    list_postOp_pulmonary_complication_30day$CSP_pulmonary_complication_30day,
-    list_postOp_cardiac_complication_30day$CSP_cardiac_complication_30day,
-    list_postOp_cerebrovascular_complication_30day$CSP_cerebrovascular_complication_30day) %>%
+    list_postOp_pulmonary_complication_30day$CSP_pulmonary_complication_30day %>% arrange(desc(strata)),
+    list_postOp_cardiac_complication_30day$CSP_cardiac_complication_30day %>% arrange(desc(strata)),
+    list_postOp_cerebrovascular_complication_30day$CSP_cerebrovascular_complication_30day %>% arrange(desc(strata))) %>%
   dplyr::filter(!strata %in% c("Error: Surgery after death",
                                "No death recorded", "No surgery recorded")) %>%
   tibble::add_column(., c(
@@ -1353,15 +1327,8 @@ tbl_CSP_outcomes <-
   `colnames<-`(c("variable", "strata", colnames(.)[3:ncol(.)]))
 # Save table.
 write.csv(
-  x = tbl_CSP_outcomes,
+  x = table1Outcomes_CSP,
   file = here::here("output",paste0("table1Outcomes_CSP","_",sensitivity_cohort,".csv"))
-)
-# Make table with only 7week threshold.
-tbl_CSP_outcomes_7wkThreshold <- 
-  fnc_make7wkTable(tbl_CSP_outcomes) %>% dplyr::filter(variable != "Age group")
-write.csv(
-  x = tbl_CSP_outcomes_7wkThreshold,
-  file = here::here("output",paste0("table1Outcomes_CSP","_",sensitivity_cohort,"_7wkThreshold.csv"))
 )
 # ----
 
@@ -1387,28 +1354,16 @@ tbl_PWV_demogs <-
     .before = "strata"
   ) %>%
   `colnames<-`(c("variable", "strata", colnames(.)[3:ncol(.)]))
-# Save table.
-write.csv(
-  x = tbl_PWV_demogs,
-  file = here::here("output",paste0("table1Demogs_PWV","_",sensitivity_cohort,".csv"))
-)
-# Make table with 7week threshold instead of interim intervals.
-tbl_PWV_demogs_7wkThreshold <- 
-  fnc_make7wkTable(tbl_PWV_demogs) %>% dplyr::filter(variable != "Age group")
-write.csv(
-  x = tbl_PWV_demogs_7wkThreshold,
-  file = here::here("output",paste0("table1Demogs_PWV","_",sensitivity_cohort,"_7wkThreshold.csv"))
-)
 # ## Outcomes table.
-tbl_PWV_outcomes <-
+table1Outcomes_PWV <-
   rbind(
     list_postOp_mortality_30day$PWV_postOp_mortality_30day,
     list_postOp_mortality_90day$PWV_postOp_mortality_90day,
     list_postOp_mortality_6mth$PWV_postOp_mortality_6mth,
     list_postOp_mortality_12mth$PWV_postOp_mortality_12mth,
-    list_postOp_pulmonary_complication_30day$PWV_pulmonary_complication_30day,
-    list_postOp_cardiac_complication_30day$PWV_cardiac_complication_30day,
-    list_postOp_cerebrovascular_complication_30day$PWV_cerebrovascular_complication_30day) %>%
+    list_postOp_pulmonary_complication_30day$PWV_pulmonary_complication_30day %>% arrange(desc(strata)),
+    list_postOp_cardiac_complication_30day$PWV_cardiac_complication_30day %>% arrange(desc(strata)),
+    list_postOp_cerebrovascular_complication_30day$PWV_cerebrovascular_complication_30day %>% arrange(desc(strata))) %>%
   dplyr::filter(!strata %in% c("Error: Surgery after death",
                                "No death recorded", "No surgery recorded")) %>%
   tibble::add_column(., c(
@@ -1424,12 +1379,237 @@ tbl_PWV_outcomes <-
   `colnames<-`(c("variable", "strata", colnames(.)[3:ncol(.)]))
 # Save table.
 write.csv(
-  x = tbl_PWV_outcomes,
+  x = table1Outcomes_PWV,
   file = here::here("output",paste0("table1Outcomes_PWV","_",sensitivity_cohort,".csv"))
 )
-# Make table with only 7week threshold.
-tbl_PWV_outcomes_7wkThreshold <- 
-  fnc_make7wkTable(tbl_PWV_outcomes) %>% dplyr::filter(variable != "Age group")
+# ----
+
+###########################################################################
+# Remove the <Age group> variable from demographic table, for publication #
+###########################################################################
+# ----
+# Pre-pandemic.
+table1Demogs_PP <-
+  tbl_PP_demogs %>% dplyr::filter(variable != "Age group")
+table1Demogs_PP[,3:ncol(table1Demogs_PP)] <-
+  table1Demogs_PP %>% dplyr::select(-c(variable, strata)) %>% 
+  sapply(as.double)
+# Pandemic no vaccine.
+table1Demogs_PNV <-
+  tbl_PNV_demogs %>% dplyr::filter(variable != "Age group")
+table1Demogs_PNV[,3:ncol(table1Demogs_PNV)] <-
+  table1Demogs_PNV %>% dplyr::select(-c(variable, strata)) %>% 
+  sapply(as.double)
+# COVIDSurg data collection period.
+table1Demogs_CSP <-
+  tbl_CSP_demogs %>% dplyr::filter(variable != "Age group")
+table1Demogs_CSP[,3:ncol(table1Demogs_CSP)] <-
+  table1Demogs_CSP %>% dplyr::select(-c(variable, strata)) %>% 
+  sapply(as.double)
+# Pandemic with vaccine.
+table1Demogs_PWV <-
+  tbl_PWV_demogs %>% dplyr::filter(variable != "Age group")
+table1Demogs_PWV[,3:ncol(table1Demogs_PWV)] <-
+  table1Demogs_PWV %>% dplyr::select(-c(variable, strata)) %>% 
+  sapply(as.double)
+# ----
+
+##############################################################################
+# Make a tibble for 'Timing of cancer diagnosis', for the demographic table. #
+##############################################################################
+# ----
+# ## Count of patients in each of the categories for pre-operative infection
+# ## status (stratified by surgery era; see above) also stratified by whether
+# ## they a cancer diagnosis is received within plus/minus 3 months of their 
+# ## surgery:
+# ##    1. Within 3 months
+# ##    2. Outwith 3 months
+# ##    3. No cancer diagnosis
+table1_timing_of_cancer_diagnosis <- 
+  data_to_use %>% 
+  dplyr::filter(postOp_mortality_30day %in% c("Dead within 30 days post-operation",
+                                              "Alive within 30 days post-operation",
+                                              "No death recorded")) %>%
+  dplyr::mutate(
+    timing_of_cancer_diagnosis = dplyr::case_when(
+      .$category_cancer_within_3mths_surgery %in%
+        c("Cancer diagnosis within 3mths after surgery",
+          "Cancer diagnosis within 3mths before surgery") ~ "Within 3 months",
+      .$category_cancer_within_3mths_surgery ==
+        "No cancer diagnosis within 3mths before or after surgery" ~ "Outwith 3 months",
+      .$has_cancer == FALSE ~ "No cancer diagnosis",
+    )
+  ) %>%
+  dplyr::group_by(era, timing_of_cancer_diagnosis) %>%
+  dplyr::summarise(n_all_intervals = sum(ifelse(preOperative_infection_status!=
+                                                  "Error: Test result after surgery. Check study_definition.",1,0)),
+                   n_infection_none = sum(ifelse(preOperative_infection_status==
+                                                   "No record of pre-operative SARS-CoV-2 infection",1,0)),
+                   n_infection_0to2wk = sum(ifelse(preOperative_infection_status==
+                                                     "0-2 weeks record of pre-operative SARS-CoV-2 infection",1,0)),
+                   n_infection_3to4wk = sum(ifelse(preOperative_infection_status==
+                                                     "3-4 weeks record of pre-operative SARS-CoV-2 infection",1,0)),
+                   n_infection_5to6wk = sum(ifelse(preOperative_infection_status==
+                                                     "5-6 weeks record of pre-operative SARS-CoV-2 infection",1,0)),
+                   n_infection_7wk = sum(ifelse(preOperative_infection_status==
+                                                  ">=7 weeks record of pre-operative SARS-CoV-2 infection",1,0))
+  )
+table1_CSP_timing_of_cancer_diagnosis <- 
+  data_to_use %>% 
+  dplyr::filter(postOp_mortality_30day %in% c("Dead within 30 days post-operation",
+                                              "Alive within 30 days post-operation",
+                                              "No death recorded")) %>%
+  dplyr::mutate(
+    timing_of_cancer_diagnosis = dplyr::case_when(
+      .$category_cancer_within_3mths_surgery %in%
+        c("Cancer diagnosis within 3mths after surgery",
+          "Cancer diagnosis within 3mths before surgery") ~ "Within 3 months",
+      .$category_cancer_within_3mths_surgery ==
+        "No cancer diagnosis within 3mths before or after surgery" ~ "Outwith 3 months",
+      .$has_cancer == FALSE ~ "No cancer diagnosis",
+    )
+  ) %>%
+  dplyr::group_by(COVIDSurg_data_collection_period, timing_of_cancer_diagnosis) %>%
+  dplyr::summarise(n_all_intervals = sum(ifelse(preOperative_infection_status!=
+                                                  "Error: Test result after surgery. Check study_definition.",1,0)),
+                   n_infection_none = sum(ifelse(preOperative_infection_status==
+                                                   "No record of pre-operative SARS-CoV-2 infection",1,0)),
+                   n_infection_0to2wk = sum(ifelse(preOperative_infection_status==
+                                                     "0-2 weeks record of pre-operative SARS-CoV-2 infection",1,0)),
+                   n_infection_3to4wk = sum(ifelse(preOperative_infection_status==
+                                                     "3-4 weeks record of pre-operative SARS-CoV-2 infection",1,0)),
+                   n_infection_5to6wk = sum(ifelse(preOperative_infection_status==
+                                                     "5-6 weeks record of pre-operative SARS-CoV-2 infection",1,0)),
+                   n_infection_7wk = sum(ifelse(preOperative_infection_status==
+                                                  ">=7 weeks record of pre-operative SARS-CoV-2 infection",1,0))
+  ) %>% dplyr::rename(era = COVIDSurg_data_collection_period)
+table1_timing_of_cancer_diagnosis <-
+  dplyr::bind_rows(table1_CSP_timing_of_cancer_diagnosis,
+                   table1_timing_of_cancer_diagnosis)
+rm(table1_CSP_timing_of_cancer_diagnosis)
+# ## Ensure tibble shows zero values when categories are not in the data.
+table1_timing_of_cancer_diagnosis <- 
+  expand.grid(
+    era = 
+      era_set,
+    timing_of_cancer_diagnosis = 
+      c("Within 3 months",
+        "Outwith 3 months",
+        "No cancer diagnosis")) %>%
+  dplyr::full_join(table1_timing_of_cancer_diagnosis) %>%
+  dplyr::arrange(era) %>%
+  tidyr::replace_na(na_replace_list)
+# ## Make vectors for tables.
+list_timing_of_cancer_diagnosis <-
+  fnc_countsAndPercentages(table_to_use = table1_timing_of_cancer_diagnosis,
+                           strata = "_timing_of_cancer_diagnosis",
+                           strata_col = "timing_of_cancer_diagnosis")
+# ----
+
+#############################################################################
+# Insert rows of 'Timing of cancer diagnosis'  into the demographic tibble. #
+#############################################################################
+# ----
+# Pre-pandemic.
+rows_to_add <-
+  list_timing_of_cancer_diagnosis$PP_timing_of_cancer_diagnosis %>%
+  dplyr::select(strata, n_all_intervals, pct_all_intervals) %>%
+  tibble::add_column(variable = rep("Timing of cancer diagnosis",3),
+                     .before = "strata") %>%
+  `colnames<-`(c("variable", "strata", "n", "pct"))
+table1Demogs_PP <-
+  table1Demogs_PP %>% tibble::add_row(., rows_to_add, .before = 5)
+# Pandemic no vaccine.
+rows_to_add <-
+  list_timing_of_cancer_diagnosis$PNV_timing_of_cancer_diagnosis %>%
+  tibble::add_column(., variable = rep("Timing of cancer diagnosis",3),
+                     .before = "strata")
+colnames(rows_to_add)[2] <- "strata"
+table1Demogs_PNV <-
+  table1Demogs_PNV %>% tibble::add_row(., rows_to_add, .before = 5)
+# COVIDSurg data collection period.
+rows_to_add <-
+  list_timing_of_cancer_diagnosis$CSP_timing_of_cancer_diagnosis %>%
+  tibble::add_column(., variable = rep("Timing of cancer diagnosis",3),
+                     .before = "strata")
+colnames(rows_to_add)[2] <- "strata"
+table1Demogs_CSP <-
+  table1Demogs_CSP %>% tibble::add_row(., rows_to_add, .before = 5)
+# Pandemic with vaccine.
+rows_to_add <-
+  list_timing_of_cancer_diagnosis$PWV_timing_of_cancer_diagnosis %>%
+  tibble::add_column(., variable = rep("Timing of cancer diagnosis",3),
+                     .before = "strata")
+colnames(rows_to_add)[2] <- "strata"
+table1Demogs_PWV <-
+  table1Demogs_PWV %>% tibble::add_row(., rows_to_add, .before = 5)
+# Clean up
+rm(rows_to_add)
+# ----
+
+#############################################
+# Save updated demographic tibbles to CSV. ##
+#############################################
+# ----
+# Pre-pandemic.
+write.csv(
+  x = table1Demogs_PP,
+  file = here::here("output",
+                    paste0("table1Demogs_PP","_",sensitivity_cohort,".csv"))
+)
+# Pandemic no vaccine.
+write.csv(
+  x = table1Demogs_PNV,
+  file = here::here("output",
+                    paste0("table1Demogs_PNV","_",sensitivity_cohort,".csv"))
+)
+# COVIDSurg data collection period.
+write.csv(
+  x = table1Demogs_CSP,
+  file = here::here("output",
+                    paste0("table1Demogs_CSP","_",sensitivity_cohort,".csv"))
+)
+# Pandemic with vaccine.
+write.csv(
+  x = table1Demogs_PWV,
+  file = here::here("output",
+                    paste0("table1Demogs_PWV","_",sensitivity_cohort,".csv"))
+)
+# ----
+
+###############################################################################
+## Make & save the tables with 7week threshold instead of interim intervals. ##
+###############################################################################
+# ----
+# Pandemic no vaccine.
+tbl_PNV_demogs_7wkThreshold <- fnc_make7wkTable(table1Demogs_PNV)
+write.csv(
+  x = tbl_PNV_demogs_7wkThreshold,
+  file = here::here("output",paste0("table1Demogs_PNV","_",sensitivity_cohort,"_7wkThreshold.csv"))
+)
+tbl_PNV_outcomes_7wkThreshold <- fnc_make7wkTable(table1Outcomes_PNV)
+write.csv(
+  x = tbl_PNV_outcomes_7wkThreshold,
+  file = here::here("output",paste0("table1Outcomes_PNV","_",sensitivity_cohort,"_7wkThreshold.csv"))
+)
+# COVIDSurg data collection period.
+tbl_CSP_demogs_7wkThreshold <- fnc_make7wkTable(table1Demogs_CSP)
+write.csv(
+  x = tbl_CSP_demogs_7wkThreshold,
+  file = here::here("output",paste0("table1Demogs_CSP","_",sensitivity_cohort,"_7wkThreshold.csv"))
+)
+tbl_CSP_outcomes_7wkThreshold <- fnc_make7wkTable(table1Outcomes_CSP)
+write.csv(
+  x = tbl_CSP_outcomes_7wkThreshold,
+  file = here::here("output",paste0("table1Outcomes_CSP","_",sensitivity_cohort,"_7wkThreshold.csv"))
+)
+# Pandemic with vaccine.
+tbl_PWV_demogs_7wkThreshold <- fnc_make7wkTable(table1Demogs_PWV)
+write.csv(
+  x = tbl_PWV_demogs_7wkThreshold,
+  file = here::here("output",paste0("table1Demogs_PWV","_",sensitivity_cohort,"_7wkThreshold.csv"))
+)
+tbl_PWV_outcomes_7wkThreshold <- fnc_make7wkTable(table1Outcomes_PWV)
 write.csv(
   x = tbl_PWV_outcomes_7wkThreshold,
   file = here::here("output",paste0("table1Outcomes_PWV","_",sensitivity_cohort,"_7wkThreshold.csv"))

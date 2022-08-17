@@ -115,50 +115,29 @@ actions:
                 # tableVacc_df_check_3mths_AlwynSNOMED: output/AlwynSNOMED_table_Vaccination_status_3mths.csv
                 # tableVacc_df_check_3mths_AlwynTPP: output/AlwynTPP_table_Vaccination_status_3mths.csv
                 
-    COVIDSurg_compare:
+    sensitivity_analysis_plots:
         run: r:latest analysis/Make_table_COVIDSurg_compare.R
         needs: [generate_study_population_2]
         outputs:
             moderately_sensitive:
-                table_counts: output/table_Count_of_patients_in_each_cohort_in_each_era_across_all_intervals.csv
-                table_counts_7wkThreshold: output/table_7wkThreshold_Count_of_patients_in_each_cohort_in_each_era_across_all_intervals.csv
-                table_mortality_intervals: output/table_30day_post-op_mortality_in_each_era_across_all_intervals.csv
-                table_mortality_intervals_7wkThreshold: output/table_7wkThreshold_30day_post-op_mortality_in_each_era_across_all_intervals.csv
-                table_mortality_totals: output/table_30day_post-op_mortality_for_each_cohort_in_each_era.csv
-                plotData_C3m: output/plotData_C3m.csv
-                plotData_C6m: output/plotData_C6m.csv
-                plotData_NC: output/plotData_NC.csv
-                plotData_AdmMethod: output/plotData_AdmMethod.csv
-                figure_NC_3m: output/noCancer__3monthly_summary_proportion_surgeries_within_7wks_after_pos_test.png
                 figure_NC_2m: output/noCancer__2monthly_summary_proportion_surgeries_within_7wks_after_pos_test.png
                 figure_NC_1m: output/noCancer__1monthly_summary_proportion_surgeries_within_7wks_after_pos_test.png
                 figure_NC_wk: output/noCancer__weekly_summary_proportion_surgeries_within_7wks_after_pos_test.png
-                figure_C3m_3m: output/cancer_3months__3monthly_summary_proportion_surgeries_within_7wks_after_pos_test.png
                 figure_C3m_2m: output/cancer_3months__2monthly_summary_proportion_surgeries_within_7wks_after_pos_test.png
                 figure_C3m_1m: output/cancer_3months__1monthly_summary_proportion_surgeries_within_7wks_after_pos_test.png
                 figure_C3m_wk: output/cancer_3months__weekly_summary_proportion_surgeries_within_7wks_after_pos_test.png
-                figure_C6m_3m: output/cancer_6months__3monthly_summary_proportion_surgeries_within_7wks_after_pos_test.png
                 figure_C6m_2m: output/cancer_6months__2monthly_summary_proportion_surgeries_within_7wks_after_pos_test.png
                 figure_C6m_1m: output/cancer_6months__1monthly_summary_proportion_surgeries_within_7wks_after_pos_test.png
                 figure_C6m_wk: output/cancer_6months__weekly_summary_proportion_surgeries_within_7wks_after_pos_test.png
-                figure_AdmMethod_3m: output/noCancer__stratified_3monthly_summary_proportion_surgeries_within_7wks_after_pos_test.png
                 figure_AdmMethod_2m: output/noCancer__stratified_2monthly_summary_proportion_surgeries_within_7wks_after_pos_test.png
                 figure_AdmMethod_1m: output/noCancer__stratified_1monthly_summary_proportion_surgeries_within_7wks_after_pos_test.png
                 figure_AdmMethod_wk: output/noCancer__stratified_weekly_summary_proportion_surgeries_within_7wks_after_pos_test.png
                 
-    emulate_table1:
+    sensitivity_analysis_tables:
         run:    r:latest analysis/Make_all_Table1s.R
         needs: [generate_study_population_2]
         outputs:
             moderately_sensitive:
-                table1Demogs_PP_all: output/table1Demogs_PP_all.csv
-                table1Outcomes_PP_all: output/table1Outcomes_PP_all.csv
-                table1Demogs_CSP_all: output/table1Demogs_CSP_all.csv
-                table1Outcomes_CSP_all: output/table1Outcomes_CSP_all.csv
-                table1Demogs_PNV_all: output/table1Demogs_PNV_all.csv
-                table1Outcomes_PNV_all: output/table1Outcomes_PNV_all.csv
-                table1Demogs_PWV_all: output/table1Demogs_PWV_all.csv
-                table1Outcomes_PWV_all: output/table1Outcomes_PWV_all.csv
                 table1Demogs_PP_3mths: output/table1Demogs_PP_C_within3m.csv
                 table1Outcomes_PP_C_within3m: output/table1Outcomes_PP_C_within3m.csv
                 table1Demogs_CSP_C_within3m: output/table1Demogs_CSP_C_within3m.csv
@@ -199,15 +178,28 @@ actions:
             needs: [generate_study_population_2]
             outputs:
                 moderately_sensitive:
-                    table1Demogs_PP: output/table1Demogs_PP.csv
-                    table1Demogs_PNV: output/table1Demogs_PNV.csv
-                    table1Demogs_CSP: output/table1Demogs_CSP.csv
-                    table1Demogs_PWV: output/table1Demogs_PWV.csv
-                    table1Outcomes_PP: output/table1Outcomes_PP.csv
-                    table1Outcomes_PNV: output/table1Outcomes_PNV.csv
-                    table1Outcomes_CSP: output/table1Outcomes_CSP.csv
-                    table1Outcomes_PWV: output/table1Outcomes_PWV.csv
+                    table1Demogs_PP_all: output/table1Demogs_PP_all.csv
+                    table1Demogs_PNV_all: output/table1Demogs_PNV_all.csv
+                    table1Demogs_CSP_all: output/table1Demogs_CSP_all.csv
+                    table1Demogs_PWV_all: output/table1Demogs_PWV_all.csv
+                    table1Outcomes_PP_all: output/table1Outcomes_PP_all.csv
+                    table1Outcomes_PNV_all: output/table1Outcomes_PNV_all.csv
+                    table1Outcomes_CSP_all: output/table1Outcomes_CSP_all.csv
+                    table1Outcomes_PWV_all: output/table1Outcomes_PWV_all.csv
                     TableEra: output/TableEra.csv
+                    table_counts: output/table_Count_of_patients_in_each_cohort_in_each_era_across_all_intervals.csv
+                    table_counts_7wkThreshold: output/table_7wkThreshold_Count_of_patients_in_each_cohort_in_each_era_across_all_intervals.csv
+                    table_mortality_intervals: output/table_30day_post-op_mortality_in_each_era_across_all_intervals.csv
+                    table_mortality_intervals_7wkThreshold: output/table_7wkThreshold_30day_post-op_mortality_in_each_era_across_all_intervals.csv
+                    table_mortality_totals: output/table_30day_post-op_mortality_for_each_cohort_in_each_era.csv
+                    plotData_C3m: output/plotData_C3m.csv
+                    plotData_C6m: output/plotData_C6m.csv
+                    plotData_NC: output/plotData_NC.csv
+                    plotData_AdmMethod: output/plotData_AdmMethod.csv
+                    figure_NC_3m: output/noCancer__3monthly_summary_proportion_surgeries_within_7wks_after_pos_test.png
+                    figure_C3m_3m: output/cancer_3months__3monthly_summary_proportion_surgeries_within_7wks_after_pos_test.png
+                    figure_C6m_3m: output/cancer_6months__3monthly_summary_proportion_surgeries_within_7wks_after_pos_test.png
+                    figure_AdmMethod_3m: output/noCancer__stratified_3monthly_summary_proportion_surgeries_within_7wks_after_pos_test.png
                     
     admission_check:
         run: r:latest analysis/admission_check.R
