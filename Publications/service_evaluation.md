@@ -129,89 +129,419 @@ We do not present OpenSAFELY data for stratifications by age group because of th
 # Results
 Figure X7wkX shows 3-monthly percentages of surgeries conducted <7 weeks from a positive PCR assay, from the UK’s Pillar 1 and Pillar 2 testing routes. In any 3-month window, less than 3% of surgeries were conducted within the 7 week threshold suggested by the COVIDSurg studies. This was true for the patients without a cancer diagnosis and for patients with a cancer diagnosis either ±3 or ±6 months from their surgery date.
 
-A	B
-<3-month image>	<’without’ image>
-_Figure X7wkX Percentage of surgeries conducted <7 weeks from a positive PCR assay (see caveats in section Exposure subsection of the Methods in the main text). Vertical black lines indicate events of note in the timeline. A shows data for patients with a cancer diagnosis within ±3 months of their surgery date; B shows data for patients without a cancer diagnosis since 17th March 2018._
+<table>
+    <tr>
+      <td><b>A</b></td>
+      <td><b>B</b></td>
+    </tr>
+    <tr>
+      <td><img src="./figures/cancer_3months__3monthly_summary_proportion_surgeries_within_7wks_after_pos_test.png" alt = "cancer 3-month image"></td>
+      <td><img src="./figures/noCancer__3monthly_summary_proportion_surgeries_within_7wks_after_pos_test.png" alt = "no cancer 3-month image"></td>
+    </tr>
+    <tr>
+	    <td colspan=2><b>Figure X7wkX</b> Percentage of surgeries conducted <7 weeks from a positive PCR assay (see caveats in section Exposure subsection of the Methods in the main text). Vertical black lines indicate events of note in the timeline. <i>A</i> shows data for patients with a cancer diagnosis within ±3 months of their surgery date; <i>B</i> shows data for patients without a cancer diagnosis since 17th March 2018.</td>
+    </tr>
+</table>
 
 Figure XAdmMethodX shows 3-monthly percentages of surgeries conducted <7 weeks from a positive PCR assay, from the UK’s Pillar 1 and Pillar 2 testing routes, but stratified by patients’ admission method, i.e. elective or emergency. The cohort used for this plot are all surgery patients irrespective of cancer diagnosis. There were more emergency admissions than elective admissions throughout the period observed but always <X%. 
 
-<image>
-_Figure XAdmMethodX Percentage of surgeries conducted <7 weeks from a positive PCR assay (see caveats in section Exposure subsection of the Methods in the main text). Vertical black lines indicate events of note in the timeline. The cohort is patients who underwent surgery during elective admission (solid line) or emergency admission (dashed line)._
+
+<table>
+    <tr>
+      <td><img src="./figures/noCancer__stratified_3monthly_summary_proportion_surgeries_within_7wks_after_pos_test.png" alt = "all surgery patients, stratified by admission method"></td>
+    </tr>
+    <tr>
+	    <td colspan=2><b>Figure XAdmMethodX</b> Percentage of surgeries conducted <7 weeks from a positive PCR assay (see caveats in section Exposure subsection of the Methods in the main text). Vertical black lines indicate events of note in the timeline. The cohort is patients who underwent surgery during elective admission (light grey) or emergency admission (dark grey).</td>
+    </tr>
+</table>
 
 Table Xtable1DemogsX presents clinical demographics of the patient cohort during the pandemic-with-vaccine era and Table Xtable1OutcomesX presents patient outcomes in the same era. Similar tables for the other era are in the supplementary materials (LINK). The surgery cohort were almost evenly split between males and females; were overwhelmingly without a cancer diagnosis ; were very unlikely to undergo surgery under emergency admission; and were very unlikely to have records of pre-operative chronic cardiac disease, diabetes, chronic respiratory disease, or cerebrovascular disease. Overall 30-day post-operative mortality was approximately <0.2% and 30-day complications were always less than approximately 1.0%
 
-_Table Xtable1DemogsX Demographic characteristics for patients who underwent surgery stratified by duration from indication of SARS-CoV-2 infection to surgery date. Period of interest is from 12th January 2021 until 31st March 2022 (i.e. the pandemic-with-vaccines era). Values are counts (n) and percentages (%)._
-The sum of ‘Timing of cancer diagnosis’ strata to not add to 100% because patients were admitted from this stratification if they had a cancer diagnosis but not a date of cancer diagnosis.
+<table>
+	<tr>
+		<td colspan=12>
+			<b>Table Xtable1DemogsX</b>
+			Demographic characteristics for patients who underwent surgery stratified by duration from indication of SARS-CoV-2 infection to surgery date. Period of interest is from 12th January 2021 until 31st March 2022 (i.e. the pandemic-with-vaccines era). Values are counts (n) and percentages (%).<br />
+			The sum of ‘Timing of cancer diagnosis’ strata to not add to 100% because patients were admitted from this stratification if they had a cancer diagnosis but not a date of cancer diagnosis.
+		</td>
+	</tr>
+	<tr>
+		<td colspan=2></td>
+		<td colspan=2>No indication of infection</td>
+		<td colspan=8>Interval between indication of infection and surgery</td>
+	</tr>
+	<tr>
+		<td colspan=2></td>
+		<td colspan=2></td>
+		<td colspan=2 style="text-align: center">0-2 weeks</td>
+		<td colspan=2 style="text-align: center">3-4 weeks</td>
+		<td colspan=2 style="text-align: center">5-6 weeks</td>
+		<td colspan=2 style="text-align: center">>7 weeks</td>
+	</tr>
+	<tr>
+		<td colspan=2></td>
+		<td style="text-align: center">n</td><td style="text-align: center">%</td>
+		<td style="text-align: center">n</td><td style="text-align: center">%</td>
+		<td style="text-align: center">n</td><td style="text-align: center">%</td>
+		<td style="text-align: center">n</td><td style="text-align: center">%</td>
+		<td style="text-align: center">n</td><td style="text-align: center">%</td>
+	</tr>
+	<tr>
+		<td rowspan=2>Sex</td>
+		<td>Female</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+	</tr>
+	<tr>
+		<td>Male</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+	</tr>
+	<tr>
+		<td rowspan=2>Chronic cardiac disease</td>
+		<td>Yes</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+	</tr>
+	<tr>
+		<td>No</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+	</tr>
+	<tr>
+		<td rowspan=2>Diabetes</td>
+		<td>Yes</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+	</tr>
+	<tr>
+		<td>No</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+	</tr>
+	<tr>
+		<td rowspan=2>Chronic respiratory disease</td>
+		<td>Yes</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+	</tr>
+	<tr>
+		<td>No</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+	</tr>
+	<tr>
+		<td rowspan=3>Chronic cardiac disease</td>
+		<td>Within 3 months of surgery</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+	</tr>
+	<tr>
+		<td>Outwith 3 months of surgery</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+	</tr>
+	<tr>
+		<td>No cancer diagnosis</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+	</tr>
+	<tr>
+		<td rowspan=2>Admission method</td>
+		<td>Elective</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+	</tr>
+	<tr>
+		<td>Emergency</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+	</tr>
+</table>
+
  
- 
- 
- 	No indication of infection	Interval between indication of infection and surgery
-		0-2 weeks	3-4 weeks	5-6 weeks	≥7 weeks
-	(n = )	(n = )	(n = )	(n = )	(n = )
-	n	%	n	%	n	%	n	%	n	%
-Sex										 
- 	Female										 
- 	Male										 
-Chronic cardiac disease										 
- 	Yes										 
- 	No										 
-Diabetes										 
- 	Yes										 
- 	No										 
-Chronic respiratory disease										 
- 	Yes										 
- 	No										 
-Timing of cancer diagnosis										
-	Within 3 months of surgery										
-	Outwith 3 months of surgery										
-	No cancer diagnosis										
-Admission method   										
-	Elective										
-	Emergency										
+
+<table>
+	<tr>
+		<td colspan=12>
+			<b>Table Xtable1OutcomesX</b>
+			 Outcomes for patients who underwent surgery stratified by duration from indication of SARS-CoV-2 infection to surgery date. Period of interest is from 12th January 2021 until 31st March 2022 (i.e. the pandemic-with-vaccines era). Values are counts (n) and percentages (%).
+		</td>
+	</tr>
+	<tr>
+		<td colspan=2></td>
+		<td colspan=2>No indication of infection</td>
+		<td colspan=8>Interval between indication of infection and surgery</td>
+	</tr>
+	<tr>
+		<td colspan=4></td>
+		<td colspan=2 style="text-align: center">0-2 weeks</td>
+		<td colspan=2 style="text-align: center">3-4 weeks</td>
+		<td colspan=2 style="text-align: center">5-6 weeks</td>
+		<td colspan=2 style="text-align: center">>7 weeks</td>
+	</tr>
+	<tr>
+		<td colspan=2></td>
+		<td style="text-align: center">n</td><td style="text-align: center">%</td>
+		<td style="text-align: center">n</td><td style="text-align: center">%</td>
+		<td style="text-align: center">n</td><td style="text-align: center">%</td>
+		<td style="text-align: center">n</td><td style="text-align: center">%</td>
+		<td style="text-align: center">n</td><td style="text-align: center">%</td>
+	</tr>
+	<tr>
+		<td rowspan=2>30-day post-operative mortality</td>
+		<td>Alive within 30 days</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+	</tr>
+	<tr>
+		<td>Dead within 30 days</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+	</tr>
+	<tr>
+		<td rowspan=2>6-month post-operative mortality</td>
+		<td>Alive within 6 months</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+	</tr>
+	<tr>
+		<td>Dead within 6 months</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+	</tr>
+	<tr>
+		<td rowspan=2>30-day post-operative pulmonary complications</td>
+		<td>No complications</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+	</tr>
+	<tr>
+		<td>Complications</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+	</tr>
+	<tr>
+		<td rowspan=2>30-day post-operative cardiac complications</td>
+		<td>No complications</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+	</tr>
+	<tr>
+		<td>Complications</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+	</tr>
+	<tr>
+		<td rowspan=3>30-day post-operative cerebrovascular complications</td>
+		<td>No complications</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+	</tr>
+	<tr>
+		<td>Complications</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+	</tr>
+	
+</table>
+	 	 	 	 	 	 	 
 
 
-_Table Xtable1OutcomesX Outcomes for patients who underwent surgery stratified by duration from indication of SARS-CoV-2 infection to surgery date. Period of interest is from 12th January 2021 until 31st March 2022 (i.e. the pandemic-with-vaccines era). Values are counts (n) and percentages (%)._
-	No indication of infection	Interval between indication of infection and surgery
-		0-2 weeks	3-4 weeks	5-6 weeks	≥7 weeks
-	(n = )	(n = )	(n = )	(n = )	(n = )
-	n	%	n	%	n	%	n	%	n	%
-30-day post-operative mortality										 
- 	Alive within 30 days										 
- 	Dead within 30 days										 
-6-month post-operative mortality										
-	Alive within 6 months										
-	Dead within 6 months										
-30-day post-operative pulmonary complications										
-	No complications										
-	Complications										
-30-day post-operative cardiac complications										
-	No complications										
-	Complications										
-30-day post-operative cerebrovascular complication										 
- 	No complications										 
- 	Complications	 	 	 	 	 	 	 	 	 	 
+Finally, for comparison with the COVIDSurg studies, Table XtableEraX shows 30-day post-operative mortality for various cohorts, in the pandemic-no-vaccines and pandemic-with-vaccines¬ era. In the pandemic-no-vaccines era, OpenSAFELY cohorts suffered fewer deaths within 30-days of surgery compared with the COVIDSurg study cohort. For OpenSAFELY cohorts in the pandemic-with-vaccines era, mortality was approximately X-times worse for patients with a cancer diagnosis within 3 months of their surgery (XXX%) compared to patients without a cancer diagnosis (XXX%), though still low .
 
-
-  Finally, for comparison with the COVIDSurg studies, Table XtableEraX shows 30-day post-operative mortality for various cohorts, in the pandemic-no-vaccines and pandemic-with-vaccines¬ era. In the pandemic-no-vaccines era, OpenSAFELY cohorts suffered fewer deaths within 30-days of surgery compared with the COVIDSurg study cohort. For OpenSAFELY cohorts in the pandemic-with-vaccines era, mortality was approximately X-times worse for patients with a cancer diagnosis within 3 months of their surgery (XXX%) compared to patients without a cancer diagnosis (XXX%), though still low .
-
-
-_Table XtableEraX Thirty-day post-operative mortality for various cohorts, in each era, across all intervals defined by the interval between an indication of SARS-CoV-2 infection patients’ surgery date. Values for “COVIDSurg Collaborative” cohorts are taken from [20]; “OpenSAFELY…” cohorts refer to patients from the OpenSAFELY data platform who underwent surgery; “…with cancer” cohorts refer to patient with a cancer diagnosis within ±3 months of their surgery date; cohorts within the COVIDSurg Collaboration period refer to all COVIDSurg patients, regardless of cancer diagnosis. Values are counts of deaths (n), column totals (N), and percentages (%)._
-	Total	No indication of infection	Interval between indication of infection and surgery
-			0-2 weeks	3-4 weeks	5-6 weeks	≥7 weeks
-	n / N	%	n / N	%	n / N	%	n / N	%	n / N	%	n / N	%
-Pandemic-no-vaccines												
-	OpenSAFELY, all surgeries												
-	OpenSAFELY, no cancer												
-	OpenSAFELY, with cancer												
-COVIDSurg Collaborative period											
-	COVIDSurg Collaborative	3,938 / 140,231	2.81	3,654 / 137,104	2.67	149 / 1,138	13.09	60 / 461	13.02	33 / 326	10.12	42 / 1202	3.49
-	OpenSAFELY, all surgeries												
-	OpenSAFELY, no cancer												
-	OpenSAFELY, with cancer												
-Pandemic-with-vaccines												
-	OpenSAFELY, all surgeries												
-	OpenSAFELY, no cancer												
-	OpenSAFELY, with cancer												
+<table>
+	<tr>
+		<td colspan=14>
+			<b>Table XtableEraX</b>
+			 Thirty-day post-operative mortality for various cohorts, in each era, across all intervals defined by the interval between an indication of SARS-CoV-2 infection patients’ surgery date. Values for “COVIDSurg Collaborative” cohorts are taken from [20]; “OpenSAFELY…” cohorts refer to patients from the OpenSAFELY data platform who underwent surgery; “…with cancer” cohorts refer to patient with a cancer diagnosis within ±3 months of their surgery date; cohorts within the COVIDSurg Collaboration period refer to all COVIDSurg patients, regardless of cancer diagnosis. Values are counts of deaths (n), column totals (N), and percentages (%).
+		</td>
+	</tr>
+	<tr>
+		<td colspan=2></td>
+		<td colspan=2>Total</td>
+		<td colspan=2>No indication of infection</td>
+		<td colspan=8>Interval between indication of infection and surgery</td>
+	</tr>
+	<tr>
+		<td colspan=6></td>
+		<td colspan=2 style="text-align: center">0-2 weeks</td>
+		<td colspan=2 style="text-align: center">3-4 weeks</td>
+		<td colspan=2 style="text-align: center">5-6 weeks</td>
+		<td colspan=2 style="text-align: center">>7 weeks</td>
+	</tr>
+	<tr>
+		<td colspan=2></td>
+		<td style="text-align: center">n / N</td><td style="text-align: center">%</td>
+		<td style="text-align: center">n / N</td><td style="text-align: center">%</td>
+		<td style="text-align: center">n / N</td><td style="text-align: center">%</td>
+		<td style="text-align: center">n / N</td><td style="text-align: center">%</td>
+		<td style="text-align: center">n / N</td><td style="text-align: center">%</td>
+		<td style="text-align: center">n / N</td><td style="text-align: center">%</td>
+	</tr>
+	<tr>
+		<td rowspan=3>Pandemic-no-vaccine</td>
+		<td>OpenSAFELY, all surgeries</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+	</tr>
+	<tr>
+		<td>OpenSAFELY, no cancer</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+	</tr>
+	<tr>
+		<td>OpenSAFELY, with cancer</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+	</tr>
+	<tr>
+		<td rowspan=4>COVIDSurg data collection period</td>
+		<td>COVIDSurg collaborative</td>
+		<td style="text-align: right">3,938 / 140,231</td><td style="text-align: right">2.81%</td>
+		<td style="text-align: right">3,654 / 137,104</td><td style="text-align: right">2.67%</td>
+		<td style="text-align: right">149 / 1,138</td><td style="text-align: right">13.09%</td>
+		<td style="text-align: right">60 / 461</td><td style="text-align: right">13.02%</td>
+		<td style="text-align: right">33 / 326</td><td style="text-align: right">10.12%</td>
+		<td style="text-align: right">42 / 1,202</td><td style="text-align: right">3.49%</td>
+		</tr>
+	<tr>
+		<td>OpenSAFELY, all surgeries</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+	</tr>
+	<tr>
+		<td>OpenSAFELY, no cancer</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+	</tr>
+	<tr>
+		<td>OpenSAFELY, with cancer</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+	</tr>
+	<tr>
+		<td rowspan=3>Pandemic-with-vaccine</td>
+		<td>OpenSAFELY, all surgeries</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+	</tr>
+	<tr>
+		<td>OpenSAFELY, no cancer</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+	</tr>
+	<tr>
+		<td>OpenSAFELY, with cancer</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+		<td style="text-align: right">n</td><td style="text-align: right">%</td>
+	</tr>
+</table>
 
 
 # Discussion 
