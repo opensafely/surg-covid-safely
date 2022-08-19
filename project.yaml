@@ -129,9 +129,9 @@ actions:
                 figure_C6m_2m: output/cancer_6months__2monthly_summary_proportion_surgeries_within_7wks_after_pos_test.png
                 figure_C6m_1m: output/cancer_6months__1monthly_summary_proportion_surgeries_within_7wks_after_pos_test.png
                 figure_C6m_wk: output/cancer_6months__weekly_summary_proportion_surgeries_within_7wks_after_pos_test.png
-                figure_AdmMethod_2m: output/noCancer__stratified_2monthly_summary_proportion_surgeries_within_7wks_after_pos_test.png
-                figure_AdmMethod_1m: output/noCancer__stratified_1monthly_summary_proportion_surgeries_within_7wks_after_pos_test.png
-                figure_AdmMethod_wk: output/noCancer__stratified_weekly_summary_proportion_surgeries_within_7wks_after_pos_test.png
+                figure_AdmMethod_2m: output/__stratified_2monthly_summary_proportion_surgeries_within_7wks_after_pos_test.png
+                figure_AdmMethod_1m: output/__stratified_1monthly_summary_proportion_surgeries_within_7wks_after_pos_test.png
+                figure_AdmMethod_wk: output/__stratified_weekly_summary_proportion_surgeries_within_7wks_after_pos_test.png
                 
     sensitivity_analysis_tables:
         run:    r:latest analysis/Make_all_Table1s.R

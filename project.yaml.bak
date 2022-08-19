@@ -199,7 +199,7 @@ actions:
                     figure_NC_3m: output/noCancer__3monthly_summary_proportion_surgeries_within_7wks_after_pos_test.png
                     figure_C3m_3m: output/cancer_3months__3monthly_summary_proportion_surgeries_within_7wks_after_pos_test.png
                     figure_C6m_3m: output/cancer_6months__3monthly_summary_proportion_surgeries_within_7wks_after_pos_test.png
-                    figure_AdmMethod_3m: output/noCancer__stratified_3monthly_summary_proportion_surgeries_within_7wks_after_pos_test.png
+                    figure_AdmMethod_3m: output/__stratified_3monthly_summary_proportion_surgeries_within_7wks_after_pos_test.png
                     
     admission_check:
         run: r:latest analysis/admission_check.R
