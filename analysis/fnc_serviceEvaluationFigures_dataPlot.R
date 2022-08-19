@@ -11,7 +11,9 @@ fnc_serviceEvaluationFigures_dataPlot <-
   # Check arguments.
   if(!cancer %in% c("with", "without", "")){stop("Argument <cancer> must be with 'with', 'without', or ''. ")}
   if(cancer == "with") {fileprefix1 <- "cancer"}
-  if(cancer == "without") {fileprefix1 <- "noCancer"}else{fileprefix1 <- ""}
+    else
+    {if(cancer == "without") {fileprefix1 <- "noCancer"}else{fileprefix1 <- ""}
+      }
   if(window == "")
   {fileprefix2 <- "_"; subtitleSuffix <- ""} else {
       fileprefix2 <- paste0("_",window,"months_")
