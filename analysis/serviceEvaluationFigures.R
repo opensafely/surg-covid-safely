@@ -157,7 +157,7 @@ fnc_serviceEvaluationFigures_dataPlot(data = C6m_windowed_proportion_7wkPreOpInf
 fnc_serviceEvaluationFigures_dataPlot(data = NC_windowed_proportion_7wkPreOpInfection,
                             cancer = "without", window = "", figureCaption = F)
 fnc_serviceEvaluationFigures_dataPlot(data = AdmMethod_windowed_proportion_7wkPreOpInfection,
-                                      cancer = "without", window = "", figureCaption = F,
+                                      cancer = "", window = "", figureCaption = F,
                                       strata = "Admission_method")
 
 # ----

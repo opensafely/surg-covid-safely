@@ -5,13 +5,16 @@
 #
 
 fnc_serviceEvaluationFigures_dataPlot <-
-  function(data, cancer = c("with", "without"),
+  function(data, cancer = c("with", "without", ""),
            window, figureCaption = F, strata = NULL)
 {
   # Check arguments.
-  if(!cancer %in% c("with", "without")){stop("Argument <cancer> must be with 'with' or 'without'")}
-  if (cancer == "with") {fileprefix1 <- "cancer"}else{fileprefix1 <- "noCancer"}
-  if (window == "")
+  if(!cancer %in% c("with", "without", "")){stop("Argument <cancer> must be with 'with', 'without', or ''. ")}
+  if(cancer == "with") {fileprefix1 <- "cancer"}
+    else
+    {if(cancer == "without") {fileprefix1 <- "noCancer"}else{fileprefix1 <- ""}
+      }
+  if(window == "")
   {fileprefix2 <- "_"; subtitleSuffix <- ""} else {
       fileprefix2 <- paste0("_",window,"months_")
       subtitleSuffix <- paste0(" within ", window, " months of\nsurgery")
