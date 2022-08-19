@@ -116,7 +116,12 @@ AdmMethod_windowed_proportion_7wkPreOpInfection <-
                                             dplyr::filter(category_admission_method == "Elective"),
                                           start = startDate,
                                           end = endDate) %>%
-      tibble::add_column(Admission_method = rep("Elective",nrow(.)), .before = "Year_surgery")
+      tibble::add_column(Admission_method = rep("Elective",nrow(.)), .before = "Year_surgery"),
+    fnc_serviceEvaluationFigures_dataPrep(data = plotData_AdmMethod %>%
+                                            dplyr::filter(category_admission_method == "Unknown"),
+                                          start = startDate,
+                                          end = endDate) %>%
+      tibble::add_column(Admission_method = rep("Unknown",nrow(.)), .before = "Year_surgery")
   ) %>% dplyr::arrange(Year_surgery, Month_surgery, Week_surgery)
 
 # Save the plot data.

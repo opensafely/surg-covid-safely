@@ -385,7 +385,7 @@ study = StudyDefinition(
 		"Elective": "admission_method = '11' OR admission_method = '12' OR admission_method = '13'",
 		"Emergency": "admission_method = '21' OR admission_method = '22' OR admission_method = '23' OR admission_method = '24' OR admission_method = '25'",
         "Emergency": "admission_method = '2A' OR admission_method = '2B' OR admission_method = '2C' OR admission_method = '2D' OR admission_method = '28'",
-        "Missing": "DEFAULT"
+        "Unknown": "DEFAULT"
 		},
 		return_expectations = {
 			"rate": "universal",
@@ -393,7 +393,7 @@ study = StudyDefinition(
 				"ratios": {
 					"Elective": 0.4,
 					"Emergency": 0.4,
-                    "Missing": 0.2
+                    "Unknown": 0.2
 					}
 				}
 			}

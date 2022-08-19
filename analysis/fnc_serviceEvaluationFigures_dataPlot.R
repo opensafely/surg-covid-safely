@@ -44,7 +44,7 @@ fnc_serviceEvaluationFigures_dataPlot <-
         scale_fill_grey(start = 0.5, end = 0.2) +
         guides(fill = guide_legend(title = strata)) +
         theme(legend.position = "bottom",
-              legend.title = element_text(size = 8),
+              legend.title = element_blank(),
               legend.text = element_text(size = 8))
     }  
   
@@ -124,7 +124,7 @@ fnc_serviceEvaluationFigures_dataPlot <-
       scale_fill_grey(start = 0.5, end = 0.2) +
       guides(fill = guide_legend(title = strata)) +
       theme(legend.position = "bottom",
-            legend.title = element_text(size = 8),
+            legend.title = element_blank(),
             legend.text = element_text(size = 8))
   }
   
@@ -201,7 +201,7 @@ fnc_serviceEvaluationFigures_dataPlot <-
       scale_fill_grey(start = 0.5, end = 0.2) +
       guides(fill = guide_legend(title = strata)) +
       theme(legend.position = "bottom",
-            legend.title = element_text(size = 8),
+            legend.title = element_blank(),
             legend.text = element_text(size = 8))
   }
   
@@ -278,7 +278,7 @@ fnc_serviceEvaluationFigures_dataPlot <-
       scale_fill_grey(start = 0.5, end = 0.2) +
       guides(fill = guide_legend(title = strata)) +
       theme(legend.position = "bottom",
-            legend.title = element_text(size = 8),
+            legend.title = element_blank(),
             legend.text = element_text(size = 8))
   }
   

@@ -398,6 +398,17 @@ study = StudyDefinition(
 				}
 			}
 	),
+    
+    admission_method_patient_classification = patients.admitted_to_hospital(
+        with_these_procedures = OPCS_codelist_cancer_surgery,
+		returning = "patient_classification",
+		on_or_after = start_date,
+		find_first_match_in_period = True,
+		return_expectations = {
+			"category": {"ratios": {"1": 0.2, "2": 0.2, "3": 0.3, "4": 0.2, "5": 0.1}}, 
+			"incidence": 1
+		}
+    ),
 
 	### Local COVID-specific index of multiple deprivation.
 	# address_deprivation_index = patients.address_as_of(
