@@ -119,7 +119,7 @@ The covariates across which we stratified patients were:
 5.	Timing of cancer diagnosis {Within 3 months of surgery, Outwith 3 months of surgery, No cancer diagnosis}; _and_
 6.	Admission method {elective, emergency}.
 
-Where the COVIDSurg study [20] stratified on Revised Cardiac Risk Index from 1 to 6, we stratified based on the presence of chronic cardiac disease [33] and on the presence of diabetes [34]. Where the COVIDSurg study [20] defined the presence of respiratory conditions as either asthma or chronic obstructive pulmonary disease, we define the presence of respiratory conditions as asthma [35] or other chronic respiratory conditions [36]. Where the COVIDSurg study [20] defined the indication for surgery as any of {benign disease, cancer, obstetrics, trauma}, we focus on surgeries in cancer patients so stratify patients as either having a cancer diagnosis within ±3 months of their surgery, outwith ±3 months of their surgery, or no cancer diagnosis since the study start date (i.e. 17th March 2018). Where COVIDSurg Collaborative defined urgency of surgery as surgery on either emergency or elective admission, we retitle the variable as “Admission method” and define it on the basis of NHS Hospital Episode Statistics [37]. Surgeries under admissions that did not match emergency or elective NHS Hospital Episode Statistics codes were labelled “Unknown”. The exact list of SNOMED-CT clinical codes used to identify patients’ strata are publicly available at https://opencodelists.org.
+Where the COVIDSurg study [20] stratified on Revised Cardiac Risk Index from 1 to 6, we stratified based on the presence of chronic cardiac disease [33] and on the presence of diabetes [34]. Where the COVIDSurg study [20] defined the presence of respiratory conditions as either asthma or chronic obstructive pulmonary disease, we define the presence of respiratory conditions as asthma [35] or other chronic respiratory conditions [36]. Where the COVIDSurg study [20] defined the indication for surgery as any of {benign disease, cancer, obstetrics, trauma}, we focus on surgeries in cancer patients so stratify patients as either having a cancer diagnosis within ±3 months of their surgery, outwith ±3 months of their surgery, or no cancer diagnosis since the study start date (i.e. 17th March 2018). Where COVIDSurg Collaborative defined urgency of surgery as surgery on either emergency or elective admission, we retitle the variable as “Admission method” and define it on the basis of NHS Hospital Episode Statistics [37]. The exact list of SNOMED-CT clinical codes used to identify patients’ strata are publicly available at https://opencodelists.org.
 
 We calculated counts and percentages of patients in strata of these covariates to provide some clinical context for the cohorts. We assumed all covariates confound the relationship between between the SARS-CoV-2–surgery interval and all outcomes. Further context is provided by the era variable that indicates whether the surgeries under study were conducted before the pandemic in the UK (pre-pandemic: 17th March 2018-17th March 2020), during the pandemic before vaccines were considered effective in the UK (pandemic-no-vaccine: 18th March 2020-12th Jan 2021), during the same 4-week period as the COVIDSurg data collection within the pandemic-no-vaccine era (COVIDSurg data collection period: 5th October 2020-1st November 2020), or during the pandemic when vaccines were considered effective in the UK (pandemic-with-vaccine: 12th Jan 2021-17th March 2022). We considered the vaccines to have become effective in the UK after five weeks from when they were available (8th December 2020) assuming three weeks for patients to have received the first dose and two weeks for the dose to have become effective [15]. The beginning of the per-pandemic era and the end of the pandemic-with-vaccine era were defined the study start and end date based on ±2 years from the announcement by NHS England that all ono-urgent operations should be postponed, i.e. 17th March 2020 [9].
 
@@ -280,7 +280,7 @@ Table Xtable1DemogsX presents clinical demographics of the patient cohort during
 		<td style="text-align: right">n</td><td style="text-align: right">%</td>
 	</tr>
 	<tr>
-		<td rowspan=3>Admission method</td>
+		<td rowspan=2>Admission method</td>
 		<td>Elective</td>
 		<td style="text-align: right">n</td><td style="text-align: right">%</td>
 		<td style="text-align: right">n</td><td style="text-align: right">%</td>
@@ -290,14 +290,6 @@ Table Xtable1DemogsX presents clinical demographics of the patient cohort during
 	</tr>
 	<tr>
 		<td>Emergency</td>
-		<td style="text-align: right">n</td><td style="text-align: right">%</td>
-		<td style="text-align: right">n</td><td style="text-align: right">%</td>
-		<td style="text-align: right">n</td><td style="text-align: right">%</td>
-		<td style="text-align: right">n</td><td style="text-align: right">%</td>
-		<td style="text-align: right">n</td><td style="text-align: right">%</td>
-	</tr>
-	<tr>
-		<td>Unknown</td>
 		<td style="text-align: right">n</td><td style="text-align: right">%</td>
 		<td style="text-align: right">n</td><td style="text-align: right">%</td>
 		<td style="text-align: right">n</td><td style="text-align: right">%</td>
@@ -575,7 +567,7 @@ Regarding bias arising from handling missing data, although never specified, rep
 
 We hope to quantify these biases in subsequent analysis but it might not be possible without information about the selection process and observations of those who were and were not selected. Furthermore, it might not be possible to adjust for the confounding effect of government testing strategy [51] and the mixed performance of tests in the early portion of the pandemic call the validity of test data into question, fundamentally [52–60].
 
-The OpenSAFELY platform was instrumental in facilitating the analyses we conducted. Unfortunately, the approach of bringing the analysis to the data rather than the data to the analyst means that it is not possible to undertake thorough evaluations of data quality – e.g [61] – in a domain with significant data-quality challenges [62]. Thus, all findings are interpreted under the untested assumption that the underlying data is complete, correct and current.
+The OpenSAFELY platform was instrumental in facilitating the analyses we conducted. Unfortunately, the approach of bringing the analysis to the data rather than the data to the analyst means that it is not possible to undertake thorough evaluations of data quality – e.g [61] – in a domain with significant data-quality challenges [62]. Thus, all findings are interpreted under the untested assumption that the underlying data is complete, correct and current. Furthermore, our difficulty in fully stratifying patients by method of admission was in part due to the limited data fields that OpenSAFELY provide. Discussions with hospital data teams revealed that variables more suitable for stratification of admission method are used within hospitals but are not available in the Secondary Uses Services dataset that OpenSAFELY uses to query hospital admission.
 
 ## Recommendations for surgery scheduling
 Assuming that the OpenSAFELY cohorts are representative of the COVIDSurg cohorts, our findings shown in Table xtable1Outcomesx and Table xeraComparisonx suggest that the >7 week delay to surgery is no longer warranted because mortality rates are low even at 0-2 weeks, for the patients studied. We assume that patients who underwent surgery within two weeks of an indication of SARS-CoV-2 infection were more urgent because their condition was more severe (In other words, we assume that the urgency of a patient’s surgery confounds the relationship between the SARS-CoV-2–surgery interval and mortality). We might therefore expect mortality rates for the short-interval groups to be higher than the longer-interval both because of the relatively-poor health of these patients and of the burden of SARS-CoV-2 infection. But this compound risk appears to be clinically insignificant in the patient cohorts we have studied, given how comparable the mortality rates are in the short-interval and longer-interval groups.

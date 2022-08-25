@@ -164,12 +164,15 @@ table1Outcomes_PWV[which(table1Outcomes_PWV$variable ==
 # No redactions needed.
 
 # TableEra
+TableEra[2,       c("d_infection_3to4wk", "pct_infection_3to4wk",
+                     "d_infection_5to6wk", "pct_infection_5to6wk")] <- NA
 TableEra[c(3,5:7), c("d_infection_0to2wk", "pct_infection_0to2wk",
                      "d_infection_3to4wk", "pct_infection_3to4wk",
                      "d_infection_5to6wk", "pct_infection_5to6wk",
                      "d_infection_7wk", "pct_infection_7wk")] <- NA
 TableEra[10,       c("d_infection_0to2wk", "pct_infection_0to2wk",
-                     "d_infection_3to4wk", "pct_infection_3to4wk")] <- NA
+                     "d_infection_3to4wk", "pct_infection_3to4wk",
+                     "d_infection_5to6wk", "pct_infection_5to6wk")] <- NA
 # tableCounts
 table_counts[c(14:15),  c("n_infection_0to2wk", "n_infection_3to4wk",
                           "n_infection_5to6wk", "n_infection_7wk")] <- NA
@@ -183,25 +186,25 @@ table_counts[c(14:15),  c("n_infection_0to2wk", "n_infection_3to4wk",
 write.csv(
   x = table1Outcomes_PP,
   file = here::here("output",
-                    "table1Outcomes_PP.csv")
+                    paste0("table1Outcomes_PP","_",sensitivity_cohort,".csv"))
 )
 # Pandemic no vaccine.
 write.csv(
   x = table1Outcomes_PNV,
   file = here::here("output",
-                    "table1Outcomes_PNV.csv")
+                    paste0("table1Outcomes_PNV","_",sensitivity_cohort,".csv"))
 )
 # COVIDSurg data collection period.
 write.csv(
   x = table1Outcomes_CSP,
   file = here::here("output",
-                    "table1Outcomes_CSP.csv")
+                    paste0("table1Outcomes_CSP","_",sensitivity_cohort,".csv"))
 )
 # Pandemic with vaccine.
 write.csv(
   x = table1Outcomes_PWV,
   file = here::here("output",
-                    "table1Outcomes_PWV.csv")
+                    paste0("table1Outcomes_PWV","_",sensitivity_cohort,".csv"))
 )
 # TableEra
 write.csv(
