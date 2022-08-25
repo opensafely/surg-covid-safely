@@ -40,7 +40,7 @@ __Short title__: Post-operative mortality and SARS-CoV2 infection
 
  
 # Abstract
-Patients with surgical problems must balance the risks of undergoing surgery against the risks of non-surgical alternatives. The decision to undergo surgery is complicated by the presence of comorbidity, current or recent illness including SARS-CoV2 infection, and whether their surgical problem is time-sensitive or not. Initial guidance in the UK suggested delaying all non-urgent elective operations for three months following an indication of SARS-CoV-2 infection. With the approval of NHS England, we conducted a service evaluation describing 1) the percentage of cancer-related surgeries conducted <7 weeks from a positive polymerase chain reaction assays, in a cohort of patients from the UK’s Pillar 1 and Pillar 2 testing routes, and 2) cancer-related surgery patients’ post-operative outcomes before and during the COVID-19 pandemic. Our service evaluation suggests that NHS England followed the principle of the initial guidance from March 2020 by operating on very few Pillar 1 and Pillar 2 cancer patients within seven weeks of a positive indication of infection from SARS-CoV-2 from polymerase chain reaction assays. We also found that patient outcomes were better for NHS England compared to the COVIDSurg Collaborative global averages. This leads us to cautiously recommend that NHS England should reduce the 7-week threshold while monitoring outcomes.
+Patients with surgical problems must balance the risks of undergoing surgery against the risks of non-surgical alternatives. The decision to undergo surgery is complicated by the presence of comorbidity, current or recent illness including SARS-CoV2 infection, and whether their surgical problem is time-sensitive or not. Initial guidance in the UK suggested delaying all non-urgent elective operations for three months following an indication of SARS-CoV-2 infection. With the approval of NHS England, we conducted a service evaluation describing 1) the percentage of cancer-related surgeries conducted <43 days from a positive polymerase chain reaction assays, in a cohort of patients from the UK’s Pillar 1 and Pillar 2 testing routes, and 2) cancer-related surgery patients’ post-operative outcomes before and during the COVID-19 pandemic. Our service evaluation suggests that NHS England followed the principle of the initial guidance from March 2020 by operating on very few Pillar 1 and Pillar 2 cancer patients within seven weeks of a positive indication of infection from SARS-CoV-2 from polymerase chain reaction assays. We also found that patient outcomes were better for NHS England compared to the COVIDSurg Collaborative global averages. This leads us to cautiously recommend that NHS England should reduce the 7-week threshold while monitoring outcomes.
  
 # Introduction
 Patients with surgical problems must balance the risks of undergoing surgery against the risks of non-surgical alternatives. The decision to undergo surgery is complicated by the presence of comorbidity, current or recent illness including SARS-CoV2 infection, and whether their surgical problem is time-sensitive or not (e.g. cancer) [[1]](#1). In 2020, the COVIDSurg collaborative found that patients with perioperative SARS-CoV-2 infection have greater unadjusted mortality than even the highest-risk subgroups of the UK’s National Emergency Laparotomy Audit [2]. Perioperative indication of SARS-CoV-2 infection was associated with additional mortality risk for up to 7 weeks in patients who recover fully [2], but the increased risk persisted beyond 7 weeks in those still experiencing symptoms. A similar pattern was observed for the occurrence of post-operative pulmonary complications [2]. Subsequent guidance in the United Kingdom thus constrained the scheduling of deferrable surgery [3]. Scheduling considerations were part of a wide disruption of surgical services that has increased waiting lists in England alone by over 2 million patients since 2020 [4], contributed to avoidable mortality in cancer patients [5] and affected patients mentally and financially [6].<br />
@@ -106,9 +106,9 @@ Additionally, we described the following outcomes:
 The exact list of SNOMED-CT clinical codes used to identify post-operative cardiac and cerebrovascular complications are publically available at https://opencodelists.org.
 
 ## Exposure
-We were not able to measure delays in surgery directly because originally-planned dates of surgery were not available in the OpenSAFELY dataset. As a proxy, we used the intervals defined in the COVIDSurg study [20], which were intended to measure the delay phenomenon. Our exposure of interest was the interval between a patient’s most-recent indication of SARS-CoV-2 and their subsequent cancer-related surgery. Intervals were calculated in units of weeks and modelled as a categorical variable, i.e. {no pre-operative indication of SARS-CoV-2 infection, 0-2 weeks, 3-4 weeks, 5-6 weeks, ≥ 7 weeks}. Patients were categorised as no pre-operative indication of SARS-CoV-2 infection if the most-recent PCR assay before their surgery returned a negative result.
+We were not able to measure delays in surgery directly because originally-planned dates of surgery were not available in the OpenSAFELY dataset. As a proxy, we used the intervals defined in the COVIDSurg study [21], which were intended to measure the delay phenomenon. Our exposure of interest was the interval between a patient’s most-recent indication of SARS-CoV-2 and their subsequent cancer-related surgery. While COVIDSurg calculated intervals in weeks, we calculated intervals in units of days and modelled as a categorical variable, i.e. {no pre-operative indication of SARS-CoV-2 infection, ≤14 days, 15-28 days, 29-42 days, ≥43 days}. Patients were categorised as no pre-operative indication of SARS-CoV-2 infection if the most-recent PCR assay before their surgery returned a negative result.
 
-Importantly, OpenSAFELY indicates SARS-CoV-2 infection with results from polymerase chain reaction (PCR), nasal swab assays for genetic material, from the UK’s Pillar 1 and Pillar 2 testing routes. Pillar 1 and Pillar 2 refer to tests for those with a clinical need, and health and care worker (Pillar 1), and for critical key workers in the NHS, social care and other sectors (Pillar 2) [32]. Indications of SARS-CoV-2 infection that are not included are serology testing (Pillar 3), and serology and swab testing for national surveillance (Pillar 4). Therefore, our evaluations indication of SARS-CoV-2 infection does not consider antigens nor antibodies associated with a SARS-CoV-2 infection, nor does it include lay individuals not part of Pillar 1 or Pillar 2 testing.
+Importantly, OpenSAFELY indicates SARS-CoV-2 infection with results from polymerase chain reaction (PCR), nasal swab assays for genetic material, from the UK’s Pillar 1 and Pillar 2 testing routes. Pillar 1 and Pillar 2 refer to tests for those with a clinical need, and health and care worker (Pillar 1), and for critical key workers in the NHS, social care and other sectors (Pillar 2) [32]. Indications of SARS-CoV-2 infection that are not included are serology testing (Pillar 3), and serology and swab testing for national surveillance (Pillar 4). Therefore, our evaluations indication of SARS-CoV-2 infection does not consider antigens nor antibodies associated with a SARS-CoV-2 infection, nor does it include lay individuals not part of Pillar 1 or Pillar 2 testing. We did not expect any selection bias to be associated with the selective testing because all surgery patients fell under the Pillar 1 remit, i.e. they had a clinical need.
 
 ## Covariates for stratification
 The covariates across which we stratified patients were:
@@ -127,7 +127,7 @@ We do not present OpenSAFELY data for stratifications by age group because of th
 
 
 # Results
-Figure X7wkX shows 3-monthly percentages of surgeries conducted <7 weeks from a positive PCR assay, from the UK’s Pillar 1 and Pillar 2 testing routes. In any 3-month window, less than 3% of surgeries were conducted within the 7 week threshold suggested by the COVIDSurg studies. This was true for the patients without a cancer diagnosis and for patients with a cancer diagnosis either ±3 or ±6 months from their surgery date.
+Figure X7wkX shows 3-monthly percentages of surgeries conducted <7 weeks (<43 days) from a positive PCR assay, from the UK’s Pillar 1 and Pillar 2 testing routes. In any 3-month window, less than 3% of surgeries were conducted within the 7-week (43-day) threshold suggested by the COVIDSurg studies. This was true for the patients without a cancer diagnosis and for patients with a cancer diagnosis either ±3 or ±6 months from their surgery date.
 
 <table>
     <tr>
@@ -139,11 +139,11 @@ Figure X7wkX shows 3-monthly percentages of surgeries conducted <7 weeks from a 
       <td><img src="./figures/noCancer__3monthly_summary_proportion_surgeries_within_7wks_after_pos_test.png" alt = "no cancer 3-month image"></td>
     </tr>
     <tr>
-	    <td colspan=2><b>Figure X7wkX</b> Percentage of surgeries conducted <7 weeks from a positive PCR assay (see caveats in section Exposure subsection of the Methods in the main text). Vertical black lines indicate events of note in the timeline. <i>A</i> shows data for patients with a cancer diagnosis within ±3 months of their surgery date; <i>B</i> shows data for patients without a cancer diagnosis since 17th March 2018.</td>
+	    <td colspan=2><b>Figure X7wkX</b> Percentage of surgeries conducted <7 weeks (<43 days) from a positive PCR assay (see caveats in section Exposure subsection of the Methods in the main text). Vertical black lines indicate events of note in the timeline. <i>A</i> shows data for patients with a cancer diagnosis within ±3 months of their surgery date; <i>B</i> shows data for patients without a cancer diagnosis since 17th March 2018.</td>
     </tr>
 </table>
 
-Figure XAdmMethodX shows 3-monthly percentages of surgeries conducted <7 weeks from a positive PCR assay, from the UK’s Pillar 1 and Pillar 2 testing routes, but stratified by patients’ admission method, i.e. elective or emergency. The cohort used for this plot are all surgery patients irrespective of cancer diagnosis. There were more emergency admissions than elective admissions throughout the period observed but always <X%. 
+Figure XAdmMethodX shows 3-monthly percentages of surgeries conducted <7 weeks (<43 days) from a positive PCR assay, from the UK’s Pillar 1 and Pillar 2 testing routes, but stratified by patients’ admission method, i.e. elective or emergency. The cohort used for this plot are all surgery patients irrespective of cancer diagnosis. There were more emergency admissions than elective admissions throughout the period observed but always <X%. 
 
 
 <table>
@@ -151,7 +151,7 @@ Figure XAdmMethodX shows 3-monthly percentages of surgeries conducted <7 weeks f
       <td><img src="./figures/noCancer__stratified_3monthly_summary_proportion_surgeries_within_7wks_after_pos_test.png" alt = "all surgery patients, stratified by admission method"></td>
     </tr>
     <tr>
-	    <td colspan=2><b>Figure XAdmMethodX</b> Percentage of surgeries conducted <7 weeks from a positive PCR assay (see caveats in section Exposure subsection of the Methods in the main text). Vertical black lines indicate events of note in the timeline. The cohort is patients who underwent surgery during elective admission (light grey) or emergency admission (dark grey).</td>
+	    <td colspan=2><b>Figure XAdmMethodX</b> Percentage of surgeries conducted <7 weeks (<43 days) from a positive PCR assay (see caveats in section Exposure subsection of the Methods in the main text). Vertical black lines indicate events of note in the timeline. The cohort is patients who underwent surgery during elective admission (light grey) or emergency admission (dark grey).</td>
     </tr>
 </table>
 
@@ -173,10 +173,10 @@ Table Xtable1DemogsX presents clinical demographics of the patient cohort during
 	<tr>
 		<td colspan=2></td>
 		<td colspan=2></td>
-		<td colspan=2 style="text-align: center">0-2 weeks</td>
-		<td colspan=2 style="text-align: center">3-4 weeks</td>
-		<td colspan=2 style="text-align: center">5-6 weeks</td>
-		<td colspan=2 style="text-align: center">>7 weeks</td>
+		<td colspan=2 style="text-align: center">≤14 days</td>
+		<td colspan=2 style="text-align: center">15-28 days</td>
+		<td colspan=2 style="text-align: center">29-42 days</td>
+		<td colspan=2 style="text-align: center">≥43 days</td>
 	</tr>
 	<tr>
 		<td colspan=2></td>
@@ -322,10 +322,10 @@ Table Xtable1DemogsX presents clinical demographics of the patient cohort during
 	</tr>
 	<tr>
 		<td colspan=4></td>
-		<td colspan=2 style="text-align: center">0-2 weeks</td>
-		<td colspan=2 style="text-align: center">3-4 weeks</td>
-		<td colspan=2 style="text-align: center">5-6 weeks</td>
-		<td colspan=2 style="text-align: center">>7 weeks</td>
+		<td colspan=2 style="text-align: center">≤14 days</td>
+		<td colspan=2 style="text-align: center">15-28 days</td>
+		<td colspan=2 style="text-align: center">29-42 days</td>
+		<td colspan=2 style="text-align: center">≥43 days</td>
 	</tr>
 	<tr>
 		<td colspan=2></td>
@@ -442,10 +442,10 @@ Finally, for comparison with the COVIDSurg studies, Table XtableEraX shows 30-da
 	</tr>
 	<tr>
 		<td colspan=6></td>
-		<td colspan=2 style="text-align: center">0-2 weeks</td>
-		<td colspan=2 style="text-align: center">3-4 weeks</td>
-		<td colspan=2 style="text-align: center">5-6 weeks</td>
-		<td colspan=2 style="text-align: center">>7 weeks</td>
+		<td colspan=2 style="text-align: center">≤14 days</td>
+		<td colspan=2 style="text-align: center">15-28 days</td>
+		<td colspan=2 style="text-align: center">29-42 days</td>
+		<td colspan=2 style="text-align: center">≥43 days</td>
 	</tr>
 	<tr>
 		<td colspan=2></td>
@@ -553,11 +553,9 @@ Finally, for comparison with the COVIDSurg studies, Table XtableEraX shows 30-da
 
 
 # Discussion 
-The aim of this study was to evaluate the service provided by NHS England during the COVID19 pandemic with a focus on the extent to which guidance to delay surgeries was adhered to. To this end, we described 1) the percentage of cancer-related surgeries conducted <7 weeks from a positive PCR assay, in a cohort of patients from the UK’s Pillar 1 and Pillar 2 testing routes, and 2) cancer-related surgery patients’ post-operative outcomes before and during the COVID-19 pandemic.
+The aim of this study was to evaluate the service provided by NHS England during the COVID19 pandemic with a focus on the extent to which guidance to delay surgeries was adhered to. To this end, we described 1) the percentage of cancer-related surgeries conducted <7 weeks (<43 days) from a positive PCR assay, in a cohort of patients from the UK’s Pillar 1 and Pillar 2 testing routes, and 2) cancer-related surgery patients’ post-operative outcomes before and during the COVID-19 pandemic.
 
 Our service evaluation suggests that NHS England followed the principle of the NICE guidance from March 2020 by operating on very few patients within seven weeks of a positive indication of infection from SARS-CoV-2 from PCR nasal swab assays. This is shown in figure X7wkX for both cancer and non-cancer patients, using a 3-month cumulative proportion of operations conducted within seven weeks. The same conclusion is drawn from cumulative proportions over 2-month and 1-month (Supplementary material LINK). Also, using the COVIDSurg Collaborative studies as a benchmark, we conclude that patient outcomes were better for OpenSAFELY patients – i.e. NHS England – compared to the COVIDSurg Collaborative global average. This is shown in smaller proportions of patients that experienced undesirable outcomes in the OpenSAFELY data (table Xtable1OutcomesX) and in the comparison of 30-day mortality across all cohorts in all era studied (table XtableEraX). The same conclusion is drawn whether or not the cohorts are defined by having or not having a cancer diagnosis within either ±3 or ±6 months of their surgery.
-
-Crucially, it is imperative for subsequent inferences to consider the selection bias induced in our cohorts, i.e. the SARS-CoV-2 testing data only concerned the UK’s Pillar 1 and Pillar 2 testing routes. As a reminder, Pillar 1 and Pillar 2 refer to results from polymerase chain reaction, nasal swab assays for genetic material, for people with a clinical need, and health and care worker (Pillar 1), and for critical key workers in the NHS, social care and other sectors (Pillar  2) [32]. As such, our cohorts differ from the general population studied in the COVIDSurg Collaborative studies. Thus, the differences in outcomes between our cohorts and those of the COVIDSurg could be due to a selection bias rather than, for example, a change in the severity of a SARS-CoV-2 infection, surgical practices, or methods of recording outcomes.
 
 ## Comparison with COVIDSurg studies
 Readers might note how similar our cohorts’ demographics shown in Xtable1DemogsX are to those of COVIDSurg Collaborative’s 2021 publication [20] (except that our pandemic-no-vaccine cohort were less likely to undergo surgery under emergency admission). However, we cannot assume our cohort are sampled from a similar population to that of the COVIDSurg Collaborative studies, despite the apparent similarity in demographics. This is because the similarity of cohort demographics (statistically significant or otherwise) does not indicate the exchangeability necessary to assume equivalence of cohorts; rather, it is the expectation of the unknowable distribution of groups’ outcomes prior to the exposure that needs to be equivalent [38]. The demographics act as proxies for the distribution of outcome values but neither we nor COVIDSurg Collaborative justified the demographic variables for this role.
