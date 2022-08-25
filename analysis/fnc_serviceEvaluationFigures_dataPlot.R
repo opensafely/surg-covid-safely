@@ -92,9 +92,10 @@ fnc_serviceEvaluationFigures_dataPlot <-
            paste0(fileprefix1,fileprefix2,fileprefix3,"_",
                   "weekly_summary_proportion_surgeries_within_7wks_after_pos_test.png"),
          plot = p,
-         device = "png",
+         device = "tiff",
          path = here::here("output"),
-         width = 3.5, height = 3.25, units = "in")
+         width = 3.5, height = 3.25, units = "in",
+         dpi = 600)
   #----
   
   # Plot showing monthly summary of the proportion of surgeries conducted less
@@ -169,9 +170,10 @@ fnc_serviceEvaluationFigures_dataPlot <-
            paste0(fileprefix1,fileprefix2,fileprefix3,"_",
                   "1monthly_summary_proportion_surgeries_within_7wks_after_pos_test.png"),
          plot = p,
-         device = "png",
+         device = "tiff",
          path = here::here("output"),
-         width = 3.5, height = 3.25, units = "in")
+         width = 3.5, height = 3.25, units = "in",
+         dpi = 600)
   # ----
   
   # Plot showing 2-monthly summary of the proportion of surgeries conducted less
@@ -246,9 +248,10 @@ fnc_serviceEvaluationFigures_dataPlot <-
            paste0(fileprefix1,fileprefix2,fileprefix3,"_",
                   "2monthly_summary_proportion_surgeries_within_7wks_after_pos_test.png"),
          plot = p,
-         device = "png",
+         device = "tiff",
          path = here::here("output"),
-         width = 3.5, height = 3.25, units = "in")
+         width = 3.5, height = 3.25, units = "in",
+         dpi = 600)
   # ----
   
   # Plot showing 3-monthly summary of the proportion of surgeries conducted less
@@ -322,8 +325,9 @@ fnc_serviceEvaluationFigures_dataPlot <-
            paste0(fileprefix1,fileprefix2,fileprefix3,"_",
                   "3monthly_summary_proportion_surgeries_within_7wks_after_pos_test.png"),
          plot = p,
-         device = "png",
+         device = "tiff",
          path = here::here("output"),
-         width = 3.5, height = 3.25, units = "in")
+         width = 3.5, height = 3.25, units = "in",
+         dpi = 600)
   # ----
 }
