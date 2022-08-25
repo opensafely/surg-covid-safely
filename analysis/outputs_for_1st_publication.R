@@ -154,28 +154,28 @@ TableEra <-
 #                        "n_infection_none", "pct_infection_none",
 #                       "n_infection_7wk", "pct_infection_7wk")] <- NA
 # ## Pandemic with vaccine.
-table1Outcomes_PWV[which(table1Outcomes_PWV$variable ==
-                           "30-day post-operative cerebrovascular complication"),
-                   c("n_infection_0to2wk", "pct_infection_0to2wk",
-                     "n_infection_3to4wk", "pct_infection_3to4wk")] <- NA
-
-
-# table1Demogs
-# No redactions needed.
-
-# TableEra
-TableEra[2,       c("d_infection_3to4wk", "pct_infection_3to4wk",
-                     "d_infection_5to6wk", "pct_infection_5to6wk")] <- NA
-TableEra[c(3,5:7), c("d_infection_0to2wk", "pct_infection_0to2wk",
-                     "d_infection_3to4wk", "pct_infection_3to4wk",
-                     "d_infection_5to6wk", "pct_infection_5to6wk",
-                     "d_infection_7wk", "pct_infection_7wk")] <- NA
-TableEra[10,       c("d_infection_0to2wk", "pct_infection_0to2wk",
-                     "d_infection_3to4wk", "pct_infection_3to4wk",
-                     "d_infection_5to6wk", "pct_infection_5to6wk")] <- NA
-# tableCounts
-table_counts[c(14:15),  c("n_infection_0to2wk", "n_infection_3to4wk",
-                          "n_infection_5to6wk", "n_infection_7wk")] <- NA
+# table1Outcomes_PWV[which(table1Outcomes_PWV$variable ==
+#                            "30-day post-operative cerebrovascular complication"),
+#                    c("n_infection_0to2wk", "pct_infection_0to2wk",
+#                      "n_infection_3to4wk", "pct_infection_3to4wk")] <- NA
+# 
+# 
+# # table1Demogs
+# # No redactions needed.
+# 
+# # TableEra
+# TableEra[2,       c("d_infection_3to4wk", "pct_infection_3to4wk",
+#                      "d_infection_5to6wk", "pct_infection_5to6wk")] <- NA
+# TableEra[c(3,5:7), c("d_infection_0to2wk", "pct_infection_0to2wk",
+#                      "d_infection_3to4wk", "pct_infection_3to4wk",
+#                      "d_infection_5to6wk", "pct_infection_5to6wk",
+#                      "d_infection_7wk", "pct_infection_7wk")] <- NA
+# TableEra[10,       c("d_infection_0to2wk", "pct_infection_0to2wk",
+#                      "d_infection_3to4wk", "pct_infection_3to4wk",
+#                      "d_infection_5to6wk", "pct_infection_5to6wk")] <- NA
+# # tableCounts
+# table_counts[c(14:15),  c("n_infection_0to2wk", "n_infection_3to4wk",
+#                           "n_infection_5to6wk", "n_infection_7wk")] <- NA
 # ----
 
 ##########################
