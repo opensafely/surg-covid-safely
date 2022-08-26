@@ -215,4 +215,10 @@ write.csv(
   file = here::here("output", "TableEra.csv"),
   row.names = T
 )
+# tableCounts
+write.csv(
+  x = table_counts,
+  file = here::here("output",
+                    "table_Count_of_patients_in_each_cohort_in_each_era_across_all_intervals.csv")
+)
 # ----
