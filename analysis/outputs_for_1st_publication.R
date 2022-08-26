@@ -134,7 +134,7 @@ TableEra <-
 ########################################################
 # ----
 # table1Outcomes
-# # ## Pandemic no vaccine.
+## Pandemic no vaccine.
 # table1Outcomes_PNV[which(table1Outcomes_PNV$variable ==
 #                            "30-day post-operative cardiac complication"),
 #                    c("n_infection_3to4wk", "pct_infection_3to4wk",
@@ -147,35 +147,38 @@ TableEra <-
 #                            "30-day post-operative cerebrovascular complication"),
 #                    c("n_infection_0to2wk", "pct_infection_0to2wk",
 #                      "n_infection_5to6wk", "pct_infection_5to6wk")] <- NA
-# # ## COVIDSurg data collection period.
+# ## COVIDSurg data collection period.
 # table1Outcomes_CSP[, !colnames(table1Outcomes_CSP) %in%
 #                      c("variable", "strata",
 #                        "n_all_intervals", "pct_all_intervals",
 #                        "n_infection_none", "pct_infection_none",
 #                       "n_infection_7wk", "pct_infection_7wk")] <- NA
-# ## Pandemic with vaccine.
-# table1Outcomes_PWV[which(table1Outcomes_PWV$variable ==
-#                            "30-day post-operative cerebrovascular complication"),
-#                    c("n_infection_0to2wk", "pct_infection_0to2wk",
-#                      "n_infection_3to4wk", "pct_infection_3to4wk")] <- NA
-# 
-# 
-# # table1Demogs
-# # No redactions needed.
-# 
-# # TableEra
-# TableEra[2,       c("d_infection_3to4wk", "pct_infection_3to4wk",
-#                      "d_infection_5to6wk", "pct_infection_5to6wk")] <- NA
-# TableEra[c(3,5:7), c("d_infection_0to2wk", "pct_infection_0to2wk",
-#                      "d_infection_3to4wk", "pct_infection_3to4wk",
-#                      "d_infection_5to6wk", "pct_infection_5to6wk",
-#                      "d_infection_7wk", "pct_infection_7wk")] <- NA
-# TableEra[10,       c("d_infection_0to2wk", "pct_infection_0to2wk",
-#                      "d_infection_3to4wk", "pct_infection_3to4wk",
-#                      "d_infection_5to6wk", "pct_infection_5to6wk")] <- NA
-# # tableCounts
-# table_counts[c(14:15),  c("n_infection_0to2wk", "n_infection_3to4wk",
-#                           "n_infection_5to6wk", "n_infection_7wk")] <- NA
+## Pandemic with vaccine.
+table1Outcomes_PWV[which(table1Outcomes_PWV$variable ==
+                           "30-day post-operative cerebrovascular complication"),
+                   c("n_infection_0to2wk", "pct_infection_0to2wk",
+                     "n_infection_3to4wk", "pct_infection_3to4wk")] <- NA
+
+
+# table1Demogs
+# No redactions needed.
+
+# TableEra
+TableEra[2,        c("d_infection_3to4wk", "pct_infection_3to4wk",
+                     "d_infection_5to6wk", "pct_infection_5to6wk")] <- NA
+TableEra[c(3,5),   c("d_infection_0to2wk", "pct_infection_0to2wk",
+                     "d_infection_3to4wk", "pct_infection_3to4wk",
+                     "d_infection_5to6wk", "pct_infection_5to6wk",
+                     "d_infection_7wk", "pct_infection_7wk")] <- NA
+TableEra[c(6,7),   c("d_infection_5to6wk", "pct_infection_5to6wk",
+                     "d_infection_7wk", "pct_infection_7wk")] <- NA
+TableEra[10,       c("d_infection_0to2wk", "pct_infection_0to2wk",
+                     "d_infection_3to4wk", "pct_infection_3to4wk",
+                     "d_infection_5to6wk", "pct_infection_5to6wk")] <- NA
+# tableCounts
+table_counts[c(14:15),  c("n_infection_0to2wk", "n_infection_3to4wk",
+                          "n_infection_5to6wk")] <- NA
+table_counts[14,        c("d_infection_7wk")] <- NA
 # ----
 
 ##########################
