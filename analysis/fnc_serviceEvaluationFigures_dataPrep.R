@@ -2,7 +2,8 @@
 #
 # This script defines a function that prepares the submitted dataset for
 # plotting. The function is called in the script entitled
-# "serviceEvaluationFigures.R".
+# "serviceEvaluationFigures.R". The proportions being plotted are calculated
+# using counts rounded to the nearest five.
 #
 
 fnc_serviceEvaluationFigures_dataPrep <- function(data, start, end)
@@ -27,9 +28,10 @@ fnc_serviceEvaluationFigures_dataPrep <- function(data, start, end)
     data %>%
     group_by(Year_surgery, Month_surgery, Week_surgery) %>%
     summarise(
-      weekly_n = n(),
+      weekly_n = n() %>% replace(., (. <= 7 & . > 0), NA) %>% `/`(5) %>% round()*5,
       weekly_n_within_7wk = sum(preOperative_infection_status %in%
-                                  relevant_preOperative_infection_status),
+                                  relevant_preOperative_infection_status) %>%
+        replace(., (. <= 7 & . > 0), NA) %>% `/`(5) %>% round()*5,
       weekly_prop_within_7wk = weekly_n_within_7wk / weekly_n
     )
   
@@ -37,20 +39,22 @@ fnc_serviceEvaluationFigures_dataPrep <- function(data, start, end)
   weekly_windowed_proportion_within_7wkPreOpInfection <-
     backbone %>% dplyr::left_join(weekly_windowed_proportion_within_7wkPreOpInfection,
                                   by = c("Year_surgery", "Month_surgery",
-                                         "Week_surgery")) %>%
-    tidyr::replace_na(list("weekly_prop_within_7wk" = 0, "weekly_n_within_7wk" = 0,
-                           "weekly_n" = 0))
+                                         "Week_surgery")) #%>%
+    # tidyr::replace_na(list("weekly_prop_within_7wk" = 0, "weekly_n_within_7wk" = 0,
+    #                        "weekly_n" = 0))
   
   # Group weekly count by month.
   monthly_windowed_proportion_within_7wkPreOpInfection <-
     weekly_windowed_proportion_within_7wkPreOpInfection %>%
     group_by(Year_surgery, Month_surgery) %>%
     summarise(
-      monthly_n = sum(weekly_n),
-      monthly_within_7wk = sum(weekly_n_within_7wk),
+      monthly_n = sum(weekly_n) %>%
+        replace(., (. <= 7 & . > 0), NA),
+      monthly_within_7wk = sum(weekly_n_within_7wk) %>%
+        replace(., (. <= 7 & . > 0), NA),
       monthly_prop_within_7wk = monthly_within_7wk / monthly_n
-    ) %>% 
-    tidyr::replace_na(list("monthly_prop_within_7wk" = 0))
+    ) #%>% 
+    #tidyr::replace_na(list("monthly_prop_within_7wk" = 0))
   
   # Monthly, 2-monthly and 3-monthly counts of 30-day post-operative mortality.
   monthly_windowed_proportion_within_7wkPreOpInfection <-

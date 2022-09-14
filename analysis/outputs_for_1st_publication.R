@@ -181,6 +181,18 @@ table_counts[c(14:15),  c("n_infection_0to2wk", "n_infection_3to4wk",
 table_counts[14,        c("d_infection_7wk")] <- NA
 # ----
 
+######################################
+## Round all values to nearest five ##
+######################################
+# ----
+table1Outcomes_PP <- round(table1Outcomes_PP/5)*5
+table1Outcomes_PNV <- round(table1Outcomes_PNV/5)*5
+table1Outcomes_CSP <- round(table1Outcomes_CSP/5)*5
+table1Outcomes_PWV <- round(table1Outcomes_PWV/5)*5
+TableEra <- round(TableEra/5)*5
+table_counts <- round(table_counts/5)*5
+# ----
+
 ##########################
 ## Save tibbles to CSV. ##
 ##########################
