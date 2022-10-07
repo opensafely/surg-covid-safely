@@ -37,10 +37,8 @@ library(lubridate)
 # OpenSAFELY data, cancer patients, within 3 months of surgery.
 plotData_C_within3m <- data_to_use_C_within3m %>%
   select(c(
-    date_surgery,
     category_admission_method,
     preOperative_infection_status,
-    Week_surgery,
     Month_surgery,
     Year_surgery
   ))
@@ -52,10 +50,8 @@ plotData_C_within6m <- myData %>%
                   category_cancer_within_6mths_surgery == 
                   "Cancer diagnosis within 6mths after surgery") %>%
   select(c(
-    date_surgery,
     category_admission_method,
     preOperative_infection_status,
-    Week_surgery,
     Month_surgery,
     Year_surgery
   ))
@@ -63,10 +59,8 @@ plotData_C_within6m <- myData %>%
 # OpenSAFELY data, no-cancer patients.
 plotData_NC <- data_to_use_NC %>%
   select(c(
-    date_surgery,
     category_admission_method,
     preOperative_infection_status,
-    Week_surgery,
     Month_surgery,
     Year_surgery
   ))
@@ -74,10 +68,8 @@ plotData_NC <- data_to_use_NC %>%
 # OpenSAFELY data, all patients (identified by our surgery codelist).
 plotData_AdmMethod <- myData %>%
   select(c(
-    date_surgery,
     category_admission_method,
     preOperative_infection_status,
-    Week_surgery,
     Month_surgery,
     Year_surgery
   ))
@@ -122,7 +114,7 @@ AdmMethod_windowed_proportion_7wkPreOpInfection <-
                                           start = startDate,
                                           end = endDate) %>%
       tibble::add_column(Admission_method = rep("Unknown",nrow(.)), .before = "Year_surgery")
-  ) %>% dplyr::arrange(Year_surgery, Month_surgery, Week_surgery)
+  ) %>% dplyr::arrange(Year_surgery, Month_surgery)
 
 # Save the plot data.
 write.csv(
@@ -155,15 +147,19 @@ write.csv(
 #
 # Load and run the function that does the work.
 source(here::here("analysis","fnc_serviceEvaluationFigures_dataPlot.R"))
-fnc_serviceEvaluationFigures_dataPlot(data = C3m_windowed_proportion_7wkPreOpInfection,
-                            cancer = "with", window = 3, figureCaption = F)
-fnc_serviceEvaluationFigures_dataPlot(data = C6m_windowed_proportion_7wkPreOpInfection,
-                            cancer = "with", window = 6, figureCaption = F)
-fnc_serviceEvaluationFigures_dataPlot(data = NC_windowed_proportion_7wkPreOpInfection,
-                            cancer = "without", window = "", figureCaption = F)
-fnc_serviceEvaluationFigures_dataPlot(data = AdmMethod_windowed_proportion_7wkPreOpInfection,
-                                      cancer = "", window = "", figureCaption = F,
-                                      strata = "Admission_method")
+fnc_serviceEvaluationFigures_dataPlot(
+  data = C3m_windowed_proportion_7wkPreOpInfection,
+  cancer = "with", window = 3, figureCaption = F, y_axis_top = 25)
+fnc_serviceEvaluationFigures_dataPlot(
+  data = C6m_windowed_proportion_7wkPreOpInfection,
+  cancer = "with", window = 6, figureCaption = F, y_axis_top = 25)
+fnc_serviceEvaluationFigures_dataPlot(
+  data = NC_windowed_proportion_7wkPreOpInfection,
+  cancer = "without", window = "", figureCaption = F, y_axis_top = 25)
+fnc_serviceEvaluationFigures_dataPlot(
+  data = AdmMethod_windowed_proportion_7wkPreOpInfection,
+  cancer = "", window = "", figureCaption = F, y_axis_top = 25,
+  strata = "Admission_method")
 
 # ----
 

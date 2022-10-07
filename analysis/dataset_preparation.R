@@ -1,10 +1,11 @@
 ## If running on OpenSAFELY.
+library("plyr")
 library('tidyverse')
 library('lubridate')
 library("kableExtra")
 library("here")
 ## If ever running locally.
-# list_of_packages <- c("tidyverse", "lubridate", kableExtra","here")
+# list_of_packages <- c("tidyverse", "lubridate", "kableExtra","here")
 # new_packages <- list_of_packages[!(list_of_packages %in% installed.packages()[,"Package"])]
 # if(length(new_packages)) install.packages(new_packages)
 # for (i in 1:length(list_of_packages))
@@ -97,10 +98,12 @@ myData <- myData %>%
   dplyr::mutate(
     category_cancer_within_3mths_surgery = dplyr::case_when(
       .$has_cancer == FALSE ~ "No cancer diagnosis recorded",
+      is.na(.$date_cancer) ~ "No cancer diagnosis date recorded, despite having cancer diagnosis",
       .$has_surgery == FALSE ~ "No surgery recorded",
+      is.na(.$date_surgery) ~ "No surgery date recorded, despite having surgery code",
       (.$date_surgery - .$date_cancer > 0) & (.$date_surgery - .$date_cancer < 90) ~ "Cancer diagnosis within 3mths before surgery",
       (.$date_cancer - .$date_surgery > 0) & (.$date_cancer - .$date_surgery < 90) ~ "Cancer diagnosis within 3mths after surgery",
-      abs(.$date_cancer - .$date_surgery) > 90 ~ "No cancer diagnosis within 3mths before or after surgery"
+      abs(.$date_cancer - .$date_surgery) > 90 ~ "Cancer diagnosis outwith 3mths before or after surgery"
     )
   ) %>%
   ## Identifying patients with a cancer diagnosis within 6 months
@@ -108,10 +111,12 @@ myData <- myData %>%
   dplyr::mutate(
     category_cancer_within_6mths_surgery = dplyr::case_when(
       .$has_cancer == FALSE ~ "No cancer diagnosis recorded",
+      is.na(.$date_cancer) ~ "No cancer diagnosis date recorded, despite having cancer diagnosis",
       .$has_surgery == FALSE ~ "No surgery recorded",
+      is.na(.$date_surgery) ~ "No surgery date recorded, despite having surgery code",
       (.$date_surgery - .$date_cancer > 0) & (.$date_surgery - .$date_cancer < 180) ~ "Cancer diagnosis within 6mths before surgery",
       (.$date_cancer - .$date_surgery > 0) & (.$date_cancer - .$date_surgery < 180) ~ "Cancer diagnosis within 6mths after surgery",
-      abs(.$date_cancer - .$date_surgery) > 180 ~ "No cancer diagnosis within 6mths before or after surgery"
+      abs(.$date_cancer - .$date_surgery) > 180 ~ "Cancer diagnosis outwith 6mths before or after surgery"
     )
   ) %>%
   ## Distinction pre and post vaccines in the UK

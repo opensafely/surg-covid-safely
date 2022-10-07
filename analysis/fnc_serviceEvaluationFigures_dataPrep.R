@@ -2,104 +2,66 @@
 #
 # This script defines a function that prepares the submitted dataset for
 # plotting. The function is called in the script entitled
-# "serviceEvaluationFigures.R".
+# "serviceEvaluationFigures.R". The proportions being plotted are calculated
+# using counts redacted if <=7 and then rounded to the nearest 5. This
+# obfuscation process was required by OpenSAFELY.
 #
 
 fnc_serviceEvaluationFigures_dataPrep <- function(data, start, end)
 {
+  # Requisites.
+  relevant_preOperative_infection_status <-
+  c("0-2 weeks record of pre-operative SARS-CoV-2 infection",
+    "3-4 weeks record of pre-operative SARS-CoV-2 infection",
+    "5-6 weeks record of pre-operative SARS-CoV-2 infection")
+  
   # Make timeline backbone. 
   backbone <- 
-    seq(lubridate::dmy(start), lubridate::dmy(end), by = 'week') %>%
+    seq(lubridate::dmy(start), lubridate::dmy(end), by = 'month') %>%
     data.frame() %>%
     mutate(Year_surgery = lubridate::year(.),
-           Month_surgery = lubridate::month(., label = T),
-           Week_surgery = lubridate::week(.))
-  colnames(backbone)[1] <- "Date"
+           Month_surgery = lubridate::month(., label = T)
+           ) %>%
+    dplyr::select(-.)
   
-  # Weekly proportion of surgeries conducted more than 7 weeks from a positive
-  # PCR test for SARS-CoV-2.
-  relevant_preOperative_infection_status <-
-    c("0-2 weeks record of pre-operative SARS-CoV-2 infection",
-      "3-4 weeks record of pre-operative SARS-CoV-2 infection",
-      "5-6 weeks record of pre-operative SARS-CoV-2 infection")
-  
-  weekly_windowed_proportion_within_7wkPreOpInfection <-
+  # Get monthly counts for the range of interest.
+  monthly_windowed_proportion_within_7wkPreOpInfection <-
     data %>%
-    group_by(Year_surgery, Month_surgery, Week_surgery) %>%
-    summarise(
-      weekly_n = n(),
-      weekly_n_within_7wk = sum(preOperative_infection_status %in%
-                                  relevant_preOperative_infection_status),
-      weekly_prop_within_7wk = weekly_n_within_7wk / weekly_n
-    )
-  
-  # Join to a left backbone of all weeks.
-  weekly_windowed_proportion_within_7wkPreOpInfection <-
-    backbone %>% dplyr::left_join(weekly_windowed_proportion_within_7wkPreOpInfection,
-                                  by = c("Year_surgery", "Month_surgery",
-                                         "Week_surgery")) %>%
-    tidyr::replace_na(list("weekly_prop_within_7wk" = 0, "weekly_n_within_7wk" = 0,
-                           "weekly_n" = 0))
-  
-  # Group weekly count by month.
-  monthly_windowed_proportion_within_7wkPreOpInfection <-
-    weekly_windowed_proportion_within_7wkPreOpInfection %>%
+    dplyr::filter(Year_surgery >= 2020) %>%
     group_by(Year_surgery, Month_surgery) %>%
-    summarise(
-      monthly_n = sum(weekly_n),
-      monthly_within_7wk = sum(weekly_n_within_7wk),
-      monthly_prop_within_7wk = monthly_within_7wk / monthly_n
-    ) %>% 
-    tidyr::replace_na(list("monthly_prop_within_7wk" = 0))
+    dplyr::summarise(
+      monthly_n = n(),
+      monthly_within_7wk = sum(preOperative_infection_status %in%
+                                 relevant_preOperative_infection_status)
+    ) %>%
+    dplyr::right_join(backbone, by = c("Year_surgery", "Month_surgery"))
   
-  # Monthly, 2-monthly and 3-monthly counts of 30-day post-operative mortality.
-  monthly_windowed_proportion_within_7wkPreOpInfection <-
+  # Get rolling 6-monthly proportions of surgeries conducted in less than 7 weeks 
+  # from a positive PCR test for SARS-CoV-2.
+  # The 6-month window runs from the month in question backward by 6 months. For
+  # example, the proportion shown for, say, August 2020 refers to the proportion
+  # of surgeries since March 2020 that were conducted in less than 7 weeks from
+  # a positive PCR test for SARS-CoV-2.
+  windowed_proportion_within_7wkPreOpInfection <-
     monthly_windowed_proportion_within_7wkPreOpInfection %>%
+    dplyr::group_by(Year_surgery, Month_surgery) %>%
     add_column(
-      twoMonthly_n =
-        RcppRoll::roll_sum(.$monthly_n,
-                           2, fill=NA, align="right")
+      sixMonthly_n =
+        RcppRoll::roll_sum(.$monthly_n, 6, fill=NA, align="right", na.rm = TRUE) %>%
+        replace(., (. <= 7 & . > 0), NA) %>% `/`(5) %>% round()*5
     ) %>%
     add_column(
-      twoMonthly_within_7wk =
+      sixMonthly_n_within_7wk = 
         RcppRoll::roll_sum(.$monthly_within_7wk,
-                           2, fill=NA, align="right")
+                           6, fill=NA, align="right", na.rm = TRUE) %>%
+        replace(., (. <= 7 & . > 0), NA) %>% `/`(5) %>% round()*5
     ) %>%
-    mutate(
-        twoMonthly_prop_within_7wk = twoMonthly_within_7wk / twoMonthly_n
+    dplyr::mutate(
+      sixMonthly_prop_within_7wk = (sixMonthly_n_within_7wk / sixMonthly_n)*100
     ) %>%
-    add_column(
-      threeMonthly_n =
-        RcppRoll::roll_sum(.$monthly_n,
-                           3, fill=NA, align="right")
-    ) %>%    
-    add_column(
-      threeMonthly_within_7wk =
-        RcppRoll::roll_sum(.$monthly_within_7wk,
-                           3, fill=NA, align="right")
-    ) %>% 
-    mutate(
-      threeMonthly_prop_within_7wk = threeMonthly_within_7wk / threeMonthly_n
-    )
+    dplyr::select(-c("monthly_n", "monthly_within_7wk"))
   
-  # Join monthly to the weekly dataframe.
-  windowed_proportion_7wkPreOpInfection <-
-    weekly_windowed_proportion_within_7wkPreOpInfection %>%
-    select("Year_surgery", "Month_surgery", "Week_surgery",
-           "weekly_n", "weekly_n_within_7wk", "weekly_prop_within_7wk"
-    ) %>%
-    dplyr::left_join(monthly_windowed_proportion_within_7wkPreOpInfection,
-                      by = c("Year_surgery", "Month_surgery"))
-  
-  # Convert to percentages.
-  proportion_columns <- c("weekly_prop_within_7wk",
-                          "monthly_prop_within_7wk",
-                          "twoMonthly_prop_within_7wk",
-                          "threeMonthly_prop_within_7wk")
-  windowed_proportion_7wkPreOpInfection[,proportion_columns] <- 
-    windowed_proportion_7wkPreOpInfection[,proportion_columns] * 100
-  
-  return(windowed_proportion_7wkPreOpInfection)
+  return(windowed_proportion_within_7wkPreOpInfection)
   # NOTE: 
   # LockeData's webpage was very useful for understanding RcppRoll's function
   # defaults - https://itsalocke.com/blog/understanding-rolling-calculations-in-r/
