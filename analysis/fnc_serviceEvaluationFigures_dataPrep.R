@@ -5,6 +5,7 @@
 # "serviceEvaluationFigures.R". The proportions being plotted are calculated
 # using counts redacted if <=7 and then rounded to the nearest 5. This
 # obfuscation process was required by OpenSAFELY.
+# using counts rounded to the nearest five.
 #
 
 fnc_serviceEvaluationFigures_dataPrep <- function(data, start, end)
