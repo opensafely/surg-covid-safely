@@ -39,7 +39,8 @@ fnc_countsAndPercentages <-
         dplyr::arrange(strata) %>% dplyr::ungroup()
       i_counts_to_use <-
         counts_to_use %>%
-        dplyr::filter(grepl(era_shortname[i], .$rowname)) %>% dplyr::select(-rowname)
+        dplyr::filter(grepl(era_shortname[i], .$rowname)) %>%
+        dplyr::select(-rowname) %>% as.numeric()
       # Get counts per intervals and overall.
       n <- i_table_to_use %>% dplyr::select(-c("era", strata))
       # Get percentages per intervals and overall.
