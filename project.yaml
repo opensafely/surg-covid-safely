@@ -196,10 +196,10 @@ actions:
                     plotData_C6m: output/plotData_C6m.csv
                     plotData_NC: output/plotData_NC.csv
                     plotData_AdmMethod: output/plotData_AdmMethod.csv
-                    figure_NC_3m: output/noCancer__3monthly_summary_proportion_surgeries_within_7wks_after_pos_test.png
-                    figure_C3m_3m: output/cancer_3months__3monthly_summary_proportion_surgeries_within_7wks_after_pos_test.png
-                    figure_C6m_3m: output/cancer_6months__3monthly_summary_proportion_surgeries_within_7wks_after_pos_test.png
-                    figure_AdmMethod_3m: output/__stratified_3monthly_summary_proportion_surgeries_within_7wks_after_pos_test.png
+                    figure_NC_3m: output/noCancer__6monthly_summary_proportion_surgeries_within_7wks_after_pos_test.tiff
+                    figure_C3m_3m: output/cancer_3months__6monthly_summary_proportion_surgeries_within_7wks_after_pos_test.tiff
+                    figure_C6m_3m: output/cancer_6months__6monthly_summary_proportion_surgeries_within_7wks_after_pos_test.tiff
+                    figure_AdmMethod_3m: output/__stratified_6monthly_summary_proportion_surgeries_within_7wks_after_pos_test.tiff
                     
     admission_check:
         run: r:latest analysis/admission_check.R
