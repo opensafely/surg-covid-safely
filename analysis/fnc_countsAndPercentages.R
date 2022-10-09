@@ -46,7 +46,7 @@ fnc_countsAndPercentages <-
       pct <- 
         n %>% mapply('/', ., i_counts_to_use) %>% '*'(100) %>%
         tibble::as_tibble() %>%
-        dplyr::mutate(dplyr::across(, ~ ifelse(is.nan(.),NA,.))) %>%
+        dplyr::mutate(dplyr::across(.cols = everything(), .fns = ~ ifelse(is.nan(.), NA,.))) %>%
         tidyr::replace_na(list("n_all_intervals" = 0, "n_infection_none" = 0,
                                "n_infection_0to2wk" = 0, "n_infection_3to4wk" = 0,
                                "n_infection_5to6wk" = 0, "n_infection_7wk" = 0
