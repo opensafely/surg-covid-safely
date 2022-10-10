@@ -4,7 +4,7 @@ This is the code and configuration for surg-covid-safely.
 
 You can run this project via [Gitpod](https://gitpod.io) in a web browser by clicking on this badge: [![Gitpod ready-to-code](https://img.shields.io/badge/Gitpod-ready--to--code-908a85?logo=gitpod)](https://gitpod.io/#https://github.com/opensafely/surg-covid-safely)
 
-* The paper is [here]()
+* The paper will be [here]() and our GitHub draft is [here](https://github.com/opensafely/surg-covid-safely/blob/master/Publications/service_evaluation.md).
 * Raw model outputs, including charts, crosstabs, etc, are in `released_outputs/`
 * If you are interested in how we defined our variables, take a look at the [study definition](analysis/study_definition.py); this is written in `python`, but non-programmers should be able to understand what is going on there
 * If you are interested in how we defined our code lists, look in the [codelists folder](./codelists/).
