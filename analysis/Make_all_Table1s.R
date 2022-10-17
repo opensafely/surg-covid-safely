@@ -6,7 +6,9 @@ myDataSelect <- myData %>%
                                               "Alive within 30 days post-operation",
                                               "No death recorded"),
                 preOperative_infection_status!=
-                  "Error: Test result after surgery. Check study_definition.")
+                  "Error: Test result after surgery. Check study_definition.",
+                era != "No surgery date recorded",
+                COVIDSurg_data_collection_period != "No surgery date recorded")
 data_to_use_all <- myDataSelect %>% dplyr::filter(has_surgery == TRUE)
 data_to_use_NC <- myDataSelect %>% dplyr::filter(has_surgery == TRUE) %>%
   dplyr::filter(has_cancer == FALSE)

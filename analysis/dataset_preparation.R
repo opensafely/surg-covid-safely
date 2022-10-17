@@ -66,6 +66,7 @@ myData <- myData %>%
   dplyr::mutate(
     era = dplyr::case_when(
       .$has_surgery == FALSE ~ "No surgery recorded",
+      is.na(.$date_surgery) ~ "No surgery date recorded",
       .$date_surgery <= "2020-03-17" ~ "Pre-pandemic",
       .$date_surgery <= lubridate::ymd("2020-12-08") + lubridate::weeks(5) ~
                                        "Pandemic no vaccine",
@@ -78,6 +79,7 @@ myData <- myData %>%
   dplyr::mutate(
     COVIDSurg_data_collection_period = dplyr::case_when(
       .$has_surgery == FALSE ~ "No surgery recorded",
+      is.na(.$date_surgery) ~ "No surgery date recorded",
       (.$date_surgery >= "2020-10-05" & .$date_surgery <= "2020-11-01") ~ "COVIDSurg data collection period",
       TRUE ~ "Not COVIDSurg data collection period"
     )
