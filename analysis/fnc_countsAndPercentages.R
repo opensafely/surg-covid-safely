@@ -1,7 +1,7 @@
 # fnc_countsAndPercentages.R
 #
 # This script defines a function that produces a table of the stratified counts
-# and proportion of patients. The function  is called in the script entitled
+# and proportion of patients. The functionis called in the script entitled
 # "Make_Table1.R".
 #
 
@@ -39,14 +39,17 @@ fnc_countsAndPercentages <-
         dplyr::arrange(strata) %>% dplyr::ungroup()
       i_counts_to_use <-
         counts_to_use %>%
-        dplyr::filter(grepl(era_shortname[i], .$rowname)) %>% dplyr::select(-rowname)
+        dplyr::filter(grepl(era_shortname[i], .$rowname)) %>%
+        dplyr::select(-rowname) %>% as.numeric()
       # Get counts per intervals and overall.
       n <- i_table_to_use %>% dplyr::select(-c("era", strata))
       # Get percentages per intervals and overall.
       pct <- 
-        n %>% mapply('/', ., i_counts_to_use) %>% '*'(100) %>%
+        n %>% mapply('/', ., i_counts_to_use) %>% tibble::as_tibble() %>%
+        replace(., . == Inf, 0) %>%
+        '*'(100) %>%
         tibble::as_tibble() %>%
-        dplyr::mutate(dplyr::across(, ~ ifelse(is.nan(.),NA,.))) %>%
+        dplyr::mutate(dplyr::across(.cols = everything(), .fns = ~ ifelse(is.nan(.), NA,.))) %>%
         tidyr::replace_na(list("n_all_intervals" = 0, "n_infection_none" = 0,
                                "n_infection_0to2wk" = 0, "n_infection_3to4wk" = 0,
                                "n_infection_5to6wk" = 0, "n_infection_7wk" = 0

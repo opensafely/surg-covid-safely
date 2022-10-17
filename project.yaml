@@ -115,23 +115,24 @@ actions:
                 # tableVacc_df_check_3mths_AlwynSNOMED: output/AlwynSNOMED_table_Vaccination_status_3mths.csv
                 # tableVacc_df_check_3mths_AlwynTPP: output/AlwynTPP_table_Vaccination_status_3mths.csv
                 
-    sensitivity_analysis_plots:
-        run: r:latest analysis/Make_table_COVIDSurg_compare.R
-        needs: [generate_study_population_2]
-        outputs:
-            moderately_sensitive:
-                figure_NC_2m: output/noCancer__2monthly_summary_proportion_surgeries_within_7wks_after_pos_test.png
-                figure_NC_1m: output/noCancer__1monthly_summary_proportion_surgeries_within_7wks_after_pos_test.png
-                figure_NC_wk: output/noCancer__weekly_summary_proportion_surgeries_within_7wks_after_pos_test.png
-                figure_C3m_2m: output/cancer_3months__2monthly_summary_proportion_surgeries_within_7wks_after_pos_test.png
-                figure_C3m_1m: output/cancer_3months__1monthly_summary_proportion_surgeries_within_7wks_after_pos_test.png
-                figure_C3m_wk: output/cancer_3months__weekly_summary_proportion_surgeries_within_7wks_after_pos_test.png
-                figure_C6m_2m: output/cancer_6months__2monthly_summary_proportion_surgeries_within_7wks_after_pos_test.png
-                figure_C6m_1m: output/cancer_6months__1monthly_summary_proportion_surgeries_within_7wks_after_pos_test.png
-                figure_C6m_wk: output/cancer_6months__weekly_summary_proportion_surgeries_within_7wks_after_pos_test.png
-                figure_AdmMethod_2m: output/__stratified_2monthly_summary_proportion_surgeries_within_7wks_after_pos_test.png
-                figure_AdmMethod_1m: output/__stratified_1monthly_summary_proportion_surgeries_within_7wks_after_pos_test.png
-                figure_AdmMethod_wk: output/__stratified_weekly_summary_proportion_surgeries_within_7wks_after_pos_test.png
+    # NO LONGER POSSIBLE BECAUSE NUMBERS ARE TOO SMALL
+    # sensitivity_analysis_plots:
+        # run: r:latest analysis/Make_table_COVIDSurg_compare.R
+        # needs: [generate_study_population_2]
+        # outputs:
+            # moderately_sensitive:
+                # figure_NC_2m: output/noCancer__2monthly_summary_proportion_surgeries_within_7wks_after_pos_test.png
+                # figure_NC_1m: output/noCancer__1monthly_summary_proportion_surgeries_within_7wks_after_pos_test.png
+                # figure_NC_wk: output/noCancer__weekly_summary_proportion_surgeries_within_7wks_after_pos_test.png
+                # figure_C3m_2m: output/cancer_3months__2monthly_summary_proportion_surgeries_within_7wks_after_pos_test.png
+                # figure_C3m_1m: output/cancer_3months__1monthly_summary_proportion_surgeries_within_7wks_after_pos_test.png
+                # figure_C3m_wk: output/cancer_3months__weekly_summary_proportion_surgeries_within_7wks_after_pos_test.png
+                # figure_C6m_2m: output/cancer_6months__2monthly_summary_proportion_surgeries_within_7wks_after_pos_test.png
+                # figure_C6m_1m: output/cancer_6months__1monthly_summary_proportion_surgeries_within_7wks_after_pos_test.png
+                # figure_C6m_wk: output/cancer_6months__weekly_summary_proportion_surgeries_within_7wks_after_pos_test.png
+                # figure_AdmMethod_2m: output/__stratified_2monthly_summary_proportion_surgeries_within_7wks_after_pos_test.png
+                # figure_AdmMethod_1m: output/__stratified_1monthly_summary_proportion_surgeries_within_7wks_after_pos_test.png
+                # figure_AdmMethod_wk: output/__stratified_weekly_summary_proportion_surgeries_within_7wks_after_pos_test.png
                 
     sensitivity_analysis_tables:
         run:    r:latest analysis/Make_all_Table1s.R
@@ -196,10 +197,10 @@ actions:
                     plotData_C6m: output/plotData_C6m.csv
                     plotData_NC: output/plotData_NC.csv
                     plotData_AdmMethod: output/plotData_AdmMethod.csv
-                    figure_NC_3m: output/noCancer__3monthly_summary_proportion_surgeries_within_7wks_after_pos_test.png
-                    figure_C3m_3m: output/cancer_3months__3monthly_summary_proportion_surgeries_within_7wks_after_pos_test.png
-                    figure_C6m_3m: output/cancer_6months__3monthly_summary_proportion_surgeries_within_7wks_after_pos_test.png
-                    figure_AdmMethod_3m: output/__stratified_3monthly_summary_proportion_surgeries_within_7wks_after_pos_test.png
+                    figure_NC_3m: output/noCancer__6monthly_summary_proportion_surgeries_within_7wks_after_pos_test.tiff
+                    figure_C3m_3m: output/cancer_3months__6monthly_summary_proportion_surgeries_within_7wks_after_pos_test.tiff
+                    figure_C6m_3m: output/cancer_6months__6monthly_summary_proportion_surgeries_within_7wks_after_pos_test.tiff
+                    figure_AdmMethod_3m: output/__stratified_6monthly_summary_proportion_surgeries_within_7wks_after_pos_test.tiff
                     
     admission_check:
         run: r:latest analysis/admission_check.R

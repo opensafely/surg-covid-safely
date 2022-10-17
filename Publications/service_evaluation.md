@@ -79,7 +79,7 @@ As part of a sensitivity analysis, we also identified patients based on a ±6-mo
 ## Data source
 The proposed study project studies historic, routinely-collected healthcare records. This service evaluation accessed data via the OpenSAFELY platform. All data were linked, stored and analysed securely within the OpenSAFELY platform [27]. Data include pseudonymised data such as coded diagnoses, medications and physiological parameters. No free text data are included. All code is shared openly for review and re-use under MIT open license (https://github.com/opensafely/surg-covid-safely). Detailed pseudonymised patient data is potentially re-identifiable and therefore not shared.
 
-As stated on their website, OpenSAFELY is a highly-secure, transparent, open-source software platform for analysis of electronic health records data from the NHS primary-care patient-record systems, and other relevant national databases. The exact count of patients used in this service evaluation was determined based on the data return from the query submitted to OpenSAFELY. Our queries returned XXX  patients.
+As stated on their website, OpenSAFELY is a highly-secure, transparent, open-source software platform for analysis of electronic health records data from the NHS primary-care patient-record systems, and other relevant national databases. The exact count of patients used in this service evaluation was determined based on the data return from the query submitted to OpenSAFELY. Our queries returned XXX  patients. In accordance with guidance from OpenSAFELY, all resulting counts ≤7 were redacted before all remaining counts were rounded to the nearest multiple of five. All proportions were calculated using these rounded counts.
 
 ## Data governance
 Patient data has been pseudonymised for analysis and linkage using industry standard cryptographic hashing techniques; all pseudonymised datasets transmitted for linkage onto OpenSAFELY are encrypted; access to the platform is via a virtual private network connection, restricted to a small group of researchers; the researchers hold contracts with NHS England and only access the platform to initiate database queries and statistical models; all database activity is logged; only aggregate statistical outputs leave the platform environment following best practice for anonymisation of results such as statistical disclosure control for low cell counts [28].
@@ -161,7 +161,7 @@ Table Xtable1DemogsX presents clinical demographics of the patient cohort during
 	<tr>
 		<td colspan=12>
 			<b>Table Xtable1DemogsX</b>
-			Demographic characteristics for patients who underwent surgery stratified by duration from indication of SARS-CoV-2 infection to surgery date. Period of interest is from 12th January 2021 until 31st March 2022 (i.e. the pandemic-with-vaccines era). Values are counts (n) and percentages (%).<br />
+			Demographic characteristics for patients who underwent surgery stratified by duration from indication of SARS-CoV-2 infection to surgery date. Period of interest is from 12th January 2021 until 31st March 2022 (i.e. the pandemic-with-vaccines era). Values are counts (n) and percentages (%). In accordance with guidance from OpenSAFELY, all resulting counts ≤7 were redacted before all remaining counts were rounded to the nearest multiple of five. All proportions were calculated using these rounded counts.<br />
 			The sum of ‘Timing of cancer diagnosis’ strata to not add to 100% because patients were admitted from this stratification if they had a cancer diagnosis but not a date of cancer diagnosis.
 		</td>
 	</tr>
@@ -312,7 +312,7 @@ Table Xtable1DemogsX presents clinical demographics of the patient cohort during
 	<tr>
 		<td colspan=12>
 			<b>Table Xtable1OutcomesX</b>
-			 Outcomes for patients who underwent surgery stratified by duration from indication of SARS-CoV-2 infection to surgery date. Period of interest is from 12th January 2021 until 31st March 2022 (i.e. the pandemic-with-vaccines era). Values are counts (n) and percentages (%).
+			 Outcomes for patients who underwent surgery stratified by duration from indication of SARS-CoV-2 infection to surgery date. Period of interest is from 12th January 2021 until 31st March 2022 (i.e. the pandemic-with-vaccines era). Values are counts (n) and percentages (%). In accordance with guidance from OpenSAFELY, all resulting counts ≤7 were redacted before all remaining counts were rounded to the nearest multiple of five. All proportions were calculated using these rounded counts.
 		</td>
 	</tr>
 	<tr>
@@ -431,7 +431,7 @@ Finally, for comparison with the COVIDSurg studies, Table XtableEraX shows 30-da
 	<tr>
 		<td colspan=14>
 			<b>Table XtableEraX</b>
-			 Thirty-day post-operative mortality for various cohorts, in each era, across all intervals defined by the interval between an indication of SARS-CoV-2 infection patients’ surgery date. Values for “COVIDSurg Collaborative” cohorts are taken from [20]; “OpenSAFELY…” cohorts refer to patients from the OpenSAFELY data platform who underwent surgery; “…with cancer” cohorts refer to patient with a cancer diagnosis within ±3 months of their surgery date; cohorts within the COVIDSurg Collaboration period refer to all COVIDSurg patients, regardless of cancer diagnosis. Values are counts of deaths (n), column totals (N), and percentages (%).
+			 Thirty-day post-operative mortality for various cohorts, in each era, across all intervals defined by the interval between an indication of SARS-CoV-2 infection patients’ surgery date. Values for “COVIDSurg Collaborative” cohorts are taken from [20]; “OpenSAFELY…” cohorts refer to patients from the OpenSAFELY data platform who underwent surgery; “…with cancer” cohorts refer to patient with a cancer diagnosis within ±3 months of their surgery date; cohorts within the COVIDSurg Collaboration period refer to all COVIDSurg patients, regardless of cancer diagnosis. Values are counts of deaths (n), column totals (N), and percentages (%). In accordance with guidance from OpenSAFELY, all resulting counts ≤7 were redacted before all remaining counts were rounded to the nearest multiple of five. All proportions were calculated using these rounded counts.
 		</td>
 	</tr>
 	<tr>
