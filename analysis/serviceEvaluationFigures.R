@@ -147,7 +147,7 @@ write.csv(
 #
 # Load and run the function that does the work.
 source(here::here("analysis","fnc_serviceEvaluationFigures_dataPlot.R"))
-y_axis_top = 6
+y_axis_top = 5
 fnc_serviceEvaluationFigures_dataPlot(
   data = C3m_windowed_proportion_7wkPreOpInfection,
   cancer = "with", window = 3, figureCaption = F, y_axis_top = y_axis_top)

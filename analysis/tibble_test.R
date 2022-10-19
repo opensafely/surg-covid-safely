@@ -16,7 +16,7 @@ myTibble <-
              count_6 = rbinom(6, 100, 0.1)) %>%
   tibble::as_tibble() %>%
   dplyr::mutate(across(.cols = all_of(cols_of_interest), .fns = ~ replace(., (. <= 7 & .  > 0), NA))) %>% 
-  dplyr::mutate(across(.cols = all_of(cols_of_interest), .fns = ~ . %>% `/`(5) %>% round()*5));
+  dplyr::mutate(across(.cols = all_of(cols_of_interest), .fns = ~ .x %>% `/`(5) %>% round()*5));
 #myTibble[,cols_of_interest] <-
   #round(myTibble[,cols_of_interest] / 5) * 5
 
