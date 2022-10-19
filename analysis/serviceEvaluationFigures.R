@@ -147,18 +147,19 @@ write.csv(
 #
 # Load and run the function that does the work.
 source(here::here("analysis","fnc_serviceEvaluationFigures_dataPlot.R"))
+y_axis_top = 5
 fnc_serviceEvaluationFigures_dataPlot(
   data = C3m_windowed_proportion_7wkPreOpInfection,
-  cancer = "with", window = 3, figureCaption = F, y_axis_top = 25)
+  cancer = "with", window = 3, figureCaption = F, y_axis_top = y_axis_top)
 fnc_serviceEvaluationFigures_dataPlot(
   data = C6m_windowed_proportion_7wkPreOpInfection,
-  cancer = "with", window = 6, figureCaption = F, y_axis_top = 25)
+  cancer = "with", window = 6, figureCaption = F, y_axis_top = y_axis_top)
 fnc_serviceEvaluationFigures_dataPlot(
   data = NC_windowed_proportion_7wkPreOpInfection,
-  cancer = "without", window = "", figureCaption = F, y_axis_top = 25)
+  cancer = "without", window = "", figureCaption = F, y_axis_top = y_axis_top)
 fnc_serviceEvaluationFigures_dataPlot(
   data = AdmMethod_windowed_proportion_7wkPreOpInfection,
-  cancer = "", window = "", figureCaption = F, y_axis_top = 25,
+  cancer = "", window = "", figureCaption = F, y_axis_top = y_axis_top,
   strata = "Admission_method")
 
 # ----

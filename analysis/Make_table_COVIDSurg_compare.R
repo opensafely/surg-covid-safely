@@ -470,9 +470,9 @@ OS_all_mortality <-
                                                      "5-6 weeks record of pre-operative SARS-CoV-2 infection",1,0)),
                    n_infection_7wk = sum(ifelse(preOperative_infection_status==
                                                   ">=7 weeks record of pre-operative SARS-CoV-2 infection",1,0))
-  ) #%>%
-  #dplyr::mutate(across(.cols = all_of(intervals_infection), .fns = ~ replace(., (. <= 7 & .  > 0), NA))) %>%
-  #dplyr::mutate(across(.cols = all_of(intervals_infection), .fns = ~ . %>% `/`(5) %>% round()*5))
+  ) %>%
+  dplyr::mutate(across(.cols = all_of(intervals_infection), .fns = ~ replace(., (. <= 7 & .  > 0), NA))) %>%
+  dplyr::mutate(across(.cols = all_of(intervals_infection), .fns = ~ .x %>% `/`(5) %>% round()*5))
 OS_CSP_all_mortality <- 
   data_to_use_all %>% 
   dplyr::filter(COVIDSurg_data_collection_period != "No surgery recorded") %>%
@@ -490,9 +490,11 @@ OS_CSP_all_mortality <-
                    n_infection_7wk = sum(ifelse(preOperative_infection_status==
                                                   ">=7 weeks record of pre-operative SARS-CoV-2 infection",1,0))
   ) %>%
-  `colnames<-`(c("era",colnames(OS_all_mortality)[2:ncol(OS_all_mortality)])) #%>%
-  #dplyr::mutate(across(.cols = all_of(intervals_infection), .fns = ~ replace(., (. <= 7 & .  > 0), NA))) %>%
-  #dplyr::mutate(across(.cols = all_of(intervals_infection), .fns = ~ . %>% `/`(5) %>% round()*5))
+  `colnames<-`(c("era",colnames(OS_all_mortality)[2:ncol(OS_all_mortality)])) %>%
+  dplyr::mutate(across(.cols = all_of(intervals_infection), .fns = ~ replace(., (. <= 7 & .  > 0), NA))) %>%
+  dplyr::mutate(across(.cols = all_of(intervals_infection), .fns = ~ .x %>% `/`(5) %>% round()*5))
+OS_CSP_all_mortality[,intervals_infection] <-
+  round(OS_CSP_all_mortality[,intervals_infection] / 5) * 5
 OS_all_mortality <- dplyr::bind_rows(OS_all_mortality, OS_CSP_all_mortality)
 rm(OS_CSP_all_mortality)
 OS_all_mortality <- 
@@ -672,9 +674,11 @@ OS_NC_mortality <-
                                                      "5-6 weeks record of pre-operative SARS-CoV-2 infection",1,0)),
                    n_infection_7wk = sum(ifelse(preOperative_infection_status==
                                                   ">=7 weeks record of pre-operative SARS-CoV-2 infection",1,0))
-  ) #%>%
-  #dplyr::mutate(across(.cols = all_of(intervals_infection), .fns = ~ replace(., (. <= 7 & .  > 0), NA))) %>%
-  #dplyr::mutate(across(.cols = all_of(intervals_infection), .fns = ~ . %>% `/`(5) %>% round()*5))
+  ) %>%
+  dplyr::mutate(across(.cols = all_of(intervals_infection), .fns = ~ replace(., (. <= 7 & .  > 0), NA))) %>%
+  dplyr::mutate(across(.cols = all_of(intervals_infection), .fns = ~ .x %>% `/`(5) %>% round()*5))
+OS_NC_mortality[,intervals_infection] <-
+  round(OS_NC_mortality[,intervals_infection] / 5) * 5
 OS_CSP_NC_mortality <- 
   data_to_use_NC %>% 
   dplyr::filter(COVIDSurg_data_collection_period != "No surgery recorded" &
@@ -693,9 +697,11 @@ OS_CSP_NC_mortality <-
                    n_infection_7wk = sum(ifelse(preOperative_infection_status==
                                                   ">=7 weeks record of pre-operative SARS-CoV-2 infection",1,0))
   ) %>%
-  `colnames<-`(c("era",colnames(OS_NC_mortality)[2:ncol(OS_NC_mortality)]))# %>%
-  #dplyr::mutate(across(.cols = all_of(intervals_infection), .fns = ~ replace(., (. <= 7 & .  > 0), NA))) %>%
-  #dplyr::mutate(across(.cols = all_of(intervals_infection), .fns = ~ . %>% `/`(5) %>% round()*5))
+  `colnames<-`(c("era",colnames(OS_NC_mortality)[2:ncol(OS_NC_mortality)])) %>%
+  dplyr::mutate(across(.cols = all_of(intervals_infection), .fns = ~ replace(., (. <= 7 & .  > 0), NA))) %>%
+  dplyr::mutate(across(.cols = all_of(intervals_infection), .fns = ~ .x %>% `/`(5) %>% round()*5))
+OS_CSP_NC_mortality[,intervals_infection] <-
+  round(OS_CSP_NC_mortality[,intervals_infection] / 5) * 5
 OS_NC_mortality <- dplyr::bind_rows(OS_NC_mortality, OS_CSP_NC_mortality)
 rm(OS_CSP_NC_mortality)
 OS_NC_mortality <- 
@@ -876,9 +882,11 @@ OS_C_within3m_mortality <-
                                                      "5-6 weeks record of pre-operative SARS-CoV-2 infection",1,0)),
                    n_infection_7wk = sum(ifelse(preOperative_infection_status==
                                                   ">=7 weeks record of pre-operative SARS-CoV-2 infection",1,0))
-  ) #%>%
-  #dplyr::mutate(across(.cols = all_of(intervals_infection), .fns = ~ replace(., (. <= 7 & .  > 0), NA))) %>%
-  #dplyr::mutate(across(.cols = all_of(intervals_infection), .fns = ~ . %>% `/`(5) %>% round()*5))
+  ) %>%
+  dplyr::mutate(across(.cols = all_of(intervals_infection), .fns = ~ replace(., (. <= 7 & .  > 0), NA))) %>%
+  dplyr::mutate(across(.cols = all_of(intervals_infection), .fns = ~ .x %>% `/`(5) %>% round()*5))
+OS_C_within3m_mortality[,intervals_infection] <-
+  round(OS_C_within3m_mortality[,intervals_infection] / 5) * 5
 OS_CSP_C_within3m_mortality <- 
   data_to_use_C_within3m %>% 
   dplyr::filter(COVIDSurg_data_collection_period != "No surgery recorded") %>%
@@ -896,9 +904,11 @@ OS_CSP_C_within3m_mortality <-
                    n_infection_7wk = sum(ifelse(preOperative_infection_status==
                                                   ">=7 weeks record of pre-operative SARS-CoV-2 infection",1,0))
   ) %>%
-  `colnames<-`(c("era",colnames(OS_C_within3m_mortality)[2:ncol(OS_C_within3m_mortality)]))# %>%
-  #dplyr::mutate(across(.cols = all_of(intervals_infection), .fns = ~ replace(., (. <= 7 & .  > 0), NA))) %>%
-  #dplyr::mutate(across(.cols = all_of(intervals_infection), .fns = ~ . %>% `/`(5) %>% round()*5))
+  `colnames<-`(c("era",colnames(OS_C_within3m_mortality)[2:ncol(OS_C_within3m_mortality)])) %>%
+  dplyr::mutate(across(.cols = all_of(intervals_infection), .fns = ~ replace(., (. <= 7 & .  > 0), NA))) %>%
+  dplyr::mutate(across(.cols = all_of(intervals_infection), .fns = ~ .x %>% `/`(5) %>% round()*5))
+OS_CSP_C_within3m_mortality[,intervals_infection] <-
+  round(OS_CSP_C_within3m_mortality[,intervals_infection] / 5) * 5
 OS_C_within3m_mortality <- dplyr::bind_rows(OS_C_within3m_mortality, OS_CSP_C_within3m_mortality)
 rm(OS_CSP_C_within3m_mortality)
 OS_C_within3m_mortality <- 
@@ -1078,9 +1088,11 @@ OS_C_outwith3m_mortality <-
                                                      "5-6 weeks record of pre-operative SARS-CoV-2 infection",1,0)),
                    n_infection_7wk = sum(ifelse(preOperative_infection_status==
                                                   ">=7 weeks record of pre-operative SARS-CoV-2 infection",1,0))
-  ) #%>%
-  #dplyr::mutate(across(.cols = all_of(intervals_infection), .fns = ~ replace(., (. <= 7 & .  > 0), NA))) %>%
-  #dplyr::mutate(across(.cols = all_of(intervals_infection), .fns = ~ . %>% `/`(5) %>% round()*5))
+  ) %>%
+  dplyr::mutate(across(.cols = all_of(intervals_infection), .fns = ~ replace(., (. <= 7 & .  > 0), NA))) %>%
+  dplyr::mutate(across(.cols = all_of(intervals_infection), .fns = ~ .x %>% `/`(5) %>% round()*5))
+OS_C_outwith3m_mortality[,intervals_infection] <-
+  round(OS_C_outwith3m_mortality[,intervals_infection] / 5) * 5
 OS_CSP_C_outwith3m_mortality <- 
   data_to_use_C_outwith3m %>% 
   dplyr::filter(COVIDSurg_data_collection_period != "No surgery recorded") %>%
@@ -1098,9 +1110,11 @@ OS_CSP_C_outwith3m_mortality <-
                    n_infection_7wk = sum(ifelse(preOperative_infection_status==
                                                   ">=7 weeks record of pre-operative SARS-CoV-2 infection",1,0))
   ) %>%
-  `colnames<-`(c("era",colnames(OS_C_outwith3m_mortality)[2:ncol(OS_C_outwith3m_mortality)])) #%>%
-  ##dplyr::mutate(across(.cols = all_of(intervals_infection), .fns = ~ replace(., (. <= 7 & .  > 0), NA))) %>%
-  ##dplyr::mutate(across(.cols = all_of(intervals_infection), .fns = ~ . %>% `/`(5) %>% round()*5))
+  `colnames<-`(c("era",colnames(OS_C_outwith3m_mortality)[2:ncol(OS_C_outwith3m_mortality)])) %>%
+  dplyr::mutate(across(.cols = all_of(intervals_infection), .fns = ~ replace(., (. <= 7 & .  > 0), NA))) %>%
+  dplyr::mutate(across(.cols = all_of(intervals_infection), .fns = ~ .x %>% `/`(5) %>% round()*5))
+OS_CSP_C_outwith3m_mortality[,intervals_infection] <-
+  round(OS_CSP_C_outwith3m_mortality[,intervals_infection] / 5) * 5
 OS_C_outwith3m_mortality <- dplyr::bind_rows(OS_C_outwith3m_mortality, OS_CSP_C_outwith3m_mortality)
 rm(OS_CSP_C_outwith3m_mortality)
 OS_C_outwith3m_mortality <- 

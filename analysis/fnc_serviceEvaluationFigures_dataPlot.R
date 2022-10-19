@@ -58,8 +58,8 @@ fnc_serviceEvaluationFigures_dataPlot <-
   p <- p + 
     scale_x_discrete(guide = guide_axis_nested(check.overlap = T)) +
     scale_y_continuous(limits = c(0, y_axis_top),
-                       labels = floor(seq(from = 0 , to = y_axis_top, length.out =5)),
-                       breaks = floor(seq(from = 0 , to = y_axis_top, length.out =5))) +
+                       labels = floor(seq(from = 0 , to = y_axis_top, length.out = y_axis_top + 1)),
+                       breaks = floor(seq(from = 0 , to = y_axis_top, length.out = y_axis_top + 1))) +
     ylab("Proportion of surgeries conducted less\n than 7 weeks from a positive PCR test (%)") +
     xlab("") +
     geom_vline(xintercept = 13) + # Index for March 2020

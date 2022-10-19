@@ -25,7 +25,9 @@ fnc_countsAndPercentages <-
     era_shortname <- c("PP", "PNV", "CSP", "PWV")
     
     # Make tables
-    table_to_use <- table_to_use %>% dplyr::rename(strata = strata_col)
+    table_to_use <- table_to_use %>% dplyr::rename(strata = strata_col) %>%
+      dplyr::mutate(across(.cols = all_of(intervals_infection), .fns = ~ replace(., (. <= 7 & .  > 0), NA))) %>%
+      dplyr::mutate(across(.cols = all_of(intervals_infection), .fns = ~ .x %>% `/`(5) %>% round()*5))
     counts_to_use <-
       table_counts %>% rownames_to_column() %>%
         dplyr::filter(grepl(interval_counts, .$rowname))
