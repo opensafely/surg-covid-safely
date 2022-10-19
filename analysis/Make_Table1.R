@@ -1509,7 +1509,7 @@ table1Demogs_PWV[,3:ncol(table1Demogs_PWV)] <-
 # ##    2. Outwith 3 months
 # ##    3. No cancer diagnosis
 # ##
-# ## These data have aleady been calculated in Make_table_COVIDSurg_compare.R
+# ## These data have already been calculated in Make_table_COVIDSurg_compare.R
 # ## to make table_Count_of_patients_in_each_cohort_in_each_era_across_all_intervals.csv.
 # ## The R variable containing the data is called table_counts, which is used
 # ## below to create the tibble for 'Timing of cancer diagnosis'.

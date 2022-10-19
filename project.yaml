@@ -5,6 +5,12 @@ expectations:
 
 actions:
 
+
+    tibble_test:
+        run: r:latest analysis/tibble_test.R
+        outputs:
+            moderately_sensitive:
+                output: output/myTibble.csv
     # generate_study_population:
         # run: cohortextractor:latest generate_cohort --study-definition study_definition
         # outputs:
