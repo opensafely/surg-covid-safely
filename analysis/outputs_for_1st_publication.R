@@ -27,14 +27,6 @@
 # ----
 source(here::here("analysis","Make_table_COVIDSurg_compare.R"))
 # Make Table1 for all patients.
-myDataSelect <- myData %>%
-  dplyr::filter(postOp_mortality_30day %in% c("Dead within 30 days post-operation",
-                                              "Alive within 30 days post-operation",
-                                              "No death recorded"),
-                preOperative_infection_status!=
-                  "Error: Test result after surgery. Check study_definition.",
-                era != "No surgery recorded",
-                era != "No surgery date recorded")
 data_to_use <- myDataSelect %>% dplyr::filter(has_surgery == TRUE)
 sensitivity_cohort <- "all"
 source(here::here("analysis","Make_Table1.R"))

@@ -88,7 +88,12 @@ data_to_use_C_outwith3m <- myDataSelect %>%
   dplyr::filter(has_surgery == TRUE) %>%
   dplyr::filter(category_cancer_within_3mths_surgery == 
                   "Cancer diagnosis outwith 3mths before or after surgery")
-
+data_to_use_C_within6m <- myDataSelect %>% dplyr::filter(has_surgery == TRUE) %>% 
+  dplyr::filter(has_cancer == TRUE) %>%
+  dplyr::filter(category_cancer_within_6mths_surgery == 
+                  "Cancer diagnosis within 6mths before surgery" |
+                  category_cancer_within_6mths_surgery == 
+                  "Cancer diagnosis within 6mths after surgery")
 
 # ----
 
