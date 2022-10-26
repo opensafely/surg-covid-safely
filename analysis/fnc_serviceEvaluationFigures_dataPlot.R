@@ -93,9 +93,9 @@ fnc_serviceEvaluationFigures_dataPlot <-
   
   ggsave(filename = 
            paste0(fileprefix1,fileprefix2,fileprefix3,"_",
-                  "6monthly_summary_proportion_surgeries_within_7wks_after_pos_test.tiff"),
+                  "6monthly_summary_proportion_surgeries_within_7wks_after_pos_test.jpeg"),
          plot = p,
-         device = "tiff",
+         device = "jpeg",
          path = here::here("output"),
          width = 3.5, height = 3.25, units = "in",
          dpi = 600)
@@ -173,9 +173,9 @@ fnc_serviceEvaluationFigures_dataPlot <-
   # 
   # ggsave(filename = 
   #          paste0(fileprefix1,fileprefix2,fileprefix3,"_",
-  #                 "weekly_summary_proportion_surgeries_within_7wks_after_pos_test.tiff"),
+  #                 "weekly_summary_proportion_surgeries_within_7wks_after_pos_test.jpeg"),
   #        plot = p,
-  #        device = "tiff",
+  #        device = "jpeg",
   #        path = here::here("output"),
   #        width = 3.5, height = 3.25, units = "in",
   #        dpi = 600)
@@ -251,9 +251,9 @@ fnc_serviceEvaluationFigures_dataPlot <-
   # 
   # ggsave(filename = 
   #          paste0(fileprefix1,fileprefix2,fileprefix3,"_",
-  #                 "1monthly_summary_proportion_surgeries_within_7wks_after_pos_test.tiff"),
+  #                 "1monthly_summary_proportion_surgeries_within_7wks_after_pos_test.jpeg"),
   #        plot = p,
-  #        device = "tiff",
+  #        device = "jpeg",
   #        path = here::here("output"),
   #        width = 3.5, height = 3.25, units = "in",
   #        dpi = 600)
@@ -329,9 +329,9 @@ fnc_serviceEvaluationFigures_dataPlot <-
   # 
   # ggsave(filename = 
   #          paste0(fileprefix1,fileprefix2,fileprefix3,"_",
-  #                 "2monthly_summary_proportion_surgeries_within_7wks_after_pos_test.tiff"),
+  #                 "2monthly_summary_proportion_surgeries_within_7wks_after_pos_test.jpeg"),
   #        plot = p,
-  #        device = "tiff",
+  #        device = "jpeg",
   #        path = here::here("output"),
   #        width = 3.5, height = 3.25, units = "in",
   #        dpi = 600)
@@ -406,9 +406,9 @@ fnc_serviceEvaluationFigures_dataPlot <-
   # 
   # ggsave(filename = 
   #          paste0(fileprefix1,fileprefix2,fileprefix3,"_",
-  #                 "3monthly_summary_proportion_surgeries_within_7wks_after_pos_test.tiff"),
+  #                 "3monthly_summary_proportion_surgeries_within_7wks_after_pos_test.jpeg"),
   #        plot = p,
-  #        device = "tiff",
+  #        device = "jpeg",
   #        path = here::here("output"),
   #        width = 3.5, height = 3.25, units = "in",
   #        dpi = 600)
