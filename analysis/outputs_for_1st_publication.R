@@ -119,7 +119,10 @@ TableEra <-
                          "pct_infection_3to4wk" = 0,
                          "pct_infection_5to6wk" = 0,
                          "pct_infection_7wk" = 0)
-                    )
+                    ) %>%
+  `rownames<-`(c("PNV_OS_all", "PNV_OS_NC", "PNV_OS_C",
+               "CSP_COVIDSurg","CSP_OS_all", "CSP_OS_NC", "CSP_OS_C",
+               "PWV_OS_all", "PWV_OS_NC", "PWV_OS_C"))
 # ----
 
 ########################################################
