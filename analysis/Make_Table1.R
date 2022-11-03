@@ -186,7 +186,6 @@ table1_CSP_Sex <-
                                                   ">=7 weeks record of pre-operative SARS-CoV-2 infection",1,0))
   ) %>%
   dplyr::mutate(across(.cols = all_of(intervals_infection), .fns = ~ replace(., (. <= 7 & .  > 0), NA))) %>%
-  #dplyr::mutate(across(.cols = all_of(intervals_infection), .fns = ~ . %>% `/`(10) %>% round()*10)) %>%
   dplyr::mutate(across(.cols = all_of(intervals_infection), .fns = ~ ./10 %>% round()*10)) %>%
   `colnames<-`(c("era", colnames(table1_Sex)[2:ncol(table1_Sex)]))
 table1_Sex <- dplyr::bind_rows(table1_Sex, table1_CSP_Sex)
@@ -238,8 +237,8 @@ table1_CSP_admission_method <-
                    n_infection_7wk = sum(ifelse(preOperative_infection_status==
                                                   ">=7 weeks record of pre-operative SARS-CoV-2 infection",1,0))
   ) %>%
-  #dplyr::mutate(across(.cols = intervals_infection, .fns = ~ replace(., (. <= 7 & .  > 0), NA))) %>%
-  #dplyr::mutate(across(.cols = intervals_infection, .fns = ~ . %>% `/`(10) %>% round()*10)) %>%
+  dplyr::mutate(across(.cols = intervals_infection, .fns = ~ replace(., (. <= 7 & .  > 0), NA))) %>%
+  dplyr::mutate(across(.cols = intervals_infection, .fns = ~ ./10 %>% round()*10)) %>%
   `colnames<-`(c("era", colnames(table1_admission_method)[2:ncol(table1_admission_method)]))
 table1_admission_method <-
   dplyr::bind_rows(table1_admission_method, table1_CSP_admission_method)
