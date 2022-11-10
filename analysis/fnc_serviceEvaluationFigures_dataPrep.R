@@ -49,13 +49,13 @@ fnc_serviceEvaluationFigures_dataPrep <- function(data, start, end)
     add_column(
       sixMonthly_n =
         RcppRoll::roll_sum(.$monthly_n, 6, fill=NA, align="right", na.rm = TRUE) %>%
-        replace(., (. <= 7 & . > 0), NA) %>% `/`(5) %>% round()*5
+        replace(., (. <= 7 & . > 0), NA) %>% `/`(10) %>% round()*10
     ) %>%
     add_column(
       sixMonthly_n_within_7wk = 
         RcppRoll::roll_sum(.$monthly_within_7wk,
                            6, fill=NA, align="right", na.rm = TRUE) %>%
-        replace(., (. <= 7 & . > 0), NA) %>% `/`(5) %>% round()*5
+        replace(., (. <= 7 & . > 0), NA) %>% `/`(10) %>% round()*10
     ) %>%
     dplyr::mutate(
       sixMonthly_prop_within_7wk = (sixMonthly_n_within_7wk / sixMonthly_n)*100
