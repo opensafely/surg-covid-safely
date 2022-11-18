@@ -52,10 +52,10 @@ fnc_countsAndPercentages <-
         '*'(100) %>%
         tibble::as_tibble() %>%
         dplyr::mutate(dplyr::across(.cols = everything(), .fns = ~ ifelse(is.nan(.), NA,.))) %>%
-        tidyr::replace_na(list("n_all_intervals" = 0, "n_infection_none" = 0,
-                               "n_infection_0to2wk" = 0, "n_infection_3to4wk" = 0,
-                               "n_infection_5to6wk" = 0, "n_infection_7wk" = 0
-        )) %>%
+        #tidyr::replace_na(list("n_all_intervals" = 0, "n_infection_none" = 0,
+        #                       "n_infection_0to2wk" = 0, "n_infection_3to4wk" = 0,
+        #                       "n_infection_5to6wk" = 0, "n_infection_7wk" = 0
+        #)) %>%
         `colnames<-`(c("pct_all_intervals", "pct_infection_none", "pct_infection_0to2wk",
                        "pct_infection_3to4wk", "pct_infection_5to6wk", "pct_infection_7wk"))
       # Interlace counts and percentages.

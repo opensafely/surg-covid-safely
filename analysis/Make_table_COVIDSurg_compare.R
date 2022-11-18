@@ -140,8 +140,11 @@ intervals_infection <- c(
 ## #  OpenSAFELY data, all surgery patients.----
 OS_all_counts <-
   data_to_use_all %>%
-  dplyr::group_by(era,
-                  preOperative_infection_status) %>%
+  dplyr::filter(postOp_mortality_30day %in% c("Dead within 30 days post-operation",
+                                              "Alive within 30 days post-operation",
+                                              "No death recorded") &
+                  preOperative_infection_status %in% intervals) %>%
+  dplyr::group_by(era, preOperative_infection_status) %>%
   dplyr::summarise(n = n()) %>%
   dplyr::mutate(n = replace(n, (n <= 7 & n > 0), NA)) %>%
   dplyr::mutate(n = n %>% `/`(10) %>% round()*10)
@@ -462,7 +465,12 @@ colnames(PWV_OS_C_outwith3m_counts) <- colnames(COVIDSurg_counts)
 #
 ## # OpenSAFELY data, all surgery patients.
 OS_all_mortality <- 
-  data_to_use_all %>% dplyr::group_by(era, postOp_mortality_30day) %>%
+  data_to_use_all %>%
+  dplyr::filter(postOp_mortality_30day %in% c("Dead within 30 days post-operation",
+                                              "Alive within 30 days post-operation",
+                                              "No death recorded") &
+                  preOperative_infection_status %in% intervals) %>%
+  dplyr::group_by(era, postOp_mortality_30day) %>%
   dplyr::summarise(n_all_intervals = sum(ifelse(preOperative_infection_status!=
                                               "Error: Test result after surgery. Check study_definition.",1,0)),
                    n_infection_none = sum(ifelse(preOperative_infection_status==
