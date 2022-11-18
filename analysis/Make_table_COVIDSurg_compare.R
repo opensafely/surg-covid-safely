@@ -516,13 +516,13 @@ OS_all_mortality <-
         "No surgery recorded",
         "Missing")) %>%
   dplyr::full_join(OS_all_mortality) %>%
-  dplyr::arrange(era) %>%
-  tidyr::replace_na(list("n_all_intervals" = 0,
-                         "n_infection_none" = 0,
-                         "n_infection_0to2wk" = 0,
-                         "n_infection_3to4wk" = 0,
-                         "n_infection_5to6wk" = 0,
-                         "n_infection_7wk" = 0))
+  dplyr::arrange(era) #%>%
+  #tidyr::replace_na(list("n_all_intervals" = 0,
+  #                       "n_infection_none" = 0,
+  #                       "n_infection_0to2wk" = 0,
+  #                       "n_infection_3to4wk" = 0,
+  #                       "n_infection_5to6wk" = 0,
+  #                      "n_infection_7wk" = 0))
 ## ## # Pre-pandemic, OpenSAFELY data, all surgery patients.----
 PP_OS_all_mortality <- OS_all_mortality %>%
   dplyr::filter(era == "Pre-pandemic" &
@@ -723,13 +723,13 @@ OS_NC_mortality <-
         "No surgery recorded",
         "Missing")) %>%
   dplyr::full_join(OS_NC_mortality) %>%
-  dplyr::arrange(era) %>%
-  tidyr::replace_na(list("n_all_intervals" = 0,
-                         "n_infection_none" = 0,
-                         "n_infection_0to2wk" = 0,
-                         "n_infection_3to4wk" = 0,
-                         "n_infection_5to6wk" = 0,
-                         "n_infection_7wk" = 0))
+  dplyr::arrange(era) #%>%
+  #tidyr::replace_na(list("n_all_intervals" = 0,
+  #                       "n_infection_none" = 0,
+  #                       "n_infection_0to2wk" = 0,
+  #                       "n_infection_3to4wk" = 0,
+  #                       "n_infection_5to6wk" = 0,
+  #                       "n_infection_7wk" = 0))
 ## ## # Pre-pandemic, OpenSAFELY data, no-cancer patients.----
 PP_OS_NC_mortality <- OS_NC_mortality %>%
   dplyr::filter(era == "Pre-pandemic" &
