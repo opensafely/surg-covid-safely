@@ -140,8 +140,11 @@ intervals_infection <- c(
 ## #  OpenSAFELY data, all surgery patients.----
 OS_all_counts <-
   data_to_use_all %>%
-  dplyr::group_by(era,
-                  preOperative_infection_status) %>%
+  dplyr::filter(postOp_mortality_30day %in% c("Dead within 30 days post-operation",
+                                              "Alive within 30 days post-operation",
+                                              "No death recorded") &
+                  preOperative_infection_status %in% intervals) %>%
+  dplyr::group_by(era, preOperative_infection_status) %>%
   dplyr::summarise(n = n()) %>%
   dplyr::mutate(n = replace(n, (n <= 7 & n > 0), NA)) %>%
   dplyr::mutate(n = n %>% `/`(10) %>% round()*10)
@@ -462,7 +465,12 @@ colnames(PWV_OS_C_outwith3m_counts) <- colnames(COVIDSurg_counts)
 #
 ## # OpenSAFELY data, all surgery patients.
 OS_all_mortality <- 
-  data_to_use_all %>% dplyr::group_by(era, postOp_mortality_30day) %>%
+  data_to_use_all %>%
+  dplyr::filter(postOp_mortality_30day %in% c("Dead within 30 days post-operation",
+                                              "Alive within 30 days post-operation",
+                                              "No death recorded") &
+                  preOperative_infection_status %in% intervals) %>%
+  dplyr::group_by(era, postOp_mortality_30day) %>%
   dplyr::summarise(n_all_intervals = sum(ifelse(preOperative_infection_status!=
                                               "Error: Test result after surgery. Check study_definition.",1,0)),
                    n_infection_none = sum(ifelse(preOperative_infection_status==
@@ -516,13 +524,13 @@ OS_all_mortality <-
         "No surgery recorded",
         "Missing")) %>%
   dplyr::full_join(OS_all_mortality) %>%
-  dplyr::arrange(era) %>%
-  tidyr::replace_na(list("n_all_intervals" = 0,
-                         "n_infection_none" = 0,
-                         "n_infection_0to2wk" = 0,
-                         "n_infection_3to4wk" = 0,
-                         "n_infection_5to6wk" = 0,
-                         "n_infection_7wk" = 0))
+  dplyr::arrange(era) #%>%
+  #tidyr::replace_na(list("n_all_intervals" = 0,
+  #                       "n_infection_none" = 0,
+  #                       "n_infection_0to2wk" = 0,
+  #                       "n_infection_3to4wk" = 0,
+  #                       "n_infection_5to6wk" = 0,
+  #                      "n_infection_7wk" = 0))
 ## ## # Pre-pandemic, OpenSAFELY data, all surgery patients.----
 PP_OS_all_mortality <- OS_all_mortality %>%
   dplyr::filter(era == "Pre-pandemic" &
@@ -723,13 +731,13 @@ OS_NC_mortality <-
         "No surgery recorded",
         "Missing")) %>%
   dplyr::full_join(OS_NC_mortality) %>%
-  dplyr::arrange(era) %>%
-  tidyr::replace_na(list("n_all_intervals" = 0,
-                         "n_infection_none" = 0,
-                         "n_infection_0to2wk" = 0,
-                         "n_infection_3to4wk" = 0,
-                         "n_infection_5to6wk" = 0,
-                         "n_infection_7wk" = 0))
+  dplyr::arrange(era) #%>%
+  #tidyr::replace_na(list("n_all_intervals" = 0,
+  #                       "n_infection_none" = 0,
+  #                       "n_infection_0to2wk" = 0,
+  #                       "n_infection_3to4wk" = 0,
+  #                       "n_infection_5to6wk" = 0,
+  #                       "n_infection_7wk" = 0))
 ## ## # Pre-pandemic, OpenSAFELY data, no-cancer patients.----
 PP_OS_NC_mortality <- OS_NC_mortality %>%
   dplyr::filter(era == "Pre-pandemic" &

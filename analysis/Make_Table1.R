@@ -111,7 +111,7 @@ table1_ageGroup <-
                                            ">=7 weeks record of pre-operative SARS-CoV-2 infection",1,0))
   ) %>%
   dplyr::mutate(across(.cols = intervals_infection, .fns = ~ replace(., (. <= 7 & .  > 0), NA))) %>%
-  dplyr::mutate(across(.cols = intervals_infection, .fns = ~ ./10 %>% round()*10))
+  dplyr::mutate(across(.cols = all_of(intervals_infection), .fns = ~ .x %>% `/`(10) %>% round()*10))
 table1_CSP_ageGroup <- 
   data_to_use %>% 
   dplyr::filter(postOp_mortality_30day %in% c("Dead within 30 days post-operation",
@@ -134,7 +134,7 @@ table1_CSP_ageGroup <-
                                                   ">=7 weeks record of pre-operative SARS-CoV-2 infection",1,0))
                    ) %>%
   dplyr::mutate(across(.cols = intervals_infection, .fns = ~ replace(., (. <= 7 & .  > 0), NA))) %>%
-  dplyr::mutate(across(.cols = intervals_infection, .fns = ~ ./10 %>% round()*10)) %>%
+  dplyr::mutate(across(.cols = all_of(intervals_infection), .fns = ~ .x %>% `/`(10) %>% round()*10)) %>%
   `colnames<-`(c("era", colnames(table1_ageGroup)[2:ncol(table1_ageGroup)]))
 table1_ageGroup <-
   dplyr::bind_rows(table1_ageGroup, table1_CSP_ageGroup)
@@ -163,7 +163,7 @@ table1_Sex <-
                                            ">=7 weeks record of pre-operative SARS-CoV-2 infection",1,0))
   ) %>%
   dplyr::mutate(across(.cols = intervals_infection, .fns = ~ replace(., (. <= 7 & .  > 0), NA))) %>%
-  dplyr::mutate(across(.cols = intervals_infection, .fns = ~ ./10 %>% round()*10))
+  dplyr::mutate(across(.cols = all_of(intervals_infection), .fns = ~ .x %>% `/`(10) %>% round()*10))
 table1_CSP_Sex <- 
   data_to_use %>%
   dplyr::filter(postOp_mortality_30day %in% c("Dead within 30 days post-operation",
@@ -215,7 +215,7 @@ table1_admission_method <-
                                                   ">=7 weeks record of pre-operative SARS-CoV-2 infection",1,0))
   ) %>%
   dplyr::mutate(across(.cols = intervals_infection, .fns = ~ replace(., (. <= 7 & .  > 0), NA))) %>%
-  dplyr::mutate(across(.cols = intervals_infection, .fns = ~ ./10 %>% round()*10))
+  dplyr::mutate(across(.cols = all_of(intervals_infection), .fns = ~ .x %>% `/`(10) %>% round()*10))
 table1_CSP_admission_method <- 
   data_to_use %>%
   dplyr::filter(postOp_mortality_30day %in% c("Dead within 30 days post-operation",
@@ -238,7 +238,7 @@ table1_CSP_admission_method <-
                                                   ">=7 weeks record of pre-operative SARS-CoV-2 infection",1,0))
   ) %>%
   dplyr::mutate(across(.cols = intervals_infection, .fns = ~ replace(., (. <= 7 & .  > 0), NA))) %>%
-  dplyr::mutate(across(.cols = intervals_infection, .fns = ~ ./10 %>% round()*10)) %>%
+  dplyr::mutate(across(.cols = all_of(intervals_infection), .fns = ~ .x %>% `/`(10) %>% round()*10)) %>%
   `colnames<-`(c("era", colnames(table1_admission_method)[2:ncol(table1_admission_method)]))
 table1_admission_method <-
   dplyr::bind_rows(table1_admission_method, table1_CSP_admission_method)
@@ -270,8 +270,8 @@ table1_postOp_mortality_30day <-
             n_infection_7wk = sum(ifelse(preOperative_infection_status==
                                            ">=7 weeks record of pre-operative SARS-CoV-2 infection",1,0))
   ) %>%
-  dplyr::mutate(across(.cols = intervals_infection, .fns = ~ replace(., (. <= 7 & .  > 0), NA))) %>%
-  dplyr::mutate(across(.cols = intervals_infection, .fns = ~ ./10 %>% round()*10))
+  dplyr::mutate(across(.cols = all_of(intervals_infection), .fns = ~ replace(., (. <= 7 & .  > 0), NA))) %>%
+  dplyr::mutate(across(.cols = all_of(intervals_infection), .fns = ~ .x %>% `/`(10) %>% round()*10))
 table1_CSP_postOp_mortality_30day <- 
   data_to_use %>%
   dplyr::filter(postOp_mortality_30day %in% c("Dead within 30 days post-operation",
@@ -294,7 +294,7 @@ table1_CSP_postOp_mortality_30day <-
                                                   ">=7 weeks record of pre-operative SARS-CoV-2 infection",1,0))
   ) %>%
   dplyr::mutate(across(.cols = intervals_infection, .fns = ~ replace(., (. <= 7 & .  > 0), NA))) %>%
-  dplyr::mutate(across(.cols = intervals_infection, .fns = ~ ./10 %>% round()*10)) %>%
+  dplyr::mutate(across(.cols = all_of(intervals_infection), .fns = ~ .x %>% `/`(10) %>% round()*10)) %>%
   `colnames<-`(c("era", colnames(table1_postOp_mortality_30day)[2:ncol(table1_postOp_mortality_30day)]))
 table1_postOp_mortality_30day <-
   dplyr::bind_rows(table1_postOp_mortality_30day,table1_CSP_postOp_mortality_30day)
@@ -327,7 +327,7 @@ table1_postOp_mortality_90day <-
                                                   ">=7 weeks record of pre-operative SARS-CoV-2 infection",1,0))
   ) %>%
   dplyr::mutate(across(.cols = intervals_infection, .fns = ~ replace(., (. <= 7 & .  > 0), NA))) %>%
-  dplyr::mutate(across(.cols = intervals_infection, .fns = ~ ./10 %>% round()*10))
+  dplyr::mutate(across(.cols = all_of(intervals_infection), .fns = ~ .x %>% `/`(10) %>% round()*10))
 table1_CSP_postOp_mortality_90day <- 
   data_to_use %>%
   dplyr::filter(postOp_mortality_30day %in% c("Dead within 30 days post-operation",
@@ -350,7 +350,7 @@ table1_CSP_postOp_mortality_90day <-
                                                   ">=7 weeks record of pre-operative SARS-CoV-2 infection",1,0))
   ) %>%
   dplyr::mutate(across(.cols = intervals_infection, .fns = ~ replace(., (. <= 7 & .  > 0), NA))) %>%
-  dplyr::mutate(across(.cols = intervals_infection, .fns = ~ ./10 %>% round()*10)) %>%
+  dplyr::mutate(across(.cols = all_of(intervals_infection), .fns = ~ .x %>% `/`(10) %>% round()*10)) %>%
   `colnames<-`(c("era", colnames(table1_postOp_mortality_90day)[2:ncol(table1_postOp_mortality_90day)]))
 table1_postOp_mortality_90day <-
   dplyr::bind_rows(table1_postOp_mortality_90day,table1_CSP_postOp_mortality_90day)
@@ -383,7 +383,7 @@ table1_postOp_mortality_6mth <-
                                                   ">=7 weeks record of pre-operative SARS-CoV-2 infection",1,0))
   ) %>%
   dplyr::mutate(across(.cols = intervals_infection, .fns = ~ replace(., (. <= 7 & .  > 0), NA))) %>%
-  dplyr::mutate(across(.cols = intervals_infection, .fns = ~ ./10 %>% round()*10))
+  dplyr::mutate(across(.cols = all_of(intervals_infection), .fns = ~ .x %>% `/`(10) %>% round()*10))
 table1_CSP_postOp_mortality_6mth <- 
   data_to_use %>%
   dplyr::filter(postOp_mortality_30day %in% c("Dead within 30 days post-operation",
@@ -406,7 +406,7 @@ table1_CSP_postOp_mortality_6mth <-
                                                   ">=7 weeks record of pre-operative SARS-CoV-2 infection",1,0))
   ) %>%
   dplyr::mutate(across(.cols = intervals_infection, .fns = ~ replace(., (. <= 7 & .  > 0), NA))) %>%
-  dplyr::mutate(across(.cols = intervals_infection, .fns = ~ ./10 %>% round()*10)) %>%
+  dplyr::mutate(across(.cols = all_of(intervals_infection), .fns = ~ .x %>% `/`(10) %>% round()*10)) %>%
   `colnames<-`(c("era", colnames(table1_postOp_mortality_6mth)[2:ncol(table1_postOp_mortality_6mth)]))
 table1_postOp_mortality_6mth <-
   dplyr::bind_rows(table1_postOp_mortality_6mth,table1_CSP_postOp_mortality_6mth)
@@ -439,7 +439,7 @@ table1_postOp_mortality_12mth <-
                                                   ">=7 weeks record of pre-operative SARS-CoV-2 infection",1,0))
   ) %>%
   dplyr::mutate(across(.cols = intervals_infection, .fns = ~ replace(., (. <= 7 & .  > 0), NA))) %>%
-  dplyr::mutate(across(.cols = intervals_infection, .fns = ~ ./10 %>% round()*10))
+  dplyr::mutate(across(.cols = all_of(intervals_infection), .fns = ~ .x %>% `/`(10) %>% round()*10))
 table1_CSP_postOp_mortality_12mth <- 
   data_to_use %>%
   dplyr::filter(postOp_mortality_30day %in% c("Dead within 30 days post-operation",
@@ -462,7 +462,7 @@ table1_CSP_postOp_mortality_12mth <-
                                                   ">=7 weeks record of pre-operative SARS-CoV-2 infection",1,0))
   ) %>%
   dplyr::mutate(across(.cols = intervals_infection, .fns = ~ replace(., (. <= 7 & .  > 0), NA))) %>%
-  dplyr::mutate(across(.cols = intervals_infection, .fns = ~ ./10 %>% round()*10)) %>%
+  dplyr::mutate(across(.cols = all_of(intervals_infection), .fns = ~ .x %>% `/`(10) %>% round()*10)) %>%
   `colnames<-`(c("era", colnames(table1_postOp_mortality_12mth)[2:ncol(table1_postOp_mortality_12mth)]))
 table1_postOp_mortality_12mth <-
   dplyr::bind_rows(table1_postOp_mortality_12mth,table1_CSP_postOp_mortality_12mth)
@@ -503,7 +503,7 @@ table1_postOp_cerebrovascular_complication_30day <-
                                                   ">=7 weeks record of pre-operative SARS-CoV-2 infection",1,0))
   ) %>%
   dplyr::mutate(across(.cols = intervals_infection, .fns = ~ replace(., (. <= 7 & .  > 0), NA))) %>%
-  dplyr::mutate(across(.cols = intervals_infection, .fns = ~ ./10 %>% round()*10))
+  dplyr::mutate(across(.cols = all_of(intervals_infection), .fns = ~ .x %>% `/`(10) %>% round()*10))
 table1_CSP_postOp_cerebrovascular_complication_30day <- 
   data_to_use %>%
   dplyr::filter(postOp_mortality_30day %in% c("Dead within 30 days post-operation",
@@ -531,7 +531,7 @@ table1_CSP_postOp_cerebrovascular_complication_30day <-
                                                   ">=7 weeks record of pre-operative SARS-CoV-2 infection",1,0))
   ) %>%
   dplyr::mutate(across(.cols = intervals_infection, .fns = ~ replace(., (. <= 7 & .  > 0), NA))) %>%
-  dplyr::mutate(across(.cols = intervals_infection, .fns = ~ ./10 %>% round()*10)) %>%
+  dplyr::mutate(across(.cols = all_of(intervals_infection), .fns = ~ .x %>% `/`(10) %>% round()*10)) %>%
   `colnames<-`(c("era", colnames(table1_postOp_cerebrovascular_complication_30day)[2:ncol(table1_postOp_cerebrovascular_complication_30day)]))
 table1_postOp_cerebrovascular_complication_30day <-
   dplyr::bind_rows(table1_postOp_cerebrovascular_complication_30day,table1_CSP_postOp_cerebrovascular_complication_30day)
@@ -572,7 +572,7 @@ table1_postOp_pulmonary_complication_30day <-
                                                   ">=7 weeks record of pre-operative SARS-CoV-2 infection",1,0))
   ) %>%
   dplyr::mutate(across(.cols = intervals_infection, .fns = ~ replace(., (. <= 7 & .  > 0), NA))) %>%
-  dplyr::mutate(across(.cols = intervals_infection, .fns = ~ ./10 %>% round()*10))
+  dplyr::mutate(across(.cols = all_of(intervals_infection), .fns = ~ .x %>% `/`(10) %>% round()*10))
 table1_CSP_postOp_pulmonary_complication_30day <- 
   data_to_use %>%
   dplyr::filter(postOp_mortality_30day %in% c("Dead within 30 days post-operation",
@@ -600,7 +600,7 @@ table1_CSP_postOp_pulmonary_complication_30day <-
                                                   ">=7 weeks record of pre-operative SARS-CoV-2 infection",1,0))
   ) %>%
   dplyr::mutate(across(.cols = intervals_infection, .fns = ~ replace(., (. <= 7 & .  > 0), NA))) %>%
-  dplyr::mutate(across(.cols = intervals_infection, .fns = ~ ./10 %>% round()*10)) %>%
+  dplyr::mutate(across(.cols = all_of(intervals_infection), .fns = ~ .x %>% `/`(10) %>% round()*10)) %>%
   `colnames<-`(c("era", colnames(table1_postOp_pulmonary_complication_30day)[2:ncol(table1_postOp_pulmonary_complication_30day)]))
 table1_postOp_pulmonary_complication_30day <-
   dplyr::bind_rows(table1_postOp_pulmonary_complication_30day,table1_CSP_postOp_pulmonary_complication_30day)
@@ -641,7 +641,7 @@ table1_postOp_cardiac_complication_30day <-
                                                   ">=7 weeks record of pre-operative SARS-CoV-2 infection",1,0))
   ) %>%
   dplyr::mutate(across(.cols = intervals_infection, .fns = ~ replace(., (. <= 7 & .  > 0), NA))) %>%
-  dplyr::mutate(across(.cols = intervals_infection, .fns = ~ ./10 %>% round()*10))
+  dplyr::mutate(across(.cols = all_of(intervals_infection), .fns = ~ .x %>% `/`(10) %>% round()*10))
 table1_CSP_postOp_cardiac_complication_30day <- 
   data_to_use %>%
   dplyr::filter(postOp_mortality_30day %in% c("Dead within 30 days post-operation",
@@ -669,7 +669,7 @@ table1_CSP_postOp_cardiac_complication_30day <-
                                                   ">=7 weeks record of pre-operative SARS-CoV-2 infection",1,0))
   ) %>%
   dplyr::mutate(across(.cols = intervals_infection, .fns = ~ replace(., (. <= 7 & .  > 0), NA))) %>%
-  dplyr::mutate(across(.cols = intervals_infection, .fns = ~ ./10 %>% round()*10)) %>%
+  dplyr::mutate(across(.cols = all_of(intervals_infection), .fns = ~ .x %>% `/`(10) %>% round()*10)) %>%
   `colnames<-`(c("era", colnames(table1_postOp_cardiac_complication_30day)[2:ncol(table1_postOp_cardiac_complication_30day)]))
 table1_postOp_cardiac_complication_30day <-
   dplyr::bind_rows(table1_postOp_cardiac_complication_30day,table1_CSP_postOp_cardiac_complication_30day)
@@ -699,7 +699,7 @@ table1_chronic_cardiac_disease <-
                                                   ">=7 weeks record of pre-operative SARS-CoV-2 infection",1,0))
   ) %>%
   dplyr::mutate(across(.cols = intervals_infection, .fns = ~ replace(., (. <= 7 & .  > 0), NA))) %>%
-  dplyr::mutate(across(.cols = intervals_infection, .fns = ~ ./10 %>% round()*10))
+  dplyr::mutate(across(.cols = all_of(intervals_infection), .fns = ~ .x %>% `/`(10) %>% round()*10))
 table1_CSP_chronic_cardiac_disease <- 
   data_to_use %>%
   dplyr::filter(postOp_mortality_30day %in% c("Dead within 30 days post-operation",
@@ -722,7 +722,7 @@ table1_CSP_chronic_cardiac_disease <-
                                                   ">=7 weeks record of pre-operative SARS-CoV-2 infection",1,0))
   ) %>%
   dplyr::mutate(across(.cols = intervals_infection, .fns = ~ replace(., (. <= 7 & .  > 0), NA))) %>%
-  dplyr::mutate(across(.cols = intervals_infection, .fns = ~ ./10 %>% round()*10)) %>%
+  dplyr::mutate(across(.cols = all_of(intervals_infection), .fns = ~ .x %>% `/`(10) %>% round()*10)) %>%
   `colnames<-`(c("era", colnames(table1_chronic_cardiac_disease)[2:ncol(table1_chronic_cardiac_disease)]))
 table1_chronic_cardiac_disease <-
   dplyr::bind_rows(table1_chronic_cardiac_disease, table1_CSP_chronic_cardiac_disease)
@@ -752,7 +752,7 @@ table1_diabetes <-
                                                   ">=7 weeks record of pre-operative SARS-CoV-2 infection",1,0))
   ) %>%
   dplyr::mutate(across(.cols = intervals_infection, .fns = ~ replace(., (. <= 7 & .  > 0), NA))) %>%
-  dplyr::mutate(across(.cols = intervals_infection, .fns = ~ ./10 %>% round()*10))
+  dplyr::mutate(across(.cols = all_of(intervals_infection), .fns = ~ .x %>% `/`(10) %>% round()*10))
 table1_CSP_diabetes <- 
   data_to_use %>%
   dplyr::filter(postOp_mortality_30day %in% c("Dead within 30 days post-operation",
@@ -775,7 +775,7 @@ table1_CSP_diabetes <-
                                                   ">=7 weeks record of pre-operative SARS-CoV-2 infection",1,0))
   ) %>%
   dplyr::mutate(across(.cols = intervals_infection, .fns = ~ replace(., (. <= 7 & .  > 0), NA))) %>%
-  dplyr::mutate(across(.cols = intervals_infection, .fns = ~ ./10 %>% round()*10)) %>%
+  dplyr::mutate(across(.cols = all_of(intervals_infection), .fns = ~ .x %>% `/`(10) %>% round()*10)) %>%
   `colnames<-`(c("era", colnames(table1_diabetes)[2:ncol(table1_diabetes)]))
 table1_diabetes <- dplyr::bind_rows(table1_diabetes, table1_CSP_diabetes)
 # ## Count of patients in each of the categories for pre-operative infection
@@ -804,7 +804,7 @@ table1_chronic_respiratory_disease <-
                                                   ">=7 weeks record of pre-operative SARS-CoV-2 infection",1,0))
   ) %>%
   dplyr::mutate(across(.cols = intervals_infection, .fns = ~ replace(., (. <= 7 & .  > 0), NA))) %>%
-  dplyr::mutate(across(.cols = intervals_infection, .fns = ~ ./10 %>% round()*10))
+  dplyr::mutate(across(.cols = all_of(intervals_infection), .fns = ~ .x %>% `/`(10) %>% round()*10))
 table1_CSP_chronic_respiratory_disease <- 
   data_to_use %>%
   dplyr::filter(postOp_mortality_30day %in% c("Dead within 30 days post-operation",
@@ -827,7 +827,7 @@ table1_CSP_chronic_respiratory_disease <-
                                                   ">=7 weeks record of pre-operative SARS-CoV-2 infection",1,0))
   ) %>%
   dplyr::mutate(across(.cols = intervals_infection, .fns = ~ replace(., (. <= 7 & .  > 0), NA))) %>%
-  dplyr::mutate(across(.cols = intervals_infection, .fns = ~ ./10 %>% round()*10)) %>%
+  dplyr::mutate(across(.cols = all_of(intervals_infection), .fns = ~ .x %>% `/`(10) %>% round()*10)) %>%
   `colnames<-`(c("era", colnames(table1_chronic_respiratory_disease)[2:ncol(table1_chronic_respiratory_disease)]))
 table1_chronic_respiratory_disease <-
   dplyr::bind_rows(table1_chronic_respiratory_disease, table1_CSP_chronic_respiratory_disease)
@@ -857,7 +857,7 @@ table1_cerebrovascular_disease <-
                                                   ">=7 weeks record of pre-operative SARS-CoV-2 infection",1,0))
   ) %>%
   dplyr::mutate(across(.cols = intervals_infection, .fns = ~ replace(., (. <= 7 & .  > 0), NA))) %>%
-  dplyr::mutate(across(.cols = intervals_infection, .fns = ~ ./10 %>% round()*10))
+  dplyr::mutate(across(.cols = all_of(intervals_infection), .fns = ~ .x %>% `/`(10) %>% round()*10))
 table1_CSP_cerebrovascular_disease <- 
   data_to_use %>%
   dplyr::filter(postOp_mortality_30day %in% c("Dead within 30 days post-operation",
@@ -880,7 +880,7 @@ table1_CSP_cerebrovascular_disease <-
                                                   ">=7 weeks record of pre-operative SARS-CoV-2 infection",1,0))
   ) %>%
   dplyr::mutate(across(.cols = intervals_infection, .fns = ~ replace(., (. <= 7 & .  > 0), NA))) %>%
-  dplyr::mutate(across(.cols = intervals_infection, .fns = ~ ./10 %>% round()*10)) %>%
+  dplyr::mutate(across(.cols = all_of(intervals_infection), .fns = ~ .x %>% `/`(10) %>% round()*10)) %>%
   `colnames<-`(c("era", colnames(table1_cerebrovascular_disease)[2:ncol(table1_cerebrovascular_disease)]))
 table1_cerebrovascular_disease <-
   dplyr::bind_rows(table1_cerebrovascular_disease, table1_CSP_cerebrovascular_disease)
@@ -1190,11 +1190,6 @@ list_admission_method <-
   fnc_countsAndPercentages(table_to_use = table1_admission_method,
                            strata = "_admission_method",
                            strata_col = "category_admission_method")
-# 30-day post-operative mortality.
-list_postOp_mortality_30day <-
-  fnc_countsAndPercentages(table_to_use = table1_postOp_mortality_30day,
-                           strata = "_postOp_mortality_30day",
-                           strata_col = "postOp_mortality_30day")
 # 30-day post-operative mortality.
 list_postOp_mortality_30day <-
   fnc_countsAndPercentages(table_to_use = table1_postOp_mortality_30day,
