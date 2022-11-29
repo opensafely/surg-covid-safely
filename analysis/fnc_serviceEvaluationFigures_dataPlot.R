@@ -62,13 +62,12 @@ fnc_serviceEvaluationFigures_dataPlot <-
                        breaks = floor(seq(from = 0 , to = y_axis_top, length.out = y_axis_top + 1))) +
     ylab("Proportion of surgeries conducted less\n than 7 weeks from a positive PCR test (%)") +
     xlab("") +
-    geom_vline(xintercept = 13) + # Index for March 2020
-    annotate(x = 13, y = y_axis_top*0.95, label = "1st COVIDSurg\npublication",  hjust = "right", geom = "label", size = 2) +
-    annotate(x = 13, y = y_axis_top*0.75, label = "NICE\nguidelines",  hjust = "right", geom = "label", size = 2) +
+    geom_vline(xintercept = 1) + # Index for March 2020
+    geom_vline(xintercept = 5) + # Index for July 2020
+    annotate(x = 1, y = y_axis_top*0.95, label = "NICE\nguidelines",  hjust = "left", geom = "label", size = 2) +
+    annotate(x = 5, y = y_axis_top*0.80, label = "1st COVIDSurg\npublication",  hjust = "left", geom = "label", size = 2) +
     geom_vline(xintercept = 23) + # Index for January 2021
-    annotate(x = 23, y = y_axis_top*0.70, label = "Estimated\ndate of vaccine\neffectiveness", hjust = "right", geom = "label", size = 2) +
-    geom_vline(xintercept = 25) + # Index for March 2021
-    annotate(x = 25, y = y_axis_top*0.95, label = "2nd COVIDSurg\npublication",  hjust = "right", geom = "label", size = 2)
+    annotate(x = 23, y = y_axis_top*0.75, label = "Estimated\ndate of vaccine\neffectiveness", hjust = "right", geom = "label", size = 2)
   
   
   if(figureCaption == T)
