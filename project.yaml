@@ -6,11 +6,11 @@ expectations:
 actions:
 
 
-    tibble_test:
-        run: r:latest analysis/tibble_test.R
-        outputs:
-            moderately_sensitive:
-                output: output/myTibble.csv
+    #tibble_test:
+        #run: r:latest analysis/tibble_test.R
+        #outputs:
+            #moderately_sensitive:
+                #output: output/myTibble.csv
     # generate_study_population:
         # run: cohortextractor:latest generate_cohort --study-definition study_definition
         # outputs:
@@ -208,9 +208,9 @@ actions:
                     figure_C6m_3m: output/cancer_6months__6monthly_summary_proportion_surgeries_within_7wks_after_pos_test.jpeg
                     figure_AdmMethod_3m: output/__stratified_6monthly_summary_proportion_surgeries_within_7wks_after_pos_test.jpeg
                     
-    admission_check:
-        run: r:latest analysis/admission_check.R
-        needs: [generate_study_population_2]
-        outputs:
-            moderately_sensitive:
-                tbl_admission_check: output/tbl_admission_check.csv
+    # admission_check:
+        # run: r:latest analysis/admission_check.R
+        # needs: [generate_study_population_2]
+        # outputs:
+            # moderately_sensitive:
+                # tbl_admission_check: output/tbl_admission_check.csv
