@@ -167,3 +167,52 @@ write.csv(
                     "table_Count_of_patients_in_each_cohort_in_each_era_across_all_intervals.csv")
 )
 # ----
+
+########################
+## Make TableEra plot ##
+########################
+# ----
+# The plot shows the trend in 30-day post-operative mortality across increaseing
+# interval from an indication of SARS-CoV-2 infection for the following three
+# datasets:
+#   1. COVIDSurg original study
+#   2. OpenSAFELY data in the pandemic-no-vaccine era
+#   3. OpenSAFELY data in the pandemic-with-vaccine era
+#   
+
+era_of_interest <- c("CSP_COVIDSurg", "PNV_OS_all", "PWV_OS_all")
+
+pd <-
+  TableEra %>%
+  dplyr::select(-c("d_total", "pct_total", "d_infection_none",
+                   "pct_infection_none", "d_infection_0to2wk",
+                   "d_infection_3to4wk", "d_infection_5to6wk",
+                   "d_infection_7wk")) %>%
+  t() %>% as.data.frame() %>%
+  dplyr::select(era_of_interest) %>%
+  as.matrix() %>%
+  reshape2::melt()
+
+plot_TableEra <-
+  pd %>% 
+    ggplot(aes(x = Var1, y = value, group = Var2, linetype = Var2)) +
+    geom_line(size = 1) +
+    scale_x_discrete(name = "Interval between indication of\nSARS-CoV-2 infection and surgery", 
+                     labels = c("≤14 days", "15-28 days",	"29-42 days",	"≥43 days")) +
+    ylab("30-day post-operative mortality\n(%)") +
+    scale_color_grey(labels = c("COVIDSurg study", "OS in pandemic-no-vaccine era",
+                                   "OS in pandemic-with-vaccine era"),
+                     start = 0.5, end = 0.2) +
+    theme(legend.position = 'bottom',
+          legend.title = element_blank(),
+          legend.text = element_text(size = 6)) +
+    guides(fill = guide_legend(nrow = 2))
+  
+ggsave(filename = "plot_tableEra.jpeg",
+       plot = plot_TableEra,
+       device = "jpeg",
+       path = here::here("output"),
+       width = 3.5, height = 3.25, units = "in",
+       dpi = 600)
+
+# ----

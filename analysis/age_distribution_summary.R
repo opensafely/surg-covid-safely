@@ -55,8 +55,8 @@ plot_age_distribution <-
  data_age %>%
   ggplot(aes(x = age_at_surgery, fill = era, color = era)) +
     geom_histogram(alpha = 0.6) +
-    ylab("Count of patients") +
     xlab("Age at surgery") +
+    ylab("Count of patients") +
     theme(legend.position = 'bottom',
           legend.title = element_blank(),
           legend.text = element_text(size = 8)) +
