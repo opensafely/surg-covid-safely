@@ -214,3 +214,11 @@ actions:
         # outputs:
             # moderately_sensitive:
                 # tbl_admission_check: output/tbl_admission_check.csv
+                
+    age_distribution_summary:
+        run: r:latest analysis/age_distribution_summary.R
+        needs: [generate_study_population_2]
+        outputs:
+            moderately_sensitive:
+                tbl_age_distribution: output/tbl_age_distribution.csv
+                plot_age_distribution: output/plot_age_distribution.jpeg
