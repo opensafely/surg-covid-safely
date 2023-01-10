@@ -4,8 +4,9 @@ library('tidyverse')
 library('lubridate')
 library("kableExtra")
 library("here")
+library("e1071")
 ## If ever running locally.
-# list_of_packages <- c("tidyverse", "lubridate", "kableExtra","here")
+# list_of_packages <- c("tidyverse", "lubridate", "kableExtra","here", "e1071")
 # new_packages <- list_of_packages[!(list_of_packages %in% installed.packages()[,"Package"])]
 # if(length(new_packages)) install.packages(new_packages)
 # for (i in 1:length(list_of_packages))
@@ -45,12 +46,10 @@ data_age <-
 tbl_age_distribution <-
   data_age %>%
   dplyr::group_by(era) %>%
-  summarize(min = min(age_at_surgery),
-            q1 = quantile(age_at_surgery, 0.25),
-            median = median(age_at_surgery),
-            mean = mean(age_at_surgery),
-            q3 = quantile(age_at_surgery, 0.75),
-            max = max(age_at_surgery))
+  summarize(mean = mean(age_at_surgery),
+            sd = sd(age_at_surgery),
+            skew = e1071::skewness(age_at_surgery),
+            kurt = e1071::kurtosis(age_at_surgery))
   
 plot_age_distribution <-
  data_age %>%
