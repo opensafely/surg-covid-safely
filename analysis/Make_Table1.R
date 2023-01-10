@@ -74,7 +74,9 @@ table1_totals_preOp_infection_status <-
   dplyr::mutate(n = replace(n, (n <= 7 & n > 0), NA)) %>%
   dplyr::mutate(n = n %>% `/`(10) %>% round()*10)
 table1_CSP_totals_preOp_infection_status <- 
-  data_to_use %>% dplyr::filter(COVIDSurg_data_collection_period != "No surgery recorded") %>%
+  data_to_use %>% dplyr::filter(COVIDSurg_data_collection_period != "No surgery recorded" &
+                                  COVIDSurg_data_collection_period != "No surgery date recorded" &
+                                  COVIDSurg_data_collection_period != "Surgery not yet happened") %>%
   dplyr::group_by(COVIDSurg_data_collection_period, preOperative_infection_status) %>%
   dplyr::summarise(n = n()) %>%
   dplyr::mutate(n = replace(n, (n <= 7 & n > 0), NA)) %>%
@@ -118,7 +120,9 @@ table1_CSP_ageGroup <-
                                               "Alive within 30 days post-operation",
                                               "No death recorded") &
                   preOperative_infection_status %in% intervals) %>%
-  dplyr::filter(COVIDSurg_data_collection_period != "No surgery recorded") %>%
+  dplyr::filter(COVIDSurg_data_collection_period != "No surgery recorded" &
+                  COVIDSurg_data_collection_period != "No surgery date recorded" &
+                  COVIDSurg_data_collection_period != "Surgery not yet happened") %>%
   dplyr::group_by(COVIDSurg_data_collection_period, age_group_surgery) %>%
   dplyr::summarise(n_all_intervals = sum(ifelse(preOperative_infection_status!=
                                                   "Error: Test result after surgery. Check study_definition.",1,0)),
@@ -170,7 +174,9 @@ table1_CSP_Sex <-
                                               "Alive within 30 days post-operation",
                                               "No death recorded") &
                   preOperative_infection_status %in% intervals) %>%
-  dplyr::filter(COVIDSurg_data_collection_period != "No surgery recorded") %>%
+  dplyr::filter(COVIDSurg_data_collection_period != "No surgery recorded" &
+                  COVIDSurg_data_collection_period != "No surgery date recorded" &
+                  COVIDSurg_data_collection_period != "Surgery not yet happened") %>%
   dplyr::group_by(COVIDSurg_data_collection_period, Sex) %>%
   dplyr::summarise(n_all_intervals = sum(ifelse(preOperative_infection_status!=
                                                   "Error: Test result after surgery. Check study_definition.",1,0)),
@@ -222,7 +228,9 @@ table1_CSP_admission_method <-
                                               "Alive within 30 days post-operation",
                                               "No death recorded") &
                   preOperative_infection_status %in% intervals) %>%
-  dplyr::filter(COVIDSurg_data_collection_period != "No surgery recorded") %>%
+  dplyr::filter(COVIDSurg_data_collection_period != "No surgery recorded" &
+                  COVIDSurg_data_collection_period != "No surgery date recorded" &
+                  COVIDSurg_data_collection_period != "Surgery not yet happened") %>%
   dplyr::group_by(COVIDSurg_data_collection_period, category_admission_method) %>%
   dplyr::summarise(n_all_intervals = sum(ifelse(preOperative_infection_status!=
                                                   "Error: Test result after surgery. Check study_definition.",1,0)),
@@ -278,7 +286,9 @@ table1_CSP_postOp_mortality_30day <-
                                               "Alive within 30 days post-operation",
                                               "No death recorded") &
                   preOperative_infection_status %in% intervals) %>%
-  dplyr::filter(COVIDSurg_data_collection_period != "No surgery recorded") %>%
+  dplyr::filter(COVIDSurg_data_collection_period != "No surgery recorded" &
+                  COVIDSurg_data_collection_period != "No surgery date recorded" &
+                  COVIDSurg_data_collection_period != "Surgery not yet happened") %>%
   dplyr::group_by(COVIDSurg_data_collection_period, postOp_mortality_30day) %>%
   dplyr::summarise(n_all_intervals = sum(ifelse(preOperative_infection_status!=
                                                   "Error: Test result after surgery. Check study_definition.",1,0)),
@@ -334,7 +344,9 @@ table1_CSP_postOp_mortality_90day <-
                                               "Alive within 30 days post-operation",
                                               "No death recorded") &
                   preOperative_infection_status %in% intervals) %>%
-  dplyr::filter(COVIDSurg_data_collection_period != "No surgery recorded") %>%
+  dplyr::filter(COVIDSurg_data_collection_period != "No surgery recorded" &
+                  COVIDSurg_data_collection_period != "No surgery date recorded" &
+                  COVIDSurg_data_collection_period != "Surgery not yet happened") %>%
   dplyr::group_by(COVIDSurg_data_collection_period, postOp_mortality_90day) %>%
   dplyr::summarise(n_all_intervals = sum(ifelse(preOperative_infection_status!=
                                                   "Error: Test result after surgery. Check study_definition.",1,0)),
@@ -390,7 +402,9 @@ table1_CSP_postOp_mortality_6mth <-
                                               "Alive within 30 days post-operation",
                                               "No death recorded") &
                   preOperative_infection_status %in% intervals) %>%
-  dplyr::filter(COVIDSurg_data_collection_period != "No surgery recorded") %>%
+  dplyr::filter(COVIDSurg_data_collection_period != "No surgery recorded" &
+                  COVIDSurg_data_collection_period != "No surgery date recorded" &
+                  COVIDSurg_data_collection_period != "Surgery not yet happened") %>%
   dplyr::group_by(COVIDSurg_data_collection_period, postOp_mortality_6mth) %>%
   dplyr::summarise(n_all_intervals = sum(ifelse(preOperative_infection_status!=
                                                   "Error: Test result after surgery. Check study_definition.",1,0)),
@@ -446,7 +460,9 @@ table1_CSP_postOp_mortality_12mth <-
                                               "Alive within 30 days post-operation",
                                               "No death recorded") &
                   preOperative_infection_status %in% intervals) %>%
-  dplyr::filter(COVIDSurg_data_collection_period != "No surgery recorded") %>%
+  dplyr::filter(COVIDSurg_data_collection_period != "No surgery recorded" &
+                  COVIDSurg_data_collection_period != "No surgery date recorded" &
+                  COVIDSurg_data_collection_period != "Surgery not yet happened") %>%
   dplyr::group_by(COVIDSurg_data_collection_period, postOp_mortality_12mth) %>%
   dplyr::summarise(n_all_intervals = sum(ifelse(preOperative_infection_status!=
                                                   "Error: Test result after surgery. Check study_definition.",1,0)),
@@ -510,7 +526,9 @@ table1_CSP_postOp_cerebrovascular_complication_30day <-
                                               "Alive within 30 days post-operation",
                                               "No death recorded") &
                   preOperative_infection_status %in% intervals) %>%
-  dplyr::filter(COVIDSurg_data_collection_period != "No surgery recorded") %>%
+  dplyr::filter(COVIDSurg_data_collection_period != "No surgery recorded" &
+                  COVIDSurg_data_collection_period != "No surgery date recorded" &
+                  COVIDSurg_data_collection_period != "Surgery not yet happened") %>%
   dplyr::mutate(
     cerebrovascular_complication_30day = dplyr::case_when(
       postOp_cerebrovascular_complication_30day ==
@@ -579,7 +597,9 @@ table1_CSP_postOp_pulmonary_complication_30day <-
                                               "Alive within 30 days post-operation",
                                               "No death recorded") &
                   preOperative_infection_status %in% intervals) %>%
-  dplyr::filter(COVIDSurg_data_collection_period != "No surgery recorded") %>%
+  dplyr::filter(COVIDSurg_data_collection_period != "No surgery recorded" &
+                  COVIDSurg_data_collection_period != "No surgery date recorded" &
+                  COVIDSurg_data_collection_period != "Surgery not yet happened") %>%
   dplyr::mutate(
     pulmonary_complication_30day = dplyr::case_when(
       postOp_pulmonary_complication_30day ==
@@ -648,7 +668,9 @@ table1_CSP_postOp_cardiac_complication_30day <-
                                               "Alive within 30 days post-operation",
                                               "No death recorded") &
                   preOperative_infection_status %in% intervals) %>%
-  dplyr::filter(COVIDSurg_data_collection_period != "No surgery recorded") %>%
+  dplyr::filter(COVIDSurg_data_collection_period != "No surgery recorded" &
+                  COVIDSurg_data_collection_period != "No surgery date recorded" &
+                  COVIDSurg_data_collection_period != "Surgery not yet happened") %>%
   dplyr::mutate(
     cardiac_complication_30day = dplyr::case_when(
       postOp_cardiac_complication_30day ==
@@ -706,7 +728,9 @@ table1_CSP_chronic_cardiac_disease <-
                                               "Alive within 30 days post-operation",
                                               "No death recorded") &
                   preOperative_infection_status %in% intervals) %>%
-  dplyr::filter(COVIDSurg_data_collection_period != "No surgery recorded") %>%
+  dplyr::filter(COVIDSurg_data_collection_period != "No surgery recorded" &
+                  COVIDSurg_data_collection_period != "No surgery date recorded" &
+                  COVIDSurg_data_collection_period != "Surgery not yet happened") %>%
   dplyr::group_by(COVIDSurg_data_collection_period, chronic_cardiac_disease) %>%
   dplyr::summarise(n_all_intervals = sum(ifelse(preOperative_infection_status!=
                                                   "Error: Test result after surgery. Check study_definition.",1,0)),
@@ -759,7 +783,9 @@ table1_CSP_diabetes <-
                                               "Alive within 30 days post-operation",
                                               "No death recorded") &
                   preOperative_infection_status %in% intervals) %>%
-  dplyr::filter(COVIDSurg_data_collection_period != "No surgery recorded") %>%
+  dplyr::filter(COVIDSurg_data_collection_period != "No surgery recorded" &
+                  COVIDSurg_data_collection_period != "No surgery date recorded" &
+                  COVIDSurg_data_collection_period != "Surgery not yet happened") %>%
   dplyr::group_by(COVIDSurg_data_collection_period, diabetes) %>%
   dplyr::summarise(n_all_intervals = sum(ifelse(preOperative_infection_status!=
                                                   "Error: Test result after surgery. Check study_definition.",1,0)),
@@ -811,7 +837,9 @@ table1_CSP_chronic_respiratory_disease <-
                                               "Alive within 30 days post-operation",
                                               "No death recorded") &
                   preOperative_infection_status %in% intervals) %>%
-  dplyr::filter(COVIDSurg_data_collection_period != "No surgery recorded") %>%
+  dplyr::filter(COVIDSurg_data_collection_period != "No surgery recorded" &
+                  COVIDSurg_data_collection_period != "No surgery date recorded" &
+                  COVIDSurg_data_collection_period != "Surgery not yet happened") %>%
   dplyr::group_by(COVIDSurg_data_collection_period, chronic_respiratory_disease) %>%
   dplyr::summarise(n_all_intervals = sum(ifelse(preOperative_infection_status!=
                                                   "Error: Test result after surgery. Check study_definition.",1,0)),
@@ -864,7 +892,9 @@ table1_CSP_cerebrovascular_disease <-
                                               "Alive within 30 days post-operation",
                                               "No death recorded") &
                   preOperative_infection_status %in% intervals) %>%
-  dplyr::filter(COVIDSurg_data_collection_period != "No surgery recorded") %>%
+  dplyr::filter(COVIDSurg_data_collection_period != "No surgery recorded" &
+                  COVIDSurg_data_collection_period != "No surgery date recorded" &
+                  COVIDSurg_data_collection_period != "Surgery not yet happened") %>%
   dplyr::group_by(COVIDSurg_data_collection_period, cerebrovascular_disease) %>%
   dplyr::summarise(n_all_intervals = sum(ifelse(preOperative_infection_status!=
                                                   "Error: Test result after surgery. Check study_definition.",1,0)),
@@ -1286,7 +1316,7 @@ table1Outcomes_PP <-
     list_postOp_cerebrovascular_complication_30day$PP_cerebrovascular_complication_30day %>% arrange(desc(strata))) %>%
   dplyr::select(strata, n_all_intervals, pct_all_intervals) %>%
   dplyr::filter(!strata %in% c("Error: Surgery after death",
-                               "No death recorded", "No surgery recorded")) %>%
+                               "No death recorded", "No surgery recorded", "No surgery date recorded", "Surgery not yet happened")) %>%
   tibble::add_column(., c(
     rep("30-day post-operative mortality",2),
     rep("90-day post-operative mortality",2),
@@ -1338,7 +1368,7 @@ table1Outcomes_PNV <-
     list_postOp_cardiac_complication_30day$PNV_cardiac_complication_30day %>% arrange(desc(strata)),
     list_postOp_cerebrovascular_complication_30day$PNV_cerebrovascular_complication_30day %>% arrange(desc(strata))) %>%
   dplyr::filter(!strata %in% c("Error: Surgery after death",
-                               "No death recorded", "No surgery recorded")) %>%
+                               "No death recorded", "No surgery recorded", "No surgery date recorded", "Surgery not yet happened")) %>%
   tibble::add_column(., c(
     rep("30-day post-operative mortality",2),
     rep("90-day post-operative mortality",2),
@@ -1390,7 +1420,7 @@ table1Outcomes_CSP <-
     list_postOp_cardiac_complication_30day$CSP_cardiac_complication_30day %>% arrange(desc(strata)),
     list_postOp_cerebrovascular_complication_30day$CSP_cerebrovascular_complication_30day %>% arrange(desc(strata))) %>%
   dplyr::filter(!strata %in% c("Error: Surgery after death",
-                               "No death recorded", "No surgery recorded")) %>%
+                               "No death recorded", "No surgery recorded", "No surgery date recorded", "Surgery not yet happened")) %>%
   tibble::add_column(., c(
     rep("30-day post-operative mortality",2),
     rep("90-day post-operative mortality",2),
@@ -1442,7 +1472,7 @@ table1Outcomes_PWV <-
     list_postOp_cardiac_complication_30day$PWV_cardiac_complication_30day %>% arrange(desc(strata)),
     list_postOp_cerebrovascular_complication_30day$PWV_cerebrovascular_complication_30day %>% arrange(desc(strata))) %>%
   dplyr::filter(!strata %in% c("Error: Surgery after death",
-                               "No death recorded", "No surgery recorded")) %>%
+                               "No death recorded", "No surgery recorded", "No surgery date recorded", "Surgery not yet happened")) %>%
   tibble::add_column(., c(
     rep("30-day post-operative mortality",2),
     rep("90-day post-operative mortality",2),

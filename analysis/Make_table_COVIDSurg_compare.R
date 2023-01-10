@@ -72,7 +72,10 @@ myDataSelect <- myData %>%
                   "Error: Test result after surgery. Check study_definition.",
                 era != "No surgery recorded",
                 era != "No surgery date recorded",
-                COVIDSurg_data_collection_period != "No surgery date recorded")
+                era != "Surgery not yet happened",
+                COVIDSurg_data_collection_period != "No surgery recorded",
+                COVIDSurg_data_collection_period != "No surgery date recorded",
+                COVIDSurg_data_collection_period != "Surgery not yet happened")
 data_to_use_all <- myDataSelect %>% dplyr::filter(has_surgery == TRUE)
 data_to_use_NC <- myDataSelect %>% dplyr::filter(has_surgery == TRUE) %>%
   dplyr::filter(has_cancer == FALSE)
@@ -488,7 +491,9 @@ OS_all_mortality <-
   dplyr::mutate(across(.cols = all_of(intervals_infection), .fns = ~ .x %>% `/`(10) %>% round()*10))
 OS_CSP_all_mortality <- 
   data_to_use_all %>% 
-  dplyr::filter(COVIDSurg_data_collection_period != "No surgery recorded") %>%
+  dplyr::filter(COVIDSurg_data_collection_period != "No surgery recorded" &
+                  COVIDSurg_data_collection_period != "No surgery date recorded" &
+                  COVIDSurg_data_collection_period != "Surgery not yet happened") %>%
   dplyr::group_by(COVIDSurg_data_collection_period, postOp_mortality_30day) %>%
   dplyr::summarise(n_all_intervals = sum(ifelse(preOperative_infection_status!=
                                               "Error: Test result after surgery. Check study_definition.",1,0)),
@@ -695,7 +700,8 @@ OS_NC_mortality[,intervals_infection] <-
 OS_CSP_NC_mortality <- 
   data_to_use_NC %>% 
   dplyr::filter(COVIDSurg_data_collection_period != "No surgery recorded" &
-                  COVIDSurg_data_collection_period != "No surgery date recorded") %>%
+                  COVIDSurg_data_collection_period != "No surgery date recorded" &
+                  COVIDSurg_data_collection_period != "Surgery not yet happened") %>%
   dplyr::group_by(COVIDSurg_data_collection_period, postOp_mortality_30day) %>%
   dplyr::summarise(n_all_intervals = sum(ifelse(preOperative_infection_status!=
                                               "Error: Test result after surgery. Check study_definition.",1,0)),
@@ -902,7 +908,9 @@ OS_C_within3m_mortality[,intervals_infection] <-
   round(OS_C_within3m_mortality[,intervals_infection] / 5) * 5
 OS_CSP_C_within3m_mortality <- 
   data_to_use_C_within3m %>% 
-  dplyr::filter(COVIDSurg_data_collection_period != "No surgery recorded") %>%
+  dplyr::filter(COVIDSurg_data_collection_period != "No surgery recorded" &
+                  COVIDSurg_data_collection_period != "No surgery date recorded" &
+                  COVIDSurg_data_collection_period != "Surgery not yet happened") %>%
   dplyr::group_by(COVIDSurg_data_collection_period, postOp_mortality_30day) %>%
   dplyr::summarise(n_all_intervals = sum(ifelse(preOperative_infection_status!=
                                               "Error: Test result after surgery. Check study_definition.",1,0)),
@@ -1108,7 +1116,9 @@ OS_C_outwith3m_mortality[,intervals_infection] <-
   round(OS_C_outwith3m_mortality[,intervals_infection] / 5) * 5
 OS_CSP_C_outwith3m_mortality <- 
   data_to_use_C_outwith3m %>% 
-  dplyr::filter(COVIDSurg_data_collection_period != "No surgery recorded") %>%
+  dplyr::filter(COVIDSurg_data_collection_period != "No surgery recorded" &
+                  COVIDSurg_data_collection_period != "No surgery date recorded" &
+                  COVIDSurg_data_collection_period != "Surgery not yet happened") %>%
   dplyr::group_by(COVIDSurg_data_collection_period, postOp_mortality_30day) %>%
   dplyr::summarise(n_all_intervals = sum(ifelse(preOperative_infection_status!=
                                               "Error: Test result after surgery. Check study_definition.",1,0)),
