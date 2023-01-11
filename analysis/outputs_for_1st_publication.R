@@ -216,3 +216,10 @@ ggsave(filename = "plot_tableEra.jpeg",
        dpi = 600)
 
 # ----
+
+###########################
+# Age distribution output #
+###########################
+# ----
+source(here::here("analysis","age_distribution_summary.R"))
+# ---- 
