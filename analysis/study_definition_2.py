@@ -57,7 +57,7 @@ study = StudyDefinition(
 	### Date of surgery.
 	date_surgery = patients.with_these_clinical_events(
 		codelist_cancer_surgery,
-        on_or_after = start_date,
+        between = [start_date, end_date],
 		returning = "date",
 		date_format = "YYYY-MM-DD",
 		return_expectations={
