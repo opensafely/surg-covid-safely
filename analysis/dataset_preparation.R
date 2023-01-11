@@ -51,6 +51,11 @@ df_input$chronic_cardiac_disease <- plyr::mapvalues(df_input$chronic_cardiac_dis
 df_input$diabetes <- plyr::mapvalues(df_input$diabetes, from = c(TRUE, FALSE), to = c("Yes", "No"))
 df_input$chronic_respiratory_disease <- plyr::mapvalues(df_input$chronic_respiratory_disease, from = c(TRUE, FALSE), to = c("Yes", "No"))
 df_input$cerebrovascular_disease <- plyr::mapvalues(df_input$cerebrovascular_disease, from = c(TRUE, FALSE), to = c("Yes", "No"))
+# Trim nonsensical values for age_at_surgery.
+df_input$age_at_surgery <-
+  df_input %>%
+  dplyr::select(age_at_surgery) %>% as.matrix() %>%
+  dplyr::if_else((. < 0 | . > 120), NA_integer_, .)
 
 # Assign input to secondary variable. 
 myData <- df_input
