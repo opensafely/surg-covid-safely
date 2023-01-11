@@ -51,6 +51,11 @@ df_input$chronic_cardiac_disease <- plyr::mapvalues(df_input$chronic_cardiac_dis
 df_input$diabetes <- plyr::mapvalues(df_input$diabetes, from = c(TRUE, FALSE), to = c("Yes", "No"))
 df_input$chronic_respiratory_disease <- plyr::mapvalues(df_input$chronic_respiratory_disease, from = c(TRUE, FALSE), to = c("Yes", "No"))
 df_input$cerebrovascular_disease <- plyr::mapvalues(df_input$cerebrovascular_disease, from = c(TRUE, FALSE), to = c("Yes", "No"))
+# Trim nonsensical values for age_at_surgery.
+df_input$age_at_surgery <-
+  df_input %>%
+  dplyr::select(age_at_surgery) %>% as.matrix() %>%
+  dplyr::if_else((. < 0 | . > 120), NA_integer_, .)
 
 # Assign input to secondary variable. 
 myData <- df_input
@@ -67,7 +72,6 @@ myData <- myData %>%
     era = dplyr::case_when(
       .$has_surgery == FALSE ~ "No surgery recorded",
       is.na(.$date_surgery) ~ "No surgery date recorded",
-      grepl("9999", .$date_surgery) ~ "Surgery not yet happened", 
       .$date_surgery <= "2020-03-17" ~ "Pre-pandemic",
       .$date_surgery <= lubridate::ymd("2020-12-08") + lubridate::weeks(5) ~
                                        "Pandemic no vaccine",
@@ -81,7 +85,6 @@ myData <- myData %>%
     COVIDSurg_data_collection_period = dplyr::case_when(
       .$has_surgery == FALSE ~ "No surgery recorded",
       is.na(.$date_surgery) ~ "No surgery date recorded",
-      grepl("9999", .$date_surgery) ~ "Surgery not yet happened", 
       (.$date_surgery >= "2020-10-05" & .$date_surgery <= "2020-11-01") ~ "COVIDSurg data collection period",
       TRUE ~ "Not COVIDSurg data collection period"
     )
@@ -104,7 +107,6 @@ myData <- myData %>%
       .$has_cancer == FALSE ~ "No cancer diagnosis recorded",
       is.na(.$date_cancer) ~ "No cancer diagnosis date recorded, despite having cancer diagnosis",
       .$has_surgery == FALSE ~ "No surgery recorded",
-      grepl("9999", .$date_surgery) ~ "Surgery not yet happened", 
       is.na(.$date_surgery) ~ "No surgery date recorded, despite having surgery code",
       (.$date_surgery - .$date_cancer > 0) & (.$date_surgery - .$date_cancer < 90) ~ "Cancer diagnosis within 3mths before surgery",
       (.$date_cancer - .$date_surgery > 0) & (.$date_cancer - .$date_surgery < 90) ~ "Cancer diagnosis within 3mths after surgery",
@@ -118,7 +120,6 @@ myData <- myData %>%
       .$has_cancer == FALSE ~ "No cancer diagnosis recorded",
       is.na(.$date_cancer) ~ "No cancer diagnosis date recorded, despite having cancer diagnosis",
       .$has_surgery == FALSE ~ "No surgery recorded",
-      grepl("9999", .$date_surgery) ~ "Surgery not yet happened", 
       is.na(.$date_surgery) ~ "No surgery date recorded, despite having surgery code",
       (.$date_surgery - .$date_cancer > 0) & (.$date_surgery - .$date_cancer < 180) ~ "Cancer diagnosis within 6mths before surgery",
       (.$date_cancer - .$date_surgery > 0) & (.$date_cancer - .$date_surgery < 180) ~ "Cancer diagnosis within 6mths after surgery",
@@ -175,7 +176,6 @@ myData <- myData %>%
             dplyr::mutate(
              postOp_mortality_30day = dplyr::case_when(
                .$has_surgery == FALSE ~ "No surgery recorded",
-               grepl("9999", .$date_surgery) ~ "Surgery not yet happened",
               (.$date_death < .$date_surgery) ~ "Error: Surgery after death",
                 (.$date_death - .$date_surgery) <= 30 ~ "Dead within 30 days post-operation",
                 ((.$date_death - .$date_surgery) > 30 | is.na(.$date_death)) ~ "Alive within 30 days post-operation"
@@ -187,7 +187,6 @@ myData <- myData %>%
             dplyr::mutate(
               postOp_mortality_90day = dplyr::case_when(
                 .$has_surgery == FALSE ~ "No surgery recorded",
-                grepl("9999", .$date_surgery) ~ "Surgery not yet happened",
                 (.$date_death < .$date_surgery) ~ "Error: Surgery after death",
                 (.$date_death - .$date_surgery) <= 90 ~ "Dead within 90 days post-operation",
                 ((.$date_death - .$date_surgery) > 90 | is.na(.$date_death)) ~ "Alive within 90 days post-operation"
@@ -199,7 +198,6 @@ myData <- myData %>%
             dplyr::mutate(
               postOp_mortality_6mth = dplyr::case_when(
                 .$has_surgery == FALSE ~ "No surgery recorded",
-                grepl("9999", .$date_surgery) ~ "Surgery not yet happened", 
                 (.$date_death < .$date_surgery) ~ "Error: Surgery after death",
                 (.$date_death - .$date_surgery) <= 180 ~ "Dead within 6 months post-operation",
                 ((.$date_death - .$date_surgery) > 180| is.na(.$date_death)) ~ "Alive within 6 months post-operation"
@@ -211,7 +209,6 @@ myData <- myData %>%
             dplyr::mutate(
               postOp_mortality_12mth = dplyr::case_when(
                 .$has_surgery == FALSE ~ "No surgery recorded",
-                grepl("9999", .$date_surgery) ~ "Surgery not yet happened", 
                 (.$date_death < .$date_surgery) ~ "Error: Surgery after death",
                 (.$date_death - .$date_surgery) <= 365 ~ "Dead within 12 months post-operation",
                 ((.$date_death - .$date_surgery) > 365 | is.na(.$date_death)) ~ "Alive within 12 months post-operation"
@@ -223,7 +220,6 @@ myData <- myData %>%
             dplyr::mutate(
               postOp_cerebrovascular_complication_30day = dplyr::case_when(
                 .$has_surgery == FALSE ~ "No surgery recorded",
-                grepl("9999", .$date_surgery) ~ "Surgery not yet happened", 
                 (.$date_postOp_cerebrovascular_complication < .$date_surgery) ~ "Ignore: Pre-operative complication",
                 (.$date_postOp_cerebrovascular_complication - .$date_surgery) <= 30 ~ "Complications",
                 ((.$date_postOp_cerebrovascular_complication - .$date_surgery) > 30 | is.na(.$date_postOp_cerebrovascular_complication)) ~ "No complications"
@@ -235,7 +231,6 @@ myData <- myData %>%
             dplyr::mutate(
               postOp_pulmonary_complication_30day = dplyr::case_when(
                 .$has_surgery == FALSE ~ "No surgery recorded",
-                grepl("9999", .$date_surgery) ~ "Surgery not yet happened", 
                 (.$date_postOp_pulmonary_complication < .$date_surgery) ~ "Ignore: Pre-operative complication",
                 (.$date_postOp_pulmonary_complication - .$date_surgery) <= 30 ~ "Complications",
                 ((.$date_postOp_pulmonary_complication - .$date_surgery) > 30 | is.na(.$date_postOp_pulmonary_complication)) ~ "No complications"
@@ -247,7 +242,6 @@ myData <- myData %>%
             dplyr::mutate(
               postOp_cardiac_complication_30day = dplyr::case_when(
                 .$has_surgery == FALSE ~ "No surgery recorded",
-                grepl("9999", .$date_surgery) ~ "Surgery not yet happened", 
                 (.$date_postOp_cardiac_complication < .$date_surgery) ~ "Ignore: Pre-operative complication",
                 (.$date_postOp_cardiac_complication - .$date_surgery) <= 30 ~ "Complications",
                 ((.$date_postOp_cardiac_complication - .$date_surgery) > 30 | is.na(.$date_postOp_cardiac_complication)) ~ "No complications"
@@ -264,7 +258,6 @@ myData <- myData %>%
             ## #     need to be updated in Make_Table1.R, too.
             dplyr::mutate(
               preOperative_infection_status = dplyr::case_when(
-                grepl("9999", .$date_surgery) ~ "Surgery not yet happened", 
                 (.$date_surgery - .$date_latest_test_preOp_SARS_CoV_2_outcome_positive) < 0 ~
                     "Error: Test result after surgery. Check study_definition.",
                 (.$date_surgery - .$date_latest_test_preOp_SARS_CoV_2_outcome_positive) == 0 ~
