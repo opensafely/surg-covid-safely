@@ -46,10 +46,10 @@ data_age <-
 tbl_age_distribution <-
   data_age %>%
   dplyr::group_by(era) %>%
-  summarize(mean = mean(age_at_surgery),
-            sd = sd(age_at_surgery),
-            skew = e1071::skewness(age_at_surgery),
-            kurt = e1071::kurtosis(age_at_surgery))
+  summarize(mean = mean(age_at_surgery, na.rm = TRUE),
+            sd = sd(age_at_surgery, na.rm = TRUE),
+            skew = e1071::skewness(age_at_surgery, na.rm = TRUE),
+            kurt = e1071::kurtosis(age_at_surgery, na.rm = TRUE))
   
 plot_age_distribution <-
  data_age %>%
