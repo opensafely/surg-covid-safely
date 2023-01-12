@@ -55,7 +55,7 @@ df_input$cerebrovascular_disease <- plyr::mapvalues(df_input$cerebrovascular_dis
 df_input$age_at_surgery <-
   df_input %>%
   dplyr::select(age_at_surgery) %>% as.matrix() %>%
-  dplyr::if_else((. < 0 | . > 120), NA_integer_, .)
+  dplyr::if_else((. < 0 | . > 105), NA_integer_, .)
 
 # Assign input to secondary variable. 
 myData <- df_input

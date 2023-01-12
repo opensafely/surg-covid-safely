@@ -205,7 +205,8 @@ plot_TableEra <-
                      start = 0.5, end = 0.2) +
     theme(legend.position = 'bottom',
           legend.title = element_blank(),
-          legend.text = element_text(size = 6)) +
+          legend.text = element_text(size = 6),
+          axis.text = element_text(size = 8)) +
     guides(fill = guide_legend(nrow = 2))
   
 ggsave(filename = "plot_tableEra.jpeg",
