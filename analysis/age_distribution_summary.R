@@ -49,19 +49,26 @@ tbl_age_distribution <-
   summarize(mean = mean(age_at_surgery, na.rm = TRUE),
             sd = sd(age_at_surgery, na.rm = TRUE),
             skew = e1071::skewness(age_at_surgery, na.rm = TRUE),
-            kurt = e1071::kurtosis(age_at_surgery, na.rm = TRUE))
-  
-plot_age_distribution <-
- data_age %>%
-  ggplot(aes(x = age_at_surgery, fill = era, color = era)) +
-    geom_histogram(alpha = 0.6) +
-    xlab("Age at surgery") +
-    ylab("Count of patients") +
-    theme(legend.position = 'bottom',
-          legend.title = element_blank(),
-          legend.text = element_text(size = 8)) +
-    guides(fill = guide_legend(nrow = 2))
+            kurt = e1071::kurtosis(age_at_surgery, na.rm = TRUE)) 
 
+eras_of_interest <- c("Pre-pandemic", "Pandemic no vaccine",
+                     "Pandemic with vaccine", "COVIDSurg data collection period")
+plot_age_distribution <-
+data_age %>%
+  droplevels() %>%
+  mutate(era = 
+           factor(era, levels = c("Pre-pandemic", "Pandemic no vaccine",
+                           "Pandemic with vaccine",
+                           "COVIDSurg data collection period"))
+         ) %>%
+  ggplot(aes(x = age_at_surgery)) +
+  geom_histogram(colour = 1, bins = 10) +
+  xlab("Age at surgery") +
+  ylab("Count of patients") +
+  theme(axis.title = element_text(size = 12),
+        strip.text = element_text(size = 6)) + 
+  facet_wrap(vars(era))
+  
 #######################
 # Write output to file #
 #######################
