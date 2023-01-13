@@ -191,7 +191,11 @@ pd <-
   t() %>% as.data.frame() %>%
   dplyr::select(era_of_interest) %>%
   as.matrix() %>%
-  reshape2::melt()
+  reshape2::melt() %>%
+  mutate(Var2 = recode(Var2,
+                      "CSP_COVIDSurg" = "COVIDSurg study", 
+                      "PNV_OS_all" = "OS in pandemic-no-vaccine\nera", 
+                      "PWV_OS_all" = "OS in pandemic-with-vaccine\nera"))
 
 plot_TableEra <-
   pd %>% 
@@ -199,15 +203,13 @@ plot_TableEra <-
     geom_line(size = 1) +
     scale_x_discrete(name = "Interval between indication of\nSARS-CoV-2 infection and surgery", 
                      labels = c("≤14 days", "15-28 days",	"29-42 days",	"≥43 days")) +
-    ylab("30-day post-operative mortality\n(%)") +
-    scale_color_grey(labels = c("COVIDSurg study", "OS in pandemic-no-vaccine era",
-                                   "OS in pandemic-with-vaccine era"),
-                     start = 0.5, end = 0.2) +
+    ylab("30-day post-operative\nmortality (%)") +
     theme(legend.position = 'bottom',
           legend.title = element_blank(),
           legend.text = element_text(size = 6),
-          axis.text = element_text(size = 8)) +
-    guides(fill = guide_legend(nrow = 2))
+          axis.text = element_text(size = 8),
+          axis.title = element_text(size = 10)) +
+    guides(linetype = guide_legend(nrow = 2))
   
 ggsave(filename = "plot_tableEra.jpeg",
        plot = plot_TableEra,
