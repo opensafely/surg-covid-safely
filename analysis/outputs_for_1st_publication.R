@@ -207,7 +207,7 @@ plot_TableEra <-
     theme(legend.position = 'bottom',
           legend.title = element_blank(),
           legend.text = element_text(size = 6),
-          axis.text = element_text(size = 8),
+          axis.text = element_text(size = 5),
           axis.title = element_text(size = 10)) +
     guides(linetype = guide_legend(nrow = 2))
   
